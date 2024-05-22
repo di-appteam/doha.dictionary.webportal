@@ -1,0 +1,75 @@
+#go-top {
+  position: fixed;
+  bottom: 20%;
+  right: 20px;
+  z-index: 5;
+
+  width: 50px;
+  height: 50px;
+  background-color: #ede4c3;
+  border: 1px solid #fff;
+  color: #fff;
+  transform: rotate(45deg);
+  text-align: center;
+  box-shadow: 4px 4px 19px 0 rgba(0, 0, 0, 0.15);
+  padding-left: 0;
+  opacity: 0.7;
+
+  &:hover {
+    background-color: #d8ba47;
+    opacity: 1;
+
+    @media(min-width: 768) {
+      background-color: #d8ba47;
+      opacity: 1;
+    }
+  }
+
+  .icon {
+    transform: rotate(-45deg);
+    display: inline-block;
+    font-size: 17px;
+  }
+}
+
+.sb-outline-theme {
+
+  // share button wrapper
+  .sb-expand {
+    font-size: 1px;
+  }
+
+  .sb-wrapper {
+    // You can get default button color using the CSS variable
+    background-color: var(--button-color);
+
+    // Inner wrapper
+    .sb-inner {
+
+      // Content wrapper
+      .sb-content {
+        // Icon wrapper
+        width: 5px;
+
+        .sb-icon {}
+
+        // Text wrapper
+        .sb-text {}
+      }
+
+      // Count wrapper
+      .sb-count {}
+    }
+
+    // For conditional styles
+    // E.g. Apply when icon, text and count are shown
+    &.sb-show-icon.sb-show-text.sb-show-count {
+
+      // Icon wrapper
+      .sb-icon {}
+
+      // Text wrapper
+      .sb-text {}
+    }
+  }
+}

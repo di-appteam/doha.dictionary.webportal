@@ -1,0 +1,20 @@
+<div class="latest-words-section">
+
+  <div class="section-header">
+
+    <h3 class="section-title">
+      {{'shared.mostwordssearchsection.mostwords' | translate}}
+    </h3>
+
+  </div>
+
+
+  <div class="section-body">
+
+    <mat-chip-set aria-label="Fish selection" class="tags-list">
+      <mat-chip  class="tag" *ngFor="let word of lemmadata"><a [routerLink]="['/dictionary/', word.wordvalue]">{{word.wordvalue}}</a></mat-chip>
+    </mat-chip-set>
+
+  </div>
+
+</div>

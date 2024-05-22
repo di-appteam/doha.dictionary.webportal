@@ -1,0 +1,190 @@
+/*
+extra light   : 200
+light         : 300
+semi light    : 350
+plain/regular : 400
+semi bold     : 600
+bold          : 700
+extra bold    : 800
+black         : 900
+*/
+
+@font-face {
+  font-family: 'bahij';
+  font-weight: 400;
+  src: url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/bahij-plain/bahij-the-sans-arabic-plain.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'bahij';
+  font-weight: 700;
+  src: url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/bahij-bold/bahij-the-sans-arabic-bold.svg#bahij') format('svg'); /* Legacy iOS */
+}
+// DroidArabicKufi font
+@font-face {
+  font-family: 'DroidArabicKufi';
+  font-weight: 400;
+  src: url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/DroidArabicKufi/regular/DroidArabicKufi-Regular.svg#bahij') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'DroidArabicKufi';
+  font-weight: 700;
+  src: url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/DroidArabicKufi/bold/DroidArabicKufi-Bold.svg#bahij') format('svg'); /* Legacy iOS */
+}
+
+
+
+@font-face {
+  font-family: 'KFGQPCUthmanTahaNaskh';
+  font-weight: 400;
+  src: url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-regular/KFGQPCUthmanTahaNaskh.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'KFGQPCUthmanTahaNaskh';
+  font-weight: 700;
+  src: url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/KFGQPCUthmanTahaNaskh-bold/KFGQPCUthmanTahaNaskh-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'KFGQPCUthmanicScriptHAFS';
+  font-weight: 700;
+  src: url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/KFGQPCUthmanicScriptHAFS/KFGQPCUthmanicScriptHAFS.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'QCF2BSML';
+  font-weight: 700;
+  src: url('/assets/fonts/QCF2BSML/QCF2BSML.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/QCF2BSML/QCF2BSML.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/QCF2BSML/QCF2BSML.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/QCF2BSML/QCF2BSML.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/QCF2BSML/QCF2BSML.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/assets/fonts/QCF2BSML/QCF2BSML.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+$mainFont: 'bahij', 'calibri';
+$secondFont: 'KFGQPCUthmanTahaNaskh', 'calibri';
+$fontToFixTashkel: 'DroidArabicKufi', 'calibri';
+$quranFont: 'KFGQPCUthmanicScriptHAFS', 'calibri';
+$versesSymbols: 'QCF2BSML';
+
+
+.main-font{
+  font-family: $mainFont;
+}
+
+.second-font{
+  font-family: $secondFont !important;
+}
+.quran-font{
+  font-family: $quranFont;
+}
+.verse-symbol{
+  font-family: $versesSymbols !important;
+}
+.bold{
+  font-weight: 700 !important;
+}
+.italic{
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: QCF2BSML;
+  src: url('/assets/fonts/mo3gmfonts/QCF2BSML.ttf');
+}
+
+
+@font-face {
+  font-family: hafsFont;
+  src: url('/assets/fonts/mo3gmfonts/UthmanicHafs1 Ver09.otf');
+}
+
+@font-face {
+  font-family: AGA;
+  src: url('/assets/fonts/mo3gmfonts/AGA.ttf');
+}
+
+@font-face {
+  font-family: SC_DUBAI;
+  src: url('/assets/fonts/mo3gmfonts/SC_DUBAI.ttf');
+}
+
+@font-face {
+  font-family: SC_OUHOD;
+  src: url('/assets/fonts/mo3gmfonts/SC_OUHOD.ttf');
+}
+
+@font-face {
+  font-family: naskhFontCorant;
+  src: url('/assets/fonts/mo3gmfonts/UthmanicHafs1 Ver09.otf');
+}
+
+@font-face {
+  font-family: AL_HOTHAM;
+  src: url('/assets/fonts/mo3gmfonts/al_hotham.ttf');
+}
+
+@font-face {
+  font-family: Sakkal_Majalla;
+  src: url('/assets/fonts/mo3gmfonts/majalla.ttf');
+}
+
+@font-face {
+  font-family: calibri_light;
+  src: url('/assets/fonts/mo3gmfonts/calibrili_0.ttf');
+}
+
+@font-face {
+  font-family: calibri;
+  src: url('/assets/fonts/mo3gmfonts/calibri_0.ttf');
+}
+
+@font-face {
+  font-family: Estrangelo_Edessa;
+  src: url('/assets/fonts/mo3gmfonts/estre_0.ttf');
+}
+
+@font-face {
+  font-family: Ebrima;
+  src: url('/assets/fonts/mo3gmfonts/ebrimabd.ttf');
+}
+
+

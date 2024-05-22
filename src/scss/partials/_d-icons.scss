@@ -1,0 +1,59 @@
+
+
+@font-face {
+  font-family: 'd-icons';
+  src:  url('/assets/fonts/d-icons.eot?ndp2wh');
+  src:  url('/assets/fonts/d-icons.eot?ndp2wh#iefix') format('embedded-opentype'),
+    url('/assets/fonts/d-icons.ttf?ndp2wh') format('truetype'),
+    url('/assets/fonts/d-icons.woff?ndp2wh') format('woff'),
+    url('/assets/fonts/d-icons.svg?ndp2wh#d-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="d-icon-"], [class*=" d-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'd-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.d-icon-pdf:before {
+  content: "\e907";
+}
+.d-icon-logout:before {
+  content: "\e906";
+}
+.d-icon-edit:before {
+  content: "\e905";
+}
+.d-icon-folder:before {
+  content: "\e904";
+}
+.d-icon-remove-folder:before {
+  content: "\e903";
+}
+.d-icon-sent-email:before {
+  content: "\e902";
+}
+.d-icon-g-plus:before {
+  content: "\e900";
+}
+.d-icon-library_add:before {
+  content: "\e901";
+}
+.d-icon-queue:before {
+  content: "\e901";
+}
+.d-icon-add_to_photos:before {
+  content: "\e901";
+}

@@ -1,0 +1,33 @@
+@import '../../../../../scss/styles.scss';
+
+
+.gozor-list{
+    padding: 20px 20px 20px 30px;
+    li{
+      display: block;
+      .gozor-btn{
+        width: 100%;
+        display: block;
+        padding: 12px 5px;
+        border-bottom: 1px solid #ddd;
+        color: #b4b4b4;
+        text-align: center;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .gozor-btn:hover{
+        color: #ccaf41;
+        background-color: #f5f5f55d;
+      }
+  }
+  @media(max-width: $mobileStartWidth){
+    width: 100%;
+    padding: 6px;
+  }
+}
+.selected{
+  color: #6c6666;
+  background-color: #f5f5f52d;
+  font-size: 14px;
+  font-weight: 700;
+}

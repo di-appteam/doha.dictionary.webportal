@@ -1,0 +1,119 @@
+
+<header id="header">
+  <div class="container header-container">
+    <div class="logo">
+      <a routerLink="['/']">
+        <img src="/assets/images/logo.svg" alt="The Doha Hostorical of Arabic">
+      </a>
+
+      <div class="warning-header" style="float: left;width: 70%;"><span>المعجم في تحديث مستمر</span></div>
+    </div>
+
+    <div class="left-side">
+      <ul class="links-list hide-mobile">
+        <li>
+          <a href="https://news.dohadictionary.org/ar/Pages/default.aspx" target="_blank">
+            <i class="icon icon-earth"></i>
+            <span class="text">{{'shared.nav.newswebsite' | translate}}</span>
+          </a>
+        </li>
+
+        <li class="warning-header" *hasPermission="['show-dic-comment']" >
+          <a routerLink="['/user-comments']" style="padding-top: 2px;">
+          <i class="i-margin d-icon-library_add"></i>
+          <span class="text-margin text">شارك في المعجم</span>
+        </a>
+      </li>
+        <li>
+          <a routerLink="['/contact-us']">
+            <i class="icon icon-email"></i>
+            <span class="text">{{'shared.nav.contuctus' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+      <div class="warning-header-res"><span>المعجم في تحديث مستمر</span></div>
+      <app-login-section class="header-user-card">
+
+
+      </app-login-section>
+    </div>
+
+    <div class="clearfix"></div>
+
+  </div>
+
+  <nav id="nav" [ngClass]="{'open-nav': openNav}">
+    <div class="close-area" (click)="closeNav()"></div>
+    <button type="button" class="nav-btn" (click)="toggleNav()">
+      <span class="icon"></span>
+    </button>
+    <div class="container nav-container">
+
+      <div  class="nav-list">
+        <ul class="nav-list">
+        <li class="has-dropdown">
+          <label>عن المعجم</label>
+          <ul class="dropdown-list">
+            <li>
+              <a routerLink="['/dictionary-word']">كلمة المعجم</a>
+            </li>
+            <li>
+              <a routerLink="['/about-dictionary']">{{'shared.nav.aboutdictionary' | translate}}</a>
+            </li>
+            <li>
+              <a routerLink="['/council-decision']">قرارات المجلس العلمي</a>
+            </li>
+            <li>
+              <a routerLink="['/standard-guide']">الدليل المعياري</a>
+            </li>
+            <li>
+              <a routerLink="['/participants']"> المشاركون فى المعجم</a>
+            </li>
+            <li>
+              <a routerLink="['/user-guide']">دليل الاستعمال</a>
+            </li>
+          </ul>
+
+        </li>
+
+        <li>
+          <a routerLink="['/dictionary']">{{'shared.nav.dictionary' | translate}}</a>
+        </li>
+        <li>
+          <a routerLink="['/bibliography']">{{'shared.nav.bibliography' | translate}}</a>
+        </li>
+        <li>
+          <a routerLink="['/corpus']">{{'shared.nav.aboutcorpus' | translate}}</a>
+        </li>
+        <li>
+          <a routerLink="['/charts']">{{'shared.nav.statistics' | translate}}</a>
+        </li>
+        <li class="mobile-only extra-links">
+          <a href="https://news.dohadictionary.org/ar/Pages/default.aspx" target="_blank">
+            <i class="icon icon-earth"></i>
+            <span class="text">الموقع الإخباري</span>
+          </a>
+        </li>
+        <li class="mobile-only extra-links"  *hasPermission="['show-dic-comment']" style="    background-color: #ffab60;
+        color: #000;
+        font-weight: 700;">
+            <a routerLink="['/user-comments']" >
+            <i class="i-margin d-icon-library_add"></i>
+            <span class="text">شارك في المعجم</span>
+          </a>
+        </li>
+        <li class="mobile-only extra-links">
+            <a routerLink="['/contact-us']">
+            <i class="icon icon-email"></i>
+            <span class="text">تواصل معنا</span>
+          </a>
+        </li>
+      </ul></div>
+      <app-root-section></app-root-section>
+
+    </div>
+  </nav>
+
+
+
+</header>

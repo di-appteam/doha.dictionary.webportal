@@ -1,0 +1,140 @@
+<div class="home-content" id="page-content">
+
+  <div class="search-section">
+    <div class="logo-watermark">
+      <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+    </div>
+    <div class="container">
+      <form class="main-search-form">
+        <h3 class="form-title">{{'home.searchin' | translate}}</h3>
+        <div class="input-row">
+          <div class="input-holder">
+            <input type="text" placeholder="{{'home.searchwords' | translate}}" (keyup.enter)="search()"
+            [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}">
+          </div>
+
+          <div class="dropdown">
+            <ng-select [items]="searchDropdownOptions"
+              bindLabel="text"
+              bindValue="value"
+              [(ngModel)]="searchSelectedOption"
+              [ngModelOptions]="{standalone: true}"
+              [clearable]="false"
+              [searchable]="false">
+            </ng-select>
+            <!-- <button class="dropdown-btn" type="button">
+              <h5 class="selected-item">{{'home.dictionary' | translate}}</h5><span class="icon icon-angle-down"></span>
+            </button> -->
+          </div>
+
+        </div>
+        <button class="submit-btn" type="submit" (click)="search()">{{'general.search' | translate}}</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="services-section">
+    <div class="services-container services-carousel" >
+
+      <owl-carousel-o [options]="carouselOptions" >
+        <ng-template carouselSlide>
+        <div class="carousel-item" id="owl-slide-1">
+          <div class="service-item">
+            <div class="icon-holder"><span class="icon icon-calligraphy big-icon" (click)="redirectTo('about-dictionary')"></span></div>
+            <h1 class="title">{{'home.dictionaryintro' | translate}}</h1>
+            <p class="paragraph">{{'home.dictionaryintrodetail' | translate}}</p>
+          </div>
+        </div>
+        </ng-template>
+        <ng-template carouselSlide  id="owl-slide-2">
+        <div class="carousel-item">
+          <div class="service-item">
+            <div class="icon-holder"><span class="icon icon-arabic-history" (click)="redirectTo('dictionary')"></span></div>
+            <h1 class="title">{{'home.historicaldictionaryintro' | translate}}</h1>
+            <p class="paragraph">{{'home.historicaldictionaryintrodetail' | translate}}</p>
+          </div>
+        </div>
+        </ng-template>
+        <ng-template carouselSlide id="owl-slide-3">
+        <div class="carousel-item">
+          <div class="service-item">
+            <div class="icon-holder"><span class="icon icon-resources small-icon" (click)="redirectTo('bibliography')"></span></div>
+            <h1 class="title">{{'home.bibliographyintro' | translate}}</h1>
+            <p class="paragraph">{{'home.bibliographyintrodetail' | translate}}</p>
+          </div>
+        </div>
+        </ng-template>
+        <ng-template carouselSlide id="owl-slide-4">
+        <div class="carousel-item">
+          <div class="service-item">
+            <div class="icon-holder"><span class="icon icon-paragraph" (click)="redirectTo('corpus')"></span></div>
+            <h1 class="title">{{'home.corpusintro' | translate}}</h1>
+            <p class="paragraph">{{'home.corpusintrodetail' | translate}}</p>
+          </div>
+        </div>
+        </ng-template>
+
+      </owl-carousel-o>
+
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row flex-container">
+
+      <div class="col-md-6 col-xs-12 col-md-push-6">
+
+        <statistics-section></statistics-section>
+
+      </div>
+      <div class="col-md-6 col-xs-12 col-md-pull-6">
+
+        <latest-words></latest-words>
+        <br>
+        <most-searched></most-searched>
+
+      </div>
+
+
+    </div>
+
+  </div>
+<br>
+
+  <div class="container" >
+
+      <div class="section-header">
+
+        <h3 class="section-title">
+          شارك في المعجم
+        </h3>
+
+      </div>
+
+
+      <div class="section-body" >
+
+        <p>
+          ندعو علماء اللّغة والباحثين المهتمّين إلى المشاركة في معجم الدّوحة التّاريخيّ للّغة العربيّة والتّفاعل
+          البنّاء مع موادّه ومداخله. ونرحّب بأيّ ملحوظة تُصوّب خطأ محتملا، أو تستدرك لفظا أو معنى أو شاهدا أسبق
+          تاريخا، أو غير ذلك من المعلومات المحددة في نموذج المشاركة.
+        </p>
+        <p *ngIf="!_sharedConfiguration.userInfo">إذا لم تكن مسجّلا، فيرجى تسجيل <a (click)="scrollTop($event)" class="link-btn" style="color: #ccaf41;">الدخول</a></p>
+        <p>
+          ولكي يتسنّى الاستفادة من الملحوظات على الوجه المنشود، نرجو الاطّلاع على منهج المعجم المبسوط في المقدّمة
+          وفي الدّليل المعياريّ للتّحرير المعجميّ (ضمن خانة: عن المعجم، في بوابة المعجم)؛ مع الأخذ في الاعتبار أنّ
+          الموادّ المعجميّة المنشورة – حتى اليوم – تنتمي إلى المرحلة التّاريخيّة الممتدّة من أقدم نصّ عربيّ مطبوع
+          ومُوثّق.
+        </p>
+        <p>
+          وتُعرَض الملحوظات المقترحة - بصفة دوريّة - على لجنة مختصّة للبتّ فيها.
+        </p>
+
+
+      </div>
+
+
+  </div>
+
+</div>

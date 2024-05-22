@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import './partials/_vars';
+@import './partials/_colors';
+@import './partials/_img-ratio';
+@import './partials/_d-icons';
+@import './partials/_doha-icons';
+@import './partials/_fonts';
+@import './partials/_global';
+@import './partials/_forms';
+@import './partials/_modals';
+@import './partials/_paper';
+@import './partials/_poetry';
+@import './partials/_sections';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "@ng-select/ng-select/themes/default.theme.css";
+

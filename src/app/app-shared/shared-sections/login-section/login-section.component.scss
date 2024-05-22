@@ -1,0 +1,208 @@
+@import '../../../../scss/styles.scss';
+.image-ratio .ratio-content img{
+  min-height: auto;
+}
+
+
+.logged-in{
+    width: 100%;
+    display: table;
+}
+.card-col{
+    display: table-cell;
+    vertical-align: top;
+}
+.image-col{
+    width: 57px;
+    .user-image{
+    border: 1px solid $borderColor;
+    }
+}
+.content-col{
+    padding-right: 10px;
+}
+.user-name{
+    display: inline-block;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    .name{
+    font-weight: 700;
+    }
+}
+.bookmarks-btn{
+    color: #fff;
+    float: left;
+}
+.bookmarks-btn:hover{
+    color: #ccc;
+}
+.col-footer{
+    color: #fff;
+    margin-top: 9px;
+    padding-top: 9px;
+    box-shadow:  0 -1px 0 0 $borderColor, 0 -2px 0 0 rgba(0,0,0,0.2);
+.settings-btn{
+    color: $gray;
+}
+    .action-btn{
+    margin-left: 12px;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    .icon{
+        font-size: 14px;
+    }
+    .count{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-40%, -40%);
+
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: $red;
+
+        font-size: 9px;
+        font-weight: 700;
+        line-height: 13px;
+        text-align: center;
+    }
+    &:last-child{
+        margin-left: 0;
+    }
+    }
+    .logout-btn{
+    .text{
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .icon{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 10px;
+        color: #d1d1d1;
+        margin-left: 7px;
+    }
+    }
+}
+@media(max-width: $mobileStartWidth){
+    .logged-in{
+    position: relative;
+    }
+    .image-col{
+    width: 24px;
+    }
+    .content-col{
+    .col-header{
+        display: inline-block;
+        padding-top: 5px;
+        vertical-align: middle;
+        .settings-btn{
+        margin-right: 5px;
+        }
+        .user-name{
+        .name{
+            max-width: 90px;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+    }
+    .col-footer{
+        display: inline-block;
+        vertical-align: middle;
+        padding-top: 5px;
+        margin-top: 0;
+        margin-right: 15px;
+        padding-right: 15px;
+        box-shadow: none;
+        border-right: 1px solid #999;
+        .logout-btn{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        .icon{
+            font-size: 13px;
+        }
+        .text{
+            display: none;
+        }
+        }
+    }
+    }
+}
+
+    .login-form {
+      .inputs-holder {
+
+          .col {
+              &:first-child {
+                margin-bottom: 5px;
+              }
+          }
+
+          input {
+              width: 100%;
+              height: 30px;
+              line-height: 30px;
+              background-color: #858585;
+              color: #ccc;
+              text-align: center;
+              border: 1px solid #949494;
+              &[type="password"]{
+                width: calc(100% - 30px);
+                float: right;
+              }
+          }
+      }
+
+      .submit-btn {
+          width: 30px;
+          height: 30px;
+          border: none;
+          padding: 0;
+          border-radius: 0;
+          margin-top: 0;
+          font-size: 11px;
+          float: left;
+      }
+
+      .other-links {
+          margin-top: 13px;
+
+          .link-btn {
+              color: #fff;
+              font-size: 12px;
+
+              &:first-child {
+                  border-left: 1px solid #fff;
+                  padding-left: 15px;
+                  margin-left: 15px;
+              }
+          }
+
+          .social-login {
+            padding: 4px 4px 4px 5px;
+            line-height: 1;
+            font-size: 13px;
+            background-color: #fff;
+            border-radius: 3px;
+            margin-left: 5px;
+            text-align: center;
+            &:last-child{
+                margin-left: 0;
+            }
+            &.fb-btn{
+                color: $fb-color;
+            }
+            &.gp-btn{
+                color: $gp-color;
+            }
+          }
+      }
+  }

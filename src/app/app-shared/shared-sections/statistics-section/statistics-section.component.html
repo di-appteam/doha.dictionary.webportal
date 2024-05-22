@@ -1,0 +1,31 @@
+<div class="statistics-section">
+
+  <h3 class="section-title">
+    {{'home.chartssection.title' | translate}}
+  </h3>
+
+  <div class="section-body">
+
+    <div class="chart"  *ngIf="(isBrowser&&(lineChartData && lineChartData.datasets && lineChartData.datasets.length > 0))">
+            <canvas
+            baseChart
+            [data]="lineChartData"
+            [options]="chartOptions"
+            [type]="lineChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          >
+          </canvas>
+    </div>
+
+
+    <p class="paragraph">
+      {{'home.chartssection.paragraph' | translate}}
+    </p>
+    <a [routerLink]="['/charts']" class="show-more-btn">
+      {{'home.chartssection.more' | translate}}
+    </a>
+
+  </div>
+
+</div>

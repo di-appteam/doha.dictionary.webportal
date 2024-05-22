@@ -1,0 +1,47 @@
+.paper{
+  position: relative;
+  padding: 10px 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #f8f3e9;
+  font-family: $secondFont;
+  p{
+    font-size: 18px;
+  }
+  .link{
+    font-family: $mainFont;
+    font-size: 12px;
+    border-bottom: 1px solid #000;
+  }
+  .resource-btn-holder,
+  .resource-btn,
+  .remove-letter-space{
+    cursor: default;
+    font-family: $secondFont;
+    font-size: 17px;
+  }
+  .text-left{
+    font-family: $secondFont;
+    font-size: 17px;
+  }
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &:before{
+    bottom: 100%;
+    background-image: url("/assets/images/paper-opening.png");
+  }
+  &:after{
+    content: '';
+    top: 100%;
+    background-image: url("/assets/images/paper-closing.png");
+  }
+}

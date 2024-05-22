@@ -1,0 +1,135 @@
+@font-face {
+  font-family: 'doha-icons';
+  src:  url('/assets/fonts/doha-icons.eot?yt4588');
+  src:  url('/assets/fonts/doha-icons.eot?yt4588#iefix') format('embedded-opentype'),
+    url('/assets/fonts/doha-icons.ttf?yt4588') format('truetype'),
+    url('/assets/fonts/doha-icons.woff?yt4588') format('woff'),
+    url('/assets/fonts/doha-icons.svg?yt4588#doha-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'doha-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gp:before {
+  content: "\e921";
+}
+.icon-fb:before {
+  content: "\e922";
+}
+.icon-next-sequence:before {
+  content: "\e91c";
+}
+.icon-prev-sequence:before {
+  content: "\e91d";
+}
+.icon-bars:before {
+  content: "\e920";
+}
+.icon-bars-chart:before {
+  content: "\e91e";
+}
+.icon-line-chart:before {
+  content: "\e91f";
+}
+.icon-minus:before {
+  content: "\e91a";
+}
+.icon-plus:before {
+  content: "\e91b";
+}
+.icon-angle-left:before {
+  content: "\e918";
+}
+.icon-angle-right:before {
+  content: "\e919";
+}
+.icon-dropdown-dots:before {
+  content: "\e917";
+}
+.icon-sequence:before {
+  content: "\e916";
+}
+.icon-close:before {
+  content: "\e915";
+}
+.icon-download:before {
+  content: "\e914";
+}
+.icon-bookmark:before {
+  content: "\e906";
+}
+.icon-bookmark-o:before {
+  content: "\e913";
+}
+.icon-info-o:before {
+  content: "\e90d";
+}
+.icon-print:before {
+  content: "\e90e";
+}
+.icon-quote-border:before {
+  content: "\e90f";
+}
+.icon-copy:before {
+  content: "\e910";
+}
+.icon-close-o:before {
+  content: "\e911";
+}
+.icon-checkmark-o:before {
+  content: "\e912";
+  color:green !important;
+}
+.icon-controls:before {
+  content: "\e90c";
+}
+.icon-paragraph:before {
+  content: "\e90b";
+}
+.icon-power:before {
+  content: "\e900";
+}
+.icon-resources:before {
+  content: "\e901";
+}
+.icon-settings:before {
+  content: "\e902";
+}
+.icon-angle-down:before {
+  content: "\e903";
+}
+.icon-angle-up:before {
+  content: "\e904";
+}
+.icon-arabic-history:before {
+  content: "\e905";
+}
+.icon-calligraphy:before {
+  content: "\e907";
+}
+.icon-earth:before {
+  content: "\e908";
+}
+.icon-email:before {
+  content: "\e909";
+}
+.icon-messages:before {
+  content: "\e90a";
+}
+.icon-link{
+ max-width:20px;
+}

@@ -1,0 +1,105 @@
+@import '~scss/styles.scss';
+
+
+  .paragraph{
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+  .social-account {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+    .social-signup {
+      width: 100%;
+      position: relative;
+      display: block;
+      color: #333;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      color: #fff;
+      padding: 15px;
+      text-align: right;
+      &.fb-btn{
+        background-color: $fb-color;
+      }
+      &.gp-btn{
+        background-color: $gp-color;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+      .text{
+        font-size: 14px;
+      }
+      .icon{
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.35),
+                    2px 0 0 0 rgba(255, 255, 255, 0.3);
+        width: 55px;
+        font-size: 24px;
+        padding: 12px 0;
+        text-align: center;
+      }
+    }
+  }
+  
+  .form-group{
+    margin-bottom: 12px;
+    .paragraph{
+      &:first-child{
+        margin-bottom: 15px;
+      }
+      &:last-child{
+        margin-top: 15px;
+      }
+    }
+    input.form-input {
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+    }
+    .form-input{
+      font-size: 14px;
+      border-color: #eee;
+      font-weight: 300;
+      border-radius: 3px;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);  
+    }
+  }
+  
+
+
+.submit-btn{
+  border-radius: 3px;
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.1);
+  padding: 8px 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.form-submitted{
+  padding: 18px;
+  &,
+  .paragraph{
+    text-align: center;
+  }
+  .paragraph{
+    line-height: 1.8;
+    color: #868686;  
+  }
+  .icon{
+    margin-bottom: 20px;
+  }
+  .confirmation-footer{
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+    text-align: center;
+  }
+}

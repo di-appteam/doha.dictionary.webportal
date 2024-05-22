@@ -1,0 +1,10 @@
+<ul class="gozor-list">
+    <li *ngFor="let root of _sharedRootComponentValues.rootList | filterBy : 1 :'issplitted'; trackBy: trackByID;" [ngClass]="{'selected': (selectedRootId && root.rootId === selectedRootId)}">
+      <button type="button" (click)="onSelectRoot(root)" class="gozor-btn">
+       <ng-container *ngIf="root.issplitted == 1">
+        <span *ngFor="let chr of  root.rootValue.split('')">{{( chr   == 'ه' ? 'هـ'  : chr )}} </span>
+       </ng-container>
+        <span  *ngIf="root.issplitted != 1">{{( root.rootValueUV   == 'ه' ? (root.rootValue + 'ـ') : root.rootValue  )}} </span>
+      </button>
+    </li>
+  </ul>

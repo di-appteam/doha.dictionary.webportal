@@ -1,0 +1,310 @@
+@import '../../../../scss/styles.scss';
+
+input{
+  &:focus{
+    outline: none;
+  }
+}
+.home-content{
+  padding-bottom: 90px;
+}
+.search-section{
+  position: relative;
+}
+.logo-watermark{
+  position: absolute;
+  top: 0;
+  bottom: -65px;
+  right: 0;
+  // z-index: 1;
+
+  width: 600px;
+  overflow: hidden;
+  @media(max-width: 768px){
+    left: 35px;
+    right: auto;
+  }
+  img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: none;
+  }
+}
+.main-search-form{
+  position: relative;
+  z-index: 2;
+  padding: 30px 0;
+  text-align: center;
+  .home-content &{
+    padding: 135px 0;
+    @media(max-width: 450px){
+      padding: 80px 0 120px;
+    }
+  }
+  .form-title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 25px;
+    color: $black;
+  }
+  .input-row{
+    width: 100%;
+    max-width: 595px;
+    height: 50px;
+    background-color: #fff;
+    display: table;
+
+    margin: auto;
+    border: 1px solid $gray;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5px;
+    // overflow: hidden;
+    margin-bottom: 20px;
+    .dropdown{
+      display: table-cell;
+      vertical-align: top;
+      width: 139px;
+      border-left: 1px solid $gray;
+      ::ng-deep .ng-select{
+        height: 100%;
+      }
+      .icon{
+        float: left;
+        font-size: 13px;
+        margin-top: 21px;
+      }
+    }
+    .input-holder{
+      display: table-cell;
+      vertical-align: top;
+    }
+    input{
+      width: 100%;
+      height: 100%;
+      border: none;
+      text-align: center;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $gray ;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $gray ;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $gray ;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $gray ;
+      }
+    }
+    @media(min-width: 401px){
+      direction: ltr;
+      ::ng-deep .ng-select{
+        direction: rtl;
+      }
+    }
+    @media(max-width: 400px){
+      height: auto;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      .input-holder,
+      .dropdown{
+        display: block;
+      }
+      .input-holder{
+        height: 50px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .dropdown{
+        width: 100%;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+.section-title{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.section-body{
+  background-color: #e9e9e9;
+    padding: 15px;
+    text-align: justify;
+}
+.submit-btn{
+  color: #fff;
+  border: 1px solid $gray;
+  background-color: $mainColor;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+  padding: 14px 20px;
+}
+
+
+.services-section{
+  color: #fff;
+  padding-bottom: 40px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
+  }
+  .services-container{
+    position: relative;
+    z-index: 2;
+  }
+  .service-item{
+    .icon-holder{
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border: 3px solid transparent;
+      transform: rotate(45deg);
+      margin: -40px auto 0;
+
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d6bd57+14,ffffff+52,d6bd57+79 */
+      background: rgb(214,189,87); /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(214,189,87,1) 14%, rgba(255,255,255,1) 52%, rgba(214,189,87,1) 79%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(214,189,87,1) 14%,rgba(255,255,255,1) 52%,rgba(214,189,87,1) 79%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(214,189,87,1) 14%,rgba(255,255,255,1) 52%,rgba(214,189,87,1) 79%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6bd57', endColorstr='#d6bd57',GradientType=0 ); /* IE6-9 */
+
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+      }
+
+      .icon{
+        position: absolute;
+        left: -50%;
+        top: 50%;
+        display: inline-block;
+        transform: rotate(-45deg) translate(68%, 0%);
+        color: $borderColor;
+        position: relative;
+        z-index: 2;
+        font-size: 45px;
+        &.big-icon{
+          font-size: 85px;
+        }
+        &.small-icon{
+          font-size: 35px;
+        }
+      }
+
+
+    }
+
+
+    .title{
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+    .paragraph{
+      text-align: justify;
+      line-break: 20px;
+      @media(max-width: $mobileStartWidth){
+        text-align: center;
+      }
+    }
+
+    &:hover{
+      .icon-holder{
+        &:before{
+          background-color: $mainColor;
+        }
+        .icon{
+          color: #fff;
+        }
+      }
+    }
+
+  }
+}
+
+
+::ng-deep .services-carousel{
+  display: block !important;
+  margin: auto;
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+  // padding: 0 60px;
+  .owl-stage-outer{
+    padding-top: 60px;
+    .owl-stage{
+      padding-bottom: 15px;
+    }
+  }
+  .owl-dots{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    padding-bottom: 5px;
+    text-align: center;
+    .owl-dot{
+      width: 7px;
+      height: 7px;
+      background-color: #fff;
+      display: inline-block;
+      margin-right: 3px;
+      &:not(.active){
+        opacity: 0.5;
+      }
+      span {
+        display: none !important;
+     }
+    }
+  }
+  .carousel-item{
+    padding: 0 15px;
+    display: block !important;
+  }
+}
+@media(max-width: $mobileStartWidth){
+  .flex-container{
+    display: block;
+  }
+}
+

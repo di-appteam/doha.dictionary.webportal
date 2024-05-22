@@ -1,0 +1,98 @@
+import { Injectable } from "@angular/core";
+import { map, Observable } from "rxjs";
+import { ServicesIDs } from "../collection/serviceurl.enum";
+import { UserInfo } from "../models/account";
+import { CustomResponse, TokenInfo } from "../models/security";
+import { HttpService } from "../security/requests/http.service";
+import { ServiceUrlManager } from "../security/requests/serviceUrl.Manager";
+import { CacheService } from "./cache.service";
+import { SharedConfiguration } from "./config.service";
+import { SharedService } from "./shared.service";
+
+@Injectable()
+export class AccountService {
+
+
+  constructor(private _http: HttpService, private _sharedService: SharedService, private _config: SharedConfiguration, private _serviceUrlManager: ServiceUrlManager, private _cacheService: CacheService) {
+
+  }
+
+  public validToken(): boolean {
+    try {
+      return !!(localStorage.getItem('Token'));
+    } catch (Error) {
+      return false;
+    }
+  }
+  async StartUpForAuthApp() {
+    if (window.location.href.includes("/#")) {
+      window.location.href = window.location.href.replace("/#", "");
+      return;
+    }
+    if (!this.getToken())
+      return this.LoadStartupData();
+    let userInfoRequest = this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetUserData));
+    return new Promise((resolve, reject) => {
+      userInfoRequest.pipe(map((response) => response))
+        .subscribe((a: any) =>
+          [
+            resolve(this.SetUserDataToStartup(a))
+          ], (err: any) => [
+            this.clearLoginInfo(), window.location.reload()
+          ]
+        );
+    });
+  }
+
+  /********************************** Token section **************************************/
+
+  RefreshToken(token: string): Observable<CustomResponse> {
+    return this._http.post(this._serviceUrlManager.getServiceUrl(ServicesIDs.RefreshToken), token).pipe(
+      map(data => data,
+        (error:any) => this._sharedService.handleError(error)));
+  }
+
+  public RefreshLocalToken(token: TokenInfo) {
+    this._cacheService.clearDataCache("Token");
+    this._cacheService.addTicket("Token", token);
+    this._config.userInfo = this.fillLoginInfo(token);
+
+  }
+  // Save Token Info to local Storage
+  public saveTokenInfo(token: TokenInfo): void {
+    this._config.userInfo = this.fillLoginInfo(token);
+    this._cacheService.addTicket("Token", token);
+  }
+  public clearLoginInfo(): void {
+    var token = new TokenInfo();
+    this._config.userInfo = new UserInfo();
+    token = this._cacheService.getTicket("Token");
+    this._cacheService.CheckCashExists(token, "Token");
+  }
+  public getToken() {
+    return this._cacheService.getTicket("Token");
+  }
+
+  public fillLoginInfo(token: TokenInfo): UserInfo {
+    if (!token)
+      return null;
+    var user = new UserInfo();
+    user.Email = token.Email;
+    user.UserID = token.UserID;
+    user.ImagePath = token.ImagePath;
+    user.Pages = token.Pages;
+    user.UserType = token.UserType;
+    user.Permissions = token.Permissions;
+    user.Name = token.Name;
+    return user;
+  }
+
+  public SetUserDataToStartup(token: TokenInfo) {
+    this._config.userInfo = this.fillLoginInfo(token);
+    return this.LoadStartupData();
+  }
+  LoadStartupData() {
+    this._storeService.GetAllSavedDicSearch()
+    return this._serviceUrlManager.StartService();
+  }
+}

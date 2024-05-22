@@ -1,0 +1,28 @@
+$mainColor: #ccaf41;
+$mainColorDark: #960;
+$black: #333;
+
+$darkGray: #666;
+
+$gray: #ccc;
+$borderColor: #999;
+
+$red: #f00;
+$error: #fe0000;
+$danger: #cc0000;
+$success: #693;
+
+$darkRed: #9a0a28;
+
+$blue: #0099cc;
+
+$fb-color: #3b5999;
+$gp-color: #df5644;
+
+.main-color{
+  color: $mainColor;
+}
+
+.dark-red{
+  color: $darkRed;
+}

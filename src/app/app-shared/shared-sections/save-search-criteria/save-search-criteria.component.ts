@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from '../../../../../../node_modules/ngx-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { userbookmarks } from '../../../../user-account/user-account.model';
+import { SharedConfiguration } from '../../../core/shared/sharedConfiguration';
+import { AccountService } from '../../../../user-account/user-account.service';
+import { SearchDictionaryModel } from '../../../../dictionary/dictionarymodel';
+
+@Component({
+  selector: '[modal-partial]',
+  templateUrl: './save-search-criteria.component.html',
+  styleUrls: ['./save-search-criteria.component.scss']
+})
+export class SaveSearchCriteriaComponent implements OnInit {
+  saveSearchForm: FormGroup;
+  loading = false;
+  submitted = false;
+  searchCriteria : string = "";
+
+  constructor(public bsModalRef: BsModalRef,
+    private formBuilder: FormBuilder,private _config: SharedConfiguration,private userService:AccountService) { }
+
+  ngOnInit() {
+    this.saveSearchForm = this.formBuilder.group({
+      displayname: ['', [
+      ]]
+    });
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.saveSearchForm.controls; }
+
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.saveSearchForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    var userbookmark = new userbookmarks();
+    var searchDictionaryModel = <SearchDictionaryModel>JSON.parse(this.searchCriteria);
+    userbookmark.bookmarktypeid = this._config.bookmarkType.dictionarysearchmodel;
+    userbookmark.displayname = this.saveSearchForm.value.displayname?this.saveSearchForm.value.displayname : ('عملية بحث بكلمة ' + searchDictionaryModel.SearchWord);
+    userbookmark.searchcriterias = this.searchCriteria;
+    return this.userService.AddBookmark(userbookmark, true).subscribe(item=> this.bsModalRef.hide());
+  }
+}

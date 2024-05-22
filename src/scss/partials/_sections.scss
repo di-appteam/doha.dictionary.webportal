@@ -1,0 +1,14 @@
+.section{
+  margin-bottom: 25px;
+  .section-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    margin-top: 0;
+  }
+  &.subsection{
+    .section-title{
+      font-size: 16px;
+    }
+  }
+}
