@@ -8,14 +8,14 @@ export interface RegistrationData extends AccountData {
   imagepath: string;
 }
 
-export interface UserInfo {
-  Email: string;
-  UserID: string;
-  UserType: number;
-  ImagePath: string;
-  Permissions: string[];
-  Pages: string[];
-  Name: string;
+export class UserInfo {
+  Email: string = "" ;
+  UserID: string= "" ;
+  UserType: number= 0;
+  ImagePath: string = "" ;
+  Permissions: string[] = [];
+  Pages: string[] = [];
+  Name: string = "";
 }
 
 export interface ProfileInfo {

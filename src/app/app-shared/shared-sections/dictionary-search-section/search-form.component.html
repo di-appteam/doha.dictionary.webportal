@@ -1,0 +1,227 @@
+<div class="page-search-section">
+  <div class="logo-watermark">
+    <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+  </div>
+  <div class="search-form">
+
+    <div class="form-header">
+
+      <h1 class="page-title">{{'dictionary.searchindictionary' | translate}}</h1>
+      <button type="button" class="advanced-search-btn" (click)="showAdvancedSearch()">
+        <span class="icon icon-controls"></span>
+        <span class="text"
+          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">{{'dictionary.simplesearch' |
+          translate}}</span>
+        <span class="text"
+          *ngIf="!_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">{{'dictionary.advancedsearch' |
+          translate}}</span>
+      </button>
+    </div>
+
+
+    <div class="form-body">
+      <div class="row search-input input-holder">
+
+        <div class="col-xs-4 dropdown-col">
+
+          <div class="dropdown-select" *ngIf="rootList">
+
+            <ng-select [items]="rootList" bindLabel="rootValue" bindValue="rootId" [(ngModel)]="selectedRootId"
+              placeholder="{{'dictionary.searchname' | translate}}" [ngModelOptions]="{standalone: true}"
+              [clearable]="true" [searchable]="true" [virtualScroll]="true" [searchFn]="customSearchFn"
+              clearAllText="{{'general.clearalltext' | translate}}"
+              notFoundText="{{'dictionary.nodatafound' | translate}}" (ngModelChange)="setSelectedRoot($event)">
+            </ng-select>
+
+
+          </div>
+
+        </div>
+
+        <div class="col-xs-8 input-col">
+
+          <div class="ngui-auto-complete-wrapper" style="position: relative;">
+
+            <input *ngIf="autoComp" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SearchWord"
+              [ngModelOptions]="{standalone: true}" [typeahead]="dataSource" [typeaheadAsync]="true"
+              [adaptivePosition]="true" typeaheadOptionField="lemmaValue"
+              placeholder="{{'dictionary.searchwords' | translate}}" (typeaheadLoading)="changeTypeaheadLoading($event)"
+              class="form-input">
+
+          </div>
+          <div *ngIf="!autoComp">
+            <input type="text" class="form-input" placeholder="{{'dictionary.searchwords' | translate}}"
+              (keyup.enter)="parmChange()" [(ngModel)]="_sharedLemmaComponentValues.searchWord"
+              [ngModelOptions]="{standalone: true}" [disabled]="(selectedRootId && selectedRootId > 0) == true">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="advanced-search" *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">
+
+        <div class="row row-m-4 input-holder">
+          <label class="col-xs-4 custom-checkbox-holder has-border">
+            <input type="checkbox" class="visually-hidden"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsCarving"
+              [ngModelOptions]="{standalone: true}">
+            <div class="custom-checkbox-style">
+              <div class="custom-checkbox"></div>
+              <p class="checkbox-title">{{'dictionary.searchbyhavecarving' | translate}}</p>
+            </div>
+          </label>
+          <label class="col-xs-4 custom-checkbox-holder has-border">
+            <input type="checkbox" class="visually-hidden"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsEtymological"
+              [ngModelOptions]="{standalone: true}">
+            <div class="custom-checkbox-style">
+              <div class="custom-checkbox"></div>
+              <p class="checkbox-title">{{'dictionary.searchbyhaveetm' | translate}}</p>
+            </div>
+          </label>
+
+          <label class="col-xs-4 custom-checkbox-holder has-border">
+            <input type="checkbox" class="visually-hidden"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsSemanticField"
+              [ngModelOptions]="{standalone: true}">
+            <div class="custom-checkbox-style">
+              <div class="custom-checkbox"></div>
+              <p class="checkbox-title">{{'dictionary.searchbyhavesemantic' | translate}}</p>
+            </div>
+          </label>
+        </div>
+
+        <div class="row row-m-4 input-holder">
+
+          <div class="col-xs-6 dropdown-col">
+
+            <div class="dropdown-select text-center">
+              <ng-select [items]="additionalTags"
+                [clearable]="true" bindLabel="additionalTag"
+                bindValue="additionalTag" clearAllText="{{'general.clearalltext' | translate}}"
+                placeholder="{{'dictionary.searchbyadditionaltag' | translate}}"
+                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.AdditioalTag"
+                [ngModelOptions]="{standalone: true}" [searchable]="false">
+              </ng-select>
+            </div>
+
+
+          </div>
+          <div class="col-xs-6 dropdown-col">
+
+            <div class="dropdown-select text-center">
+              <ng-select [items]="semanticList"
+                [clearable]="true" bindLabel="semanticFieldValue"
+                bindValue="semanticFieldValue" clearAllText="{{'general.clearalltext' | translate}}"
+                placeholder="{{'dictionary.searchbyfield' | translate}}"
+                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SemanticFieldValue"
+                [ngModelOptions]="{standalone: true}" [searchable]="false">
+              </ng-select>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row row-m-4 input-holder" *ngIf="false">
+
+
+          <div class="dropdown-select text-center">
+            <ng-select [items]="sourceList" [clearable]="true" bindLabel="SourceValue"
+              bindValue="SourceValue" clearAllText="{{'general.clearalltext' | translate}}"
+              placeholder="{{'dictionary.searchbySourceList' | translate}}"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SourceValue"
+              [ngModelOptions]="{standalone: true}" [searchable]="false">
+            </ng-select>
+          </div>
+
+
+        </div>
+
+        <div class="row row-m-4 input-holder" *ngIf="false">
+          <div class="dropdown-select text-center">
+            <ng-select [items]="autherList" [multiple]="true" [closeOnSelect]="false"
+              [maxSelectedItems]="4" bindLabel="name" bindValue="name" [searchable]="true" class="auther-ngselect"
+              [ngModelOptions]="{standalone: true}" clearAllText="{{'general.clearalltext' | translate}}"
+              placeholder="{{'dictionary.AutherList' | translate}}" [(ngModel)]="selectedItems">
+            </ng-select>
+          </div>
+        </div>
+
+        <div class="row row-m-4 input-holder">
+
+          <div class="col-xs-6 dropdown-col">
+
+            <div class="dropdown-select text-center">
+              <ng-select [items]="dropdownTaqwemOptions" clearAllText="{{'general.clearalltext' | translate}}"
+                bindLabel="text" bindValue="value" [(ngModel)]="selectedDateTypeDropdown"
+                [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+              </ng-select>
+            </div>
+
+          </div>
+
+          <div class="col-xs-3 date-col dropdown-with-input">
+
+            <input type="text" placeholder="{{'general.datefromlabel' | translate}}" class="form-input"
+              [(ngModel)]="dateFrom" [ngModelOptions]="{standalone: true}">
+            <div class="dropdown-select text-center">
+              <ng-select *ngIf="selectedDateTypeDropdown == 1" [items]="dateTypeDropdownHijriOptions" bindLabel="text"
+                bindValue="value" clearAllText="{{'general.clearalltext' | translate}}"
+                [(ngModel)]="selectedDateTypeHijriFromDropdown" [ngModelOptions]="{standalone: true}"
+                [clearable]="false" [searchable]="false">
+              </ng-select>
+            </div>
+
+          </div>
+
+
+          <div class="col-xs-3 date-col dropdown-with-input">
+
+            <input type="text" placeholder="{{'general.datetolabel' | translate}}" class="form-input"
+              [(ngModel)]="dateTo" [ngModelOptions]="{standalone: true}">
+            <div class="dropdown-select text-center">
+              <ng-select *ngIf="selectedDateTypeDropdown == 1" [items]="dateTypeDropdownHijriOptions" bindLabel="text"
+                bindValue="value" clearAllText="{{'general.clearalltext' | translate}}"
+                [(ngModel)]="selectedDateTypeHijriToDropdown" [ngModelOptions]="{standalone: true}" [clearable]="false"
+                [searchable]="false">
+              </ng-select>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="text-center">
+        <ng-container *ngIf="!(selectedRootId && selectedRootId > 0)">
+          <button class="submit-btn" type="button" (click)="parmChange()"
+            [disabled]="(_sharedConfiguration.pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)">{{'general.search'
+            | translate}}</button>
+        </ng-container>
+        <ng-container *ngIf="(selectedRootId && selectedRootId > 0)">
+          <button class="submit-btn" type="button" (click)="goToRoot()">{{'general.resultPageSizeDisplay' |
+            translate}}</button>
+        </ng-container>
+        <ng-container
+          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch && _sharedConfiguration.userInfo">
+          <button type="button" class="advanced-search-btn"
+            [disabled]="(_sharedConfiguration.pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)"
+            (click)="openSaveSearchCriteriaModal()">
+            {{'dictionary.savesearchcriteria' | translate}}
+          </button>
+        </ng-container>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+</div>

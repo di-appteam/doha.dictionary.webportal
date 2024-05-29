@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, ViewChild, AfterViewChecked, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -13,7 +14,7 @@ import { StoreService } from '../../../services/store.service';
 @Component({
     selector: 'app-root-list',
     standalone: true,
-    imports: [CommonModule,TranslateModule ,RouterLink,FilterPipe],
+    imports: [FormsModule,TranslateModule ,RouterLink,FilterPipe,NgClass,NgIf,NgFor],
     templateUrl: './root-list.component.html',
     styleUrls: ['./root-list.component.scss']
 })

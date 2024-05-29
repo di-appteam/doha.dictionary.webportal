@@ -192,7 +192,7 @@ export class SearchDictionaryModel {
         this.AutherValue = '';
     }
     SearchCriteriaType?:number;
-    SearchWord: string;
+    SearchWord: any;
     PageSize?: number;
     Page?: number;
     DateFrom?: number;

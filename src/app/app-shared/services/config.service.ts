@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { summarycorpusmodel } from '../../app-models/corpus.model';
 import { ISummaryLexicalSheet } from '../../app-models/dictionary.model';
@@ -45,11 +45,11 @@ export class SharedConfiguration {
   public requests = 0;
   public activeMItem = 0;
   public documentsDates: Array<number> = [];
-  public AdditionalTags = [];
-  public SemanticList = [];
-  public SourceList = [];
-  public AutherList = [];
-  public UserBookmarkList:any[] = [];
+  public AdditionalTags = new BehaviorSubject<any[]>([]);
+  public SemanticList = new BehaviorSubject<any[]>([]);
+  public SourceList = new BehaviorSubject<any[]>([]);
+  public AutherList = new BehaviorSubject<any[]>([]);
+  public UserBookmarkList = new BehaviorSubject<any[]>([]);
   public obsSelectedPart = new Subject<number>();
   public refPath = this.ServiceBaseUrl + '/api/SummaryDocuments/GetReferenceCover?refId=';
   public userInfo?: UserInfo;
@@ -79,13 +79,16 @@ return false;
     if (!itemId || itemId == 0) {
       return;
     }
-    const lexItem = this.UserBookmarkList.filter((a : any) => a.bookmarktypeid == typeId && a.saveditemid == itemId);
+    const currentBookmarks = this.UserBookmarkList.getValue();
+    const lexItem = currentBookmarks.filter((a: any) => a.bookmarktypeid == typeId && a.saveditemid == itemId);
     if (lexItem.length == 0) {
       return;
     }
-    const index: number = this.UserBookmarkList.indexOf(lexItem[0]);
+    const index: number = currentBookmarks.indexOf(lexItem[0]);
     if (index !== -1) {
-      this.UserBookmarkList.splice(index, 1);
+      currentBookmarks.splice(index, 1);
+      // Update the BehaviorSubject with the new array
+      this.UserBookmarkList.next(currentBookmarks);
     }
   }
   social_share_url(word:string):string{
@@ -219,9 +222,10 @@ export class SharedFunctions {
       }
       // to set bookmark value from saved list in sahred configuration class
       // tslint:disable-next-line: max-line-length
-      if (config && config.UserBookmarkList && config.UserBookmarkList.length > 0 && (listForReformate[y]['IsBookMark'] || listForReformate[y]['IsBookMark'] === false)) {
-        listForReformate[y]['IsBookMark'] = (config.UserBookmarkList.filter((a : any) => a.bookmarktypeid == searchType && a.saveditemid == listForReformate[y]['ID']).length > 0);
-      }
+      const userBookmarkList = config.UserBookmarkList.getValue();
+if (config && userBookmarkList && userBookmarkList.length > 0 && (listForReformate[y]['IsBookMark'] || listForReformate[y]['IsBookMark'] === false)) {
+  listForReformate[y]['IsBookMark'] = userBookmarkList.filter((a: any) => a.bookmarktypeid == searchType && a.saveditemid == listForReformate[y]['ID']).length > 0;
+}
       if (listForReformate[y]['headCitation']) {
         listForReformate[y]['headCitation'] = this.reWriteStringWithStyle(listForReformate[y]['headCitation']);
       }

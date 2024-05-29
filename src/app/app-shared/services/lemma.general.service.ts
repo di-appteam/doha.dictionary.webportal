@@ -8,7 +8,7 @@ export class SharedLemmaComponentValues {
     public searchWord = '';
     public obsSearchWord = new Subject<string>();
     public obsReloadMostSearched = new Subject<boolean>();
-    public _searchDictionaryModel?: SearchDictionaryModel ;
+    public _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
     //public obsCtrSearchWord = new Subject<string>();
     public obsCtrSearch = new Subject<SearchDictionaryModel>();
     public obsCtrSearchFromBM = new Subject<SearchDictionaryModel>();

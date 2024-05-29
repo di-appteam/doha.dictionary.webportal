@@ -9,14 +9,14 @@ import { SharedLemmaComponentValues } from '../../services/lemma.general.service
 import { SharedRootComponentValues } from '../../services/root.general.service';
 import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
 import { RootListComponent } from './root-list/root-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../../pipe/FilterPipe';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
     selector: 'app-root-section',
     standalone: true,
-    imports: [CommonModule,FormsModule,TranslateModule ,RouterLink,NgScrollbarModule,RootListComponent,ScrollingModule],
+    imports: [CommonModule,FormsModule ,TranslateModule ,RouterLink,NgScrollbarModule,RootListComponent,ScrollingModule],
     templateUrl: './root-section.component.html',
     styleUrls: ['./root-section.component.scss']
 })

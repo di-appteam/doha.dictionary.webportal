@@ -1,0 +1,76 @@
+<div id="page-content">
+
+  <search-form></search-form>
+  <div class="content-container">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-12 col-xs-12 main-content">
+
+
+
+
+        <div class="page-content-header">
+
+          <h1 class="page-title">
+            دليل الاستعمال
+          </h1>
+        </div>
+
+        <div class="col-md-6  col-xs-12">
+          <aside class="side-nav" [ngClass]="{'nav-opened': sideNavOpened}">
+
+            <button type="button" (click)="toggleSideNav()" class="selected-item mobile-only">
+              {{ selectedItem.title }}
+              <span class="icon icon-angle-down"></span>
+            </button>
+
+            <ul class="side-nav-list">
+
+              <li class="nav-item" *ngFor="let item of navData">
+                <a
+                  [href]="item.href"
+                  (click)="selectItem(item); false;"
+                  class="item-link"
+                  [ngClass]="{'active': item.href == selectedItem.href}">
+                  {{ item.title }}
+                </a>
+              </li>
+
+            </ul>
+
+
+          </aside>
+
+        </div>
+
+        <div class="col-md-6  col-xs-12 video-holder">
+
+          <div class="image-ratio youtube">
+            <div class="ratio-content">
+              <iframe *ngIf="this.selectedItem.id == 1" src="https://www.youtube.com/embed/gVtyW0zEyTo"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 2" src="https://www.youtube.com/embed/fGCgf5qvG2w"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 3" src="https://www.youtube.com/embed/j_9MRMY1lEA"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 4" src="https://www.youtube.com/embed/N8Qr47EYXaY"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 5" src="https://www.youtube.com/embed/5A9Dw5DfkBs"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 6" src="https://www.youtube.com/embed/fL2hxmRZgdw"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 7" src="https://www.youtube.com/embed/lc-oM-xjd9I"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe *ngIf="this.selectedItem.id == 8" src="https://www.youtube.com/embed/4uvpnkXySU4"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+
+        </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

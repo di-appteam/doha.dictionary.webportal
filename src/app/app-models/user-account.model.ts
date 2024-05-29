@@ -66,13 +66,22 @@ export interface BookmarkCount {
 }
 
 
-export interface userbookmarks {
-    userid: number;
-    bookmarktypeid: number;
-    saveditemid: number;
-    displayname: string;
-    displaydata: string;
-    searchcriterias: string;
+
+export class userbookmarks {
+  constructor() {
+      this.displaydata = "";
+      this.displayname = "";
+      this.searchcriterias = "";
+      this.userid = 0;
+      this.bookmarktypeid = 0;
+      this.saveditemid = 0;
+  }
+  userid: number;
+  bookmarktypeid: number;
+  saveditemid: number;
+  displayname: string;
+  displaydata: string;
+  searchcriterias: string;
 }
 
 

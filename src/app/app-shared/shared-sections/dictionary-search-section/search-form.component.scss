@@ -1,0 +1,77 @@
+@import '../../../../scss/styles.scss';
+
+.page-search-section {
+  .submit-btn:disabled {
+    opacity: 0.5;
+    background-color: #ccaf41;
+    cursor: pointer;
+  }
+
+  input {
+    text-align: center;
+  }
+  .dropdown-select {
+    .btn {
+      text-align: center;
+    }
+  }
+  mat-form-field{
+    width:100%;
+  }
+
+ ::ng-deep typeahead-container{
+    background-color: #fff;
+    display: inline-block;
+    .dropdown-item{
+      padding: 5px;
+  }
+    .dropdown-item.active{
+      color: #ccaf41;
+       background-color: #eeece5;
+  }
+}
+
+
+::ng-deep
+  ::ng-deep .mat-mdc-text-field-wrapper{
+   height: 50px;
+  }
+  .dropdown-with-input {
+    position: relative;
+    input {
+      padding-left: 60px;
+    }
+    .dropdown-select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      border-radius: 5px 0px 0px 5px !important;
+      .btn {
+        text-align: right;
+        box-shadow: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .custom-checkbox-holder {
+      width: 100%;
+    }
+    .dropdown-col {
+      width: 100%;
+      &:first-child {
+        margin-bottom: 15px;
+      }
+    }
+    .input-col {
+      width: 100%;
+    }
+    .date-col {
+      width: 50%;
+    }
+  }
+}

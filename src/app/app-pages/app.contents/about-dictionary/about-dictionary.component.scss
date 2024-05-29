@@ -1,0 +1,91 @@
+@import '../../../../scss/styles.scss';
+
+.content-container {
+  padding-top: 0 !important;
+}
+
+.paragraph {
+  color: #666;
+  line-height: 1.8;
+}
+
+a {
+  display: none !important;
+}
+
+@media(max-width: 991px) {
+  .side-content {
+    padding: 0 15px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+li {
+  margin-right: 0 !important;
+}
+
+* {
+  direction: rtl;
+}
+
+.about-dictionary-page {
+  .title {
+    font-size: 40px;
+    color: #ceb33a;
+    font-weight: bold
+  }
+
+  #Contents .headindex {
+    font-size: 14px;
+    color: #ceb33a;
+  }
+
+  #Contents span {
+    font-size: 12px;
+    color: black
+  }
+
+  #Contents td {
+    vertical-align: top;
+    width: 50%;
+    border: none;
+    padding: 15px;
+  }
+
+  #Contents strong {
+    color: #666;
+    text-decoration-color: #666
+  }
+
+  h1 {
+    color: #ceb33a
+  }
+
+  h2 {
+    color: #ceb33a;
+  }
+
+  h3 {
+    color: #ceb33a;
+    padding-right: 20px
+  }
+
+  h4 {
+    color: #ceb33a;
+    padding-right: 40px
+  }
+
+  li {
+    margin-right: 60px
+  }
+
+  p {
+    margin-right: 10px;
+    text-align: justify;
+  }
+}
+
+div#Material b:first-child {
+  margin-right: -5px;
+}

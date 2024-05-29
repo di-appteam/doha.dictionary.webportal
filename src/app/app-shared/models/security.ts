@@ -1,8 +1,9 @@
+import { EMPTY } from "rxjs";
 import { UserInfo } from "./account";
 
-export interface TokenInfo extends UserInfo {
-  value: string;
-  Expiry: number;
+export class TokenInfo extends UserInfo {
+  value: string = "";
+  Expiry: number = 0;
 }
 
 export interface LoginExternalModel {

@@ -77,22 +77,23 @@ export class ServiceUrlManager {
     public StartService() {
         // this._sharedConfiguration.validToken();
         return new Promise((resolve) => {
-            const lookupRequest = this._http.get((this.BaseUrl + 'Lookup/GetAll/'));
-            lookupRequest.pipe(map((response) => response))
-                .subscribe(a =>
-                    [
-                        this._sharedConfiguration.AdditionalTags = a.LkpAdditionalTagList,
-                        this._sharedConfiguration.SemanticList = a.LkpSemanticFieldList,
-                        this._sharedConfiguration.AutherList = a.LkpAutherList.map((val:any) => ({
-                          id: val,
-                          name: val
-                        })),
-                        this._sharedConfiguration.SourceList = a.LkpSourceList,
-                        this._sharedConfiguration.UserBookmarkList = a.UserBookmarkList ?  a.UserBookmarkList : [],
-                        resolve(this._storeService.AddSetting(a.version))
-                    ],
-                    () => [resolve(this._storeService.AddSetting())]
-                );
+          const lookupRequest = this._http.get((this.BaseUrl + 'Lookup/GetAll/'));
+          lookupRequest.pipe(map((response) => response))
+            .subscribe(a => {
+              this._sharedConfiguration.AdditionalTags.next(a.LkpAdditionalTagList);
+              this._sharedConfiguration.SemanticList.next(a.LkpSemanticFieldList);
+              this._sharedConfiguration.AutherList.next(a.LkpAutherList.map((val: any) => ({
+                id: val,
+                name: val
+              })));
+              this._sharedConfiguration.SourceList.next(a.LkpSourceList);
+              this._sharedConfiguration.UserBookmarkList.next(a.UserBookmarkList ? a.UserBookmarkList : []);
+              resolve(this._storeService.AddSetting(a.version));
+            },
+            error => {
+              console.error('Error fetching lookup data', error);
+              resolve(this._storeService.AddSetting());
+            });
         });
     }
     public getServiceUrl(serviceId: number): string {

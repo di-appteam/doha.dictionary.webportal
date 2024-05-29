@@ -1,4 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HasPermissionDirective } from './app-shared/directive/permissions.directive';
 import { HttpService } from './app-shared/security/requests/http.service';
@@ -11,6 +13,7 @@ import { SharedConfiguration, SharedFunctions } from './app-shared/services/conf
 import { DictionaryService } from './app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues } from './app-shared/services/lemma.general.service';
 import { SharedRootComponentValues } from './app-shared/services/root.general.service';
+import { SecurityService } from './app-shared/services/security.service';
 import { SharedService } from './app-shared/services/shared.service';
 import { StoreService } from './app-shared/services/store.service';
 import { TranslationService } from './app-shared/services/translation.service';
@@ -20,18 +23,31 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,AppFooterComponent,AppHeaderComponent,HasPermissionDirective],
+  imports: [RouterOutlet, RouterModule,ReactiveFormsModule,NgIf,AppFooterComponent,AppHeaderComponent,HasPermissionDirective],
   providers:[HasPermissionDirective,SharedConfiguration,
+    SecurityService,
     StoreService,ChartControlService,SharedService,CacheService,DictionaryService,AccountService,SharedLemmaComponentValues,
-    SharedRootComponentValues,AppChartsService,HttpService,ServiceUrlManager,SharedFunctions],
+    SharedRootComponentValues,AppChartsService,HttpService,ServiceUrlManager,SharedFunctions
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  isAppStarted = false;
   title = 'dd-app';
-  constructor(private translateService : TranslationService){
+  constructor(private translateService : TranslationService, public securityService: SecurityService){
     this.translateService.init();
+  }
+
+
+  ngOnInit(): void {
+    this.securityService.StartUpApp().then(() => {
+      this.isAppStarted = true;
+    }).catch(error => {
+      console.error('Startup failed', error);
+      this.isAppStarted = false;
+    });
   }
 
 

@@ -1,0 +1,138 @@
+@import '../../../../scss/styles.scss';
+.user-guide-section{
+  position: relative;
+}
+.page-content-header{
+  margin-bottom: 50px;
+}
+.logo-watermark{
+  position: absolute;
+  top: 0;
+  bottom: -65px;
+  right: 0;
+  // z-index: 1;
+
+  width: 600px;
+  overflow: hidden;
+  @media(max-width: 768px){
+    left: 35px;
+    right: auto;
+  }
+  img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: none;
+  }
+}
+.main-section{
+  position: relative;
+  z-index: 2;
+}
+
+
+.video-holder{
+  .video-control{
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  side nav
+*/
+
+.side-nav{
+  .nav-item{
+    color: $mainColor;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #dbdbd6;
+    .item-link{
+      width: 100%;
+      padding: 10px 7px;
+      display: block;
+      border-top: 1px solid #b3b3b3;
+      background: rgba(255,255,255,0.15);
+      &.active{
+        background-color: #e8e8e8;
+      }
+    }
+    &:last-child{
+      .item-link{
+        border-bottom: 1px solid #b3b3b3;
+      }
+    }
+  }
+  .selected-item{
+    width: 100%;
+    position: relative;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: $mainColor;
+    text-align: right;
+    .icon{
+      display: inline-block;
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  @media(max-width: $mobileStartWidth){
+    position: relative;
+    border: 1px solid #dbdbd6;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .side-nav-list{
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: -1px;
+      left: -1px;
+      z-index: 3;
+      background-color: #fff;
+      border: 1px solid #dbdbd6;
+      box-shadow: 0 3px 7px 0 rgba(0,0,0, 0.1);
+      .nav-item{
+        .item-link{
+          padding: 10px 15px;
+        }
+      }
+    }
+    &.nav-opened{
+      .selected-item{
+        .icon{
+          transform: translateY(-50%) scaleY(-1);
+        }
+      }
+      .side-nav-list{
+        display: block;
+      }
+    }
+  }
+}

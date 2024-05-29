@@ -1,18 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from '../../../../../../node_modules/ngx-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { userbookmarks } from '../../../../user-account/user-account.model';
-import { SharedConfiguration } from '../../../core/shared/sharedConfiguration';
-import { AccountService } from '../../../../user-account/user-account.service';
-import { SearchDictionaryModel } from '../../../../dictionary/dictionarymodel';
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { SearchDictionaryModel } from '../../../app-models/dictionary.model';
+import { userbookmarks } from '../../../app-models/user-account.model';
+import { AccountService } from '../../services/account.service';
+import { SharedConfiguration } from '../../services/config.service';
 
 @Component({
   selector: '[modal-partial]',
+  standalone: true,
+  imports: [CommonModule,TranslateModule,ReactiveFormsModule,RouterLink ],
   templateUrl: './save-search-criteria.component.html',
   styleUrls: ['./save-search-criteria.component.scss']
 })
 export class SaveSearchCriteriaComponent implements OnInit {
-  saveSearchForm: FormGroup;
+  saveSearchForm?: FormGroup ;
   loading = false;
   submitted = false;
   searchCriteria : string = "";
@@ -28,14 +34,14 @@ export class SaveSearchCriteriaComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.saveSearchForm.controls; }
+  get f() { return this.saveSearchForm?.controls; }
 
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.saveSearchForm.invalid) {
+    if (this.saveSearchForm?.invalid) {
       return;
     }
 
@@ -43,7 +49,7 @@ export class SaveSearchCriteriaComponent implements OnInit {
     var userbookmark = new userbookmarks();
     var searchDictionaryModel = <SearchDictionaryModel>JSON.parse(this.searchCriteria);
     userbookmark.bookmarktypeid = this._config.bookmarkType.dictionarysearchmodel;
-    userbookmark.displayname = this.saveSearchForm.value.displayname?this.saveSearchForm.value.displayname : ('عملية بحث بكلمة ' + searchDictionaryModel.SearchWord);
+    userbookmark.displayname = this.saveSearchForm?.value.displayname?this.saveSearchForm.value.displayname : ('عملية بحث بكلمة ' + searchDictionaryModel.SearchWord);
     userbookmark.searchcriterias = this.searchCriteria;
     return this.userService.AddBookmark(userbookmark, true).subscribe(item=> this.bsModalRef.hide());
   }

@@ -1,11 +1,11 @@
-@import '~scss/styles.scss';
+@import '../../../../scss/styles.scss';
 
 
   .paragraph{
     color: #666;
     margin-bottom: 12px;
   }
-  
+
   .social-account {
     border-top: 1px solid #eee;
     padding-top: 10px;
@@ -46,7 +46,7 @@
       }
     }
   }
-  
+
   .form-group{
     margin-bottom: 12px;
     .paragraph{
@@ -67,10 +67,10 @@
       border-color: #eee;
       font-weight: 300;
       border-radius: 3px;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);  
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
     }
   }
-  
+
 
 
 .submit-btn{
@@ -91,7 +91,7 @@
   }
   .paragraph{
     line-height: 1.8;
-    color: #868686;  
+    color: #868686;
   }
   .icon{
     margin-bottom: 20px;

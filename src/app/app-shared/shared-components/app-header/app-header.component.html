@@ -2,7 +2,7 @@
 <header id="header">
   <div class="container header-container">
     <div class="logo">
-      <a routerLink="['/']">
+      <a routerLink="/">
         <img src="/assets/images/logo.svg" alt="The Doha Hostorical of Arabic">
       </a>
 
@@ -19,13 +19,13 @@
         </li>
 
         <li class="warning-header" *hasPermission="['show-dic-comment']" >
-          <a routerLink="['/user-comments']" style="padding-top: 2px;">
+          <a routerLink="/user-comments" style="padding-top: 2px;">
           <i class="i-margin d-icon-library_add"></i>
           <span class="text-margin text">شارك في المعجم</span>
         </a>
       </li>
         <li>
-          <a routerLink="['/contact-us']">
+          <a routerLink="/contact-us">
             <i class="icon icon-email"></i>
             <span class="text">{{'shared.nav.contuctus' | translate}}</span>
           </a>
@@ -55,38 +55,38 @@
           <label>عن المعجم</label>
           <ul class="dropdown-list">
             <li>
-              <a routerLink="['/dictionary-word']">كلمة المعجم</a>
+              <a routerLink="/dictionary-word">كلمة المعجم</a>
             </li>
             <li>
-              <a routerLink="['/about-dictionary']">{{'shared.nav.aboutdictionary' | translate}}</a>
+              <a routerLink="/about-dictionary">{{'shared.nav.aboutdictionary' | translate}}</a>
             </li>
             <li>
-              <a routerLink="['/council-decision']">قرارات المجلس العلمي</a>
+              <a routerLink="/council-decision">قرارات المجلس العلمي</a>
             </li>
             <li>
-              <a routerLink="['/standard-guide']">الدليل المعياري</a>
+              <a routerLink="/standard-guide">الدليل المعياري</a>
             </li>
             <li>
-              <a routerLink="['/participants']"> المشاركون فى المعجم</a>
+              <a routerLink="/participants"> المشاركون فى المعجم</a>
             </li>
             <li>
-              <a routerLink="['/user-guide']">دليل الاستعمال</a>
+              <a routerLink="/user-guide">دليل الاستعمال</a>
             </li>
           </ul>
 
         </li>
 
         <li>
-          <a routerLink="['/dictionary']">{{'shared.nav.dictionary' | translate}}</a>
+          <a routerLink="/dictionary">{{'shared.nav.dictionary' | translate}}</a>
         </li>
         <li>
-          <a routerLink="['/bibliography']">{{'shared.nav.bibliography' | translate}}</a>
+          <a routerLink="/bibliography">{{'shared.nav.bibliography' | translate}}</a>
         </li>
         <li>
-          <a routerLink="['/corpus']">{{'shared.nav.aboutcorpus' | translate}}</a>
+          <a routerLink="/corpus">{{'shared.nav.aboutcorpus' | translate}}</a>
         </li>
         <li>
-          <a routerLink="['/charts']">{{'shared.nav.statistics' | translate}}</a>
+          <a routerLink="/charts">{{'shared.nav.statistics' | translate}}</a>
         </li>
         <li class="mobile-only extra-links">
           <a href="https://news.dohadictionary.org/ar/Pages/default.aspx" target="_blank">
@@ -97,13 +97,13 @@
         <li class="mobile-only extra-links"  *hasPermission="['show-dic-comment']" style="    background-color: #ffab60;
         color: #000;
         font-weight: 700;">
-            <a routerLink="['/user-comments']" >
+            <a routerLink="/user-comments" >
             <i class="i-margin d-icon-library_add"></i>
             <span class="text">شارك في المعجم</span>
           </a>
         </li>
         <li class="mobile-only extra-links">
-            <a routerLink="['/contact-us']">
+            <a routerLink="/contact-us">
             <i class="icon icon-email"></i>
             <span class="text">تواصل معنا</span>
           </a>

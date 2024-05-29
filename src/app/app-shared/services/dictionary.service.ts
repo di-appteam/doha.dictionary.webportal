@@ -92,12 +92,17 @@ export class DictionaryService {
           map(data => data));
   }
 
-    BookmarkAction(bookmarktypeid: number, item: ISummaryLexicalSheet) {
-    const userbookmark: userbookmarks = {bookmarktypeid:bookmarktypeid,saveditemid: item.ID} as userbookmarks;
-        if (item.IsBookMark == false)
-            this._config.UserBookmarkList.push(userbookmark);
-        return this.userService.AddBookmark(userbookmark, !item.IsBookMark);
+  BookmarkAction(bookmarktypeid: number, item: ISummaryLexicalSheet) {
+    const userbookmark: userbookmarks = { bookmarktypeid: bookmarktypeid, saveditemid: item.ID } as userbookmarks;
+    const currentBookmarks = this._config.UserBookmarkList.getValue();
+
+    if (!item.IsBookMark) {
+      currentBookmarks.push(userbookmark);
+      this._config.UserBookmarkList.next(currentBookmarks);
     }
+
+    return this.userService.AddBookmark(userbookmark, !item.IsBookMark);
+  }
 
     private handleError(error:any) {
         // in a real world app, we may send the server to some remote logging infrastructure

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { EMPTY, map, Observable } from "rxjs";
 import { ServicesIDs } from "../collection/serviceurl.enum";
 import { UserInfo } from "../models/account";
 import { CustomResponse, TokenInfo } from "../models/security";
@@ -8,13 +8,36 @@ import { ServiceUrlManager } from "../security/requests/serviceUrl.Manager";
 import { CacheService } from "./cache.service";
 import { SharedConfiguration } from "./config.service";
 import { SharedService } from "./shared.service";
+import { StoreService } from "./store.service";
 
 @Injectable()
-export class AccountService {
+export class SecurityService {
 
 
-  constructor(private _http: HttpService, private _sharedService: SharedService, private _config: SharedConfiguration, private _serviceUrlManager: ServiceUrlManager, private _cacheService: CacheService) {
+  constructor(private _http: HttpService, private _sharedService: SharedService, private _config: SharedConfiguration, private _serviceUrlManager: ServiceUrlManager, private _cacheService: CacheService, private _storeService: StoreService) {
 
+  }
+
+  async StartUpApp() {
+    if (typeof window === "undefined")
+      return EMPTY;
+    if (window.location.href.includes("/#")) {
+      window.location.href = window.location.href.replace("/#", "");
+      return;
+    }
+    if (!this.getToken())
+      return this.LoadStartupData();
+    let userInfoRequest = this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetUserData));
+    return new Promise((resolve, reject) => {
+      userInfoRequest.pipe(map((response) => response))
+        .subscribe(a =>
+          [
+            resolve(this.SetUserDataToStartup(a))
+          ], err => [
+            this.clearLoginInfo(), window.location.reload()
+          ]
+        );
+    });
   }
 
   public validToken(): boolean {
@@ -75,7 +98,7 @@ export class AccountService {
 
   public fillLoginInfo(token: TokenInfo): UserInfo {
     if (!token)
-      return null;
+      return token;
     var user = new UserInfo();
     user.Email = token.Email;
     user.UserID = token.UserID;
