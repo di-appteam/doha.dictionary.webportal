@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
@@ -17,16 +17,11 @@ import { PrevSearchResultSectionComponent } from '../app.dictionary.sections/pre
 import { TextFormComponent } from '../app.dictionary.sections/text-form/text-form.component';
 import { DSearchResultsComponent } from './dictionary-search-results/d-search-results.component';
 
-@Component({
-  selector: 'app-app-dictionary',
-  standalone: true,
-  imports: [
-
-    FormsModule,
-    HttpClientModule,NgSelectModule,TextFormComponent,DictionarySearchFormComponent,DSearchResultsComponent,LatestWordsSectionComponent,PrevSearchResultSectionComponent],
-  templateUrl: './app-dictionary.component.html',
-  styleUrl: './app-dictionary.component.scss'
-})
+@Component({ selector: 'app-app-dictionary',
+    standalone: true,
+    templateUrl: './app-dictionary.component.html',
+    styleUrl: './app-dictionary.component.scss', imports: [FormsModule,
+        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppDictionaryComponent implements AfterViewInit {
 
 

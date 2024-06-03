@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { Component, OnInit, AfterViewInit, Renderer2, ElementRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
@@ -26,15 +26,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from "@angular/common";
 
 
-@Component({
-  selector: 'd-search-results',
-  standalone: true,
-  imports: [TranslateModule,CommonModule,
-    FormsModule, FontAwesomeModule,
-    HttpClientModule,NgSelectModule,TextFormComponent,DictionarySearchFormComponent,AlertComponent,PrevSearchResultSectionComponent],
-  templateUrl: './d-search-results.component.html',
-  styleUrls: ['./d-search-results.component.scss']
-})
+@Component({ selector: 'd-search-results',
+    standalone: true,
+    templateUrl: './d-search-results.component.html',
+    styleUrls: ['./d-search-results.component.scss'], imports: [TranslateModule, CommonModule,
+        FormsModule, FontAwesomeModule,
+        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class DSearchResultsComponent implements OnInit, AfterViewInit {
 
 
