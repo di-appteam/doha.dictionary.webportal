@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { SharedConfiguration } from '../../core/shared/sharedConfiguration';
+import { SharedConfiguration } from './config.service';
 
 @Injectable()
 export class PagerService {
-    constructor(private _config: SharedConfiguration) { }
+    constructor(public _config: SharedConfiguration) { }
     getRootPager(totalItems: number, currentPage: number = 1, pageSize: number = this._config.PageSize) {
         // calculate total pages
         const totalPages = Math.ceil(totalItems / pageSize);
@@ -93,7 +93,7 @@ export class PagerService {
     // Generate an integer Array containing an arithmetic progression. A port of
     // the native Python `range()` function. See
     // [the Python documentation](http://docs.python.org/library/functions.html#range).
-    RootRange = function (start, stop, step) {
+    RootRange = function (start:number, stop : number , step:number) {
         if (stop == null) {
             stop = start || 0;
             start = 0;
@@ -112,7 +112,7 @@ export class PagerService {
     // Generate an integer Array containing an arithmetic progression. A port of
     // the native Python `range()` function. See
     // [the Python documentation](http://docs.python.org/library/functions.html#range).
-    Range = function (start, stop, step) {
+    Range = function (start:number , stop:number, step:number) {
         if (stop == null) {
             stop = start || 0;
             start = 0;

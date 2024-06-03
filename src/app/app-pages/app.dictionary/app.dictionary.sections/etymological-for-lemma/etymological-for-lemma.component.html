@@ -1,0 +1,54 @@
+<div class="result-section inscriptions-section" *ngIf="IsReady">
+
+  <div class="result-body">
+
+    <div class="item">
+
+
+      <div class="item-body">
+
+        <div class="table-component details-table">
+
+          <div class="t-row item-body" *ngIf="item.etymologylanguage">
+            <div class="t-cell resource-value-cell has-info-popup">
+              <p class="definition second-font bold" style="font-size: 17px;">
+                <span [innerHTML]="item.etymologylanguage"></span>
+              </p>
+            </div>
+          </div>
+
+          <!--div class="t-row item-body" *ngIf="item.etymologyremarks">
+            <div class="t-cell resource-value-cell">
+              ملاحظات: {{item.etymologyremarks}}
+            </div>
+          </div-->
+          <div class="t-row item-body" *ngIf="item.etymologyremarks">
+            <div class="t-cell resource-value-cell">
+              <span *ngIf="(item.etymologyremarks)" class=" text-right">
+                <span class="resource-btn"> {{item.etymologyremarks}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="t-row item-body" *ngIf="item.etymologysource">
+            <div class="t-cell resource-value-cell">
+              <span *ngIf="(item.etymologysource)" class=" text-right">
+                <span class="resource-btn"> {{item.etymologysource}}</span>
+              </span>
+            </div>
+          </div>
+          <!--div class="t-row item-body" *ngIf="item.etymologysource">
+            <div class="t-cell resource-value-cell">
+              {{item.etymologysource}}
+            </div>
+          </div-->
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>

@@ -20,5 +20,15 @@ export const ContentsRoutes: Routes = [
     path: 'standard-guide',
     loadComponent: () =>
       import('./standard-guide/standard-guide.component').then((c) => c.StandardGuideComponent)
-  }];
-
+  },
+  {
+    path: 'participants',
+    loadComponent: () =>
+      import('./participants/participants.component').then((c) => c.ParticipantsComponent)
+  },
+  {
+    path: 'participant-details',
+    loadComponent: () =>
+      import('./participants/participant-modal/participant-modal.component').then((c) => c.ParticipantModalComponent)
+  }
+];

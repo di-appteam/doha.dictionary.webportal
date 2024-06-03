@@ -1,0 +1,52 @@
+@if(_storeService.SavedDictionarySearch.length > 0){
+<div class="tags-section">
+
+  <div class="section-header">
+
+    <h3 class="section-title">
+      {{'general.prevsearchresult' | translate}}
+
+    </h3>
+
+  </div>
+
+
+  <div class="section-body">
+
+    <ul class="tags-list">
+      <li class="tag" *ngFor="let word of _storeService.SavedDictionarySearch">
+        <a [routerLink]="['/dictionary/', word]">
+          {{ word }}
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+@if(_storeService.SavedRootSearch.length > 0){
+<div class="tags-section">
+
+  <div class="section-header">
+    <h3 class="section-title">
+      {{'general.prevrootsearchresult' | translate}}
+    </h3>
+
+  </div>
+
+
+  <div class="section-body">
+
+    <ul class="tags-list">
+      <li class="tag" *ngFor="let root of _storeService.SavedRootSearch">
+        <a [routerLink]='["/root/", root.rootValue.replace("/","-")]'>
+          {{ (root.rootValueUV == 'ه' ? (root.rootValue + 'ـ') : root.rootValue ) }}
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+}
+}

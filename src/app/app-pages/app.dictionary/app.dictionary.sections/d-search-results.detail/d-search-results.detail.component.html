@@ -1,0 +1,40 @@
+<tabset>
+
+  <tab heading="التأثيل" *ngIf="(meaninglexicalSheetList && meaninglexicalSheetList[0] && meaninglexicalSheetList[0].rootId && hasLemmaEtymology)">
+    <div class="links-row">
+    <app-etymological-for-lemma [rootId]="meaninglexicalSheetList[0].rootId" [lemmaVal]="meaninglexicalSheetList[0].lemmaValue"  [lemmaId]="meaninglexicalSheetList[0].lemmaId" ></app-etymological-for-lemma>
+    </div>
+  </tab>
+  <tab heading="{{'dictionary.gmoa' | translate}}"   *ngIf="(newformlexicalSheetList.length > 0 && showNewForm(0,newformlexicalSheetList) && !(selectedView === 1 || selectedView === 2))">
+    <div class="links-row">
+      <button *ngFor="let lexItem of newformlexicalSheetList | filterBy : 0 :'newformtype';" type="button" class="link-btn second-font bold"
+        (click)="openModalWithComponent(lexItem,false)">
+        {{lexItem.newFormValue}}
+      </button>
+    </div>
+  </tab>
+  <tab heading="{{'dictionary.language' | translate}}" *ngIf="(newformlexicalSheetList.length > 0 && showNewForm(1,newformlexicalSheetList) && !(selectedView === 1 || selectedView === 2))">
+    <div class="links-row">
+      <button *ngFor="let lexItem of newformlexicalSheetList | filterBy : 1 : 'newformtype';" type="button" class="link-btn second-font bold"
+        (click)="openModalWithComponent(lexItem,false)">
+        {{lexItem.newFormValue}}
+      </button>
+    </div>
+  </tab>
+  <tab heading="{{'dictionary.qoranic' | translate}}" *ngIf="(newformlexicalSheetList.length > 0 && showNewForm(2,newformlexicalSheetList) && !(selectedView === 1 || selectedView === 2))">
+    <div class="links-row">
+      <button *ngFor="let lexItem of newformlexicalSheetList | filterBy : 2 : 'newformtype';" type="button" class="link-btn second-font bold"
+        (click)="openModalWithComponent(lexItem,true)">
+        {{lexItem.newFormValue}} {{lexItem.quranicReading}}
+      </button>
+    </div>
+  </tab>
+
+  <div class="tab-main-content" *ngIf="(selectedView !== 3)">
+
+      <dictionary-result-section class="item" *ngFor="let lexItem of meaninglexicalSheetList ;let y = index;" [hidden]="(selectedView === 2 && lexItem.issemantic == false)" [lexItem]="lexItem" [showCitation]="showCitation" [isMening]="true" [fromBookmark]="fromBookmark" (removeBookmark)="removeBookmark($event)">
+
+      </dictionary-result-section>
+
+  </div>
+</tabset>

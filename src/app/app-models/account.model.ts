@@ -63,18 +63,6 @@ export interface userbookmarks {
 }
 
 
-
-export interface usercomment {
-    userid: number;
-    commenttypeid: number;
-    commentitemid: number;
-    errorincollect: Boolean;
-    email: string;
-    message: string;
-    lemmaValue: string;
-    lemmaTagValue: string;
-}
-
 export interface userbookmarksResponse {
     Data: Array<userbookmarks>;
     TotalCount: number;

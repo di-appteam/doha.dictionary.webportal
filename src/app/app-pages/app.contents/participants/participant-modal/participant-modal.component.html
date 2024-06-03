@@ -1,0 +1,45 @@
+<div class="modal-body">
+  <button type="button" class="close-btn" aria-label="Close" (click)="bsModalRef.hide()">
+    <span class="icon icon-close"></span>
+  </button>
+
+
+  <div>
+    <div class="card">
+
+      <div class="card-header">
+
+        <div class="card-image">
+          <div class="image-ratio">
+            <div class="ratio-content">
+              <img src="{{participant?.imgsrc}}" alt="{{participant?.titlevalue}}">
+            </div>
+          </div>
+        </div>
+
+
+        <h3 class="card-title">{{participant?.titlevalue}}</h3>
+
+        <h3 class="card-subtitle">{{participant?.subtitlevalue}}</h3>
+
+      </div>
+
+      <div class="card-body">
+
+        <p class="paragraph">
+          {{participant?.paragraph}}
+        </p>
+
+      </div>
+      <div class="card-footer" *ngIf="participant?.downloadcvurl">
+
+        <a href="{{participant?.downloadcvurl}}" class="download-cv" target="_blank">
+          السيرة الذاتيه
+          <span class="icon d-icon-pdf"></span>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>

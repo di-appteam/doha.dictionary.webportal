@@ -1,0 +1,83 @@
+<div id="page-content">
+  <div class="content-container">
+
+    <div class="container">
+
+      <div class="row">
+
+
+        <div class="col-md-4 col-xs-12 side-content">
+          <side-nav [navData]="navData"></side-nav>
+        </div>
+
+        <main class="col-md-8 col-xs-12 main-content">
+          <div *ngIf="selectedTap">
+            <div class="section">
+              <h2 class="section-title">
+                {{'participants.participants' | translate}}
+              </h2>
+            </div>
+            <div *ngIf="selectedTap.display == 1">
+              <div class="section subsection" *ngFor="let item of participantlist;">
+                <h2 class="section-title main-color">
+                  {{item.groupname}}
+                </h2>
+                <div class="row participants-list">
+                  <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let subitem of item.participantlist;">
+                    <div class="participant-card " (click)="openParticipantModal(subitem)">
+                      <div class="card-image">
+                        <div class="image-ratio">
+                          <div class="ratio-content">
+                            <img src="{{subitem.imgsrc}}" alt="{{subitem.titlevalue}}">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card-body">
+
+                        <h3 class="card-title">{{subitem.titlevalue}}</h3>
+
+                        <h3 class="card-subtitle">{{subitem.subtitlevalue}}</h3>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div *ngIf="selectedTap.display == 2">
+              <div class="section subsection" *ngFor="let item of participantlist;">
+
+                <h2 class="section-title main-color">
+                  {{item.groupname}}
+                </h2>
+                <div class="experts-list" *ngFor="let subitem of item.participantlist;">
+
+                  <div class="expert-card" (click2)="openParticipantModal(subitem)">
+                    <div class="card-body">
+
+                      <h3 class="card-title">{{subitem.titlevalue}}</h3>
+                      <h3 class="card-subtitle">{{subitem.subtitlevalue}}</h3>
+                      <p class="date">{{subitem.datesstr}}</p>
+
+                      <p class="paragraph">{{subitem.paragraph}}</p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

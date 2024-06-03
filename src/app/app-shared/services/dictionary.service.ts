@@ -86,7 +86,7 @@ export class DictionaryService {
     }
 
 
-    GetEtymologicalLexicalSheetForLemma(rootId: number, lemmaId: number): Observable<IEtymologicalLexicalSheet[]> {
+    GetEtymologicalLexicalSheetForLemma(rootId?: number, lemmaId?: number): Observable<IEtymologicalLexicalSheet[]> {
       const serviceURL = this._serviceUrlManager.getServiceUrl(ServicesIDs.GetEtymologicalLexicalSheetForLemma) + '?rootId=' + rootId + '&lemmaId='+lemmaId;
       return this._http.get(serviceURL).pipe(
           map(data => data));

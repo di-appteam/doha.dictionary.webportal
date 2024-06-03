@@ -1,0 +1,267 @@
+<div class="item-header">
+
+  <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'date']" *ngIf="!lexItem.verbaldate">
+    {{_sharedFunctions.reWriteDateSheet(lexItem.dateSheet,lexItem.isDeathDate)}}={{lexItem.dateSheetSolar}}م
+    <span class="icon icon-info-o info-icon pull-left"
+      tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.DateSheet)}}"
+      *ngIf="_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.DateSheet)"></span>
+  </p>
+  <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'date']" *ngIf="lexItem.verbaldate">
+    {{lexItem.verbaldate}}
+    <span class="icon icon-info-o info-icon pull-left"
+      tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.DateSheet)}}"
+      *ngIf="_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.DateSheet)"></span>
+  </p>
+
+  <div class="item-actions">
+    <ng-container>
+      <button class="action-btn messages" title="تعليق" (click)="sendComment(lexItem)"
+        *hasPermission="['comment-lexical']">
+        <span class="icon icon-messages"></span>
+      </button>
+    </ng-container>
+    <button class="action-btn quote" title="اقتباس" *hasPermission="['quote-lexical']" tooltip="تم النسخ بنجاح!"
+      triggers="" #pop="bs-tooltip" (click)="CopyLexical(pop,lexItem)">
+      <span class="icon icon-quote-border"></span>
+    </button>
+    <ng-container *ngIf="lexItem.IsBookMark">
+      <button class="action-btn bookmark" title="إلغاء الحفظ" *hasPermission="['bookmark-lexical']"
+        (click)="addBookmark(lexItem)">
+        <span class="icon icon-bookmark" style="color: #c90000;text-shadow: 1px 1px 1px #ccc;font-size: 1.0em;"></span>
+        <span class="icon icon-bookmark-o on-hover"></span>
+      </button>
+    </ng-container>
+    <ng-container *ngIf="!lexItem.IsBookMark">
+      <button class="action-btn bookmark" title="حفظ" *hasPermission="['bookmark-lexical']"
+        (click)="addBookmark(lexItem)">
+        <span class="icon icon-bookmark-o"></span>
+        <span class="icon icon-bookmark on-hover"></span>
+      </button>
+    </ng-container>
+  </div>
+
+</div>
+
+<div class="item-body">
+  <div class=" has-info-popup">
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'definition second-font bold']" *ngIf="isMening">
+      <span [innerHTML]="lexItem.meaning"></span>
+      <span *ngIf="lexItem.issemantic"> [{{lexItem.semanticFieldValue}}]</span>
+      <ng-container
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+          triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
+          (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
+      </ng-container>
+    </p>
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'definition second-font bold']"
+      *ngIf="(!isMening && lexItem.newformtype == _config.NewFormLexicalSheetTypes.Crowds)">
+      <span class="dark-red">{{lexItem.newFormValue}}:</span>{{'dictionary.gamalabel' | translate}}
+      {{_sharedFunctions.removeLastSkonFromString(lexItem.lemmaValue)}}
+      <ng-container
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+          triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
+          (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
+      </ng-container>
+    </p>
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'definition second-font bold']"
+      *ngIf="(!isMening && lexItem.newformtype == _config.NewFormLexicalSheetTypes.Language)">
+      <span class="dark-red">{{lexItem.newFormValue}}:</span>{{'dictionary.inlanguagelabel' | translate}}
+      {{_sharedFunctions.removeLastSkonFromString(lexItem.lemmaValue)}}
+      <ng-container
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+          triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
+          (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
+      </ng-container>
+    </p>
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'definition second-font bold']"
+      *ngIf="(!isMening && lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic)">
+      <span
+        class="dark-red">{{_sharedFunctions.removeLastSkonFromString(lexItem.lemmaValue)}}:</span>{{'dictionary.inreadinglabel'
+      | translate}}
+      {{lexItem.newFormValue}} {{lexItem.quranicReading}}
+
+      <ng-container
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+          triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
+          (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
+      </ng-container>
+    </p>
+    <ng-template #infoPopupTemplate>
+      <div class="info-popup">
+        <div class="popup-inner">
+
+          <div class="popup-body">
+            <div class="resource-image">
+            </div>
+            <div class="title" *ngIf="infoRoot" [innerHTML]="infoRoot">
+            </div>
+            <div class="title" *ngIf="infoLemma" [innerHTML]="infoLemma">
+            </div>
+            <div class="title" *ngIf="infoLemmaTag" [innerHTML]="infoLemmaTag">
+            </div>
+            <div class="title" *ngIf="infoMeaning" [innerHTML]="infoMeaning">
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </ng-template>
+  </div>
+  <div class="paper resource-cell" [hidden]="!showCitation">
+
+    <p [ngClass]="{'text-right': true,'quran-font':lexItem.headCitation.includes('cnvQCF2BSML')== true}"
+      *ngIf="lexItem.headCitation">
+      <span [ngClass]="[('cls-copy-'+lexItem.ID)]" [innerHTML]="lexItem.headCitation">
+      </span>
+      <span class="icon icon-info-o info-icon"
+        tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Citation)}}"
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Citation) && lexItem.headCitation)"></span>
+    </p>
+
+    <div [ngClass]="[('cls-copy-'+lexItem.ID) , 'poetry']"
+      *ngIf="(!lexItem.citation.includes('cnvQCF2BSML') && !(lexItem.quranic ||  lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic) && lexItem.citationType != 2&& lexItem.citationType != 4)">
+      <div class="poetry-row">
+        <p *ngIf="(lexItem.citationType == 3)" class="paragraph text-center">
+          <span class="text-center" [innerHTML]="lexItem.citation" appJustifyArabic>
+          </span>
+        </p>
+        <p *ngIf="(lexItem.citationType == 6 || lexItem.citationType == 1 )" class="text-right "
+          [innerHTML]="lexItem.citation">
+        </p>
+        <span class="icon icon-info-o info-icon"
+          tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Citation)}}"
+          *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Citation) && !lexItem.headCitation)"></span>
+      </div>
+    </div>
+
+
+    <div [ngClass]="[('cls-copy-'+lexItem.ID) , 'poetry']"
+      *ngIf="(!lexItem.citation.includes('cnvQCF2BSML') && !(lexItem.quranic ||  lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic) && ( lexItem.citationType == 2 ||  lexItem.citationType == 4) && lexItem.shearArray)">
+      <div class="poetry-row" *ngFor="let shearItem of lexItem.shearArray;let i = index;">
+        <ng-container *ngIf="i%2 == 0">
+          <p class="paragraph left">
+
+            <span class="right" [innerHTML]="lexItem.shearArray[i]" appJustifyArabic>
+            </span>
+            <span *ngIf="(lexItem.shearArray.length > (i+1))" class="left" [innerHTML]="lexItem.shearArray[1+i]"
+              appJustifyArabic>
+            </span>
+            <span class="icon icon-info-o info-icon"
+              tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Citation)}}"
+              *ngIf="((i == ((lexItem.shearArray.length / 2 ) -1) ) && _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Citation) && !lexItem.headCitation)"></span>
+          </p>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'text-right quran-font']"
+      *ngIf="!lexItem.referenceSourceReadingQuran && (lexItem.citation.includes('cnvQCF2BSML') || lexItem.quranic || lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic)">
+      <span *ngIf="!lexItem.citation.includes('cnvQCF2BSML')" class='cnvQCF2BSML'>ﱡ</span>
+      <span [innerHTML]="lexItem.citation"></span>
+      <span *ngIf="!lexItem.citation.includes('cnvQCF2BSML')" class='cnvQCF2BSML'>ﱠ</span>
+      <span class="icon icon-info-o info-icon"
+        tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Citation)}}"
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Citation) && !lexItem.headCitation)"></span>
+    </p>
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'text-right quran-font']"
+      *ngIf="lexItem.referenceSourceReadingQuran && (lexItem.citation.includes('cnvQCF2BSML') || lexItem.quranic || lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic)">
+      {{'dictionary.read' | translate}} {{lexItem.referenceSourceReadingQuran}} (<span
+        class="dark-red">{{lexItem.quranicReading}}</span>) {{'dictionary.asallahsaid' | translate}}
+      <span *ngIf="!lexItem.citation.includes('cnvQCF2BSML')" class='cnvQCF2BSML'>ﱡ</span>
+      <span [innerHTML]="lexItem.citation"></span>
+      <span *ngIf="!lexItem.citation.includes('cnvQCF2BSML')" class='cnvQCF2BSML'>ﱠ</span>
+      <span class="icon icon-info-o info-icon"
+        tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Citation)}}"
+        *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Citation) && !lexItem.headCitation)"></span>
+    </p>
+
+
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'text-left second-font']"
+      *ngIf="lexItem.authorName || (!lexItem.citation.includes('cnvQCF2BSML') && !(lexItem.quranic ||  lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic))">
+      <span [innerHTML]="filterAutherName(lexItem.authorName)"></span>
+      <span class="icon icon-info-o info-icon pull-left"
+        tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.AuthorName)}}"
+        *ngIf="_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.AuthorName)"></span>
+    </p>
+    <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'text-left second-font']"
+      *ngIf="!lexItem.authorName && (lexItem.citation.includes('cnvQCF2BSML') || (lexItem.quranic || lexItem.newformtype == _config.NewFormLexicalSheetTypes.Quranic))">
+      {{'general.qouruan' | translate}} [
+      <span *ngIf="lexItem.referenceSourceReadingQuranStr">{{lexItem.referenceSourceReadingQuranStr}}،</span>
+      {{'dictionary.ayah' | translate}}
+      <span *ngIf="lexItem.referenceSourceAyahNbr"> : {{lexItem.referenceSourceAyahNbr}}</span>
+      ]
+      <span class="icon icon-info-o info-icon pull-left"
+        tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.AuthorName)}}"
+        *ngIf="_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.AuthorName)"></span>
+    </p>
+
+
+    <hr class="separator">
+    <!--<span class="icon icon-info-o info-icon pull-left" tooltip="{{lexItem.remarks}}" *ngIf="(lexItem.remarks && lexItem.remarks.trim() !='')"></span>-->
+    <div class="text-right resource-btn"
+      [ngClass]="[('cls-copy-'+lexItem.ID) , 'resource-btn-holder has-popup second-font']">
+      <span *ngIf="(lexItem.hascover == true)" type="button" class=" text-right resource-btn"
+        #resourcePopup="bs-popover" triggers="" style="cursor: pointer;padding-left: 4px;" placement="left"
+        (click)="openPopover(resourcePopup,false)" [popover]="resourcePopupTemplate">
+        <span *ngIf="(lexItem.citationSource && !lexItem.source)">{{lexItem.citationSource}}</span>
+        <span *ngIf="lexItem.source" class=" text-right resource-btn" [innerHTML]="lexItem.source"></span>
+      </span>
+      <span *ngIf="(lexItem.hascover == false && compressedSource != '')"><span [innerHTML]="compressedSource"></span></span>
+      <ng-template #resourcePopupTemplate>
+        <div class="resource-popup">
+          <div class="close-area" (click)="closePopover(false)"></div>
+          <div class="popup-inner">
+
+            <div class="popup-header">
+              <div class="actions">
+
+                <ng-container *ngIf="false">
+                  <button class="action-btn copy" title="نسخ" *hasPermission="['copy-ref-lexical']">
+                    <span class="icon icon-copy"></span>
+                  </button>
+                  <button class="action-btn bookmark" title="حفظ" *hasPermission="['bookmark-ref-lexical']">
+                    <span class="icon icon-bookmark-o"></span>
+                  </button>
+                </ng-container>
+              </div>
+
+              <div class="pull-left">
+                <button type="button" class="close-btn" (click)="closePopover(false)">
+                  <span class="icon icon-close"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="popup-body">
+
+              <div class="resource-image">
+                <img *ngIf="(lexItem.hascover == false)" src="/assets/images/book-cover.jpg" alt=""
+                  style="max-width: 150px;">
+                <img *ngIf="(lexItem.hascover == true)" src="{{_config.refPath + lexItem.referencesourceid}}" alt=""
+                  style="max-width: 242px;">
+              </div>
+
+              <h3 class="title" [innerHTML]="lexItem.source">
+
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+      </ng-template>
+    </div>
+    <span class="icon icon-info-o info-icon "
+      tooltip="{{_sharedFunctions.DisplayRemark(lexItem,_config.RemarkType.Source)}}"
+      *ngIf="_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Source)"></span>
+  </div>
+
+</div>

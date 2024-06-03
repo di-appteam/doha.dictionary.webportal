@@ -135,17 +135,17 @@ export class NoWhitespaceValidator {
 export class SharedFunctions {
 
 
-  public CheckDisplayRemark(lexItem: ISummaryLexicalSheet, remType: number): boolean {
-    if (!lexItem || !lexItem.remarksargument) {
+  public CheckDisplayRemark(lexItem?: ISummaryLexicalSheet, remType?: number): boolean {
+    if (!lexItem || !lexItem?.remarksargument) {
       return false;
     }
     return (lexItem.remarksargument.filter((a : any) => a.remarksargumenttagid == remType).length > 0);
   }
-  public DisplayRemark(lexItem: ISummaryLexicalSheet, remType: number): string {
-    if (!lexItem || !lexItem.remarksargument) {
+  public DisplayRemark(lexItem?: ISummaryLexicalSheet, remType?: number): string {
+    if (!lexItem || !lexItem?.remarksargument) {
       return '';
     }
-    return (lexItem.remarksargument.filter((a : any) => a.remarksargumenttagid == remType)[0].remarksargument1);
+    return (lexItem?.remarksargument.filter((a : any) => a.remarksargumenttagid == remType)[0].remarksargument1);
   }
 
 

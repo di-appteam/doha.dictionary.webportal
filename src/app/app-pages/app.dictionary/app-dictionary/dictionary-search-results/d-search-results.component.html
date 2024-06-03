@@ -1,0 +1,194 @@
+<div class="result-section search-results-section" *ngIf="(!(!summaryLexicalSheet || summaryLexicalSheet.length == 0) || alertType == alertErrorType)">
+
+
+  <div class="section-header">
+
+    <div class="search-info">
+      <alert [type]="alertType" [message]="alertMessage"></alert>
+    </div>
+
+    <div class="results-options" *ngIf="alertType != alertErrorType">
+
+      <div class="option-holder col-xs-4">
+        <h5 class="title">{{'general.resultPageSizeDisplay' | translate}}</h5>
+
+        <div class="btn-group dropdown-select" dropdown>
+          <button dropdownToggle type="button" class="btn dropdown-toggle">
+            {{resultPageSize}}
+            <span class="icon icon-angle-down"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem" *ngFor='let pSize of pageSizeList;' [ngClass]="{active:pSize === resultPageSize}">
+              <button type="button" class="dropdown-item" (click)="pageSizeChanged(pSize)">
+                {{pSize}}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <h5 class="title hidden-md hidden-xs">{{'general.atpage' | translate}}</h5>
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+        <!--<h5 class="title">{{'dictionary.ordering' | translate}}</h5>
+
+        <div class="btn-group dropdown-select" dropdown>
+          <button dropdownToggle type="button" class="btn dropdown-toggle">
+            زمني
+            <span class="icon icon-angle-down"></span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem">
+              <button type="button" class="dropdown-item">
+                {{'dictionary.orderbydate' | translate}}
+              </button>
+            </li>
+            <li role="menuitem">
+              <button type="button" class="dropdown-item">
+                {{'dictionary.orderbyalph' | translate}}
+              </button>
+            </li>
+          </ul>
+        </div>-->
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+        <!--<h5 class="title">{{'dictionary.details' | translate}}</h5>
+
+        <div class="dropdown-select big text-center">
+          <ng-select [items]="detailsDropdownOptions" bindLabel="text" bindValue="value" [(ngModel)]="selectedDetailsOption" [clearable]="false"
+            [searchable]="false">
+          </ng-select>
+        </div>-->
+
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+
+  <div class="result-body" *ngIf="alertType != alertErrorType">
+
+    <accordion class="table-component search-results" [closeOthers]="false">
+
+      <accordion-group #group class="t-row item-row" *ngFor="let item of summaryLexicalSheet;let i = index; trackBy: trackByID;" [isOpen]="(i == 0)"
+        (isOpenChange)="openlexical(item)">
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{ item.lemmaValue }}
+        </div>
+
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          [{{ item.additionalTag }}]
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value" >
+        <a   [routerLink]="['/root/', item.rootValue.replace('/','-')]">{{ item.rootValue }}</a>
+       </div>
+
+
+       <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+        <span  *ngIf="!item.verbaldate" > {{_sharedFunctions.reWriteDateSheet(item.dateSheet,item.isDeathDate)}}={{item.dateSheetSolar}}م</span>
+        <span  *ngIf="item.verbaldate" > {{item.verbaldate}}</span>
+       </div>
+
+        <div accordion-heading class="t-cell item-value toggler-btn text-left">
+
+          <div class="row-actions" [ngClass]="{'active': item.openActions}">
+
+            <ng-container *ngIf="!item.istool">
+              <button type="button" class="sequence-btn icon icon-sequence" *hasPermission="['show-sequence']" (click)="openModalWithComponent(item); $event.stopPropagation();"></button>
+            </ng-container>
+            <button class="actions-group visible-xs" (click)="$event.stopPropagation();toggleRowActions(item);">
+              <span class="group-icon white icon-bars"></span>
+            </button>
+
+            <div class="actions-close-area" *ngIf="item.openActions" (click)="$event.stopPropagation();closeRowActions(item)"></div>
+
+            <ul class="actions-list">
+              <li>
+                  <div class="social-share-component">
+                      <div class="share-buttons-tooltip" *ngIf="item.showTooltip" >
+                        <share-buttons
+                          [include]="['facebook','twitter','linkedin','email','whatsapp']"
+                          [tags]="item.lemmaValue + ','+ 'معجم,الدوحة,التاريخي,للغة,العربية,معجم_الدوحة,معجم_الدوحة_التاريخي,معجم_الدوحة_التاريخي_للغة_العربية'"
+                          [gaTracking]="true"
+                          [windowHeight]="200"
+                          [windowWidth]="300"
+                          (click)="$event.stopPropagation();"
+                        ></share-buttons>
+                      </div>
+                      <button type="button" class="social-share-button" (click)="toggleSocialShareTooltip(item);$event.stopPropagation();">
+                        <fa-icon [icon]="['fa','share-alt']" ></fa-icon>
+                      </button>
+                    </div>
+              </li>
+                <li>
+                  <button type="button" class="icon icon-messages" title="تعليق" *hasPermission="['comment-lexical']" (click)="sendComment(item);$event.stopPropagation();"></button>
+                </li>
+              <li>
+
+                  <button type="button" class="icon icon-quote-border" title="اقتباس" *hasPermission="['quote-lexical']" tooltip="تم النسخ بنجاح!"  triggers="" #pop="bs-tooltip" (click)="CopyLexical(pop,item);$event.stopPropagation();">
+
+                    </button>
+              </li>
+                <li>
+                  <button type="button" class="icon"   [ngClass]="[!item.IsBookMark ? 'icon-bookmark-o' : 'icon-bookmark on-hover' ]"  title="{{!item.IsBookMark ? 'حفظ' : 'إلغاء الحفظ'}}" *hasPermission="['bookmark-lexical']" (click)="addBookmark(item);$event.stopPropagation();"></button>
+                </li>
+            </ul>
+
+          </div>
+
+          <button type="button" class="row-toggler icon icon-angle-down"></button>
+
+        </div>
+
+        <div class="accordion-body">
+         <!-- <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="(_searchDictionaryModel.IsAdvancedSearch || _sharedLemmaComponentValues.searchWord.split(' ').length > 1)"   [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>-->
+        </div>
+
+      </accordion-group>
+
+
+    </accordion>
+
+  </div>
+
+
+  <div class="pagination-component" *ngIf="alertType != alertErrorType">
+    <ul class="pages-list">
+      <li *ngFor="let page of pager.pages">
+        <button type="button" class="paging-btn" (click)="setPage(page)" [disabled]="pager.currentPage === page">
+          {{page}}
+        </button>
+      </li>
+    </ul>
+
+    <div class="pull-right right-btns">
+      <button type="button" class="paging-btn" (click)="setPage(1)" [disabled]="pager.currentPage === 1">
+        {{'general.pagination.first' | translate}}
+      </button>
+      <button type="button" class="paging-btn next-btn" (click)="setPage(pager.currentPage - 1)" [disabled]="pager.currentPage === 1">
+        <!-- {{'general.pagination.prev' | translate}} -->
+        <span class="icon icon-angle-right"></span>
+      </button>
+    </div>
+
+    <div class="pull-left left-btns">
+      <button type="button" class="paging-btn prev-btn" (click)="setPage(pager.currentPage + 1)" [disabled]="pager.currentPage === pager.totalPages">
+        <!-- {{'general.pagination.next' | translate}} -->
+        <span class="icon icon-angle-left"></span>
+      </button>
+      <button type="button" class="paging-btn" (click)="setPage(pager.totalPages)" [disabled]="pager.currentPage === pager.totalPages">
+        {{'general.pagination.last' | translate}}
+      </button>
+    </div>
+  </div>
+
+</div>

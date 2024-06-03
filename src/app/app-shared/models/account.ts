@@ -43,15 +43,16 @@ export interface userbookmarks {
 
 
 
-export interface usercomment {
-  userid: number;
-  commenttypeid: number;
-  commentitemid: number;
-  errorincollect: Boolean;
-  email: string;
-  message: string;
-  lemmaValue: string;
-  lemmaTagValue: string;
+
+export class usercomment {
+  userid: number = 0;
+  commenttypeid: number = 0;
+  commentitemid: number = 0;
+  errorincollect: Boolean = false;
+  email: string = "";
+  message: string = "";
+  lemmaValue: string = "";
+  lemmaTagValue: string = "";
 }
 
 export interface userbookmarksResponse {

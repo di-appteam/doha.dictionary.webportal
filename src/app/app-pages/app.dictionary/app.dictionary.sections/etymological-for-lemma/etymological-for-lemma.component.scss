@@ -1,0 +1,24 @@
+@import '../../../../../scss/styles.scss';
+.details-table{
+  .t-row{
+    box-shadow: inset 0 -1px 0 0 #ccc;
+    &:last-child{
+      box-shadow: none;
+    }
+    .t-cell{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:first-child{
+        padding-right: 15px;
+      }
+      &:last-child{
+        padding-left: 15px;
+      }
+    }
+  }
+}
+.resource-btn {
+  cursor: default;
+  font-family: KFGQPCUthmanTahaNaskh,sans-serif;
+  font-size: 16px;
+}

@@ -5,6 +5,7 @@ import { ContactUSRoutes } from './app-pages/app.contact-us/app.contact-us-routi
 import { ContentsRoutes } from './app-pages/app.contents/app.contents-routing';
 import { CorpusRoutes } from './app-pages/app.corpus/app.corpus-routing.module';
 import { DictionaryRoutes } from './app-pages/app.dictionary/app.dictionary-routing.module';
+import { ErrorRoutes } from './app-pages/app.error/shared-routing.module';
 import { HomeRoutes } from './app-pages/app.home/app.home-routing';
 import { UserRoutes } from './app-pages/app.user/app.user-routing.module';
 import { UserGuideRoutes } from './app-pages/app.userguide/app-user-guide-routing.module';
@@ -17,6 +18,6 @@ import { UserGuideRoutes } from './app-pages/app.userguide/app-user-guide-routin
   pathMatch: 'full',
 }];
 
-export const combinedRoutes: Routes = [ ...HomeRoutes,...UserGuideRoutes,...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
+export const combinedRoutes: Routes = [ ...HomeRoutes,...ErrorRoutes, ...UserGuideRoutes,...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
 
 

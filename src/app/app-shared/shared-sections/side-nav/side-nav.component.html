@@ -1,0 +1,35 @@
+<aside class="side-nav" [ngClass]="{'nav-opened': sideNavOpened}">
+
+  <button type="button" (click)="toggleSideNav()" class="selected-item mobile-only">
+    {{ selectedItem.title }}
+    <span class="icon icon-angle-down"></span>
+  </button>
+ 
+  <ul class="side-nav-list">
+
+    <li class="nav-item" *ngFor="let item of navData">
+      <a  *ngIf="!item.subNav"
+        [href]="item.href"
+        (click)="selectItem(item); false;"
+        class="item-link"  
+        [ngClass]="{'active': item.href == selectedItem.href}">
+        {{ item.title }}
+      </a>
+      <span class="item-link"  *ngIf="item.subNav">{{ item.title }}</span>
+      <ul class="sub-nav" *ngIf="item.subNav">
+        <li class="sub-nav-item" *ngFor="let subItem of item.subNav">
+          <a
+            [href]="subItem.href"
+            (click)="selectItem(subItem); false;"
+            class="item-link"  
+            [ngClass]="{'active': subItem.href == selectedItem.href}">
+            {{ subItem.title }}
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+  </ul>
+
+  
+</aside>

@@ -1,0 +1,450 @@
+@import '../../../../../scss/styles.scss';
+.search-info{
+  background-color: #fff;
+  padding: 20px 15px;
+}
+.results-options{
+  background-color: #ccc;
+  border: 1px solid #dddada;
+  padding: 15px 0;
+  .option-holder{
+    @media(max-width: 600px){
+      width: 100%;
+    }
+    .title{
+      font-size: 14px;
+      font-weight: 700;
+      margin-left: 10px;
+      @media (min-width: 768px) {
+        display: inline-block;
+      }
+      &:last-child{
+        margin-left: 0;
+      }
+    }
+    .dropdown-select{
+      width: auto;
+      max-width: 150px;
+      margin-left: 10px;
+      @media (min-width: 1200px) {
+        min-width: 100px;
+        display: inline-block;
+      }
+      @media (min-width: 768px) and (max-width: $mobileStartWidth)  {
+        min-width: 100px;
+        display: inline-block;
+      }
+      @media (max-width: 767px){
+        width: 100% !important;
+        max-width: none;
+      }
+      ::ng-deep .ng-select{
+        height: 30px;
+        box-shadow: none;
+        >.ng-control{
+          padding-left: 30px;
+        }
+        .ng-arrow-zone{
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          padding: 7px 10px;
+          background: #ccaf41;
+          .ng-arrow{
+            border-top-color: #fff;
+          }
+        }
+        &.opened{
+          >.ng-control{
+            .ng-arrow{
+              border-bottom-color: #fff;
+            }
+          }
+        }
+        &, &.ng-single{
+          > .ng-control{
+            min-height: 30px;
+          }
+          .ng-value-container{
+            padding-left: 25px;
+            .ng-value{
+              font-size: 14px;
+            }
+            .ng-input{
+              line-height: 30px;
+              // padding-left: 50px;
+            }
+          }
+        }
+      }
+
+      &:last-child{
+        margin-left: 0;
+      }
+      .btn{
+        height: 30px;
+        line-height: 30px;
+        border-radius: 0;
+        padding: 0px 12px 0px 0;
+        box-shadow: none;
+        font-size: 14px;
+        .icon{
+          width: 30px;
+          height: 100%;
+          line-height: 30px;
+          padding-top: 2px;
+          margin-top: 0;
+          margin-right: 10px;
+          background-color: $mainColor;
+          color: #fff;
+          text-align: center;
+        }
+      }
+      .dropdown-menu{
+        width: calc(100% - 30px);
+        .dropdown-item{
+          text-align: center;
+          font-weight: 700;
+        }
+      }
+      &.big{
+        width: 143px;
+      }
+    }
+  }
+}
+.search-results-section{
+  ::ng-deep .vocabularies-modal{
+    .modal-body{
+      padding: 0;
+    }
+  }
+  ::ng-deep .accordion-toggle{
+    display: table !important;
+    width: 100%;
+  }
+  ::ng-deep .panel{
+    background: none;
+    border: none !important;
+    border-radius: 0 !important;
+
+    &.panel-default{
+
+      >.panel-heading{
+        box-shadow: none;
+        padding: 0;
+        box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2), inset 0 -2px 0 0 rgba(0,0,0,0.1);
+
+      }
+      .panel-body{
+        position: relative;
+        padding: 0;
+        border-right: 1px solid #d6d6d6;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+      }
+    }
+  }
+  ::ng-deep .accordion-body{
+    background-color: #f2f2f2;
+    .nav-tabs{
+
+      >li{
+        >a{
+          border-radius: 0;
+          border-color: #d6d6d6;
+          border-right: none;
+          margin: 0;
+          background-color: #efefef;
+        }
+        &.active>a,
+        &.active>a:focus,
+        &.active>a:hover{
+          border-bottom-color: #fff;
+          background-color: #fff;
+        }
+      }
+
+    }
+
+
+    .links-row{
+      background-color: #fff;
+      padding: 8px 16px;
+      box-shadow: inset 0 -1px 0 0 #b7b7b7, inset 0 -2px 0 0 #f7f8f8;
+      .link-btn{
+        font-size: 18px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        margin-left: 12px;
+        &:hover{
+          border-color: $mainColor;
+        }
+      }
+
+
+    }
+
+    .tab-main-content{
+      box-shadow: inset 0 1px 0 0 #dedede;
+
+    }
+  }
+  .item{
+    .item-header{
+      padding: 8px 15px;
+      box-shadow: inset 0 -1px 0 0 #fff, inset 0 -2px 0 0 #e0e0e0;
+      .date{
+        font-size: 14px;
+        font-weight: 700;
+
+        color: $mainColorDark;
+        display: inline-block;
+        margin: 0;
+      }
+      .item-actions{
+        float: left;
+        .action-btn{
+
+          color: #c7c7c7;
+          @media(max-width: 450px){
+            padding-right: 0;
+          }
+          &.bookmark{
+            .on-hover{
+              display: none;
+            }
+          }
+          &:hover{
+            &.copy{
+              color: #999933;
+            }
+            &.messages{
+              color: #cc6633;
+            }
+            &.quote{
+              color: #339999;
+            }
+            &.bookmark{
+              color: #cc0000;
+              .icon{
+                display: none;
+              }
+              .on-hover{
+                display: initial;
+              }
+            }
+          }
+
+        }
+      }
+    }
+    .item-body{
+      padding-bottom: 30px;
+      .definition{
+        font-size: 18px;
+        padding: 10px 60px 10px 15px;
+      }
+    }
+    .info-icon{
+      font-size: 14px;
+      margin-right: 5px;
+      color: $blue;
+      vertical-align: middle;
+    }
+  }
+  .search-results{
+    margin-bottom: 0;
+    .item-row{
+      &:last-child{
+        ::ng-deep .panel-default>.panel-heading{
+
+          box-shadow: none;
+        }
+      }
+      .item-value{
+        width: 150px;
+        padding: 14px 0;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333;
+        white-space: nowrap;
+        &:nth-child(1),
+        &:nth-child(2){
+          white-space: inherit;
+        }
+        cursor: pointer;
+        &:nth-child(even){
+          color: #666;
+        }
+        &:first-child{
+          font-size: 18px;
+          font-weight: 700;
+          padding-right: 14px;
+        }
+        &:last-child{
+          text-align: left;
+          padding-left: 14px;
+        }
+        &.toggler-btn{
+          width: 180px;
+          color: $mainColor;
+          font-size: 12px;
+        }
+        .sequence-btn{
+          font-size: 14px;
+          vertical-align: middle;
+          color: #fff;
+          display: none;
+        }
+        .row-actions{
+          display: none;
+          font-size: 14px;
+          border-left: 1px solid #fff;
+          position: relative;
+          .actions-group{
+            @media(max-width: $mobileStartWidth){
+              display: inline-block !important;
+            }
+          }
+          &:after{
+            content: '';
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 7px;
+            border-top: 5px solid rgba(0,0,0,0.9);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+          }
+          .actions-list{
+            display: inline-block;
+            li{
+              display: inline-block;
+            }
+            @media(max-width: $mobileStartWidth){
+              position: absolute;
+              left: 0;
+              bottom: 100%;
+              margin-bottom: 5px;
+              white-space: nowrap;
+              padding: 5px 5px 5px 0px;
+              border-radius: 3px;
+              background-color: rgba(0,0,0,0.9);
+            }
+          }
+          @media(max-width: $mobileStartWidth){
+            &.active{
+              &:after{
+                display: block;
+              }
+            }
+            &:not(.active){
+              .actions-list{
+                display: none;
+              }
+            }
+          }
+          .icon{
+            color: #fff;
+            padding: 0;
+            margin-left: 10px;
+            vertical-align: middle;
+            @media(max-width: 1199px){
+              margin-left: 5px;
+            }
+          }
+          @media(max-width: $mobileStartWidth){
+            .actions-close-area{
+              position: fixed;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+            }
+          }
+        }
+      }
+      &:hover,
+      &.panel-open{
+        .item-value{
+          background-color: $mainColor;
+          color: #000;
+          &.toggler-btn{
+            color: #fff;
+          }
+        }
+      }
+      &.panel-open{
+        .item-value{
+          &.toggler-btn{
+            .row-toggler{
+              transform: rotate(180deg);
+            }
+          }
+          .sequence-btn{
+            display: inline-block;
+          }
+          .row-actions{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.social-share-component{
+  position: relative;
+  display: inline-block;
+  .share-buttons-tooltip{
+    position: absolute;
+    bottom: calc(100% + 20px);
+    left: -10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -2px 0 5px 1px rgba(0, 0, 0, 0.1);
+    // width: 500px;
+    text-align: center;
+    z-index: 2;
+    &:after,
+    &:before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 100%;
+      border-top: 15px solid #fff;
+      border-right: 20px solid transparent;
+      border-left: 16px solid transparent;
+      left:10px;
+    }
+    &:before{
+      border-top-width: 17px;
+      border-top-color: #eee;
+      border-right-width: 17px;
+      border-left-width: 17px;
+    }
+  }
+  .social-share-button{
+    /*background: #eee;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #333;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    &:hover{
+      background-color: #ccc;
+    }*/
+
+  }
+  ::ng-deep .sb-group{
+    display: flex;
+    justify-content: center;
+    width: 54vw;
+    max-width: 250px;
+  }
+}

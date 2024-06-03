@@ -1,0 +1,82 @@
+@media(max-width: 991px){
+  .side-content{
+    padding: 0 15px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+.participants-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.participant-card{
+  text-align: center;
+  margin-bottom: 30px;
+  cursor: pointer;
+  @media(max-width: 500px){
+    width: 100%;
+  }
+  .card-image{
+    width: 72px;
+    border: 1px solid #ccc;
+    margin: 0 auto 12px;
+  }
+  .card-title{
+    font-size: 14px;
+    color: #333;
+    font-weight: 700;
+    margin: 0 0 7px;
+  }
+  .card-subtitle{
+    font-size: 12px;
+    color: #666;
+    font-weight: 400;
+    margin: 0;
+  }
+}
+
+.expert-card{
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 15px 0;
+  .card-title{
+    font-weight: 700;
+  }
+  .card-title,
+  .card-subtitle,
+  .date{
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    width: 100%;
+    @media(max-width: 500px){
+      display: block;
+      margin-bottom: 10px;
+      &.date{
+        margin-bottom: 0;
+      }
+    }
+  }
+  @media(min-width: 501px){
+    .card-title{
+      margin-left: 50px;
+    }
+    .date{
+      margin-right: 50px;
+    }
+  }
+  .card-subtitle,
+  .date{
+    font-weight: 400;
+  }
+  .date{
+    color: #666;
+  }
+  .paragraph{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.8;
+  }
+}

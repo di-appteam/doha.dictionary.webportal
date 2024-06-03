@@ -1,0 +1,29 @@
+@import '../../../../../scss/styles.scss';
+.tags-section{
+  margin-bottom: 40px;
+  .section-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+  .section-body{
+    background-color: rgba(0,0,0,0.05);
+    padding: 8px 10px;
+  }
+  .tag{
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    margin: 7px 5px;
+    a{
+      border: 1px solid #ccc;
+      display: block;
+      padding: 5px 12px;
+    }
+    &:hover{
+      color: $mainColor;
+      background-color: #fff;
+    }
+  }
+}
