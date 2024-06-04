@@ -2,7 +2,8 @@
 import { DOCUMENT } from "@angular/common";
 import { Inject } from "@angular/core";
 import { Injectable } from "@angular/core";
-import { ISummaryLexicalSheet } from "../../dictionary/dictionarymodel";
+import { EMPTY } from "rxjs";
+import { ISummaryLexicalSheet } from "../../app-models/dictionary.model";
 
 @Injectable()
 export class ClipboardService {
@@ -23,7 +24,7 @@ export class ClipboardService {
 
 
     // ---
-    // PUBLIC METHODS. 
+    // PUBLIC METHODS.
     // ---/*replace(/ +/g, ' ').replace(/\r?\n|\r/g, ' ')
     public copyLexicalToClipBoard(toolTip :any ,item: ISummaryLexicalSheet) : void{
 
@@ -44,7 +45,7 @@ export class ClipboardService {
             str = str.replace(/<span class=\"cnvOUHOD\">#<\/span>/g," عَلَيْهِ السَّلَامُ");
             str = str.replace(/<span class=\"cnvOUHOD\">&<\/span>/g," عليهم السّلام");
             str = str.replace(/<span class=\"cnvOUHOD\">^<\/span>/g," عَلَيْهِمَا السَّلَامُ");
-            
+
             if (documentItem[x].innerHTML.trim().indexOf('justify-content-space-between') > -1)
                 str = str.replace(/class="left">/g, 'class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;').replace(/<\/span><\/span>/g, '&nbsp;').replace(/<\/span>/g, '&nbsp;').replace(/<span>/g, '').replace(/<span class="dark-red">/g, '');
             content += (str + '<br>');
@@ -108,15 +109,17 @@ export class ClipboardService {
         );
     }
 
-    selectElementText(divelm) {
+    selectElementText(divelm : any) {
         var range = document.createRange() // create new range object
         range.selectNodeContents(divelm) // set range to encompass desired element text
         var selection = window.getSelection() // get Selection object from currently user selected text
+        if(!selection)
+         return;
         selection.removeAllRanges() // unselect any user selected text (if any)
         selection.addRange(range) // add range to Selection object to select it
     }
 
-   
-    
-    
+
+
+
 }

@@ -31,7 +31,8 @@ import { CommonModule } from "@angular/common";
     templateUrl: './d-search-results.component.html',
     styleUrls: ['./d-search-results.component.scss'], imports: [TranslateModule, CommonModule,
         FormsModule, FontAwesomeModule,
-        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent],
+         })
 export class DSearchResultsComponent implements OnInit, AfterViewInit {
 
 

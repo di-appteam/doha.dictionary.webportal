@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { EMPTY } from 'rxjs';
 import { ISummaryLexicalSheet } from '../../../app-models/dictionary.model';
 import { usercomment } from '../../models/account';
 import { AccountService } from '../../services/account.service';
@@ -24,9 +25,9 @@ export class SendCommentComponent implements OnInit {
   messageBody: string = "";
 
   constructor(public bsModalRef: BsModalRef,
-    private formBuilder: FormBuilder,
-    private _config: SharedConfiguration,
-    private userService: AccountService) { }
+              private formBuilder: FormBuilder,
+              private _config: SharedConfiguration,
+              private userService: AccountService) { }
 
   ngOnInit() {
     this.sendCommentForm = this.formBuilder.group({
@@ -37,7 +38,7 @@ export class SendCommentComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  public get f() {
+  get f() {
     return this.sendCommentForm.controls;
   }
 
@@ -55,7 +56,7 @@ export class SendCommentComponent implements OnInit {
     userComment.commentitemid = this.lexical.ID;
     userComment.lemmaTagValue = this.lexical.lemmaTagValue;
     userComment.lemmaValue = this.lexical.lemmaValue;
-    userComment.message = (this.sendCommentForm.value.message + "<br/>" + this.messageBody);
+    userComment.message = this.sendCommentForm.value.message + "<br/>" + this.messageBody;
     userComment.email = this.sendCommentForm.value.email;
     userComment.errorincollect = this.sendCommentForm.value.errorincollect;
 

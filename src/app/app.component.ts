@@ -13,6 +13,7 @@ import { SharedConfiguration, SharedFunctions } from './app-shared/services/conf
 import { DictionaryService } from './app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues } from './app-shared/services/lemma.general.service';
 import { SharedRootComponentValues } from './app-shared/services/root.general.service';
+import { ScrollService } from './app-shared/services/scroll.service';
 import { SecurityService } from './app-shared/services/security.service';
 import { SharedService } from './app-shared/services/shared.service';
 import { StoreService } from './app-shared/services/store.service';
@@ -25,7 +26,7 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
   standalone: true,
   imports: [RouterOutlet, RouterModule,ReactiveFormsModule,NgIf,AppFooterComponent,AppHeaderComponent,HasPermissionDirective],
   providers:[HasPermissionDirective,SharedConfiguration,
-    SecurityService,
+    SecurityService,ScrollService,
     StoreService,ChartControlService,SharedService,CacheService,DictionaryService,AccountService,SharedLemmaComponentValues,
     SharedRootComponentValues,AppChartsService,HttpService,ServiceUrlManager,SharedFunctions
     ],

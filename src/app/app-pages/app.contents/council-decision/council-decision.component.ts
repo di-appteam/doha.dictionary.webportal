@@ -8,6 +8,7 @@ import { Meta } from '../../../../../node_modules/@angular/platform-browser';
 import { DictionarySearchFormComponent } from '../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
 import { RootSectionComponent } from '../../../app-shared/shared-sections/root-section/root-section.component';
 import {CdkScrollableModule} from '@angular/cdk/scrolling';
+import { ScrollService } from '../../../app-shared/services/scroll.service';
 @Component({
   selector: 'app-council-decision',
   standalone: true,
@@ -17,7 +18,7 @@ import {CdkScrollableModule} from '@angular/cdk/scrolling';
 })
 export class CouncilDecisionComponent implements OnInit {
 
-  constructor(private meta: Meta) {
+  constructor(private meta: Meta,public scrollService: ScrollService) {
     if (typeof window !== "undefined") {
     this.meta.updateTag({name: 'title',content: 'قَرارات المجلس العلمي'},"name='title'");
     this.meta.updateTag({name: 'og:title',content: 'قَرارات المجلس العلمي'},"name='og:title'");

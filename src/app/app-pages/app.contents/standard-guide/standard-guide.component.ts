@@ -1,24 +1,24 @@
-import { ScrollToModule, ScrollToService } from '@andrei4ik/ngx-scroll-to';
+
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { Meta } from '../../../../../node_modules/@angular/platform-browser';
+import { ScrollService } from '../../../app-shared/services/scroll.service';
 import { DictionarySearchFormComponent } from '../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
 import { RootSectionComponent } from '../../../app-shared/shared-sections/root-section/root-section.component';
 
 @Component({
   selector: 'app-standard-guide',
   standalone: true,
-  imports: [CommonModule, FormsModule, CarouselModule,ScrollToModule, TranslateModule,RootSectionComponent,DictionarySearchFormComponent],
+  imports: [CommonModule, FormsModule, CarouselModule, TranslateModule,RootSectionComponent,DictionarySearchFormComponent],
   templateUrl: './standard-guide.component.html',
-  styleUrls: ['./standard-guide.component.scss'],
-  providers:[ScrollToService]
+  styleUrls: ['./standard-guide.component.scss']
 })
 export class StandardGuideComponent implements OnInit {
 
-  constructor(private meta: Meta) {
+  constructor(private meta: Meta,public scrollService: ScrollService) {
     if (typeof window !== "undefined") {
     this.meta.updateTag({name: 'title',content: 'الدَّلِيلُ المِعياريُّ للمُعالَجَةِ والتَّحريرِ المُعجَميِّ'},"name='title'");
     this.meta.updateTag({name: 'og:title',content: 'الدَّلِيلُ المِعياريُّ للمُعالَجَةِ والتَّحريرِ المُعجَميِّ'},"name='og:title'");

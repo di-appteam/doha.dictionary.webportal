@@ -11,7 +11,7 @@ export class ScrollService {
     this.scrollToElement(element);
   }
 
-  private __getElementById(id: string): HTMLElement {
+  private __getElementById(id: string): any {
     console.log("element id : ", id);
     // const element = <HTMLElement>document.querySelector(`#${id}`);
     const element = document.getElementById(id);

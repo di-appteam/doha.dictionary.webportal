@@ -21,7 +21,8 @@ import { DSearchResultsComponent } from './dictionary-search-results/d-search-re
     standalone: true,
     templateUrl: './app-dictionary.component.html',
     styleUrl: './app-dictionary.component.scss', imports: [FormsModule,
-        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent]
+      })
 export class AppDictionaryComponent implements AfterViewInit {
 
 
