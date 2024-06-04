@@ -1,4 +1,4 @@
-import { ScrollToModule, ScrollToService } from '@andrei4ik/ngx-scroll-to';
+
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,14 +7,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { Meta } from '../../../../../node_modules/@angular/platform-browser';
 import { DictionarySearchFormComponent } from '../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
 import { RootSectionComponent } from '../../../app-shared/shared-sections/root-section/root-section.component';
-
+import {CdkScrollableModule} from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-council-decision',
   standalone: true,
-  imports: [CommonModule, FormsModule, CarouselModule, TranslateModule,ScrollToModule,RootSectionComponent,DictionarySearchFormComponent],
+  imports: [CommonModule, FormsModule, CarouselModule, TranslateModule,CdkScrollableModule,RootSectionComponent,DictionarySearchFormComponent],
   templateUrl: './council-decision.component.html',
-  styleUrls: ['./council-decision.component.scss'],
-  providers:[ScrollToService]
+  styleUrls: ['./council-decision.component.scss']
 })
 export class CouncilDecisionComponent implements OnInit {
 
