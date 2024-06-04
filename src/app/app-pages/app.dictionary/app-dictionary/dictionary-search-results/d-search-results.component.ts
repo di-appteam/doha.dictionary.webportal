@@ -19,18 +19,18 @@ import { SendCommentComponent } from "../../../../app-shared/shared-sections/sen
 import { LemmaSequencesSectionComponent } from "../../app.dictionary.sections/lemma-sequences-section/lemma-sequences-section.component";
 import { PrevSearchResultSectionComponent } from "../../app.dictionary.sections/prev-search-result-section/prev-search-result-section.component";
 import { TextFormComponent } from "../../app.dictionary.sections/text-form/text-form.component";
-import { Router } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { AlertEnum, AlertMessages, SORRY } from "../../../../app-models/dictioanry.search.results.models";
 import { AlertComponent } from "../../../../app-shared/shared-sections/alert/alert.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from "@angular/common";
-
+import { ShareButtons } from 'ngx-sharebuttons/buttons';
 
 @Component({ selector: 'd-search-results',
     standalone: true,
     templateUrl: './d-search-results.component.html',
     styleUrls: ['./d-search-results.component.scss'], imports: [TranslateModule, CommonModule,
-        FormsModule, FontAwesomeModule,
+        FormsModule, FontAwesomeModule,ShareButtons,RouterModule ,
         NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent],
          })
 export class DSearchResultsComponent implements OnInit, AfterViewInit {
