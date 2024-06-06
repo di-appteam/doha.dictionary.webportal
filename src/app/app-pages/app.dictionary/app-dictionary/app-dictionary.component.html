@@ -1,39 +1,23 @@
 <div id="page-content">
-
   <search-form></search-form>
   <div class="content-container">
-
     <div class="container">
-
       <div class="row">
-
         <div class="col-md-8 col-xs-12 main-content">
-@if(showResult){
-          <div>
-
+          <div *ngIf="showResult; else elseBlock">
             <text-form></text-form>
-
           </div>
-        }@else{
-          <div >
-
-
-            <d-search-results></d-search-results>
-
-          </div>
-        }
+          <ng-template #elseBlock>
+            <div>
+              <d-search-results></d-search-results>
+            </div>
+          </ng-template>
         </div>
-        <div class="col-xs-4 hide-mobile side-content {{ !showResult ? 'empty-state' : '' }}">
-
+        <div class="col-xs-4 hide-mobile side-content" [ngClass]="{ 'empty-state': !showResult }">
           <prev-search-result-section></prev-search-result-section>
-
           <latest-words-section></latest-words-section>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

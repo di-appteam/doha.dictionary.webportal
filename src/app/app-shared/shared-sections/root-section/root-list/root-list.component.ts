@@ -1,8 +1,9 @@
 import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, ViewChild, AfterViewChecked, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgScrollbar,NgScrollbarExt, NgScrollbarModule } from 'ngx-scrollbar';
 import { Subscription } from 'rxjs';
 import { IRoot } from '../../../../app-models/dictionary.model';
 import { FilterPipe } from '../../../pipe/FilterPipe';
@@ -10,17 +11,24 @@ import { DictionaryService } from '../../../services/dictionary.service';
 import { SharedLemmaComponentValues } from '../../../services/lemma.general.service';
 import { SharedRootComponentValues } from '../../../services/root.general.service';
 import { StoreService } from '../../../services/store.service';
+import { NgScrollReached } from 'ngx-scrollbar/reached-event';
 
 @Component({
     selector: 'app-root-list',
     standalone: true,
-    imports: [FormsModule,TranslateModule ,RouterLink,FilterPipe,NgClass,NgIf,NgFor],
+    imports: [FormsModule,TranslateModule ,RouterLink,FilterPipe,NgClass,NgIf,NgFor,NgScrollbarModule,NgScrollReached],
     templateUrl: './root-list.component.html',
     styleUrls: ['./root-list.component.scss']
 })
 export class RootListComponent implements OnInit, OnChanges, AfterViewChecked {
     @Input() selectedRootId: number = 0;
+    @Input() ReachEnd: boolean = false;
+    @Input() ReachTop: boolean = false;
+    @ViewChild(NgScrollbar, { static: true }) scrollbarRef?: NgScrollbar;
+    @ViewChild('selected') selectedRootSection?: ElementRef;
     subscription?: Subscription;
+    endLoading: boolean = false;
+    startLoading: boolean = false;
 
 
     constructor(
@@ -82,6 +90,27 @@ export class RootListComponent implements OnInit, OnChanges, AfterViewChecked {
             return;
         this.ScrollToItem();
     }
+    GetRootDownPosition(): void {
+      this.endLoading = true;
+      var rootId = this._sharedRootComponentValues.rootList[(this._sharedRootComponentValues.rootList.length - 1)].rootId;
+      this._dictionaryService.GetRootDownPosition(rootId, 10)
+          .subscribe((searchResult:any) => [
+              this._sharedRootComponentValues.rootList = this._sharedRootComponentValues.rootList.concat(searchResult.Data),
+              this.endLoading = false,
+              this.ReachEnd = searchResult.ReachEnd//,
+              //setTimeout(() => this._sharedRootComponentValues.perfectScrollbar.directiveRef.scrollToBottom(), 200)
+          ]);
+  }
+  GetRootUpPosition(): void {
+      this.startLoading = true;
+      var rootId = this._sharedRootComponentValues.rootList[0].rootId;
+      this._dictionaryService.GetRootUpPosition(rootId, 10)
+          .subscribe((searchResult:any) => [
+              this._sharedRootComponentValues.rootList = searchResult.Data.concat(this._sharedRootComponentValues.rootList),
+              this.startLoading = false,
+              this.ReachTop = searchResult.ReachTop]);
+  }
+
     searchValidation(word: string): boolean {
         if (this._sharedRootComponentValues.searchWord == word.replace(/ /g, '')) {
             return false;
@@ -99,19 +128,29 @@ export class RootListComponent implements OnInit, OnChanges, AfterViewChecked {
         //setTimeout(() => this._sharedRootComponentValues.showGozorList = false, 500);
     }
     private ScrollToItem(): void {
-       /* setTimeout(() => {
-            if (!this._sharedRootComponentValues.perfectScrollbar)
+        setTimeout(() => {
+            if (!this.scrollbarRef || !this.selectedRootSection)
                 return;
             let documentItem = document.getElementsByClassName('gozor-scroll-container');
             let targetItem = document.getElementsByClassName('selected');
             if (targetItem.length > 0)
-                this._sharedRootComponentValues.perfectScrollbar.directiveRef.scrollTo(0, targetItem['0'].offsetTop - 20, 200);
+             this.scrollbarRef.scrollToElement(this.selectedRootSection);
             else
-                this._sharedRootComponentValues.perfectScrollbar.directiveRef.scrollTo(0, 0, 200);
-        });*/
+             this.scrollbarRef.scrollTo({ top: (0 - 20), duration: 200 })
+        });
     }
     // Treat the instructor name as the unique identifier for the object
     trackByID(index:number, item: IRoot) {
         return index;
+    }
+
+    onScrollbarUpdate(): void {
+      if (!this.scrollbarRef || !this.selectedRootSection)
+          return ;
+
+       const targetItem = document.getElementsByClassName('selected') as HTMLCollectionOf<HTMLElement>;
+       this.scrollbarRef.scrollTo({top : (targetItem['0'].offsetTop - 20), duration : 200});
+       //if(targetItem['0'] && targetItem['0']["offsetTop"])
+       //this.scrollbarRef.scrollToElement(this.selectedRootSection,);
     }
 }

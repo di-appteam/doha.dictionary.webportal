@@ -2,12 +2,12 @@ import { Subject } from 'rxjs';
 import { StoreService } from './store.service';
 import { IRoot } from '../../app-models/dictionary.model';
 import { Injectable } from '@angular/core';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 
 @Injectable()
 export class SharedRootComponentValues {
     public RootPageSize = 15;
-    //public selectedRootId = null;
     public selectedRoot? : IRoot;
     public selectedPage = 1;
     public showGozorList = false;

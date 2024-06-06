@@ -12,26 +12,12 @@
 }
 #header {
     background-color: #fff;
-    .container{
-      @media(max-width: $mobileStartWidth){
-        width: 100%;
-        max-width: 970px;
-        padding-bottom: 0;
-        padding-right: 0;
-        padding-left: 0;
-      }
-    }
+
     .header-container{
         padding-top: 30px;
         padding-bottom: 10px;
         @media(max-width: $mobileStartWidth){
           width: 100%;
-          padding-bottom: 0;
-          padding-right: 0;
-          padding-left: 0;
-        }
-        @media(max-width: 540px){
-          max-width: 100% !important;
           padding-bottom: 0;
           padding-right: 0;
           padding-left: 0;
@@ -136,13 +122,6 @@
     height: 50px;
     >.container{
       height: 100%;
-    }
-    .root-list{
-      display: block;
-      position: relative;
-      max-width: 340px;
-      width: 30%;
-      float: left;
     }
     .nav-list{
       display: inline-block;

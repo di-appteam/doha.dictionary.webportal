@@ -115,12 +115,10 @@
               <li>
                   <div class="social-share-component">
                       <div class="share-buttons-tooltip" *ngIf="item.showTooltip" >
+
                         <share-buttons
                           [include]="['facebook','twitter','linkedin','email','whatsapp']"
                           [tags]="item.lemmaValue + ','+ 'معجم,الدوحة,التاريخي,للغة,العربية,معجم_الدوحة,معجم_الدوحة_التاريخي,معجم_الدوحة_التاريخي_للغة_العربية'"
-                          [gaTracking]="true"
-                          [windowHeight]="200"
-                          [windowWidth]="300"
                           (click)="$event.stopPropagation();"
                         ></share-buttons>
                       </div>

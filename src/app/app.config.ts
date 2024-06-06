@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection } from '@angular/core';
-import { PreloadAllModules, provideRouter ,  withPreloading } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 
 import { combinedRoutes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -12,28 +12,32 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/lang/', '.json');
 }
 
+export const provideTranslation = () => ({
+  defaultLanguage: 'ar',
+  loader: {
+    provide: TranslateLoader,
+    useFactory: HttpLoaderFactory,
+    deps: [HttpClient],
+  },
+});
+
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
-    provideClientHydration(),provideAnimations(),
+    provideClientHydration(),
+    provideAnimations(),
     provideHttpClient(withInterceptors([appInterceptor]), withFetch()),
-  importProvidersFrom(ModalModule.forRoot()),
-  provideCharts(withDefaultRegisterables()),
-  provideRouter(
-    combinedRoutes,
-    withPreloading(PreloadAllModules)
-  ),
-    importProvidersFrom(TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-     }
-  }))
- ]
+    importProvidersFrom(ModalModule.forRoot()),
+    provideCharts(withDefaultRegisterables()),
+    provideRouter(
+      combinedRoutes,
+      withPreloading(PreloadAllModules)
+    ),
+    importProvidersFrom(TranslateModule.forRoot(provideTranslation()))
+  ]
 };

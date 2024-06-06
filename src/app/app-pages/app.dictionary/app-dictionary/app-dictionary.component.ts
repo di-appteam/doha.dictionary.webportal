@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass, NgIf } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ import { DSearchResultsComponent } from './dictionary-search-results/d-search-re
 @Component({ selector: 'app-app-dictionary',
     standalone: true,
     templateUrl: './app-dictionary.component.html',
-    styleUrl: './app-dictionary.component.scss', imports: [FormsModule,
+    styleUrl: './app-dictionary.component.scss', imports: [FormsModule,NgIf,NgClass,
         NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent]
       })
 export class AppDictionaryComponent implements AfterViewInit {
@@ -88,6 +88,7 @@ export class AppDictionaryComponent implements AfterViewInit {
       });
     this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
       searchItem => {
+        debugger;
         this.showResult = true;
       });
   }

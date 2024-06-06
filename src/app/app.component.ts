@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HasPermissionDirective } from './app-shared/directive/permissions.directive';
 import { HttpService } from './app-shared/security/requests/http.service';
 import { ServiceUrlManager } from './app-shared/security/requests/serviceUrl.Manager';
@@ -9,9 +10,11 @@ import { AccountService } from './app-shared/services/account.service';
 import { CacheService } from './app-shared/services/cache.service';
 import { AppChartsService } from './app-shared/services/charts.service';
 import { ChartControlService } from './app-shared/services/chartscontrol.service';
+import { ClipboardService } from './app-shared/services/Clipboard.service';
 import { SharedConfiguration, SharedFunctions } from './app-shared/services/config.service';
 import { DictionaryService } from './app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues } from './app-shared/services/lemma.general.service';
+import { PagerService } from './app-shared/services/pager.service';
 import { SharedRootComponentValues } from './app-shared/services/root.general.service';
 import { ScrollService } from './app-shared/services/scroll.service';
 import { SecurityService } from './app-shared/services/security.service';
@@ -24,9 +27,9 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,ReactiveFormsModule,NgIf,AppFooterComponent,AppHeaderComponent,HasPermissionDirective],
-  providers:[HasPermissionDirective,SharedConfiguration,
-    SecurityService,ScrollService,
+  imports: [RouterOutlet, RouterModule,TranslateModule ,ReactiveFormsModule,NgIf,AppFooterComponent,AppHeaderComponent,HasPermissionDirective,],
+  providers:[HasPermissionDirective,SharedConfiguration,TranslateService,
+    SecurityService,ScrollService,PagerService,ClipboardService,
     StoreService,ChartControlService,SharedService,CacheService,DictionaryService,AccountService,SharedLemmaComponentValues,
     SharedRootComponentValues,AppChartsService,HttpService,ServiceUrlManager,SharedFunctions
     ],

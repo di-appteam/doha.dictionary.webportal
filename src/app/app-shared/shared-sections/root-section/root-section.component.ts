@@ -21,7 +21,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     styleUrls: ['./root-section.component.scss']
 })
 export class RootSectionComponent implements OnInit {
-
+  // Get NgScrollbar reference
   // Unsubscriber for elementScrolled stream.
   private _scrollSubscription = Subscription.EMPTY;
     selectedRootId: number=0;
@@ -30,8 +30,6 @@ export class RootSectionComponent implements OnInit {
     ReachEnd: boolean = false;
     subscription?: Subscription;
     acRootList = [];
-    startLoading: boolean = false;
-    endLoading: boolean = false;
 
 
     constructor(
@@ -62,27 +60,8 @@ export class RootSectionComponent implements OnInit {
         }*/
     }
 
-    GetRootUpPosition(): void {
-        this.startLoading = true;
-        var rootId = this._sharedRootComponentValues.rootList[0].rootId;
-        this._dictionaryService.GetRootUpPosition(rootId, 10)
-            .subscribe((searchResult:any) => [
-                this._sharedRootComponentValues.rootList = searchResult.Data.concat(this._sharedRootComponentValues.rootList),
-                this.startLoading = false,
-                this.ReachTop = searchResult.ReachTop]);
-    }
 
-    GetRootDownPosition(): void {
-        this.endLoading = true;
-        var rootId = this._sharedRootComponentValues.rootList[(this._sharedRootComponentValues.rootList.length - 1)].rootId;
-        this._dictionaryService.GetRootDownPosition(rootId, 10)
-            .subscribe((searchResult:any) => [
-                this._sharedRootComponentValues.rootList = this._sharedRootComponentValues.rootList.concat(searchResult.Data),
-                this.endLoading = false,
-                this.ReachEnd = searchResult.ReachEnd//,
-                //setTimeout(() => this._sharedRootComponentValues.perfectScrollbar.directiveRef.scrollToBottom(), 200)
-            ]);
-    }
+
 
     ShowGozor() {
         if (this.searchRootWord && this._sharedRootComponentValues.rootList.length > 0) {
@@ -111,6 +90,7 @@ export class RootSectionComponent implements OnInit {
         this._sharedRootComponentValues.rootList = searchResult.Data;
         this.ReachTop = searchResult.ReachTop;
         this.ReachEnd = searchResult.ReachEnd;
+        this.selectedRootId = 96;
         this._sharedRootComponentValues.obsSearchListWord.next(this.searchRootWord);
     }
 }

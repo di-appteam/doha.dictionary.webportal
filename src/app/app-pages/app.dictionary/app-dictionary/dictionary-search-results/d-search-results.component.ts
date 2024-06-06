@@ -25,14 +25,30 @@ import { AlertComponent } from "../../../../app-shared/shared-sections/alert/ale
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from "@angular/common";
 import { ShareButtons } from 'ngx-sharebuttons/buttons';
+import { provideShareButtonsOptions, withConfig, SharerMethods } from "ngx-sharebuttons";
+import { withIcons } from 'ngx-sharebuttons/icons';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-@Component({ selector: 'd-search-results',
-    standalone: true,
-    templateUrl: './d-search-results.component.html',
-    styleUrls: ['./d-search-results.component.scss'], imports: [TranslateModule, CommonModule,
-        FormsModule, FontAwesomeModule,ShareButtons,RouterModule ,
-        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent],
-         })
+@Component({
+  selector: 'd-search-results',
+  standalone: true,
+  templateUrl: './d-search-results.component.html',
+  styleUrls: ['./d-search-results.component.scss'],
+  imports: [TranslateModule, CommonModule,PopoverModule,TooltipModule,
+    FormsModule, FontAwesomeModule, ShareButtons, RouterModule,AccordionModule,
+    NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent],
+  providers: [
+    provideShareButtonsOptions(
+      withIcons(),
+      withConfig({
+        debug: true,
+        sharerMethod: SharerMethods.Anchor,
+      })
+    ),
+  ],
+})
 export class DSearchResultsComponent implements OnInit, AfterViewInit {
 
 
@@ -41,9 +57,9 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
   public alertMessage: string = "";
   _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
   resultTotalCount: number = 0;
-  searchTime : any ;
-  selectedDetailsOption:any;
-  public detailsDropdownOptions : any[] = [];
+  searchTime: any;
+  selectedDetailsOption: any;
+  public detailsDropdownOptions: any[] = [];
   lemmaWord: string = "";
   alertErrorType = AlertEnum.ERROR;
   oldWordValue: string = "";
@@ -52,7 +68,7 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
   acSummaryLexicalSheet: ISummaryLexicalSheet[] = [];
   resultPageSize: number = 0;
   pager: any;
-  selectedItemForShareId : number = 0;
+  selectedItemForShareId: number = 0;
   pageSizeList: number[] = [5, 10, 20, 50, 100];
   dataParm?: ISearchByLemmaResultResponse;
   private sub?: Subscription;
@@ -60,11 +76,11 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
   private subBMSearch?: Subscription;
   private subAutoLemmaSearch?: Subscription;
   seqModalRef?: BsModalRef;
-  public shareUrl:string = "https://www.dohadictionary.org/dictionary/"
+  public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
 
   constructor(
     public _dictionaryService: DictionaryService,
-    public _config : SharedConfiguration,
+    public _config: SharedConfiguration,
     public _sharedFunctions: SharedFunctions,
     private _pagerService: PagerService,
     private _storeService: StoreService,
@@ -97,11 +113,11 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
         },
       ];
     });
-    this.renderer.listen('window', 'click',(e:Event)=>{
-      if(this.selectedItemForShareId && this.selectedItemForShareId > 0){
-         var selectedItem = this.summaryLexicalSheet.filter(a=>a.ID == this.selectedItemForShareId)[0];
-         selectedItem.showTooltip = false;
-         this.selectedItemForShareId = 0;
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.selectedItemForShareId && this.selectedItemForShareId > 0) {
+        var selectedItem = this.summaryLexicalSheet.filter(a => a.ID == this.selectedItemForShareId)[0];
+        selectedItem.showTooltip = false;
+        this.selectedItemForShareId = 0;
       }
     });
     /*this.subBMSearch = this._sharedLemmaComponentValues.obsCtrSearchFromBM.subscribe(
@@ -113,7 +129,7 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
       });*/
   }
 
-  toggleSocialShareTooltip(item : ISummaryLexicalSheet){
+  toggleSocialShareTooltip(item: ISummaryLexicalSheet) {
     item.showTooltip = !item.showTooltip;
     this.selectedItemForShareId = item.ID;
   }
@@ -130,11 +146,11 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
     this.seqModalRef = this.modalService.show(LemmaSequencesSectionComponent, config);
     this.seqModalRef.content.closeBtnName = 'Close';
   }
-  toggleRowActions(item : ISummaryLexicalSheet) {
+  toggleRowActions(item: ISummaryLexicalSheet) {
     item.openActions = !item.openActions;
   }
 
-  closeRowActions(item : ISummaryLexicalSheet) {
+  closeRowActions(item: ISummaryLexicalSheet) {
     item.openActions = false;
   }
 
@@ -204,14 +220,14 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
     this.errorMessage = "";
     this.pager = {};
   }
-  initComponent(searchResult:any, startTime:any): void {
+  initComponent(searchResult: any, startTime: any): void {
     if ((searchResult.Data && searchResult.Data.length > 0) || searchResult.TotalCount > 0) {
       this.alertType = AlertEnum.SUCCCESS;
       this.alertMessage = AlertMessages.SUCCCESS(searchResult.TotalCount);
       this.searchTime = Math.ceil((new Date().getTime() - startTime) / 1000);
       this.setPager(searchResult.TotalCount)
       this.resultTotalCount = searchResult.TotalCount;
-      this.summaryLexicalSheet = <ISummaryLexicalSheet[]>this._sharedFunctions.reFormateSheetList(searchResult.Data,this._config.bookmarkType.lemma,this._config);
+      this.summaryLexicalSheet = <ISummaryLexicalSheet[]>this._sharedFunctions.reFormateSheetList(searchResult.Data, this._config.bookmarkType.lemma, this._config);
       if (this._searchDictionaryModel.SearchWord && this._searchDictionaryModel.SearchWord != '' && this.summaryLexicalSheet.length > 0)
         this._storeService.AddSearchWord(this._searchDictionaryModel.SearchWord);
     } else {
@@ -233,13 +249,13 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
 
 
   // Treat the instructor name as the unique identifier for the object
-  trackByID(index : number, item: ISummaryLexicalSheet) {
+  trackByID(index: number, item: ISummaryLexicalSheet) {
     return item.ID;
   }
 
 
-  addBookmark(lexItem: ISummaryLexicalSheet){
-    this._dictionaryService.BookmarkAction(this._config.bookmarkType.lemma,lexItem).subscribe(item=> this.afterBookmark(lexItem));
+  addBookmark(lexItem: ISummaryLexicalSheet) {
+    this._dictionaryService.BookmarkAction(this._config.bookmarkType.lemma, lexItem).subscribe(item => this.afterBookmark(lexItem));
   }
 
   afterBookmark(lexItem: ISummaryLexicalSheet) {
@@ -248,21 +264,21 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
       this._config.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lemma);
   }
 
-  sendComment(lexItem: ISummaryLexicalSheet){
+  sendComment(lexItem: ISummaryLexicalSheet) {
     const initialState = {
-      lexical:lexItem
+      lexical: lexItem
     };
     const config = {
-      class:'modal-sm',
-      initialState : initialState
+      class: 'modal-sm',
+      initialState: initialState
     };
     this.commentModalRef = this.modalService.show(SendCommentComponent, config);
     this.commentModalRef.content.closeBtnName = 'Close';
   }
 
 
-  CopyLexical(toolTip : any,lexItem : ISummaryLexicalSheet){
-    this.clipboardService.copyLexicalToClipBoard(toolTip,lexItem);
+  CopyLexical(toolTip: any, lexItem: ISummaryLexicalSheet) {
+    this.clipboardService.copyLexicalToClipBoard(toolTip, lexItem);
   }
 
 }
