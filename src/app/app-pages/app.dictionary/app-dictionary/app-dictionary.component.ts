@@ -1,6 +1,6 @@
 import { CommonModule, NgClass, NgIf } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Subscription } from 'rxjs';
 import { SearchResults } from '../../../app-models/dictioanry.search.results.models';
+import { SearchDictionaryModel } from '../../../app-models/dictionary.model';
 import { SharedLemmaComponentValues } from '../../../app-shared/services/lemma.general.service';
 import { SharedRootComponentValues } from '../../../app-shared/services/root.general.service';
 import { StoreService } from '../../../app-shared/services/store.service';
@@ -23,10 +24,11 @@ import { DSearchResultsComponent } from './dictionary-search-results/d-search-re
     styleUrl: './app-dictionary.component.scss', imports: [FormsModule,NgIf,NgClass,
         NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent]
       })
-export class AppDictionaryComponent implements AfterViewInit {
+export class AppDictionaryComponent implements OnInit {
 
 
   public tagsSectionTitle: string = 'عمليات بحث سابقة';
+  searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
 
 
   public latestWordsArray: Array<any> = [
@@ -63,7 +65,7 @@ export class AppDictionaryComponent implements AfterViewInit {
       }
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.sub = this._route.params.subscribe(
       (params : any ) => {
         this._sharedRootComponentValues.ResetSetting();
@@ -88,7 +90,7 @@ export class AppDictionaryComponent implements AfterViewInit {
       });
     this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
       searchItem => {
-        debugger;
+        this.searchDictionaryModel = searchItem;
         this.showResult = true;
       });
   }

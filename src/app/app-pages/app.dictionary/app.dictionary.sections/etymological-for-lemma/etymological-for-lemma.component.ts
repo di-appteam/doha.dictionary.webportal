@@ -15,9 +15,9 @@ import { RootSectionComponent } from '../../../../app-shared/shared-sections/roo
   styleUrls: ['./etymological-for-lemma.component.scss']
 })
 export class EtymologicalForLemmaComponent implements OnInit, OnChanges {
-  @Input() rootId?: number;
-  @Input() lemmaId?: number;
-  @Input() lemmaVal?: number;
+  @Input() rootId?: any;
+  @Input() lemmaId?: any;
+  @Input() lemmaVal?: any;
   oldRootId?: number;
   oldLemmaId?: number;
   oldLemmaVal?: number;

@@ -1,3 +1,4 @@
+@if(lexItem){
 <div class="modal-header">
   <h4 class="modal-title pull-right" *ngIf="!isQur">{{lexItem.newFormValue}}</h4>
   <h4 class="modal-title pull-right" *ngIf="isQur">{{lexItem.newFormValue}} {{lexItem.quranicReading}}</h4>
@@ -6,5 +7,6 @@
   </button>
 </div>
 <div class="modal-body">
-    <dictionary-result-section class="item" [lexItem]="lexItem" [showCitition]="true" [isMening]="false"></dictionary-result-section>
+   <!-- <dictionary-result-section class="item" [lexItem]="lexItem" [showCitition]="true" [isMening]="false"></dictionary-result-section>-->
 </div>
+}

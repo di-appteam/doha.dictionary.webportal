@@ -1,20 +1,23 @@
-import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit, Input, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { Component, OnInit, Input, AfterViewInit, ChangeDetectorRef, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ISummaryLexicalSheet } from '../../../../app-models/dictionary.model';
+import { JustifyArabicDirective } from '../../../../app-shared/directive/justify-arabic.directive';
+import { HasPermissionDirective } from '../../../../app-shared/directive/permissions.directive';
 import { ClipboardService } from '../../../../app-shared/services/Clipboard.service';
 import { SharedConfiguration, SharedFunctions } from '../../../../app-shared/services/config.service';
 import { DictionaryService } from '../../../../app-shared/services/dictionary.service';
-import { RootSectionComponent } from '../../../../app-shared/shared-sections/root-section/root-section.component';
 import { SendCommentComponent } from '../../../../app-shared/shared-sections/send-comment/send-comment.component';
 @Component({
   selector: 'dictionary-result-section',
   standalone: true,
-  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule, TranslateModule,SendCommentComponent],
+  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule,PopoverModule,TooltipModule,JustifyArabicDirective, TranslateModule,PopoverModule,SendCommentComponent,HasPermissionDirective],
   templateUrl: './dictionary-result-section.component.html',
   styleUrls: ['./dictionary-result-section.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush

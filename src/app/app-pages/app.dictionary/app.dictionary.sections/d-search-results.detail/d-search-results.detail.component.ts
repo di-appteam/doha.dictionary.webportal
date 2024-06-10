@@ -1,4 +1,4 @@
-import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Input, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,14 +9,17 @@ import { ISummaryLexicalSheet } from '../../../../app-models/dictionary.model';
 import { SharedFunctions, SharedConfiguration } from '../../../../app-shared/services/config.service';
 import { DictionaryService } from '../../../../app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues, ILexCases } from '../../../../app-shared/services/lemma.general.service';
-import { DictionarySearchFormComponent } from '../../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
 import { RootSectionComponent } from '../../../../app-shared/shared-sections/root-section/root-section.component';
 import { DResultmodalComponent } from '../d-search-results.modal/d-search-results.modal.component';
+import { EtymologicalForLemmaComponent } from '../etymological-for-lemma/etymological-for-lemma.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { FilterPipe } from '../../../../app-shared/pipe/FilterPipe';
+import { DictionaryResultSectionComponent } from '../dictionary-result-section/dictionary-result-section.component';
 
 @Component({
   selector: 'd-result-detail',
   standalone: true,
-  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule, TranslateModule,RootSectionComponent],
+  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule,TabsModule ,FilterPipe, TranslateModule,RootSectionComponent,EtymologicalForLemmaComponent,DictionaryResultSectionComponent],
   templateUrl: './d-search-results.detail.component.html',
   styleUrls: ['./d-search-results.detail.component.scss']
 })

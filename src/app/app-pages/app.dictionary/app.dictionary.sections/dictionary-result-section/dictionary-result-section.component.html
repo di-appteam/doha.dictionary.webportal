@@ -1,3 +1,4 @@
+@if(lexItem){
 <div class="item-header">
 
   <p [ngClass]="[('cls-copy-'+lexItem.ID) , 'date']" *ngIf="!lexItem.verbaldate">
@@ -49,7 +50,7 @@
       <span *ngIf="lexItem.issemantic"> [{{lexItem.semanticFieldValue}}]</span>
       <ng-container
         *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
-        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover"
           triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
           (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
       </ng-container>
@@ -60,7 +61,7 @@
       {{_sharedFunctions.removeLastSkonFromString(lexItem.lemmaValue)}}
       <ng-container
         *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
-        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover"
           triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
           (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
       </ng-container>
@@ -71,7 +72,7 @@
       {{_sharedFunctions.removeLastSkonFromString(lexItem.lemmaValue)}}
       <ng-container
         *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
-        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover"
           triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
           (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
       </ng-container>
@@ -85,7 +86,7 @@
 
       <ng-container
         *ngIf="(_sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Meaning) || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Root)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.Lemma)  || _sharedFunctions.CheckDisplayRemark(lexItem,_config.RemarkType.LemmaTag) )">
-        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover" [autoClose]="false"
+        <span type="button" class="icon icon-info-o info-icon" #infoPopup="bs-popover"
           triggers="hover" style="cursor: pointer" placement="top" popoverClass="pop-info" container="body"
           (click)="openPopover(infoPopup)" [popover]="infoPopupTemplate"></span>
       </ng-container>
@@ -265,3 +266,4 @@
   </div>
 
 </div>
+}

@@ -1,5 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef } from "@angular/core";
+import { Component, OnInit, Renderer2, ElementRef, Input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
@@ -22,40 +21,55 @@ import { TextFormComponent } from "../../app.dictionary.sections/text-form/text-
 import { Router, RouterModule } from "@angular/router";
 import { AlertEnum, AlertMessages, SORRY } from "../../../../app-models/dictioanry.search.results.models";
 import { AlertComponent } from "../../../../app-shared/shared-sections/alert/alert.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommonModule } from "@angular/common";
+import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgClass, NgFor, NgIf } from "@angular/common";
 import { ShareButtons } from 'ngx-sharebuttons/buttons';
-import { provideShareButtonsOptions, withConfig, SharerMethods } from "ngx-sharebuttons";
-import { withIcons } from 'ngx-sharebuttons/icons';
+import { ShareButton } from 'ngx-sharebuttons/button';
+import { provideShareButtonsOptions, withConfig, SharerMethods, ShareButtonDirective } from "ngx-sharebuttons";
+import { shareIcons } from 'ngx-sharebuttons/icons';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+import { HasPermissionDirective } from "../../../../app-shared/directive/permissions.directive";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faLinkedin, faTwitter, faWhatsapp, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { DSearchResultsDetailComponent } from "../../app.dictionary.sections/d-search-results.detail/d-search-results.detail.component";
 @Component({
   selector: 'd-search-results',
   standalone: true,
   templateUrl: './d-search-results.component.html',
   styleUrls: ['./d-search-results.component.scss'],
-  imports: [TranslateModule, CommonModule,PopoverModule,TooltipModule,
-    FormsModule, FontAwesomeModule, ShareButtons, RouterModule,AccordionModule,
-    NgSelectModule, TextFormComponent, DictionarySearchFormComponent, AlertComponent, PrevSearchResultSectionComponent],
+  imports: [
+    TranslateModule,
+    PopoverModule,
+    TooltipModule,
+    NgClass,
+    NgIf,
+    NgFor,
+    FormsModule,
+    FontAwesomeModule,
+    ShareButtons,
+    ShareButton,
+    RouterModule,
+    AccordionModule,
+    NgSelectModule,
+    TextFormComponent,
+    DictionarySearchFormComponent,
+    DSearchResultsDetailComponent,
+    AlertComponent,
+    PrevSearchResultSectionComponent,
+    ShareButtonDirective, FaIconComponent,
+    HasPermissionDirective],
   providers: [
-    provideShareButtonsOptions(
-      withIcons(),
-      withConfig({
-        debug: true,
-        sharerMethod: SharerMethods.Anchor,
-      })
-    ),
   ],
 })
-export class DSearchResultsComponent implements OnInit, AfterViewInit {
+export class DSearchResultsComponent implements OnInit {
 
 
   commentModalRef?: BsModalRef;
   public alertType?: AlertEnum;
   public alertMessage: string = "";
-  _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
+  @Input() searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
   resultTotalCount: number = 0;
   searchTime: any;
   selectedDetailsOption: any;
@@ -79,6 +93,7 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
   public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
 
   constructor(
+    library: FaIconLibrary,
     public _dictionaryService: DictionaryService,
     public _config: SharedConfiguration,
     public _sharedFunctions: SharedFunctions,
@@ -91,7 +106,10 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
     private _translate: TranslateService,
     public clipboardService: ClipboardService,
     private renderer: Renderer2,
-    private _elementRef: ElementRef) { }
+    private _elementRef: ElementRef) {
+      // Add icons to the library
+      library.addIcons(faShareAlt,faFacebook,faTwitter,faLinkedin,faXTwitter,faWhatsapp);
+  }
 
 
 
@@ -120,13 +138,17 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
         this.selectedItemForShareId = 0;
       }
     });
-    /*this.subBMSearch = this._sharedLemmaComponentValues.obsCtrSearchFromBM.subscribe(
-      searchItem => {
-        if (searchItem) {
-          this._searchDictionaryModel = searchItem;
-          this.parmChange(true);
+    this.subAutoLemmaSearch = this._sharedLemmaComponentValues.obsSearchWord.subscribe(
+      word => {
+        if (word) {
+          if (!this.searchDictionaryModel || this.searchDictionaryModel?.SearchWord == word)
+            return;
+          this._sharedLemmaComponentValues.searchWord = word;
+          this.searchDictionaryModel.SearchWord = word;
+          this.parmChange(false);
         }
-      });*/
+      });
+    this.parmChange(true);
   }
 
   toggleSocialShareTooltip(item: ISummaryLexicalSheet) {
@@ -154,36 +176,16 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
     item.openActions = false;
   }
 
-  ngAfterViewInit(): void {
-    this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
-      searchItem => {
-        if (searchItem) {
-          this._searchDictionaryModel = searchItem;
-          this.parmChange(true);
-        }
-      });
-    this.subAutoLemmaSearch = this._sharedLemmaComponentValues.obsSearchWord.subscribe(
-      word => {
-        if (word) {
-          if (!this._searchDictionaryModel || this._searchDictionaryModel?.SearchWord == word)
-            return;
-          this._sharedLemmaComponentValues.searchWord = word;
-          this._searchDictionaryModel.SearchWord = word;
-          this.parmChange(false);
-        }
-      });
-  }
-
   parmChange(fromSearch: boolean, newValue: string = ""): void {
     this.resultTotalCount = 0;
     this.searchTime = 0;
     this.oldWordValue = newValue;
     this._sharedLemmaComponentValues.pageNumber = fromSearch == true ? 1 : this._sharedLemmaComponentValues.pageNumber;
     const startTime = new Date().getTime();
-    this._searchDictionaryModel.SearchWord = newValue != null ? newValue : this._searchDictionaryModel.SearchWord;
-    this._searchDictionaryModel.Page = this._sharedLemmaComponentValues.pageNumber;
-    this._searchDictionaryModel.PageSize = this.resultPageSize;
-    this._dictionaryService.SearchInLemma(this._searchDictionaryModel)
+    this.searchDictionaryModel.SearchWord = newValue != null ? newValue : this.searchDictionaryModel.SearchWord;
+    this.searchDictionaryModel.Page = this._sharedLemmaComponentValues.pageNumber;
+    this.searchDictionaryModel.PageSize = this.resultPageSize;
+    this._dictionaryService.SearchInLemma(this.searchDictionaryModel)
       .subscribe(searchResult => [this.initComponent(searchResult, startTime)],
         error => [this.initComponent([], startTime)]);
   }
@@ -210,7 +212,7 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
     this._router.navigate(['/root/']);
   }
   clearPage(): void {
-    this._searchDictionaryModel = new SearchDictionaryModel();
+    this.searchDictionaryModel = new SearchDictionaryModel();
     this.resultTotalCount = 0;
     this.searchTime = 0;
     this.selectedDetailsOption = 1;
@@ -228,8 +230,8 @@ export class DSearchResultsComponent implements OnInit, AfterViewInit {
       this.setPager(searchResult.TotalCount)
       this.resultTotalCount = searchResult.TotalCount;
       this.summaryLexicalSheet = <ISummaryLexicalSheet[]>this._sharedFunctions.reFormateSheetList(searchResult.Data, this._config.bookmarkType.lemma, this._config);
-      if (this._searchDictionaryModel.SearchWord && this._searchDictionaryModel.SearchWord != '' && this.summaryLexicalSheet.length > 0)
-        this._storeService.AddSearchWord(this._searchDictionaryModel.SearchWord);
+      if (this.searchDictionaryModel.SearchWord && this.searchDictionaryModel.SearchWord != '' && this.summaryLexicalSheet.length > 0)
+        this._storeService.AddSearchWord(this.searchDictionaryModel.SearchWord);
     } else {
       this.resultTotalCount = 0;
       this.summaryLexicalSheet = [];

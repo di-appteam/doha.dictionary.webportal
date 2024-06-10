@@ -1,7 +1,8 @@
 body {
   font-family: $mainFont;
   background-color: #f7f6f6;
-
+  font-size: 14px;
+  line-height: 1.42857143;
   .result-section .result-body .search-results .item-row {
     .item-value {
 
@@ -268,7 +269,12 @@ img {
   li {
     display: inline-block;
   }
-
+  .left-btns{
+    float: left !important;
+  }
+  .right-btns {
+    float: right !important;
+  }
   @media (max-width: 767px) {
 
     .left-btns,
@@ -696,3 +702,13 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
+.fa-border{
+border: unset !important;
+}
+
+.ng-select > .ng-select-container .ng-value-container, .ng-select.ng-single > .ng-select-container .ng-value-container{
+  padding-right: 0px !important;
+}
+.ng-select .ng-select-container .ng-value-container{
+  padding-left: 0 !important;
+}

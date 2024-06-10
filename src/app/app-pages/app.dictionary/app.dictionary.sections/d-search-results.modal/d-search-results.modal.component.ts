@@ -7,11 +7,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ISummaryLexicalSheet } from '../../../../app-models/dictionary.model';
 import { SharedConfiguration, SharedFunctions } from '../../../../app-shared/services/config.service';
 import { RootSectionComponent } from '../../../../app-shared/shared-sections/root-section/root-section.component';
+import { DictionaryResultSectionComponent } from '../dictionary-result-section/dictionary-result-section.component';
 
 @Component({
   selector: '[modal-partial]',
   standalone: true,
-  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule, TranslateModule,RootSectionComponent],
+  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule, TranslateModule,RootSectionComponent,DictionaryResultSectionComponent],
   templateUrl: './d-search-results.modal.component.html',
   styleUrls: ['./d-search-results.modal.component.scss']
 })

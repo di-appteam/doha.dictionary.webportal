@@ -141,7 +141,7 @@ export class SharedFunctions {
     }
     return (lexItem.remarksargument.filter((a : any) => a.remarksargumenttagid == remType).length > 0);
   }
-  public DisplayRemark(lexItem?: ISummaryLexicalSheet, remType?: number): string {
+  public DisplayRemark(lexItem?: ISummaryLexicalSheet, remType?: any): string {
     if (!lexItem || !lexItem?.remarksargument) {
       return '';
     }
