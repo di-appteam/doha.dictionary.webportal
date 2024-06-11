@@ -1,0 +1,41 @@
+  <div class="result-section isotopes-section" *ngIf="IsReady">
+
+      <div class="result-header">
+  
+        <h3 class="section-title">
+            {{'general.etm' | translate}}
+        </h3>
+  
+      </div>
+  
+      <div class="result-body">
+        <div class="row items-list">
+  
+          <div class="col-xs-6 isotopes-item" *ngFor="let item of SummaryEtymologicalLexicalSheetList | groupBy:'languageForm'">
+  
+            <div class="item-inner">
+  
+              <div class="item-header">
+  
+                <h4 class="item-title">
+                    {{item.key }}
+                </h4>
+  
+              </div>
+  
+              <div class="item-body">
+  
+                <p class="paragraph second-font" *ngFor="let subItem of item.value" [innerHTML]="subItem.meaning.replace('<span class=\'dark-red\'>','<span class=\'dark-red pronounce\'>' )"> 
+                </p>
+  
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>

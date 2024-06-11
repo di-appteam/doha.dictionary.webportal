@@ -1,0 +1,83 @@
+<div class="roots-results-section">
+
+  <div class="section-header">
+    <ng-container *ngIf="SelectedRoot && SelectedRoot.issplitted == 1">
+      <h2 class="section-title" *ngFor="let chr of  _sharedRootComponentValues.searchWord.split('')">
+        {{(chr == 'ه' ? 'هـ'  : chr ) }}
+      </h2>
+      <span class="note" *ngIf="SelectedRoot.inprogress == 1">
+        قيد الاعتماد
+      </span>
+    </ng-container>
+    <ng-container *ngIf="SelectedRoot && SelectedRoot.issplitted != 1">
+      <h2 class="section-title" >
+        {{( SelectedRoot.rootValueUV  == 'ه' ? (SelectedRoot.rootValue + 'ـ'): _sharedRootComponentValues.searchWord  )}}
+      </h2>
+      <span class="note" *ngIf="SelectedRoot.inprogress == 1">
+        قيد الاعتماد
+      </span>
+    </ng-container>
+    <div class="results-links pull-left">
+
+      <a class="link-btn" (click)="ChangeActiveState(1)" [ngClass]="{'active':isCarvSelected}" *ngIf="(_sharedLemmaComponentValues.CountCarvTab > 0 )">
+        <!--
+        <label class="icon">
+          <img src="/assets/images/icons/roots-inscriptions-icon.png" alt="{{'general.carving' | translate}}">
+        </label> -->
+
+        <span class="btn-title">
+          <span class="count">{{_sharedLemmaComponentValues.CountCarvTab}}</span>
+          {{'general.carving' | translate}}
+        </span>
+
+      </a>
+
+      <a class="link-btn" (click)="ChangeActiveState(2)" [ngClass]="{'active':isLexSelected}" *ngIf="( _sharedLemmaComponentValues.CountLexTab > 0)">
+        <!--
+        <label class="icon">
+          <img src="/assets/images/icons/roots-dictionary-icon.png" alt="{{'general.lexicalsheet' | translate}}">
+        </label> -->
+
+        <span class="btn-title">
+          <span class="count">{{_sharedLemmaComponentValues.CountLexTab}}</span>
+          {{'general.lexicalsheet' | translate}}
+        </span>
+
+      </a>
+
+      <a class="link-btn" (click)="ChangeActiveState(3)" [ngClass]="{'active':isEtmelected}" *ngIf="( _sharedLemmaComponentValues.CountEtmTab > 0)">
+        <!--
+        <label class="icon">
+          <img src="/assets/images/icons/roots-isotopes-icon.png" alt="{{'general.etm' | translate}}">
+        </label> -->
+
+        <span class="btn-title">
+          <span class="count">{{_sharedLemmaComponentValues.CountEtmTab}}</span>
+          {{'general.etm' | translate}}
+        </span>
+
+      </a>
+      <ng-container *ngIf="rootHasDocument == true">
+        <button type="button" class="link-btn download-btn" (click)="DownloadDocument()" *hasPermission="['download-root']">
+          <span class="icon icon-download"></span>
+        </button>
+      </ng-container>
+    </div>
+
+  </div>
+
+  <div class="section-body" *ngIf="SelectedRoot">
+
+
+    <app-carving [rootId]="SelectedRoot.rootId" [hidden]="!isCarvSelected"></app-carving>
+
+
+    <app-lexicalsheet [rootId]="SelectedRoot.rootId" [hidden]="!isLexSelected"></app-lexicalsheet>
+
+
+    <app-etymological [rootId]="SelectedRoot.rootId" [hidden]="!isEtmelected"></app-etymological>
+
+
+  </div>
+
+</div>

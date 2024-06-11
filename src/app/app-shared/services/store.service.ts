@@ -86,12 +86,15 @@ export class StoreService extends CookieService {
     }
 
     public AddToStore(key: string, value: any, overwrite: boolean): boolean {
+      if (typeof localStorage !== "undefined") {
         if (!overwrite && this.check(key))
             return false;
         if (overwrite && this.check(key))
             localStorage.removeItem(key);
         localStorage.setItem(key, value);
         return true;
+      }
+      return false;
     }
 
     public GetByKey(key: string): string {

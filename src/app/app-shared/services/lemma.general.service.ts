@@ -15,9 +15,9 @@ export class SharedLemmaComponentValues {
     public acSummaryLexicalSheet: ISummaryLexicalSheet[] = [];
     public lexicalSheetList: Array<ISummaryLexicalSheet> = [];
     public ILexCasesList: Array<ILexCases> = [];
-    public CountLexTab? : number;
-    public CountEtmTab? : number;
-    public CountCarvTab? : number;
+    public CountLexTab : number = 0;
+    public CountEtmTab : number = 0;
+    public CountCarvTab : number = 0;
 
     public pageNumber = 1;
     public isAutoComplate = false;

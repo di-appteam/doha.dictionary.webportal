@@ -14,7 +14,8 @@ import { DictionaryResultSectionComponent } from '../dictionary-result-section/d
   standalone: true,
   imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule, TranslateModule,RootSectionComponent,DictionaryResultSectionComponent],
   templateUrl: './d-search-results.modal.component.html',
-  styleUrls: ['./d-search-results.modal.component.scss']
+  styleUrls: ['./d-search-results.modal.component.scss'],
+  providers:[SharedConfiguration,SharedFunctions]
 })
 export class DResultmodalComponent implements OnInit {
 

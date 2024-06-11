@@ -9,6 +9,15 @@ export const DictionaryRoutes: Routes = [
     path: 'dictionary/:word',
     loadComponent: () =>
       import('./app-dictionary/app-dictionary.component').then((c) => c.AppDictionaryComponent)
+  },
+  {
+    path: 'root',
+    loadComponent: () =>
+    import('./app-dictionary-root-details/dictionary-root-details.component').then((c) => c.DictionaryRootDetailsComponent)
+  },{
+    path: 'root/:word',
+    loadComponent: () =>
+      import('./app-dictionary-root-details/dictionary-root-details.component').then((c) => c.DictionaryRootDetailsComponent)
   }];
 
 /*

@@ -1,4 +1,5 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Directive, ElementRef, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 @Directive({
   standalone: true,
   selector: '[appJustifyArabic]'
@@ -7,9 +8,13 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 export class JustifyArabicDirective implements OnInit {
 
 
+  isBrowser : boolean = false;
   private $textNode?: HTMLElement ;
   private currentText: string = "";
-  constructor(private $el: ElementRef) { }
+  constructor(private $el: ElementRef,
+    @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit() {
   }
@@ -17,6 +22,8 @@ export class JustifyArabicDirective implements OnInit {
     this.moveTextIntoSpan();
   }
   moveTextIntoSpan() {
+    if (this.isBrowser)
+    {
     let text = this.$el.nativeElement.innerHTML;
     this.$el.nativeElement.innerHTML = '';
 
@@ -27,6 +34,7 @@ export class JustifyArabicDirective implements OnInit {
     this.$el.nativeElement.appendChild(this.$textNode);
 
     this.getCurrentText();
+    }
   }
 
   getCurrentText() {

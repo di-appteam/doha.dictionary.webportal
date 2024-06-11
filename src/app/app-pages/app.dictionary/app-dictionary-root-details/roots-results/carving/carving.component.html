@@ -1,0 +1,159 @@
+@if(CarvingLexicalSheetList && CarvingLexicalSheetList.length > 0){
+<div class="result-section inscriptions-section">
+
+  <div class="result-header">
+
+    <h3 class="section-title">
+        {{'general.carving' | translate}}
+    </h3>
+
+    <div class="results-options">
+
+      <div class="option-holder col-xs-4">
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+        <h5 class="title">{{'dictionary.details' | translate}}</h5>
+
+        <div class="dropdown-select big text-center">
+          <ng-select [items]="detailsDropdownOptions"
+           bindLabel="text" bindValue="value"  clearAllText="{{'general.clearalltext' | translate}}"
+            [(ngModel)]="selectedDetailsOption"
+            [clearable]="false"
+            [searchable]="false">
+          </ng-select>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+
+  <div class="result-body">
+
+    <accordion class="table-component search-results" [closeOthers]="false">
+
+      <accordion-group #group class="t-row item-row" *ngFor="let item of CarvingLexicalSheetList" [isOpen]="(selectedDetailsOption==2)">
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{item.headwordTransliteration}}
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          [{{item.additionalTag}}]
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{item.verbalDate}}
+        </div>
+
+        <div accordion-heading class="t-cell item-value toggler-btn text-left">
+
+          <button type="button" class="row-toggler icon icon-angle-down"></button>
+
+        </div>
+
+        <div class="accordion-body">
+
+          <div class="item">
+
+            <div class="item-header">
+
+              <p class="date">
+                {{item.verbalDate}}
+              </p>
+
+              <p class="paragraph bold">
+                <span class="dark-red italic">{{item.headwordTransliteration}}</span>:
+                <span [innerHTML]="item.meaning"></span>
+              </p>
+
+            </div>
+
+            <div class="item-body">
+
+              <div class="paper">
+
+                <div class="info-paragraph main-font">
+                  <span class="bold">{{'dictionary.carving.citation' | translate}}:</span>
+                  <span class="italic" [innerHTML]="item.citation"></span>
+                </div>
+                <div class="info-paragraph main-font">
+                  <span class="bold">{{'dictionary.carving.translatedCitation' | translate}}:</span>
+                  <span [innerHTML]="item.translatedCitation"></span>
+                </div>
+
+              </div>
+
+              <div class="table-component details-table">
+
+                <div class="t-row">
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.signe' | translate}}:</span> {{item.signe}}
+                  </div>
+                </div>
+
+                <div class="t-row">
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.language' | translate}}:</span> {{item.language}}
+                  </div>
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.languageGroup' | translate}}:</span> {{item.languageGroup}}
+                  </div>
+                </div>
+
+                <div class="t-row">
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.languageScript' | translate}}:</span> {{item.languageScript}}
+                  </div>
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.type' | translate}}:</span> <span [innerHTML]="item.type"></span>
+                  </div>
+                </div>
+
+                <div class="t-row">
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.originalLocation' | translate}}:</span> {{item.originalLocation}}
+                  </div>
+                  <div class="t-cell">
+                    <span class="bold">{{'dictionary.carving.currentLocation' | translate}}:</span> {{item.currentLocation}}.
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="table-component details-table" *ngIf="item.source">
+                <div class="t-row">
+                  <div class="t-cell resource-cell">
+                    <span class="bold">التوثيق:</span>
+                  </div>
+                  <div class="t-cell resource-value-cell has-popup">
+                        {{item.source}}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </accordion-group>
+
+    </accordion>
+
+  </div>
+
+</div>
+}

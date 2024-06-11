@@ -712,3 +712,10 @@ border: unset !important;
 .ng-select .ng-select-container .ng-value-container{
   padding-left: 0 !important;
 }
+
+.visible-lg, .visible-md, .visible-sm, .visible-xs{
+  display: none !important;
+}
+.accordion-toggle{
+  background-color: #ccaf41;
+}

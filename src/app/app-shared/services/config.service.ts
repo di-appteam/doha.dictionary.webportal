@@ -34,7 +34,7 @@ enum RemarkType {
 export class SharedConfiguration {
   Setting?: Setting;
   public PageSize = 10;
-  public shareUrl:string = "https://www.dohadictionary.org/dictionary/"
+  public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
   public HideLexicalPanel = false;
   public pendingReq = false;
   public IsDevelopment = !environment.production;
@@ -71,7 +71,7 @@ export class SharedConfiguration {
       // }
       // return (!jwtHelperService.isTokenExpired());
     } catch (Error) {
-return false;
+      return false;
     }
   }
 
@@ -91,10 +91,10 @@ return false;
       this.UserBookmarkList.next(currentBookmarks);
     }
   }
-  social_share_url(word:string):string{
+  social_share_url(word: string): string {
 
 
-const fullURL = `${this.shareUrl}${word.toString()}`;
+    const fullURL = `${this.shareUrl}${word.toString()}`;
 
     return fullURL;//this.shareUrl.concat(word.trimLeft().trimRight());
   }
@@ -124,12 +124,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 export class NoWhitespaceValidator {
-  static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
-      if((control.value as string).trim() == ''){
-          return {cannotContainSpace: true}
-      }
+  static cannotContainSpace(control: AbstractControl): ValidationErrors | null {
+    if ((control.value as string).trim() == '') {
+      return { cannotContainSpace: true }
+    }
 
-      return null;
+    return null;
   }
 }
 export class SharedFunctions {
@@ -139,23 +139,23 @@ export class SharedFunctions {
     if (!lexItem || !lexItem?.remarksargument) {
       return false;
     }
-    return (lexItem.remarksargument.filter((a : any) => a.remarksargumenttagid == remType).length > 0);
+    return (lexItem.remarksargument.filter((a: any) => a.remarksargumenttagid == remType).length > 0);
   }
   public DisplayRemark(lexItem?: ISummaryLexicalSheet, remType?: any): string {
     if (!lexItem || !lexItem?.remarksargument) {
       return '';
     }
-    return (lexItem?.remarksargument.filter((a : any) => a.remarksargumenttagid == remType)[0].remarksargument1);
+    return (lexItem?.remarksargument.filter((a: any) => a.remarksargumenttagid == remType)[0].remarksargument1);
   }
 
 
   public reWriteCitation(citation: string, citationType: number = 0): string {
-    if (!citation.includes('cnvQCF2BSML') && (citationType == 2||citationType == 3||citationType == 4 )) {
+    if (!citation.includes('cnvQCF2BSML') && (citationType == 2 || citationType == 3 || citationType == 4)) {
       const citationArr = citation.split('<br/>');
       let newCitation = '';
       if (citation.includes('***')) {
         // tslint:disable-next-line: max-line-length
-        const calcMaxLArr = citation.replace('<span class=\'dark-red\'>', '').replace('</span>', '').split(' ').filter((a : any) => a.trim() != '').join(' ').split(/<br\/>|\*\*\*/).map(a => this.normalize_text(a.trim()));
+        const calcMaxLArr = citation.replace('<span class=\'dark-red\'>', '').replace('</span>', '').split(' ').filter((a: any) => a.trim() != '').join(' ').split(/<br\/>|\*\*\*/).map(a => this.normalize_text(a.trim()));
         const maxStrLength = calcMaxLArr.reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
         for (let i = 0; i < citationArr.length; i++) {
           const subCitationArr = citationArr[i].split('***');
@@ -169,7 +169,7 @@ export class SharedFunctions {
         }
       } else {
         // tslint:disable-next-line: max-line-length
-        const maxStrLength = citation.replace('<span class=\'dark-red\'>', '').replace('</span>', '').split(' ').filter((a : any) => a.trim() != '').join(' ').split('<br/>').map(a => this.normalize_text(a.trim())).reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
+        const maxStrLength = citation.replace('<span class=\'dark-red\'>', '').replace('</span>', '').split(' ').filter((a: any) => a.trim() != '').join(' ').split('<br/>').map(a => this.normalize_text(a.trim())).reduce(function (a, b) { return a.length > b.length ? a : b; }).length;
         for (let i = 0; i < citationArr.length; i++) {
           if (i % 2 === 0) {
             // tslint:disable-next-line: max-line-length
@@ -198,7 +198,7 @@ export class SharedFunctions {
       return citation.split('<br/>').map(a => a.trim()).filter(String);
     }
   }
-  public reFormateSheetList(listForReformate: any[], searchType: number, config: SharedConfiguration): Object[] {
+  public reFormateSheetList(listForReformate: any[], searchType?: number, config?: SharedConfiguration): Object[] {
     for (let y = 0; y < listForReformate.length; y++) {
       if (listForReformate[y]['citation'] && (listForReformate[y]['citationType'] || listForReformate[y]['citationType'] == 0)) {
         // tslint:disable-next-line: max-line-length
@@ -213,7 +213,7 @@ export class SharedFunctions {
         /*if (listForReformate[y]['citation'].indexOf('<br/> ') !== -1 || listForReformate[y]['citation'].includes('***')) {
           listForReformate[y]['citationType'] = 2;
         }*/
-        if (!listForReformate[y]['citation'].includes('cnvQCF2BSML') && (listForReformate[y]['citationType'] == 2 ||listForReformate[y]['citationType'] == 3 ||listForReformate[y]['citationType'] == 4 || listForReformate[y]['citation'].includes('***'))) {
+        if (!listForReformate[y]['citation'].includes('cnvQCF2BSML') && (listForReformate[y]['citationType'] == 2 || listForReformate[y]['citationType'] == 3 || listForReformate[y]['citationType'] == 4 || listForReformate[y]['citation'].includes('***'))) {
           listForReformate[y]['shearArray'] = this.getShearArray(this.reWriteStringWithStyle(listForReformate[y]['citation']));
         }
         listForReformate[y]['citation'] = this.reWriteStringWithStyle(listForReformate[y]['citation']);
@@ -222,10 +222,13 @@ export class SharedFunctions {
       }
       // to set bookmark value from saved list in sahred configuration class
       // tslint:disable-next-line: max-line-length
-      const userBookmarkList = config.UserBookmarkList.getValue();
-if (config && userBookmarkList && userBookmarkList.length > 0 && (listForReformate[y]['IsBookMark'] || listForReformate[y]['IsBookMark'] === false)) {
-  listForReformate[y]['IsBookMark'] = userBookmarkList.filter((a: any) => a.bookmarktypeid == searchType && a.saveditemid == listForReformate[y]['ID']).length > 0;
-}
+      if (config) {
+        const userBookmarkList = config?.UserBookmarkList.getValue();
+        if (userBookmarkList && userBookmarkList.length > 0 && (listForReformate[y]['IsBookMark'] || listForReformate[y]['IsBookMark'] === false)) {
+
+          listForReformate[y]['IsBookMark'] = userBookmarkList.filter((a: any) => a.bookmarktypeid == searchType && a.saveditemid == listForReformate[y]['ID']).length > 0;
+        }
+      }
       if (listForReformate[y]['headCitation']) {
         listForReformate[y]['headCitation'] = this.reWriteStringWithStyle(listForReformate[y]['headCitation']);
       }
@@ -338,7 +341,7 @@ if (config && userBookmarkList && userBookmarkList.length > 0 && (listForReforma
       const lastIndex = str.lastIndexOf('<br/>');
       str = str.substring(0, lastIndex);
     }
-    const array = str.split(' ').filter((a : any) => a.trim() != '');
+    const array = str.split(' ').filter((a: any) => a.trim() != '');
 
     let isSpan = false;
     for (let i = 0; i < array.length; i++) {
@@ -416,7 +419,7 @@ if (config && userBookmarkList && userBookmarkList.length > 0 && (listForReforma
     return str;
   }
 
-  public reWriteDateSheet(date : any, isDeathDate: boolean): string {
+  public reWriteDateSheet(date: any, isDeathDate: boolean): string {
     // tslint:disable-next-line: triple-equals
     const fChar = (isDeathDate == true) ? 'ن ' : '';
     if (Number(date) < 0) {

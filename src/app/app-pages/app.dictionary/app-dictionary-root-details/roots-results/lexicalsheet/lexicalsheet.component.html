@@ -1,0 +1,133 @@
+<div class="result-section dictionary-section" *ngIf="IsReady">
+
+  <div class="result-header">
+
+    <h3 class="section-title">
+      {{'general.lexicalsheet' | translate}}
+    </h3>
+
+    <div class="results-options">
+
+      <div class="option-holder col-xs-4">
+
+        <h5 class="title" *ngIf="false">{{'dictionary.displaying' | translate}}</h5>
+
+        <div class="dropdown-select text-center">
+          <ng-select [items]="viewDropdownOptions" bindLabel="text" bindValue="value" clearAllText="{{'general.clearalltext' | translate}}"
+            [clearable]="true" placeholder="{{'dictionary.selectdata' | translate}}" [ngModel]="selectedViewOption" (ngModelChange)="onChangeSelectedView($event)"
+            [searchable]="false">
+          </ng-select>
+        </div>
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+        <h5 class="title" *ngIf="false">{{'dictionary.ordering' | translate}}</h5>
+
+        <div class="dropdown-select text-center">
+          <ng-select [items]="sortDropdownOptions" bindLabel="text" clearAllText="{{'general.clearalltext' | translate}}" bindValue="value"
+            [ngModel]="selectedSortOption" (ngModelChange)="setOrderBy($event)" [clearable]="false" [searchable]="false">
+          </ng-select>
+        </div>
+
+      </div>
+
+      <div class="option-holder col-xs-4">
+
+        <h5 class="title" *ngIf="false">{{'dictionary.details' | translate}}</h5>
+
+        <div class="dropdown-select big text-center">
+          <ng-select [items]="detailsDropdownOptions" bindLabel="text" clearAllText="{{'general.clearalltext' | translate}}" bindValue="value"
+            [ngModel]="selectedDetailsOption" (ngModelChange)="setSelectedDetail($event)" [clearable]="false" [searchable]="false">
+          </ng-select>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+
+  <div class="result-body">
+
+    <accordion class="table-component search-results" [closeOthers]="false">
+
+      <accordion-group #group class="t-row item-row" *ngFor="let item of _sharedLemmaComponentValues.lexicalSheetList;let i = index; trackBy: trackByID;"
+        [ngClass]="{'hide-aria':item.hiddeLex}" [isOpen]="(selectedDetailsOption===3||selectedDetailsOption===2 || ( i == 0 && isFirstTime == true ))">
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{ item.lemmaValue }}
+        </div>
+
+        <div  accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          [{{ item.additionalTag }}]
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+         <span  *ngIf="!item.verbaldate" > {{_sharedFunctions.reWriteDateSheet(item.dateSheet,item.isDeathDate)}}={{item.dateSheetSolar}}م</span>
+         <span  *ngIf="item.verbaldate" > {{item.verbaldate}}</span>
+        </div>
+
+        <div accordion-heading class="t-cell item-value toggler-btn text-left">
+
+          <div class="row-actions" [ngClass]="{'active': item.openActions}">
+
+            <ng-container *ngIf="!item.istool">
+              <button type="button" *hasPermission="['show-sequence']" class="sequence-btn icon icon-sequence" (click)="openModalWithComponent(item);$event.stopPropagation();"></button>
+            </ng-container>
+            <button class="actions-group visible-xs" (click)="$event.stopPropagation();toggleRowActions(item);">
+              <span class="group-icon white icon-bars"></span>
+            </button>
+
+
+            <div class="actions-close-area" *ngIf="item.openActions" (click)="$event.stopPropagation();closeRowActions(item);"></div>
+
+            <ul class="actions-list">
+                <li>
+                    <div class="social-share-component">
+                        <div class="share-buttons-tooltip" *ngIf="item.showTooltip" >
+                          <share-buttons
+                            [include]="['facebook','x','linkedin','email','whatsapp']"
+                            [tags]="item.lemmaValue + ','+ 'معجم,الدوحة,التاريخي,للغة,العربية,معجم_الدوحة,معجم_الدوحة_التاريخي,معجم_الدوحة_التاريخي_للغة_العربية'"
+                            (click)="$event.stopPropagation();"
+                          ></share-buttons>
+                        </div>
+                        <button type="button" class="social-share-button" (click)="toggleSocialShareTooltip(item);$event.stopPropagation();">
+                          <fa-icon [icon]="['fas', 'share-alt']"></fa-icon>
+                        </button>
+                      </div>
+                </li>
+                <li>
+                  <button type="button" class="icon icon-messages" title="تعليق" *hasPermission="['comment-lexical']" (click)="sendComment(item);$event.stopPropagation();"></button>
+                </li>
+              <li>
+                <button type="button" class="icon icon-quote-border" title="اقتباس" *hasPermission="['quote-lexical']" tooltip="تم النسخ بنجاح!"  triggers="" #pop="bs-tooltip" (click)="CopyLexical(pop,item);$event.stopPropagation();">
+
+                </button>
+              </li>
+                <li>
+                  <button type="button" class="icon"  [ngClass]="[!item.IsBookMark ? 'icon-bookmark-o' : 'icon-bookmark on-hover' ]"  title="{{!item.IsBookMark ? 'حفظ' : 'إلغاء الحفظ'}}" *hasPermission="['bookmark-lexical']" (click)="addBookmark(item);$event.stopPropagation();"></button>
+                </li>
+            </ul>
+
+          </div>
+          <button type="button" class="row-toggler icon icon-angle-down"></button>
+
+        </div>
+
+        <div class="accordion-body">
+
+          <d-result-detail [lexId]="item.ID" [showCitation]="showCitation" [selectedView]="selectedViewOption" [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>
+
+        </div>
+
+      </accordion-group>
+
+    </accordion>
+
+
+  </div>
+</div>

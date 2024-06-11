@@ -1,9 +1,7 @@
-import { CommonModule, NgClass, NgIf } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgClass, NgIf } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Subscription } from 'rxjs';
@@ -18,12 +16,15 @@ import { PrevSearchResultSectionComponent } from '../app.dictionary.sections/pre
 import { TextFormComponent } from '../app.dictionary.sections/text-form/text-form.component';
 import { DSearchResultsComponent } from './dictionary-search-results/d-search-results.component';
 
-@Component({ selector: 'app-app-dictionary',
-    standalone: true,
-    templateUrl: './app-dictionary.component.html',
-    styleUrl: './app-dictionary.component.scss', imports: [FormsModule,NgIf,NgClass,
-        NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent, LatestWordsSectionComponent, PrevSearchResultSectionComponent]
-      })
+@Component({
+  selector: 'app-app-dictionary',
+  standalone: true,
+  templateUrl: './app-dictionary.component.html',
+  styleUrl: './app-dictionary.component.scss',
+  imports: [FormsModule, NgIf, NgClass,
+    NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent,
+     LatestWordsSectionComponent, PrevSearchResultSectionComponent]
+})
 export class AppDictionaryComponent implements OnInit {
 
 
@@ -31,16 +32,7 @@ export class AppDictionaryComponent implements OnInit {
   searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
 
 
-  public latestWordsArray: Array<any> = [
-    {
-      word: 'دَهْر',
-      type: 'اسم'
-    },
-    {
-      word: 'دَهْر',
-      type: 'اسم'
-    },
-  ];
+  public latestWordsArray: Array<any> = [];
   public searchResults?: SearchResults;
 
   private sub?: Subscription;
@@ -52,22 +44,22 @@ export class AppDictionaryComponent implements OnInit {
     , private _route: ActivatedRoute
     , private meta: Meta,
     private _storeService: StoreService) {
-      if (typeof window !== "undefined") {
-    this.meta.updateTag({ name: 'title', content: 'البحث في المعجم' }, "name='title'");
-    this.meta.updateTag({ name: 'og:title', content: 'البحث في المعجم' }, "name='og:title'");
-    this.meta.updateTag({ name: 'twitter:title', content: 'البحث في المعجم' }, "name='twitter:title'");
-    this.meta.updateTag({ name: 'description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='description'");
-    this.meta.updateTag({ name: 'og:description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='og:description'");
-    this.meta.updateTag({ name: 'twitter:description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='twitter:description'");
-    this.meta.updateTag({ name: 'url', content: window.location.href }, "name='url'");
-    this.meta.updateTag({ name: 'og:url', content: window.location.href }, "name='og:url'");
-    this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
-      }
+    if (typeof window !== "undefined") {
+      this.meta.updateTag({ name: 'title', content: 'البحث في المعجم' }, "name='title'");
+      this.meta.updateTag({ name: 'og:title', content: 'البحث في المعجم' }, "name='og:title'");
+      this.meta.updateTag({ name: 'twitter:title', content: 'البحث في المعجم' }, "name='twitter:title'");
+      this.meta.updateTag({ name: 'description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='description'");
+      this.meta.updateTag({ name: 'og:description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='og:description'");
+      this.meta.updateTag({ name: 'twitter:description', content: 'تصفّح جميع مواد معجم الدوحة التاريخي للغة العربية، واستفد من خدمات البحث المتقدم في المداخل المعجمية والمصطلحات والنقوش والنظائر السامية.' }, "name='twitter:description'");
+      this.meta.updateTag({ name: 'url', content: window.location.href }, "name='url'");
+      this.meta.updateTag({ name: 'og:url', content: window.location.href }, "name='og:url'");
+      this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
+    }
   }
 
   ngOnInit(): void {
     this.sub = this._route.params.subscribe(
-      (params : any ) => {
+      (params: any) => {
         this._sharedRootComponentValues.ResetSetting();
         if (params.word && params.word.length > 0 && params.word != '' && typeof window !== "undefined") {
           this.showResult = true;

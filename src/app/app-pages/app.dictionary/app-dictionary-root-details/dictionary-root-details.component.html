@@ -1,0 +1,27 @@
+<div id="page-content">
+<search-form [isRoot]="true"></search-form>
+
+<div class="content-container">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-8 col-xs-12">
+
+
+      <roots-results *ngIf="_sharedRootComponentValues.selectedRoot" [rootId]="_sharedRootComponentValues.selectedRoot.rootId"></roots-results>
+
+      </div>
+      <div class="col-xs-4 hide-mobile side-content">
+
+          <prev-search-result-section></prev-search-result-section>
+
+        <latest-words-section></latest-words-section>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
