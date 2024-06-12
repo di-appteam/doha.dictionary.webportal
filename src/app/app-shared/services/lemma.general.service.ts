@@ -26,6 +26,7 @@ export class SharedLemmaComponentValues {
         this.isAutoComplate = false;
         this.pageNumber = 1;
         this.acSummaryLexicalSheet = [];
+        this._searchDictionaryModel = new SearchDictionaryModel();
     }
     public ResetTabsSetting(): void {
         this.CountLexTab = 0;

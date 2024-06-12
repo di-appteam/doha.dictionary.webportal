@@ -41,7 +41,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
   semanticList: any[] = [];
   autherList: any[] = [];
   sourceList: any[] = [];
-  public rootList = [];
+  public rootList :IRoot[] = [];
   public advancedSearch: boolean = false;
   public autoComp: boolean = true;
   private sub?: Subscription;
@@ -216,11 +216,12 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
       this.showAdvancedSearch();
   }
   goToRoot() {
+    this._sharedLemmaComponentValues.ResetSetting();
     var roots = this.rootList.filter((a: IRoot) => a.rootId == this.selectedRootId);
     if (!roots || roots.length == 0)
       return;
     this._sharedRootComponentValues.SelectRoot(roots[0], this._storeService);
-    this._router.navigate(['/root/']);
+    this._router.navigate(['/root/'+roots[0].rootValue]);
   }
 
   customSearchFn(term: string, item: any) {
