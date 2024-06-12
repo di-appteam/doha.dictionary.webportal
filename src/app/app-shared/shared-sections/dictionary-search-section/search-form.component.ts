@@ -160,10 +160,10 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
     if (this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord && this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord.length > 1) {
       this._sharedRootComponentValues.obsSearchWord.next('');
       if (this.isRoot === false && this._router.url.endsWith('/dictionary'))
-        this._sharedLemmaComponentValues.obsCtrSearch.next(this._sharedLemmaComponentValues._searchDictionaryModel);
+        this._sharedLemmaComponentValues.fireSearchOperation.next(true);
       else {
         if (this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch)
-          this._sharedLemmaComponentValues.obsCtrSearch.next(this._sharedLemmaComponentValues._searchDictionaryModel);
+          this._sharedLemmaComponentValues.fireSearchOperation.next(true);
         this._router.navigate([('/dictionary/' + this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)]);
       }
     }

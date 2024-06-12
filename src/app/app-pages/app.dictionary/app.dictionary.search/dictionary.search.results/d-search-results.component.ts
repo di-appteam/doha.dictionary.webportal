@@ -110,10 +110,10 @@ export class DSearchResultsComponent implements OnInit {
     private _elementRef: ElementRef) {
     // Add icons to the library
     library.addIcons(faShareAlt, faFacebook, faTwitter, faLinkedin, faXTwitter, faWhatsapp);
-    this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
-      searchItem => {
-        if (searchItem) {
-          this.searchDictionaryModel = searchItem;
+    this.subLemmaSearch = this._sharedLemmaComponentValues.fireSearchOperation.subscribe(
+      run => {
+        if (run) {
+          this.searchDictionaryModel = this._sharedLemmaComponentValues._searchDictionaryModel;
           this.parmChange(true);
         }
       });

@@ -1,5 +1,5 @@
 
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { SearchDictionaryModel, ISummaryLexicalSheet } from '../../app-models/dictionary.model';
 
 
@@ -8,8 +8,8 @@ export class SharedLemmaComponentValues {
     public obsSearchWord = new Subject<string>();
     public obsReloadMostSearched = new Subject<boolean>();
     public _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
-    //public obsCtrSearchWord = new Subject<string>();
-    public obsCtrSearch = new Subject<SearchDictionaryModel>();
+    public fireSearchOperation =  new BehaviorSubject<boolean>(false);
+    //public obsCtrSearch = new Subject<SearchDictionaryModel>();
     public acSummaryLexicalSheet: ISummaryLexicalSheet[] = [];
     public lexicalSheetList: Array<ISummaryLexicalSheet> = [];
     public ILexCasesList: Array<ILexCases> = [];

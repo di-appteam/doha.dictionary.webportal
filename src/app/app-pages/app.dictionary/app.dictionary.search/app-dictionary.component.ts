@@ -81,10 +81,12 @@ export class AppDictionaryComponent implements AfterViewInit {
         }
         this.cdr.detectChanges();
       });
-    this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
-      searchItem => {
+    this.subLemmaSearch = this._sharedLemmaComponentValues.fireSearchOperation.subscribe(
+      run => {
+        if(run){
         this.showResult = true;
         this.cdr.detectChanges();
+        }
       });
   }
 
