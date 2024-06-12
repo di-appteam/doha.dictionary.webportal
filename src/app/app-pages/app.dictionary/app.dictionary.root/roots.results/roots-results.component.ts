@@ -10,10 +10,10 @@ import { SharedLemmaComponentValues } from "../../../../app-shared/services/lemm
 import { SharedRootComponentValues } from "../../../../app-shared/services/root.general.service";
 import { StoreService } from "../../../../app-shared/services/store.service";
 import { DictionarySearchFormComponent } from "../../../../app-shared/shared-sections/dictionary-search-section/search-form.component";
-import { DSearchResultsComponent } from "../../app-dictionary/dictionary-search-results/d-search-results.component";
-import { LatestWordsSectionComponent } from "../../app.dictionary.sections/latest-words-section/latest-words-section.component";
-import { PrevSearchResultSectionComponent } from "../../app.dictionary.sections/prev-search-result-section/prev-search-result-section.component";
-import { TextFormComponent } from "../../app.dictionary.sections/text-form/text-form.component";
+import { DSearchResultsComponent } from "../../app.dictionary.search/dictionary.search.results/d-search-results.component";
+import { LatestWordsSectionComponent } from "../../app.dictionary.sections/section.latest.words/latest-words-section.component";
+import { PrevSearchResultSectionComponent } from "../../app.dictionary.sections/sectione.saved.search.words/prev-search-result-section.component";
+import { TextFormComponent } from "../../app.dictionary.sections/section.static.text/text-form.component";
 import { CarvingComponent } from "./carving/carving.component";
 import { EtymologicalComponent } from "./etymological/etymological.component";
 import { LexicalsheetComponent } from "./lexicalsheet/lexicalsheet.component";

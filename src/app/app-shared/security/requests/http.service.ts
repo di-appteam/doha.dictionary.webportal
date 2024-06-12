@@ -104,14 +104,14 @@ export class HttpService  {
     }
 
     private showLoader(): void {
-        this.sharedConfiguration.pendingReq = true;
+        this.sharedConfiguration.pendingReq.next(true);
         if (this.sharedConfiguration.requests <= 1) {
             //this.loaderService.show();
         }
     }
 
     private hideLoader(): void {
-        this.sharedConfiguration.pendingReq = false;
+        this.sharedConfiguration.pendingReq.next(false);
         if (this.sharedConfiguration.requests < 1) {
             //this.loaderService.hide();
         }

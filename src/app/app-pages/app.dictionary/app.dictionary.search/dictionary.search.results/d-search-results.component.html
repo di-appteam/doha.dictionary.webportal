@@ -147,7 +147,7 @@
         </div>
 
         <div class="accordion-body">
-         <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="(searchDictionaryModel.IsAdvancedSearch || _sharedLemmaComponentValues.searchWord.split(' ').length > 1)"   [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>
+         <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="(searchDictionaryModel!.IsAdvancedSearch || _sharedLemmaComponentValues._searchDictionaryModel.SearchWord.split(' ').length > 1)"   [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>
         </div>
 
       </accordion-group>

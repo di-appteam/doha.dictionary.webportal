@@ -36,7 +36,7 @@ export class SharedConfiguration {
   public PageSize = 10;
   public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
   public HideLexicalPanel = false;
-  public pendingReq = false;
+  public pendingReq =  new BehaviorSubject<boolean>(false);
   public IsDevelopment = !environment.production;
   public ServiceBaseUrl = environment.baseUrl; /*'http://localhost:86'; 'http://localhost:86''http://172.16.60.40:76' 'http://localhost:9091';*/
   public NewFormLexicalSheetTypes = NewFormLexicalSheetType;

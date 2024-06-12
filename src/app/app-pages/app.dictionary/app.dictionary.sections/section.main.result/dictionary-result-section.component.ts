@@ -19,7 +19,7 @@ import { SendCommentComponent } from '../../../../app-shared/shared-sections/sen
   standalone: true,
   imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule,PopoverModule,TooltipModule,JustifyArabicDirective, TranslateModule,PopoverModule,SendCommentComponent,HasPermissionDirective],
   templateUrl: './dictionary-result-section.component.html',
-  styleUrls: ['./dictionary-result-section.component.scss'],
+  styleUrls: ['./dictionary-result-section.component.scss']
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {

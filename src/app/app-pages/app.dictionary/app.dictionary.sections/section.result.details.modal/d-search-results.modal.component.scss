@@ -4,16 +4,17 @@
     padding: 0;
   }
 }
+.close-btn{
+  float: left;
+  position: absolute;
+  left: 5px;
+  /* top: 87px; */
+  color: black;
+  font-size: 21px;
+}
 .modal-body{
   padding: 0;
   padding: 0 15px;
-  .close-btn{
-    position: absolute;
-    left: 5px;
-    top: 87px;
-    color: #fff;
-    font-size: 11px;
-  }
 }
 ::ng-deep .modal{
   text-align: center;

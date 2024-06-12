@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -11,10 +11,10 @@ import { SharedLemmaComponentValues } from '../../../app-shared/services/lemma.g
 import { SharedRootComponentValues } from '../../../app-shared/services/root.general.service';
 import { StoreService } from '../../../app-shared/services/store.service';
 import { DictionarySearchFormComponent } from '../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
-import { LatestWordsSectionComponent } from '../app.dictionary.sections/latest-words-section/latest-words-section.component';
-import { PrevSearchResultSectionComponent } from '../app.dictionary.sections/prev-search-result-section/prev-search-result-section.component';
-import { TextFormComponent } from '../app.dictionary.sections/text-form/text-form.component';
-import { DSearchResultsComponent } from './dictionary-search-results/d-search-results.component';
+import { LatestWordsSectionComponent } from '../app.dictionary.sections/section.latest.words/latest-words-section.component';
+import { PrevSearchResultSectionComponent } from '../app.dictionary.sections/sectione.saved.search.words/prev-search-result-section.component';
+import { TextFormComponent } from '../app.dictionary.sections/section.static.text/text-form.component';
+import { DSearchResultsComponent } from './dictionary.search.results/d-search-results.component';
 
 @Component({
   selector: 'app-app-dictionary',
@@ -25,7 +25,7 @@ import { DSearchResultsComponent } from './dictionary-search-results/d-search-re
     NgSelectModule, TextFormComponent, DictionarySearchFormComponent, DSearchResultsComponent,
      LatestWordsSectionComponent, PrevSearchResultSectionComponent]
 })
-export class AppDictionaryComponent implements OnInit {
+export class AppDictionaryComponent implements AfterViewInit {
 
 
   public tagsSectionTitle: string = 'عمليات بحث سابقة';
@@ -41,6 +41,7 @@ export class AppDictionaryComponent implements OnInit {
 
   constructor(private _sharedLemmaComponentValues: SharedLemmaComponentValues
     , private _sharedRootComponentValues: SharedRootComponentValues
+    ,private cdr: ChangeDetectorRef
     , private _route: ActivatedRoute
     , private meta: Meta,
     private _storeService: StoreService) {
@@ -57,7 +58,7 @@ export class AppDictionaryComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.sub = this._route.params.subscribe(
       (params: any) => {
         this._sharedRootComponentValues.ResetSetting();
@@ -72,18 +73,18 @@ export class AppDictionaryComponent implements OnInit {
           this.meta.updateTag({ name: 'url', content: window.location.href }, "name='url'");
           this.meta.updateTag({ name: 'og:url', content: window.location.href }, "name='og:url'");
           this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
-          this._sharedLemmaComponentValues.searchWord = params.word;
-          this._sharedLemmaComponentValues.obsSearchWord.next(this._sharedLemmaComponentValues.searchWord);
+          //this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord = params.word;
+          this._sharedLemmaComponentValues.obsSearchWord.next(params.word);
         }
         else {
-          this._sharedLemmaComponentValues.searchWord = "";
-          this._sharedLemmaComponentValues.obsSearchWord.next(this._sharedLemmaComponentValues.searchWord);
+          this._sharedLemmaComponentValues.obsSearchWord.next("");
         }
+        this.cdr.detectChanges();
       });
     this.subLemmaSearch = this._sharedLemmaComponentValues.obsCtrSearch.subscribe(
       searchItem => {
-        this.searchDictionaryModel = searchItem;
         this.showResult = true;
+        this.cdr.detectChanges();
       });
   }
 

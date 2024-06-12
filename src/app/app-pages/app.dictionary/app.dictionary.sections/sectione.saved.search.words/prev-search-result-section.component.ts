@@ -16,7 +16,7 @@ import { StoreService } from '../../../../app-shared/services/store.service';
 export class PrevSearchResultSectionComponent implements OnInit {
 
   constructor(public _storeService: StoreService,private _sharedRootComponentValues : SharedRootComponentValues,private _router : Router) {
-
+    this._storeService.GetAllSavedDicSearch();
   }
 
 

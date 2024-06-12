@@ -10,11 +10,11 @@ import { SharedFunctions, SharedConfiguration } from '../../../../app-shared/ser
 import { DictionaryService } from '../../../../app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues, ILexCases } from '../../../../app-shared/services/lemma.general.service';
 import { RootSectionComponent } from '../../../../app-shared/shared-sections/root-section/root-section.component';
-import { DResultmodalComponent } from '../d-search-results.modal/d-search-results.modal.component';
-import { EtymologicalForLemmaComponent } from '../etymological-for-lemma/etymological-for-lemma.component';
+import { EtymologicalForLemmaComponent } from '../section.etymological.lemma/etymological-for-lemma.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FilterPipe } from '../../../../app-shared/pipe/FilterPipe';
-import { DictionaryResultSectionComponent } from '../dictionary-result-section/dictionary-result-section.component';
+import { DictionaryResultSectionComponent } from '../section.main.result/dictionary-result-section.component';
+import { DResultmodalComponent } from '../section.result.details.modal/d-search-results.modal.component';
 
 @Component({
   selector: 'd-result-detail',

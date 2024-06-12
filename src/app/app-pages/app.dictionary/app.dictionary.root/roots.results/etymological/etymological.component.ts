@@ -8,7 +8,7 @@ import { GroupByPipe } from '../../../../../app-shared/pipe/GroupByPipe';
 import { SharedFunctions } from '../../../../../app-shared/services/config.service';
 import { DictionaryService } from '../../../../../app-shared/services/dictionary.service';
 import { SharedLemmaComponentValues } from '../../../../../app-shared/services/lemma.general.service';
-import { TextFormComponent } from '../../../app.dictionary.sections/text-form/text-form.component';
+import { TextFormComponent } from '../../../app.dictionary.sections/section.static.text/text-form.component';
 
 @Component({
   selector: 'app-etymological',

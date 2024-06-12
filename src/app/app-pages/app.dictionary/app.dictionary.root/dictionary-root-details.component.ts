@@ -11,10 +11,10 @@ import { DictionaryService } from "../../../app-shared/services/dictionary.servi
 import { SharedRootComponentValues } from "../../../app-shared/services/root.general.service";
 import { StoreService } from "../../../app-shared/services/store.service";
 import { DictionarySearchFormComponent } from "../../../app-shared/shared-sections/dictionary-search-section/search-form.component";
-import { LatestWordsSectionComponent } from "../app.dictionary.sections/latest-words-section/latest-words-section.component";
-import { PrevSearchResultSectionComponent } from "../app.dictionary.sections/prev-search-result-section/prev-search-result-section.component";
-import { TextFormComponent } from "../app.dictionary.sections/text-form/text-form.component";
-import { RootsResultsComponent } from "./roots-results/roots-results.component";
+import { LatestWordsSectionComponent } from "../app.dictionary.sections/section.latest.words/latest-words-section.component";
+import { PrevSearchResultSectionComponent } from "../app.dictionary.sections/sectione.saved.search.words/prev-search-result-section.component";
+import { TextFormComponent } from "../app.dictionary.sections/section.static.text/text-form.component";
+import { RootsResultsComponent } from "./roots.results/roots-results.component";
 
 
 @Component({

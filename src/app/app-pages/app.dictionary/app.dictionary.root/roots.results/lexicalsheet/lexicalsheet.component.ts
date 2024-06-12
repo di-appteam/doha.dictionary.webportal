@@ -21,9 +21,9 @@ import { SharedConfiguration, SharedFunctions } from "../../../../../app-shared/
 import { DictionaryService } from "../../../../../app-shared/services/dictionary.service";
 import { SharedLemmaComponentValues } from "../../../../../app-shared/services/lemma.general.service";
 import { SendCommentComponent } from "../../../../../app-shared/shared-sections/send-comment/send-comment.component";
-import { DSearchResultsDetailComponent } from "../../../app.dictionary.sections/d-search-results.detail/d-search-results.detail.component";
-import { LemmaSequencesSectionComponent } from "../../../app.dictionary.sections/lemma-sequences-section/lemma-sequences-section.component";
-import { TextFormComponent } from "../../../app.dictionary.sections/text-form/text-form.component";
+import { DSearchResultsDetailComponent } from "../../../app.dictionary.sections/section.search.result.parent/d-search-results.detail.component";
+import { LemmaSequencesSectionComponent } from "../../../app.dictionary.sections/section.lemma.sequences/lemma-sequences-section.component";
+import { TextFormComponent } from "../../../app.dictionary.sections/section.static.text/text-form.component";
 
 
 

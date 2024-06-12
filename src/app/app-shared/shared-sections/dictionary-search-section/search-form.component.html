@@ -51,7 +51,7 @@
           </div>
           <div *ngIf="!autoComp">
             <input type="text" class="form-input" placeholder="{{'dictionary.searchwords' | translate}}"
-              (keyup.enter)="parmChange()" [(ngModel)]="_sharedLemmaComponentValues.searchWord"
+              (keyup.enter)="parmChange()" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SearchWord"
               [ngModelOptions]="{standalone: true}" [disabled]="(selectedRootId && selectedRootId > 0) == true">
           </div>
         </div>
@@ -199,7 +199,7 @@
       <div class="text-center">
         <ng-container *ngIf="!(selectedRootId && selectedRootId > 0)">
           <button class="submit-btn" type="button" (click)="parmChange()"
-            [disabled]="(_sharedConfiguration.pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)">{{'general.search'
+            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)">{{'general.search'
             | translate}}</button>
         </ng-container>
         <ng-container *ngIf="(selectedRootId && selectedRootId > 0)">
@@ -209,7 +209,7 @@
         <ng-container
           *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch && _sharedConfiguration.userInfo">
           <button type="button" class="advanced-search-btn"
-            [disabled]="(_sharedConfiguration.pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)"
+            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)"
             (click)="openSaveSearchCriteriaModal()">
             {{'dictionary.savesearchcriteria' | translate}}
           </button>

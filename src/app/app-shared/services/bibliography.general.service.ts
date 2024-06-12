@@ -1,5 +1,6 @@
 import { Subject } from "rxjs";
-import { SearchSDModel, summarydocuments } from "../../bibliography/bibliographymodel";
+import { summarydocuments } from "../../app-models/bibliography.model";
+import { SearchSDModel } from "../../app-models/corpus.model";
 
 export class SharedBibliographyComponentValues {
     public obsCtrSearch = new Subject<SearchSDModel>();

@@ -5,7 +5,6 @@ import { SearchDictionaryModel, ISummaryLexicalSheet } from '../../app-models/di
 
 export class SharedLemmaComponentValues {
     public lemmaPageSize = 20;
-    public searchWord = '';
     public obsSearchWord = new Subject<string>();
     public obsReloadMostSearched = new Subject<boolean>();
     public _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
@@ -25,7 +24,6 @@ export class SharedLemmaComponentValues {
     public pager: any = {};
     public ResetSetting(): void {
         this.lemmaPageSize = 20;
-        this.searchWord = '';
         this.isAutoComplate = false;
         this.pageNumber = 1;
         this.acSummaryLexicalSheet = [];
