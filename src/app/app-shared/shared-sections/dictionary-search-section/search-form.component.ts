@@ -118,21 +118,6 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
         this.pendingReq = isPending;
         this.cdr.detectChanges();
       });
-
-    this.subBMSearch = this._sharedLemmaComponentValues.obsCtrSearchFromBM.subscribe(
-      searchItem => {
-        if (searchItem) {
-          this._sharedLemmaComponentValues._searchDictionaryModel = searchItem;
-          this.selectedDateTypeDropdown = this._sharedLemmaComponentValues._searchDictionaryModel.IsHijri ? 1 : 2;
-          let dateFrom = this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom ?? -1;
-          let DateTo = this._sharedLemmaComponentValues._searchDictionaryModel.DateTo ?? -1;
-          this.selectedDateTypeHijriFromDropdown = dateFrom < 0 ? 1 : 2;
-          this.selectedDateTypeHijriToDropdown = DateTo < 0 ? 1 : 2;
-          this.dateFrom = dateFrom < 0 ? (dateFrom * -1) : dateFrom;
-          this.dateTo = DateTo < 0 ? (DateTo * -1) : DateTo;
-          this.parmChange();
-        }
-      });
   }
 
   private GetRoots() {

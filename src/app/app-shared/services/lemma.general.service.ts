@@ -10,7 +10,6 @@ export class SharedLemmaComponentValues {
     public _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
     //public obsCtrSearchWord = new Subject<string>();
     public obsCtrSearch = new Subject<SearchDictionaryModel>();
-    public obsCtrSearchFromBM = new Subject<SearchDictionaryModel>();
     public acSummaryLexicalSheet: ISummaryLexicalSheet[] = [];
     public lexicalSheetList: Array<ISummaryLexicalSheet> = [];
     public ILexCasesList: Array<ILexCases> = [];
