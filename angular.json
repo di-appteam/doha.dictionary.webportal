@@ -36,7 +36,8 @@
             },
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+           "src/assets/lang"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

@@ -1,5 +1,5 @@
-import { NgIf } from '@angular/common';
-import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { isPlatformBrowser, NgIf } from '@angular/common';
+import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, NO_ERRORS_SCHEMA, OnInit, PLATFORM_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -27,31 +27,37 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,TranslateModule ,ReactiveFormsModule,NgIf,AppFooterComponent,AppHeaderComponent,HasPermissionDirective,],
-  providers:[HasPermissionDirective,SharedConfiguration,TranslateService,
-    SecurityService,ScrollService,PagerService,ClipboardService,
-    StoreService,ChartControlService,SharedService,CacheService,DictionaryService,AccountService,SharedLemmaComponentValues,
-    SharedRootComponentValues,AppChartsService,HttpService,ServiceUrlManager,SharedFunctions
-    ],
+  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule, NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
+  providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
+    SecurityService, ScrollService, PagerService, ClipboardService,
+    StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
+    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppComponent implements OnInit {
   isAppStarted = false;
-  title = 'dd-app';
-  constructor(private translateService : TranslationService, public securityService: SecurityService){
-    this.translateService.init();
+  isBrowser;
+  constructor(private translateService: TranslationService, public securityService: SecurityService,
+    @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+    if (this.isBrowser) {
+      this.translateService.init();
+    }
   }
 
 
   ngOnInit(): void {
-    this.securityService.StartUpApp().then(() => {
-      this.isAppStarted = true;
-    }).catch(error => {
-      console.error('Startup failed', error);
-      this.isAppStarted = false;
-    });
+    if (this.isBrowser) {
+      this.securityService.StartUpApp().then(() => {
+        this.isAppStarted = true;
+      }).catch(error => {
+        console.error('Startup failed', error);
+        this.isAppStarted = false;
+      });
+    }
   }
 
 
