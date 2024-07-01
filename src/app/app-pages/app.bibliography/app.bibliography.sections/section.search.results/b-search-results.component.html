@@ -1,0 +1,128 @@
+<div class="search-results-section" *ngIf="(!(!_sharedBibliographyComponentValues.summarydocuments || _sharedBibliographyComponentValues.summarydocuments.length == 0) || alertType == alertErrorType)">
+
+
+  <div class="section-header">
+
+    <div class="search-info">
+      <alert [type]="alertType" [message]="alertMessage"></alert>
+    </div>
+
+    <div class="results-options" *ngIf="alertType != alertErrorType">
+
+      <div class="option-holder col-xs-12">
+
+        <h5 class="title">{{'general.resultPageSizeDisplay' | translate}}</h5>
+
+        <div class="dropdown-select text-center">
+          <ng-select [items]="pageSizeList" [ngModel]="pSize" (ngModelChange)="onPageSizeChanged($event)" [clearable]="false" [searchable]="false">
+          </ng-select>
+        </div>
+
+        <h5 class="title">{{'general.atpage' | translate}}</h5>
+
+        <div class="dropdown-select text-center" style="display: none;">
+          <ng-select [items]="sortDropdownOptions" bindLabel="text" bindValue="value" [ngModel]="searchSDModel.orderBy" (ngModelChange)="setOrderBy($event)"
+            [clearable]="false" [searchable]="false">
+          </ng-select>
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+
+  <div class="section-body" *ngIf="alertType != alertErrorType">
+
+    <div class="search-results">
+
+      <div class="item-row" *ngFor="let item of _sharedBibliographyComponentValues.summarydocuments" [ngClass]="{'dir-ltr':(sourceType !=1)}">
+
+        <div class="table-component">
+
+          <div class="t-row">
+
+            <div class="t-cell item-image">
+              <img *ngIf="(sourceType > 1 || !item.source_cover_id ||(item.source_cover_id && item.source_cover_id == 0) )" src="/assets/images/book-cover-small.jpg"
+                [alt]="item.title">
+              <img *ngIf="(sourceType == 1 && item.source_cover_id && item.source_cover_id > 0)" src="{{_config.refPath + item.referencesourceid}}"
+                [alt]="item.title">
+            </div>
+
+            <div class="t-cell content-cell">
+
+              <h4 class="item-title">
+                {{ item.title }}
+              </h4>
+
+              <p class="paragraph" *ngIf="(sourceType !=2 && item.generaldescription)">
+                {{ item.generaldescription }}
+              </p>
+
+              <p class="paragraph" *ngIf="(sourceType ==2 && item.publicationdescription)">
+                {{ item.publicationdescription }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="item-actions">
+          <ng-container *ngIf="item.IsBookMark">
+            <button class="bookmark-action active" title="إلغاء الحفظ" *hasPermission="['bookmark-ref']"  (click)="addBookmark(item)">
+              <span class="icon icon-bookmark on-active" style="color: #c90000;text-shadow: 1px 1px 1px #ccc;font-size: 1.0em;" ></span>
+              <span class="icon icon-bookmark-o not-active"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="!item.IsBookMark">
+            <button class="bookmark-action" title="حفظ" *hasPermission="['bookmark-ref']" (click)="addBookmark(item)">
+              <span class="icon icon-bookmark-o not-active"></span>
+              <span class="icon icon-bookmark on-active"></span>
+            </button>
+          </ng-container>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="pagination-component" *ngIf="alertType != alertErrorType">
+    <ul class="pages-list">
+      <li *ngFor="let page of pager.pages">
+        <button type="button" class="paging-btn" (click)="setPage(page)" [disabled]="pager.currentPage === page">
+          {{page}}
+        </button>
+      </li>
+    </ul>
+    <div class="pull-right right-btns">
+
+      <button type="button" class="paging-btn" (click)="setPage(1)" [disabled]="pager.currentPage === 1">
+        {{'general.pagination.first' | translate}}
+      </button>
+      <button type="button" class="paging-btn next-btn" (click)="setPage(pager.currentPage - 1)" [disabled]="pager.currentPage === 1">
+        <!-- {{'general.pagination.prev' | translate}} -->
+        <span class="icon icon-angle-right"></span>
+      </button>
+    </div>
+
+    <div class="pull-left left-btns">
+      <button type="button" class="paging-btn prev-btn" (click)="setPage(pager.currentPage + 1)" [disabled]="pager.currentPage === pager.totalPages">
+        <!-- {{'general.pagination.next' | translate}} -->
+        <span class="icon icon-angle-left"></span>
+      </button>
+      <button type="button" class="paging-btn" (click)="setPage(pager.totalPages)" [disabled]="pager.currentPage === pager.totalPages">
+        {{'general.pagination.last' | translate}}
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<bibliography-text-form [hidden]="(!showTxt)"></bibliography-text-form>

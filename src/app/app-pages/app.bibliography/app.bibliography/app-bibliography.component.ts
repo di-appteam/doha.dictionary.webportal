@@ -2,15 +2,22 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HasPermissionDirective } from '../../../app-shared/directive/permissions.directive';
 import { SharedBibliographyComponentValues } from '../../../app-shared/services/bibliography.general.service';
+import { BibliographyService } from '../../../app-shared/services/bibliography.service';
+import { SearchFormComponent } from '../app.bibliography.sections/section.search.form/search-form.component';
+import { SearchResultsComponent } from '../app.bibliography.sections/section.search.results/b-search-results.component';
 
 @Component({
   selector: 'app-app-bibliography',
   standalone: true,
-  imports: [],
+  imports: [
+    SearchFormComponent,
+    SearchResultsComponent,
+  HasPermissionDirective],
   templateUrl: './app-bibliography.component.html',
   styleUrl: './app-bibliography.component.scss',
-  providers:[SharedBibliographyComponentValues]
+  providers:[SharedBibliographyComponentValues,BibliographyService]
 })
 export class AppBibliographyComponent implements AfterViewInit {
 

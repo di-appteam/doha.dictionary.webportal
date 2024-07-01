@@ -1,0 +1,112 @@
+<section class="page-search-section">
+  <div class="logo-watermark">
+    <img src="/assets/images/logo-watermark.png" alt="معجم الدّوحة التّاريخيّ للّغة العربيّة">
+  </div>
+  <form class="search-form">
+
+    <div class="form-header">
+
+      <h1 class="page-title">{{'bibliography.searchinbibliography' | translate}}</h1>
+
+      <button type="button" class="advanced-search-btn" (click)="showAdvancedSearch()">
+        <span class="icon icon-controls"></span>
+        <span class="text"  *ngIf="searchSDModel.IsAdvancedSearch">{{'dictionary.simplesearch' | translate}}</span>
+        <span class="text"  *ngIf="!searchSDModel.IsAdvancedSearch">{{'dictionary.advancedsearch' | translate}}</span>
+      </button>
+
+    </div>
+
+
+    <div class="form-body">
+
+      <div class="advanced-search">
+        <div class="input-holder row">
+
+          <div class="col-xs-12 dropdown-col">
+
+            <div class="dropdown-select" style="font-size: 13px;">
+
+              <ng-select [items]="resourcesDropdownOptions"
+                bindLabel="text"  clearAllText="{{'general.clearalltext' | translate}}"
+                bindValue="value"
+                [(ngModel)]="searchSDModel.sourceType"
+                [ngModelOptions]="{standalone: true}"
+                [clearable]="false"
+                [searchable]="false">
+              </ng-select>
+
+            </div>
+
+          </div>
+
+          <div class="col-xs-12 input-col">
+            <input class="form-input" type="text" placeholder="{{'bibliography.sourcename' | translate}}"   (keyup.enter)="onParmChanged()"
+            [(ngModel)]="searchSDModel.documenttitle" [ngModelOptions]="{standalone: true}">
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="search-input input-holder" *ngIf="searchSDModel.IsAdvancedSearch">
+          <input class="form-input" type="text" placeholder="{{'bibliography.sourceauthor' | translate}}" [disabled]="searchSDModel.sourceType != 1" [(ngModel)]="searchSDModel.authorname" [ngModelOptions]="{standalone: true}">
+
+        <div *ngIf="false">
+          <input class="form-input" type="text" placeholder="كلمات مفتاحية">
+          <p class="input-note">[اسم القائل، مجال الكتاب، بيانات النشر،... إلخ.]</p>
+        </div>
+
+
+      </div>
+
+      <div class="row row-m-4 no-margin-left" *ngIf="(searchSDModel.IsAdvancedSearch && searchSDModel.sourceType == 1)">
+
+        <div class="col-xs-6">
+
+          <div class="dropdown-select text-center">
+            <ng-select [items]="dropdownTaqwemOptions" bindLabel="text" bindValue="value" [(ngModel)]="selectedDateTypeDropdown" [ngModelOptions]="{standalone: true}"
+              [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+
+        </div>
+
+        <div class="col-xs-3 date-col dropdown-with-input">
+
+          <input type="text" placeholder="{{'general.datefromlabel' | translate}}" class="form-input" [(ngModel)]="dateFrom" [ngModelOptions]="{standalone: true}">
+          <div class="dropdown-select text-center">
+            <ng-select *ngIf="selectedDateTypeDropdown == 1" [items]="dateTypeDropdownHijriOptions" bindLabel="text" bindValue="value"
+              [(ngModel)]="selectedDateTypeHijriFromDropdown" [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+
+        </div>
+
+
+        <div class="col-xs-3 date-col dropdown-with-input">
+
+          <input type="text" placeholder="{{'general.datetolabel' | translate}}" class="form-input" [(ngModel)]="dateTo" [ngModelOptions]="{standalone: true}">
+          <div class="dropdown-select text-center">
+            <ng-select *ngIf="selectedDateTypeDropdown == 1" [items]="dateTypeDropdownHijriOptions" bindLabel="text" bindValue="value"  clearAllText="{{'general.clearalltext' | translate}}"
+              [(ngModel)]="selectedDateTypeHijriToDropdown" [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="text-center">
+
+        <button class="submit-btn" type="button" (click)="onParmChanged()"  [disabled]="pendingReq" >{{'general.search' | translate}}</button>
+
+      </div>
+
+
+    </div>
+
+
+
+  </form>
+
+</section>

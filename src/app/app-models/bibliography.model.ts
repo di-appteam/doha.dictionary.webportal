@@ -43,8 +43,6 @@ export class SearchSDModel {
         this.orderBy = 1;
         this.IsAdvancedSearch = false;
         this.IsHijri = false;
-        this.DateFrom = 0;
-        this.DateTo = 0;
     }
     public ValidForSearch(): boolean {
         return (this.authorname.trim() != '' || this.documenttitle.trim() != '' || this.sourceType != null);
@@ -54,8 +52,8 @@ export class SearchSDModel {
     publicationdescription: string;
     sourceType: number;
     orderBy: number;
-    DateFrom: number;
-    DateTo: number;
+    DateFrom?: number;
+    DateTo?: number;
     IsHijri: boolean;
     IsAdvancedSearch: boolean;
 }
