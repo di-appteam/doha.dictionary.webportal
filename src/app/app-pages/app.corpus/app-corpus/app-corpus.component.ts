@@ -5,14 +5,19 @@ import { Subscription } from 'rxjs';
 import { SearchSDModel } from '../../../app-models/corpus.model';
 import { SearchResults } from '../../../app-models/dictioanry.search.results.models';
 import { SharedCorpusComponentValues } from '../../../app-shared/services/corpus.general.service';
+import { CorpusService } from '../../../app-shared/services/corpus.service';
+import { SearchFormComponent } from '../app.corpus.sections/section.search.form/search-form.component';
+import { SearchResultsComponent } from '../app.corpus.sections/section.search.results/c-search-results.component';
 
 @Component({
   selector: 'app-app-corpus',
   standalone: true,
-  imports: [],
+  imports: [ SearchFormComponent,
+    SearchResultsComponent
+    ],
   templateUrl: './app-corpus.component.html',
   styleUrl: './app-corpus.component.scss',
-  providers:[SharedCorpusComponentValues]
+  providers:[SharedCorpusComponentValues,CorpusService]
 })
 export class AppCorpusComponent implements OnInit, AfterViewInit {
   public searchModal: SearchSDModel = new SearchSDModel();

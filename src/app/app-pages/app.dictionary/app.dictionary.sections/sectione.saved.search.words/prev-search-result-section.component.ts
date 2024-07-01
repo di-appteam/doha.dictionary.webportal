@@ -1,5 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
+import { MatChipsModule } from '@angular/material/chips';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { IRoot } from '../../../../app-models/dictionary.model';
@@ -9,7 +10,7 @@ import { StoreService } from '../../../../app-shared/services/store.service';
 @Component({
   selector: 'prev-search-result-section',
   standalone: true,
-  imports: [NgFor,NgIf,RouterLink,TranslateModule],
+  imports: [NgFor,NgIf,RouterLink,TranslateModule,MatChipsModule],
   templateUrl: './prev-search-result-section.component.html',
   styleUrls: ['./prev-search-result-section.component.scss']
 })

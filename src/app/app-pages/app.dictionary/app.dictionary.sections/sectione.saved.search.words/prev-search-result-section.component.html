@@ -13,17 +13,14 @@
 
   <div class="section-body">
 
-    <ul class="tags-list">
-      <li class="tag" *ngFor="let word of _storeService.SavedDictionarySearch">
-        <a [routerLink]="['/dictionary/', word]">
-          {{ word }}
-        </a>
-      </li>
-    </ul>
+    <mat-chip-set aria-label="Fish selection" class="tags-list">
+      <mat-chip  class="tag" *ngFor="let word of _storeService.SavedDictionarySearch"><a [routerLink]="['/dictionary/', word]">{{word}}</a></mat-chip>
+    </mat-chip-set>
 
   </div>
 
 </div>
+}
 @if(_storeService.SavedRootSearch.length > 0){
 <div class="tags-section">
 
@@ -37,16 +34,15 @@
 
   <div class="section-body">
 
-    <ul class="tags-list">
-      <li class="tag" *ngFor="let root of _storeService.SavedRootSearch">
+
+    <mat-chip-set aria-label="Fish selection" class="tags-list">
+      <mat-chip  class="tag" *ngFor="let root of _storeService.SavedRootSearch">
         <a [routerLink]='["/root/", root.rootValue.replace("/","-")]'>
           {{ (root.rootValueUV == 'ه' ? (root.rootValue + 'ـ') : root.rootValue ) }}
-        </a>
-      </li>
-    </ul>
+        </a></mat-chip>
+    </mat-chip-set>
 
   </div>
 
 </div>
-}
 }

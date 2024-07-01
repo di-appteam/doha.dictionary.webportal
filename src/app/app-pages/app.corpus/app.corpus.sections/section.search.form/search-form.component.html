@@ -1,0 +1,36 @@
+<section class="page-search-section">
+  <div class="logo-watermark">
+    <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+  </div>
+  <form class="search-form">
+
+    <div class="form-header">
+
+      <h1 class="page-title">{{'corpus.searchincorpus' | translate}}</h1>
+
+    </div>
+
+
+    <div class="form-body">
+
+        <div class="search-input input-holder">
+
+          <input type="text" class="form-input" placeholder="{{'corpus.searchincorpus' | translate}}" [(ngModel)]="searchSDModel.searchWord"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+
+      <div class="text-center">
+
+        <button class="submit-btn" type="submit" [disabled]="pendingReq" (click)="onParmChanged()">{{'general.search' | translate}}</button>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </form>
+
+</section>

@@ -1,0 +1,161 @@
+<div class="search-results-section" *ngIf="(!(!_sharedCorpusComponentValues.corpusSearchResult || _sharedCorpusComponentValues.corpusSearchResult.length == 0) || alertType == alertErrorType)">
+
+
+  <div class="section-header">
+
+
+    <div class="search-info">
+      <alert [type]="alertType" [message]="alertMessage"></alert>
+    </div>
+
+    <div class="results-options" *ngIf="alertType != alertErrorType">
+
+      <div class="option-holder">
+
+
+        <div class="dropdown-select text-center">
+
+          <ng-select [items]="pageSizeList" bindLabel="text" bindValue="value" [ngModel]="searchModal.pageSize" (ngModelChange)="onPageSizeChanged($event)"
+            [clearable]="false" [searchable]="false">
+          </ng-select>
+        </div>
+
+
+      </div>
+
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+
+  <div class="section-body" *ngIf="alertType != alertErrorType">
+
+    <accordion class="table-component search-results" [closeOthers]="true" >
+
+      <accordion-group #group class="t-row item-row" *ngFor="let item of _sharedCorpusComponentValues.corpusSearchResult;let i = index;">
+
+        <div accordion-heading class="t-cell item-value second-font" [innerHTML]="item.neighborContent">
+        </div>
+
+        <div accordion-heading class="t-cell item-value second-font">
+          {{ item.authorName }}
+        </div>
+
+        <div accordion-heading class="t-cell item-value date-cell">
+          {{ item.displayedDate }}
+        </div>
+
+        <div accordion-heading class="t-cell item-value toggler-btn text-left">
+
+          <button type="button" class="row-toggler icon icon-angle-down"></button>
+
+        </div>
+
+        <div class="accordion-body">
+
+          <div class="tab-main-content">
+
+            <div class="item">
+
+              <div class="item-body">
+
+                <div class="paper">
+
+                  <p class="second-font" [innerHTML]="item.neighborContentWithStyle">
+                  </p>
+
+                </div>
+
+                <div class="item-footer">
+                  <div class="sequence-actions">
+
+                    <button type="button" (click)="getPrevSequence(item,i)" class="action-btn icon icon-prev-sequence" [disabled]="(item.isFirstSeqEnded && item.isFirstSeqEnded == true)"></button>
+                    <button type="button" (click)="getNextSequence(item,i)" class="action-btn icon icon-next-sequence" [disabled]="(item.isLastSeqEnded && item.isLastSeqEnded == true)"></button>
+
+                  </div>
+
+                  <div class="item-actions">
+
+                    <!--<button class="action-btn copy" title="نسخ" *hasPermission="['copy-corpus']">
+                      <span class="icon icon-copy"></span>
+                    </button>
+
+                    <button class="action-btn messages" title="تعليق" *hasPermission="['comment-corpus']">
+                      <span class="icon icon-messages"></span>
+                    </button>
+
+                    <button class="action-btn quote" title="اقتباس" *hasPermission="['quote-corpus']">
+                      <span class="icon icon-quote-border"></span>
+                    </button>-->
+
+                    <ng-container *ngIf="item.IsBookMark">
+                      <button class="action-btn bookmark" title="إلغاء الحفظ" *hasPermission="['bookmark-corpus']"  (click)="addBookmark(item)">
+                        <span class="icon icon-bookmark" style="color: #c90000;text-shadow: 1px 1px 1px #ccc;font-size: 1.0em;" ></span>
+                        <span class="icon icon-bookmark-o on-hover"></span>
+                      </button>
+                    </ng-container>
+                    <ng-container *ngIf="!item.IsBookMark">
+                      <button class="action-btn bookmark" title="حفظ" *hasPermission="['bookmark-corpus']" (click)="addBookmark(item)">
+                        <span class="icon icon-bookmark-o" ></span>
+                        <span class="icon icon-bookmark on-hover"></span>
+                      </button>
+                    </ng-container>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </accordion-group>
+
+
+    </accordion>
+
+  </div>
+
+  <div class="pagination-component" *ngIf="alertType != alertErrorType">
+    <ul class="pages-list">
+      <li *ngFor="let page of pager.pages">
+        <button type="button" class="paging-btn" (click)="setPage(page)" [disabled]="pager.currentPage === page">
+          {{page}}
+        </button>
+      </li>
+    </ul>
+
+    <div class="pull-right right-btns">
+      <button type="button" class="paging-btn" (click)="setPage(1)" [disabled]="pager.currentPage === 1">
+        {{'general.pagination.first' | translate}}
+      </button>
+      <button type="button" class="paging-btn next-btn" (click)="setPage(pager.currentPage - 1)" [disabled]="pager.currentPage === 1">
+        <!-- {{'general.pagination.prev' | translate}} -->
+        <span class="icon icon-angle-right"></span>
+      </button>
+    </div>
+
+    <div class="pull-left left-btns">
+      <button type="button" class="paging-btn prev-btn" (click)="setPage(pager.currentPage + 1)" [disabled]="pager.currentPage === pager.totalPages">
+        <!-- {{'general.pagination.next' | translate}} -->
+        <span class="icon icon-angle-left"></span>
+      </button>
+      <button type="button" class="paging-btn" (click)="setPage(pager.totalPages)" [disabled]="pager.currentPage === pager.totalPages">
+        {{'general.pagination.last' | translate}}
+      </button>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<corpus-text-form [hidden]="(!showTxt || alertType == alertErrorType)"></corpus-text-form>

@@ -13,11 +13,10 @@
   }
   .tag{
     display: inline-block;
-    font-size: 14px;
+    font-size: 14px !important;
     color: #333;
     margin: 7px 5px;
     a{
-      border: 1px solid #ccc;
       display: block;
       padding: 5px 12px;
     }

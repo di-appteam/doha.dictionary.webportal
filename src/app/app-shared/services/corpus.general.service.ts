@@ -1,6 +1,5 @@
 import { Subject } from "rxjs";
-import { SearchSDModel } from "../../app-models/bibliography.model";
-import { summarycorpusmodel } from "../../app-models/corpus.model";
+import { SearchSDModel, summarycorpusmodel } from "../../app-models/corpus.model";
 
 export class SharedCorpusComponentValues {
     public obsCtrSearch = new Subject<SearchSDModel>();
