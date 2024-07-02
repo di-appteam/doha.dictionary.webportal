@@ -1,4 +1,4 @@
-<div class="not-logged-in">
+<div  *ngIf="!_sharedConfiguration.userInfo"  class="not-logged-in">
   <form [formGroup]="loginFormGroup" class="login-form" autocomplete="off">
     <div class="inputs-holder">
       <div class="col">
@@ -28,4 +28,44 @@
     </div>
     <div class="clearfix"></div>
   </form>
+</div>
+
+<div *ngIf="_sharedConfiguration.userInfo" class="logged-in">
+  <div class="card-col image-col">
+    <div class="user-image image-ratio">
+      <div class="ratio-content">
+        <img *ngIf="!_sharedConfiguration.userInfo.ImagePath" src="/assets/images/should-remove/user-img.jpg" alt="{{_sharedConfiguration.userInfo.Email}}">
+        <img *ngIf="_sharedConfiguration.userInfo.ImagePath" src="{{_sharedConfiguration.userInfo.ImagePath}}" alt="{{_sharedConfiguration.userInfo.Email}}">
+      </div>
+    </div>
+  </div>
+  <div class="card-col content-col">
+    <div class="col-header">
+      <h3 class="user-name">
+        <a   [routerLink]="['/profile']">
+          <span class="hide-mobile">{{'shared.usersection.welcome' | translate}}</span>
+          <span *ngIf="!_sharedConfiguration.userInfo.Name" class="name">{{_sharedConfiguration.userInfo.Email.substring(0, _sharedConfiguration.userInfo.Email.lastIndexOf("@"))}}</span>
+          <span *ngIf="_sharedConfiguration.userInfo.Name" class="name">{{_sharedConfiguration.userInfo.Name}}</span>
+        </a>
+      </h3>
+      <a class="bookmarks-btn" [routerLink]="['/bookmarks']">
+        <span class="icon icon-bookmark"></span>
+      </a>
+    </div>
+    <div class="col-footer">
+      <a  *ngIf="_sharedConfiguration.IsDevelopment" class="action-btn messages-btn">
+        <span class="icon icon-messages"></span>
+        <span class="count">9</span>
+      </a>
+      <a  *ngIf="_sharedConfiguration.IsDevelopment" class="action-btn settings-btn" >
+        <span class="icon icon-settings"></span>
+      </a>
+      <div class="pull-left">
+        <a class="logout-btn"  (click)="logOut()">
+          <span class="icon icon-power"></span>
+          <span class="text">{{'shared.usersection.signout' | translate}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

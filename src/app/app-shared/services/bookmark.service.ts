@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class AccountService {
   constructor( ) {}
-
+  UserBookmarkList:any[] = [];
     removeBookmarkLocal(itemId: number, typeId: number) {
       if (!itemId || itemId == 0) {
         return;

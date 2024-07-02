@@ -29,14 +29,13 @@ export class SharedService {
   ValidateRecaptcha(encodedResponse: string): Observable<Response> {
     const parm = ('?encodedResponse=' + encodedResponse);
     const srvURL = this._serviceUrlManager.getServiceUrl(ServicesIDs.ValidateRecaptcha) + parm;
-    return this._http.get(srvURL).pipe(
-      map(data => data,
-        (error: any) => this.handleError(error)));
+    return this._http.get(srvURL).pipe(catchError((error: any) => { return this.handleError(error) }),
+      map(data => data));
   }
 
   GetLatestWords(page:number, pageSize:number): Observable<LatestWords[]> {
     const parm = '?page=' + page + '&pageSize=' + pageSize;
-    return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLatestWords) + parm).pipe(
+    return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLatestWords) + parm).pipe(catchError((error: any) => { return this.handleError(error) }),
       map(data => data));
 }
 
@@ -48,7 +47,7 @@ GetMostSearchedWords(wordtype:number, pageSize:number): Observable<MostSearchedW
     if (wordtype != 1) {
         serviceId = ServicesIDs.GetMostSearchedRoot;
     }
-    return this._http.get(this._serviceUrlManager.getServiceUrl(serviceId) + parm).pipe(
+    return this._http.get(this._serviceUrlManager.getServiceUrl(serviceId) + parm).pipe(catchError((error: any) => { return this.handleError(error) }),
         map(data => data));
 }
 
@@ -56,7 +55,7 @@ GetMostSearchedWords(wordtype:number, pageSize:number): Observable<MostSearchedW
     // this._sharedConfiguration.validToken();
     return new Promise((resolve) => {
       const lookupRequest = this._http.get((this.BaseUrl + 'Lookup/GetAll/'));
-      lookupRequest.pipe(map((response) => response))
+      lookupRequest.pipe(catchError((error: any) => { return this.handleError(error) }),map((response) => response))
         .subscribe(a =>
           [
             this._sharedConfiguration.AdditionalTags = a.LkpAdditionalTagList,

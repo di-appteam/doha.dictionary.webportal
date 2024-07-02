@@ -5,7 +5,6 @@ import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { first } from "rxjs";
-import { PasswordValidation } from "../../app-configurations/password-validation";
 import { ResponseCode } from "../../models/security";
 import { HttpService } from "../../security/requests/http.service";
 import { ServiceUrlManager } from "../../security/requests/serviceUrl.Manager";
@@ -16,6 +15,7 @@ import { SharedService } from "../../services/shared.service";
 import { ShowMessageServiceService } from "../../services/showing-message.service";
 import { StoreService } from "../../services/store.service";
 import { ShowingMessageComponent } from "../../shared-sections/showing-message/showing-message.component";
+import { PasswordValidation } from "../../validation/password-validation";
 
 
 @Component({

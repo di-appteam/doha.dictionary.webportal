@@ -9,46 +9,40 @@ import { ServicesIDs } from '../collection/serviceurl.enum';
 import { HttpService } from '../security/requests/http.service';
 import { ServiceUrlManager } from '../security/requests/serviceUrl.Manager';
 import { SharedConfiguration } from './config.service';
+import { SharedService } from './shared.service';
 
 @Injectable()
 export class AppChartsService {
 
-    constructor(private _http: HttpService, private _serviceUrlManager: ServiceUrlManager, private _config: SharedConfiguration) {
+    constructor(private _http: HttpService, private _sharedService: SharedService,private _serviceUrlManager: ServiceUrlManager, private _config: SharedConfiguration) {
 
     }
 
     GetLemmasCountPerYears(): Observable<lemmachartsmodel[]> {
-        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLemmasCountPerYears)).pipe(
-            map(data => data));
+        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLemmasCountPerYears)).pipe(catchError((error: any) => { return this._sharedService.handleError(error) }),
+            map(data => data),
+            );
     }
 
     GetLemmasCountPerDuration(duration:any): Observable<lemmachartsmodel[]> {
       let url = this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLemmasCountPerDuration) + '?duration='+duration;
-        return this._http.get(url).pipe(
+        return this._http.get(url).pipe( catchError((error: any) => { return this._sharedService.handleError(error) }),
             map(data => data));
     }
 
     GetLemmaCountPerYears(lemmaId: number = 0, rangeSize: number, word: string = ""): Observable<ChartsCustomModelExc[]> {
         const parm = '?lemmaId=' + lemmaId + '&rangeSize=' + rangeSize + '&word=' + word;
-        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLemmaCountPerYears) + parm).pipe(
+        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLemmaCountPerYears) + parm).pipe(catchError((error: any) => { return this._sharedService.handleError(error) }),
             map(data => data));
     }
     GetCountsOfUsageLemmaPerYear(lemmaId: number = 0, rangeSize: number, word: string = ""): Observable<ChartsCustomModelExc[]> {
         const parm = '?lemmaId=' + lemmaId + '&rangeSize=' + rangeSize + '&word=' + word;
-        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetCountsOfUsageLemmaPerYear) + parm).pipe(
+        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetCountsOfUsageLemmaPerYear) + parm).pipe(catchError((error: any) => { return this._sharedService.handleError(error) }),
             map(data => data));
     }
     SearchByLemma(lemmaId:any): Observable<ISummaryLexicalSheet[]> {
         const parm = '?lemmaId=' + lemmaId;
-        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLexicalsheetDetailByLemma) + parm).pipe(
+        return this._http.get(this._serviceUrlManager.getServiceUrl(ServicesIDs.GetLexicalsheetDetailByLemma) + parm).pipe(catchError((error: any) => { return this._sharedService.handleError(error) }),
             map(data => data));
     }
-
-    private handleError(error:any) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the //console
-        // console.error(error);
-        return observableThrowError(error || 'Server error');
-    }
-
 }

@@ -12,12 +12,13 @@ import { SharedConfiguration } from '../../services/config.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CreateAccountComponent } from '../../shared-components/create-account-section/create-account.component';
 import { ForgetPasswordComponent } from '../../shared-components/forget-password/forget-password.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-section',
   standalone: true,
   imports: [CommonModule,FormsModule,TranslateModule ,
-    ReactiveFormsModule],
+    ReactiveFormsModule,RouterLink],
   templateUrl: './login-section.component.html',
   styleUrl: './login-section.component.scss',
   providers:[ShowMessageServiceService]
@@ -43,7 +44,6 @@ export class LoginSectionComponent implements OnInit {
   }
 
   PrepareResponse(response: CustomResponse) {
-    console.log(response);
     if (response.ResponseCode != ResponseCode.Ok) {
       this._showMessageServiceService.ShowErrorMessage(response.ResponseCode);
       return;

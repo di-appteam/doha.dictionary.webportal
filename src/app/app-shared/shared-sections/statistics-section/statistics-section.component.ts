@@ -40,8 +40,7 @@ chartOptions = {
     this.GetAllStatistics();
   }
   private GetAllStatistics(): void {
-    this._appChartsService.GetLemmasCountPerDuration(100)
-      .subscribe((searchResult: Array<lemmachartsmodel>) => [this.prepareChartData(searchResult)]);
+    this._appChartsService.GetLemmasCountPerDuration(100).subscribe((searchResult:any) => [this.prepareChartData(searchResult)]);
   }
   private prepareChartData(dataAr: Array<lemmachartsmodel>): void {
     this.lineChartLabels = dataAr.map<any>(a=> this.sharedFunctions.myXAxisTickFormatting_new(a.name,selectedChartSizeOptions).toString());
