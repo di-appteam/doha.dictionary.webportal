@@ -1,0 +1,36 @@
+<div class="modal-header">
+</div>
+<div class="modal-body">
+    <div class="sent-email-icon icon d-icon-sent-email"></div>
+    <p class="paragraph" *ngIf="isReady">
+        <span class="bold" *ngIf="(ErrorCode == responseCode.NotInternalUser)"> {{'generalmessage.forget-password.errors.NotInternalUser' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.PendingActivationAccount)"> {{'generalmessage.forget-password.errors.PendingActivationAccount' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.InActiveAccount)"> {{'generalmessage.forget-password.errors.InActiveAccount' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.RequestAlreadyExist)"> {{'generalmessage.forget-password.errors.RequestAlreadyExist' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.EmailAlreadyExist)"> {{'generalmessage.createa-account.errors.EmailAlreadyExist' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.InValidCredentials)"> {{'generalmessage.login.errors.InValidCredentials' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.LockedAccount)"> {{'generalmessage.login.errors.LockedAccount' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.NotFound || ErrorCode == responseCode.NotMatched)"> {{'generalmessage.activate-account.notfound' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.Expired)"> {{'generalmessage.activate-account.linkexpired' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.AlreadyActivated)"> {{'generalmessage.activate-account.alreadyactivated' | translate}}</span>
+        <span class="bold" *ngIf="(ErrorCode == responseCode.ErrorInRequesting || ErrorCode == responseCode.ErrorInActivation|| ErrorCode == responseCode.RequestNotExist || ErrorCode == responseCode.InValidRequest )"> {{'generalmessage.general-error' | translate}}</span>
+        <span class="bold" *ngIf="messageModel.bold1">
+            {{messageModel.bold1}}
+        </span>
+        <br *ngIf="messageModel.paragraph"> {{messageModel.paragraph}}
+        <br>
+        <span class="bold" *ngIf="messageModel.bold2">
+            {{messageModel.bold2}}
+        </span>
+    </p>
+    <div class="confirmation-footer" *ngIf="isReady">
+
+        <button type="button" class="submit-btn" *ngIf="messageModel.showcontinuebtn" (click)="closeModal()">
+                {{'generalmessage.continuo-btn' | translate}}
+        </button>
+        <button type="button" class="submit-btn" *ngIf="messageModel.showresent" (click)="resentfunction();refModalRef.hide();">
+                {{'generalmessage.resent-btn' | translate}}
+        </button>
+
+    </div>
+</div>

@@ -1,0 +1,20 @@
+
+.modal-body{
+    padding: 18px;
+    &,
+    .paragraph{
+      text-align: center;
+    }
+    .paragraph{
+      line-height: 1.8;
+      color: #868686;  
+    }
+    .icon{
+      margin-bottom: 20px;
+    }
+    .confirmation-footer{
+      border-top: 1px solid #eee;
+      margin-top: 15px;
+      padding-top: 15px;
+    }
+  }
