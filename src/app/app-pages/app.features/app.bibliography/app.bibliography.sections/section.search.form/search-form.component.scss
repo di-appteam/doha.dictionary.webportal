@@ -1,0 +1,75 @@
+@import '../../../../../../scss/styles.scss';
+.page-search-section{
+  .submit-btn:disabled{
+    opacity: 0.5;
+    background-color: #ccaf41;
+    cursor: pointer;
+  }
+  input{
+    text-align: center;
+  }
+  @media(min-width: 768px){
+    .dropdown-col{
+      width: 30%;
+    }
+    .input-col{
+      width: 70%;
+    }
+  }
+  @media(max-width: 767px){
+    .dropdown-col{
+      margin-bottom: 20px;
+    }
+  }
+
+}
+.page-search-section{
+
+  input{
+    text-align: center;
+  }
+  .dropdown-select{
+    .btn{
+      text-align: center;
+    }
+  }
+
+  .dropdown-with-input{
+    position: relative;
+    input{
+      padding-left: 60px;
+    }
+    .dropdown-select{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      .btn{
+        text-align: right;
+        box-shadow: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .custom-checkbox-holder{
+      width: 100%;
+    }
+    .dropdown-col{
+      width: 100%;
+      &:first-child{
+        margin-bottom: 15px;
+      }
+    }
+    .input-col{
+      width: 100%;
+    }
+    .date-col{
+      width: 50%;
+    }
+  }
+
+}
