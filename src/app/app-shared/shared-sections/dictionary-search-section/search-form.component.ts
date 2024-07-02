@@ -141,12 +141,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
       return EMPTY;
     }
     this._sharedLemmaComponentValues.acSummaryLexicalSheet = [];
-    if (this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord == undefined || this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord.length < 2) {
-      return EMPTY;
-    }
-    return this._dictionaryService.SearchByLemmaAutoC(this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord, 1, 10).pipe(
-      map((data: ISearchByLemmaResultResponse) => data && data.Data || [])
-    );
+    return this._dictionaryService.getAutoCompleteData(this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord);
   }
   observableSource = (keyword: any): Observable<any[]> => {
     return of(this._sharedLemmaComponentValues.acSummaryLexicalSheet);

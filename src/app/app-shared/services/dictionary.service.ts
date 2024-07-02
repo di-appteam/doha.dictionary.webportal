@@ -1,5 +1,5 @@
 
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import {throwError as observableThrowError,  Observable, EMPTY } from 'rxjs';
 
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -19,6 +19,16 @@ export class DictionaryService {
 
     }
 
+
+    getAutoCompleteData(SearchWord:string) : Observable<ISummaryLexicalSheet[]> {
+
+      if (SearchWord == undefined || SearchWord.length < 2) {
+        return EMPTY;
+      }
+      return this.SearchByLemmaAutoC(SearchWord, 1, 10).pipe(
+        map((data: ISearchByLemmaResultResponse) => data && data.Data || [])
+      );
+  }
 
     SearchInRoot(str:string, page = 0): Observable<IRootResponse> {
         const parm = '?str=' + str + '&page=0&pageSize=10000';

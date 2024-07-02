@@ -3,8 +3,8 @@ import { Routes } from '@angular/router';
 
   export const ChartsRoutes: Routes = [
     {
-      path: 'chart',
+      path: 'charts',
       loadComponent: () =>
-        import('./app-charts/app-charts.component').then((c) => c.AppChartsComponent)
+        import('./app.charts/app-charts.component').then((c) => c.AppChartsComponent)
     }];
 

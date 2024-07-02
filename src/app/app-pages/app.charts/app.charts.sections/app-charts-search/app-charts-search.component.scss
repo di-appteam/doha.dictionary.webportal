@@ -1,0 +1,37 @@
+.page-search-section{
+  .submit-btn:disabled{
+    opacity: 0.5;
+    background-color: #ccaf41;
+    cursor: pointer;
+  }
+    input{
+      text-align: center;
+    }
+    .dropdown-select{
+      .btn{
+        text-align: center;
+      }
+    }
+  
+    .dropdown-with-input{
+      position: relative;
+      input{
+        padding-left: 60px;
+      }
+      .dropdown-select{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        .btn{
+          text-align: right;
+          box-shadow: none;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          border-right: none;
+        }
+      }
+    }
+  
+  
+  }

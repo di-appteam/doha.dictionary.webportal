@@ -1,0 +1,66 @@
+<section class="page-search-section">
+    <div class="logo-watermark">
+        <img src="/assets/images/logo-watermark.png" alt="معجم الدّوحة التّاريخيّ للّغة العربيّة">
+      </div>
+  <form class="search-form">
+
+    <div class="form-header">
+
+      <h1 class="page-title">
+        {{'charts.statisticsdisplayfor' | translate}}
+      </h1>
+
+
+    </div>
+
+
+    <div class="form-body">
+
+      <div class="input-holder row">
+
+        <div class="col-xs-5 dropdown-col">
+
+          <div class="dropdown-select text-center">
+
+            <ng-select [items]="resourcesDropdownOptions" bindLabel="text"  clearAllText="{{'general.clearalltext' | translate}}" bindValue="value" [(ngModel)]="selectedResourcesOption" [ngModelOptions]="{standalone: true}"
+              [clearable]="false" [searchable]="false">
+            </ng-select>
+
+          </div>
+        </div>
+
+        <div class="search-input input-holder col-xs-7 dropdown-col">
+
+
+            <input [(ngModel)]="SearchWord"
+            [ngModelOptions]="{standalone: true}" [typeahead]="dataSource" [typeaheadAsync]="true"
+            [adaptivePosition]="true" typeaheadOptionField="lemmaValue"
+            placeholder="{{'dictionary.searchwords' | translate}}" (typeaheadLoading)="changeTypeaheadLoading($event)"
+            class="form-input">
+
+
+            <div class="error-msg">
+              <p class="paragraph small" *ngIf="(!SearchWord && selectedResourcesOption == 2)">
+              {{'charts.nowordforsearch' | translate}}
+            </p> </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="text-center">
+        <button class="submit-btn" type="submit" (click)="parmChange()" [disabled]="(pendingReq || (!SearchWord && selectedResourcesOption == 2))">{{'charts.showbtn' | translate}}</button>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </form>
+
+</section>

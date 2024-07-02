@@ -1,0 +1,104 @@
+<div class="container results-container" *ngIf=" _chartsSharedVariables.isLemmaReady">
+
+
+
+  <div class="results-body" *ngIf="!noData">
+
+    <div class="chart-actions">
+
+      <div class="option-holder">
+
+@if(false){
+        <div class="dropdown-select text-center">
+          <ng-select
+            [items]="chartSizeDropdownOptions"
+            bindLabel="text"
+            bindValue="value"
+            [(ngModel)]="selectedChartSizeOptions"
+            [clearable]="false"
+            [searchable]="false">
+          </ng-select>
+        </div>
+      }
+      <div class="dropdown-select text-center">
+        <ng-select
+          [items]="selectedChartTypeOptions"
+          bindLabel="text"
+          bindValue="value"
+          [(ngModel)]="chartType"
+          [clearable]="false"
+          [searchable]="false">
+        </ng-select>
+      </div>
+
+      </div>
+
+      <!--div class="chart-style-options">
+
+        <button type="button" class="style-btn icon icon-line-chart" [ngClass]="{ 'active': chartStyle == 'LINE_CHART'}" (click)="chartStyle = 'LINE_CHART'"></button>
+        <button type="button" class="style-btn icon icon-bars-chart" [ngClass]="{ 'active': chartStyle == 'BARS_CHART'}" (click)="chartStyle = 'BARS_CHART'"></button>
+
+      </div-->
+
+      <div class="actions pull-left">
+        <button type="button" class="action-btn icon icon-print" title="{{'charts.print' | translate}}"  *hasPermission="['print-statistics']"></button>
+        <button type="button" class="action-btn icon icon-download" title="{{'charts.download' | translate}}"  *hasPermission="['download-statistics']"></button>
+      </div>
+
+
+    </div>
+
+    <div class="charts-container" >
+      <canvas
+      baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      [type]="chartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    >
+    </canvas>
+    </div>
+
+
+  </div>
+
+  <div class="table-component" *ngIf="false">
+
+    <div class="t-head">
+
+      <div class="t-cell">
+        المصطلح
+      </div>
+      <div class="t-cell">
+        إجمالي الكلمات
+      </div>
+      <div class="t-cell">
+        أعلى استخدام
+      </div>
+      <div class="t-cell">
+        أقل استخدام
+      </div>
+
+    </div>
+
+    <div class="t-row" *ngFor="let i of [1,2,3,4]">
+
+      <div class="t-cell">
+        الفقة
+      </div>
+      <div class="t-cell">
+        52,267,678
+      </div>
+      <div class="t-cell">
+        200 ق.هـ
+      </div>
+      <div class="t-cell">
+        200 ق.هـ
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

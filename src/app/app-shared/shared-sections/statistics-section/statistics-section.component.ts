@@ -51,7 +51,7 @@ chartOptions = {
       datasets: [
         {
           data: dataAr.map(a=>a.value),
-          label: 'Series A',
+          label: 'إحصاءات',
           backgroundColor: '#ccaf41',
           borderColor: '#ccaf41',
           fill: 'origin',
