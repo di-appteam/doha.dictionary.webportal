@@ -1,8 +1,8 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { NavDataInterface } from '../../../../app-models/shared.model';
-import { DictionarySearchFormComponent } from '../../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
+import { NavDataInterface } from '../../../app-models/shared.model';
+import { DictionarySearchFormComponent } from '../../../app-shared/shared-sections/dictionary-search-section/search-form.component';
 
 
 @Component({

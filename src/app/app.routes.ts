@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
 import { ContactUSRoutes } from "./app-pages/app.contact-us/app.contact-us-routing.module";
 import { ContentsRoutes } from "./app-pages/app.contents/app.contents-routing";
-import { UserGuideRoutes } from "./app-pages/app.contents/app.userguide/app-user-guide-routing.module";
 import { ErrorRoutes } from "./app-pages/app.error/shared-routing.module";
 import { BibliographyRoutes } from "./app-pages/app.features/app.bibliography/app.bibliography-routing.module";
 import { ChartsRoutes } from "./app-pages/app.features/app.charts/app.charts-routing.module";
@@ -19,6 +18,6 @@ import { UserRoutes } from "./app-pages/app.user/app.user-routing.module";
   pathMatch: 'full',
 }];
 
-export const combinedRoutes: Routes = [ ...HomeRoutes,...ErrorRoutes, ...UserGuideRoutes,...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
+export const combinedRoutes: Routes = [ ...HomeRoutes,...ErrorRoutes, ...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
 
 

@@ -30,5 +30,10 @@ export const ContentsRoutes: Routes = [
     path: 'participant-details',
     loadComponent: () =>
       import('./participants/participant-modal/participant-modal.component').then((c) => c.ParticipantModalComponent)
+  },
+  {
+    path: 'user-guide',
+    loadComponent: () =>
+      import('./user-guide/app-user-guide.component').then((c) => c.UserGuideComponent)
   }
 ];
