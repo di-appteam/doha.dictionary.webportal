@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HasPermissionDirective } from './app-shared/directive/permissions.directive';
+import { AuthGuard } from './app-shared/security/auth.guard';
 import { HttpService } from './app-shared/security/requests/http.service';
 import { ServiceUrlManager } from './app-shared/security/requests/serviceUrl.Manager';
 import { AccountService } from './app-shared/services/account.service';
@@ -31,7 +32,7 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
     SecurityService, ScrollService, PagerService, ClipboardService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
-    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions
+    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

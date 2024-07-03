@@ -37,10 +37,10 @@ export const BookmarkType = {
 }
 
 
-export interface BookmarkParmModel {
-  TypeId : number;
-  PageSize: number;
-  Page: number;
+export class BookmarkParmModel {
+  TypeId! : number;
+  PageSize!: number;
+  Page!: number;
 }
 
 // mock data

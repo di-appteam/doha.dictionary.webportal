@@ -7,6 +7,7 @@ import { ChartsRoutes } from "./app-pages/app.features/app.charts/app.charts-rou
 import { CorpusRoutes } from "./app-pages/app.features/app.corpus/app.corpus-routing.module";
 import { DictionaryRoutes } from "./app-pages/app.features/app.dictionary/app.dictionary-routing.module";
 import { HomeRoutes } from "./app-pages/app.home/app.home-routing";
+import { BookmarksRoutes } from "./app-pages/app.user.bookmarks/app.user-bookmarks-routing.module";
 import { UserRoutes } from "./app-pages/app.user/app.user-routing.module";
 
 
@@ -18,6 +19,6 @@ import { UserRoutes } from "./app-pages/app.user/app.user-routing.module";
   pathMatch: 'full',
 }];
 
-export const combinedRoutes: Routes = [ ...HomeRoutes,...ErrorRoutes, ...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
+export const combinedRoutes: Routes = [ ...HomeRoutes,...BookmarksRoutes,...ErrorRoutes, ...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
 
 

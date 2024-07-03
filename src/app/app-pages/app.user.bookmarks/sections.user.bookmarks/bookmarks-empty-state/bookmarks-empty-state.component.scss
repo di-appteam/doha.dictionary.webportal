@@ -1,0 +1,14 @@
+.bookmarks-empty-state{
+  &,
+  .paragraph{
+    text-align: center;
+    color: #666;
+    a{
+      color: #000;
+      text-decoration: underline;
+    }
+  }
+  .empty-image{
+    margin-bottom: 35px;
+  }
+}

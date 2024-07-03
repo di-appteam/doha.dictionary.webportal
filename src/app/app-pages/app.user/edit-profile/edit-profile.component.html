@@ -1,0 +1,72 @@
+<form *ngIf="editProfileForm" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()" class="user-settings-form" autocomplete="off">
+  <div class="text-center">
+    <div class="user-image image-ratio">
+      <div class="ratio-content">
+        <img *ngIf="!_sharedConfiguration.userInfo.ImagePath" src="/assets/images/should-remove/user-img.jpg" alt="{{_sharedConfiguration.userInfo.Email}}">
+        <img *ngIf="_sharedConfiguration.userInfo.ImagePath" src="{{_sharedConfiguration.userInfo.ImagePath}}" alt="{{_sharedConfiguration.userInfo.Email}}">
+      </div>
+    </div>
+  </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="{{'shared.usersection.edit-profile.name' | translate}}" formControlName="Name" class="form-input has-padding"
+          [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" maxlength="299" autocomplete="off" />
+        <div *ngIf="submitted && f.Name.errors" class="error-msg invalid-feedback">
+          <div *ngIf="f.Name.errors.required">{{'shared.usersection.edit-profile.name-required' | translate}}</div>
+        </div>
+      </div>
+  <div class="row">
+
+    <div class="col-sm-6 col-xs-12">
+      <div class="form-group">
+        <input type="text" placeholder="{{'shared.usersection.edit-profile.organization' | translate}}" formControlName="Organization"
+          class="form-input has-padding" maxlength="299"  [ngClass]="{ 'is-invalid': submitted && f.Organization.errors }" autocomplete="off"
+        />
+        <div *ngIf="submitted && f.Organization.errors" class="error-msg invalid-feedback">
+          <div *ngIf="f.Organization.errors.required">{{'shared.usersection.edit-profile.organization-required' | translate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <div class="form-group">
+        <input type="text" placeholder="البريد الإلكتروني" class="form-input has-padding" value="{{_sharedConfiguration.userInfo.Email}}"
+          disabled/>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-sm-6 col-xs-12">
+      <div class="form-group">
+        <input type="number" dir="ltr" placeholder="{{'shared.usersection.edit-profile.mobile' | translate}}" formControlName="Mobile"
+          class="form-input has-padding"  maxlength="15"  autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <div class="form-group">
+        <input type="text" placeholder="{{'shared.usersection.edit-profile.job' | translate}}"  maxlength="299"  formControlName="Job" class="form-input has-padding"
+          autocomplete="off" />
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="{{'shared.usersection.edit-profile.edudegree' | translate}}"  maxlength="299"  formControlName="EduDegree"
+      class="form-input has-padding" autocomplete="off" />
+  </div>
+
+  <div class="form-group text-center">
+    <button type="submit" [disabled]="loading" class="submit-btn">حفظ</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+    <button class="submit-btn" type="button" (click)="onCancel()">
+      {{'user-account.reset-password.cancel-btn' | translate}}
+    </button>
+  </div>
+
+  <div class="form-footer">
+
+  </div>
+
+</form>

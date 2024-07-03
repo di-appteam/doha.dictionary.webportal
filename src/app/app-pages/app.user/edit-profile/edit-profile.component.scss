@@ -1,0 +1,65 @@
+
+// USER PROFILE ( EDIT MODE ) STYLE
+    .user-settings-section{
+      position: relative;
+      z-index: 2;
+    
+      max-width: 500px;
+      padding: 20px 15px 75px;
+      margin:auto;
+    }
+    
+    
+    .form-group{
+      margin-bottom: 12px;
+      .form-input {
+        font-size: 14px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        border-color: #eee;
+        font-weight: 300;
+        border-radius: 3px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);  
+      }
+    }
+    .user-image{
+      width: 90px;
+      display: inline-block;
+      margin-bottom: 18px;
+      &:hover{
+        .actions-holder{
+          display: block;
+        }
+      }
+      .actions-holder{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 5;
+    
+        display: none;
+        
+        background-color: rgba(0,0,0,0.5);
+        text-align: center;
+        .actions{
+          position: absolute;
+          bottom: 5px;
+          left: 0;
+          right: 0;
+          .action-btn{
+            font-size: 12px;
+            color: #fff;
+            font-weight: 400;
+            cursor: pointer;
+            .icon{
+              margin-left: 5px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  

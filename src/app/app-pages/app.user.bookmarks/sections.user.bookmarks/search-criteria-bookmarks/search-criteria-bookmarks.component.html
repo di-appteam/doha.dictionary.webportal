@@ -1,0 +1,110 @@
+<div class="search-results-section" *ngIf="(isReady && data && data.length > 0)">
+
+    <div class="section-header">
+
+
+      <div class="results-options">
+
+        <div class="option-holder">
+
+          <h5 class="title">{{'general.resultPageSizeDisplay' | translate}}</h5>
+
+
+        <ng-select [items]="pageSizeList" bindLabel="text" bindValue="value" [ngModel]="pSize" (ngModelChange)="onPageSizeChanged($event)"
+        [clearable]="false" [searchable]="false" class="btn-group dropdown-select">
+      </ng-select>
+          <h5 class="title">{{'general.atpage' | translate}}</h5>
+
+        </div>
+
+
+        <div class="option-holder pull-left">
+
+          <button class="remove-all-btn" (click)="removeAllBookmark()">
+            حذف الكل
+          </button>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section-body">
+
+      <div class="search-results">
+
+        <div class="item-row" *ngFor="let item of data">
+
+          <div class="table-component">
+
+            <div class="t-row" >
+
+
+              <div class="t-cell content-cell">
+
+                <h4 class="item-title"  (click)="SearchInDictioanry(item)">
+                  {{ item.displayname }}
+                </h4>
+
+
+                <p class="paragraph"  (click)="SearchInDictioanry(item)">
+                  {{ item.displaydata }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="item-actions">
+              <button class="bookmark-action active" title="إلغاء الحفظ" (click)="RemoveBookmark(item)">
+                <span class="icon icon-bookmark on-active" style="color: #c90000;text-shadow: 1px 1px 1px #ccc;font-size: 1.0em;"></span>
+                <span class="icon icon-bookmark-o not-active"></span>
+              </button>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="pagination-component">
+      <ul class="pages-list">
+        <li *ngFor="let page of pager.pages">
+          <button type="button" class="paging-btn" (click)="setPage(page)" [disabled]="pager.currentPage === page">
+            {{page}}
+          </button>
+        </li>
+      </ul>
+      <div class="pull-right right-btns">
+
+        <button type="button" class="paging-btn" (click)="setPage(1)" [disabled]="pager.currentPage === 1">
+          {{'general.pagination.first' | translate}}
+        </button>
+        <button type="button" class="paging-btn next-btn" (click)="setPage(pager.currentPage - 1)" [disabled]="pager.currentPage === 1">
+          <!-- {{'general.pagination.prev' | translate}} -->
+          <span class="icon icon-angle-right"></span>
+        </button>
+      </div>
+
+      <div class="pull-left left-btns">
+        <button type="button" class="paging-btn prev-btn" (click)="setPage(pager.currentPage + 1)" [disabled]="pager.currentPage === pager.totalPages">
+          <!-- {{'general.pagination.next' | translate}} -->
+          <span class="icon icon-angle-left"></span>
+        </button>
+        <button type="button" class="paging-btn" (click)="setPage(pager.totalPages)" [disabled]="pager.currentPage === pager.totalPages">
+          {{'general.pagination.last' | translate}}
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <bookmarks-empty-state *ngIf="(isReady && (!data || data.length == 0)) "></bookmarks-empty-state>

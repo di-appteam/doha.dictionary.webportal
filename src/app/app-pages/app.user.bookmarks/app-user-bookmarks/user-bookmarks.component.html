@@ -1,0 +1,76 @@
+<div id="page-content">
+  <search-form></search-form>
+
+  <div class="bookmarks-section">
+    <div class="content-container">
+      <div class="container">
+        <div class="row tabs-row">
+
+          <div class="col-md-4 col-xs-12 tabs-btns">
+<a >
+ <h3> قوائم المحفوظات</h3>
+</a>
+            <a (click)="ChangeBookmarkType(2)" class="tab-btn" [ngClass]="{'active':(selectedBookmarkType == 2)}">
+              المعجم
+              <span class="word-separator">|</span>
+              الفروع
+              <span class="count" *ngIf="lemmaCount">{{lemmaCount}}</span>
+              <span class="icon icon-angle-left arrow-icon"></span>
+            </a>
+
+            <a (click)="ChangeBookmarkType(1)" class="tab-btn" [ngClass]="{'active':(selectedBookmarkType == 1)}">
+              المعجم
+              <span class="word-separator">|</span>
+              الجذاذات
+              <span class="count" *ngIf="lexicalsheetCount">{{lexicalsheetCount}}</span>
+              <span class="icon icon-angle-left arrow-icon"></span>
+            </a>
+
+            <a (click)="ChangeBookmarkType(3)" class="tab-btn" [ngClass]="{'active':(selectedBookmarkType == 3)}">
+              مصادر المعجم
+              <span class="word-separator">|</span>
+              المصادر
+              <span class="count" *ngIf="referenceCount">{{referenceCount}}</span>
+              <span class="icon icon-angle-left arrow-icon"></span>
+            </a>
+
+            <a (click)="ChangeBookmarkType(4)" class="tab-btn" [ngClass]="{'active':(selectedBookmarkType == 4)}">
+              المدونة اللغوية
+              <span class="word-separator">|</span>
+              السياقات
+              <span class="count" *ngIf="sequenceCount">{{sequenceCount}}</span>
+              <span class="icon icon-angle-left arrow-icon"></span>
+            </a>
+
+            <a  (click)="ChangeBookmarkType(5)" class="tab-btn" [ngClass]="{'active':(selectedBookmarkType == 5)}">
+              عمليات البحث المحفوظة
+              <span class="count" *ngIf="dictionarysearchmodelCount">{{dictionarysearchmodelCount}}</span>
+              <span class="icon icon-angle-left arrow-icon"></span>
+            </a>
+
+          </div>
+
+          <div class="col-md-8 col-md-push-4 col-xs-12 tab-content">
+
+            <bookmarks-empty-state *ngIf="false"></bookmarks-empty-state>
+            <bibliography-bookmarks *ngIf="selectedBookmarkType == 3"  (LoadCounts)="LoadCounts()"></bibliography-bookmarks>
+
+            <corpus-bookmarks *ngIf="selectedBookmarkType == 4"  (LoadCounts)="LoadCounts()"></corpus-bookmarks>
+
+            <dictionary-bookmarks *ngIf="(selectedBookmarkType == 1 || selectedBookmarkType == 2)" [BType]="selectedBookmarkType" (LoadCounts)="LoadCounts()"></dictionary-bookmarks>
+
+            <search-criteria-bookmarks *ngIf="selectedBookmarkType == 5"  (LoadCounts)="LoadCounts()"></search-criteria-bookmarks>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

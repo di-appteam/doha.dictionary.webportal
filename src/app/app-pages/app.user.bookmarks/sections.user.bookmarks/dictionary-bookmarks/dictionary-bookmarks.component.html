@@ -1,0 +1,141 @@
+<div class="search-results-section" *ngIf="(isReady && data && data.length > 0)">
+
+  <div class="section-header">
+
+
+    <div class="results-options">
+
+      <div class="option-holder">
+        <h5 class="title">{{'general.resultPageSizeDisplay' | translate}}</h5>
+
+
+        <ng-select [items]="pageSizeList" bindLabel="text" bindValue="value" [ngModel]="resultPageSize" (ngModelChange)="pageSizeChanged($event)"
+        [clearable]="false" [searchable]="false" class="btn-group dropdown-select">
+      </ng-select>
+
+        <h5 class="title hidden-md hidden-xs">{{'general.atpage' | translate}}</h5>
+      </div>
+
+
+      <div class="option-holder pull-left">
+
+        <button class="remove-all-btn" (click)="removeAllBookmark()">
+          حذف الكل
+        </button>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div>
+
+  </div>
+
+  <div class="section-body">
+
+
+    <accordion [closeOthers]="true" class="table-component search-results">
+
+      <accordion-group #group class="t-row item-row" *ngFor="let item of data;let i = index; trackBy: trackByID;" [isOpen]="(selectedExpandOption===2||selectedExpandOption===1 || i == 0)"
+        (isOpenChange)="openlexical(item)">
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{ item.lemmaValue }}
+        </div>
+
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          [{{ item.additionalTag }}]
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          <a   [routerLink]="['/root/', item.rootValue.replace('/','-')]">{{ item.rootValue }}</a>
+        </div>
+
+        <div accordion-heading (click)="$event.preventDefault();$event.stopPropagation();" class="t-cell item-value">
+          {{_sharedFunctions.reWriteDateSheet(item.dateSheet,item.isDeathDate)}} = {{item.dateSheetSolar}} م
+        </div>
+
+        <div accordion-heading class="t-cell item-value toggler-btn text-left">
+
+          <div class="row-actions" [ngClass]="{'active': openActions}">
+
+            <ng-container *ngIf="!item.istool">
+              <button type="button" class="sequence-btn icon icon-sequence" *hasPermission="['show-sequence']" (click)="openModalWithComponent(item);$event.stopPropagation();"></button>
+            </ng-container>
+            <button class="actions-group visible-xs" (click)="$event.stopPropagation();toggleRowActions();">
+              <span class="group-icon white icon-bars"></span>
+            </button>
+
+            <div class="actions-close-area" *ngIf="openActions" (click)="$event.stopPropagation();closeRowActions()"></div>
+
+            <ul class="actions-list">
+              <li>
+                <button type="button" class="icon icon-messages" title="تعليق" *hasPermission="['comment-lexical']" (click)="$event.stopPropagation();"></button>
+              </li>
+              <li>
+                <button type="button" class="icon icon-quote-border" title="اقتباس" *hasPermission="['quote-lexical']" (click)="$event.stopPropagation();"></button>
+              </li>
+              <ng-container *ngIf="BType == this._config.bookmarkType.lemma">
+                <li>
+                  <button type="button" class="icon" [ngClass]="[!item.IsBookMark ? 'icon-bookmark-o' : 'icon-bookmark on-hover' ]" title="إلغاء الحفظ"
+                    *hasPermission="['bookmark-lexical']" (click)="addBookmark(item);$event.stopPropagation();"></button>
+                </li>
+              </ng-container>
+            </ul>
+
+
+          </div>
+
+          <button type="button" class="row-toggler icon icon-angle-down"></button>
+
+        </div>
+
+        <div class="accordion-body">
+          <ng-container *ngIf="BType == this._config.bookmarkType.lemma">
+            <d-result-detail [lexId]="item.ID" [fromBookmark]="true" (removeLex)="removeLex($event)"></d-result-detail>
+          </ng-container>
+          <ng-container *ngIf="BType != this._config.bookmarkType.lemma">
+            <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="true" [fromBookmark]="true" (removeLex)="removeLex($event)"></d-result-detail>
+          </ng-container>
+        </div>
+
+      </accordion-group>
+
+
+    </accordion>
+
+  </div>
+
+
+  <div class="pagination-component">
+    <ul class="pages-list">
+      <li *ngFor="let page of pager.pages">
+        <button type="button" class="paging-btn" (click)="setPage(page)" [disabled]="pager.currentPage === page">
+          {{page}}
+        </button>
+      </li>
+    </ul>
+
+    <div class="pull-right right-btns">
+      <button type="button" class="paging-btn" (click)="setPage(1)" [disabled]="pager.currentPage === 1">
+        {{'general.pagination.first' | translate}}
+      </button>
+      <button type="button" class="paging-btn next-btn" (click)="setPage(pager.currentPage - 1)" [disabled]="pager.currentPage === 1">
+        <!-- {{'general.pagination.prev' | translate}} -->
+        <span class="icon icon-angle-right"></span>
+      </button>
+    </div>
+
+    <div class="pull-left left-btns">
+      <button type="button" class="paging-btn prev-btn" (click)="setPage(pager.currentPage + 1)" [disabled]="pager.currentPage === pager.totalPages">
+        <!-- {{'general.pagination.next' | translate}} -->
+        <span class="icon icon-angle-left"></span>
+      </button>
+      <button type="button" class="paging-btn" (click)="setPage(pager.totalPages)" [disabled]="pager.currentPage === pager.totalPages">
+        {{'general.pagination.last' | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+<bookmarks-empty-state *ngIf="(isReady && (!data || data.length == 0)) "></bookmarks-empty-state>
