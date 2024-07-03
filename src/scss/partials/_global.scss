@@ -563,6 +563,35 @@ $tooltip-arrow-color: rgba(51, 51, 51, 0.8) !default;
   }
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  --scrollbar-size: 8px;
+  --scrollbar-thumb-color: $mainColor;
+  --scrollbar-thumb-hover-color: $mainColor;
+  --scrollbar-color: $mainColor;
+  --scrollbar-border-radius: 1px;
+  max-height: 200px;
+  border-radius: 3px;
+  border: 0px solid $mainColor;
+  background: $mainColor;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ddd;
+}
+
 .about-dictionary-page {
 
   a {
