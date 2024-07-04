@@ -25,15 +25,26 @@ import { StoreService } from './app-shared/services/store.service';
 import { TranslationService } from './app-shared/services/translation.service';
 import { AppFooterComponent } from './app-shared/shared-components/app-footer/app-footer.component';
 import { AppHeaderComponent } from './app-shared/shared-components/app-header/app-header.component';
+import { RecaptchaSettings, RECAPTCHA_LANGUAGE, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+
+const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule, NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
+  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,
+    NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
     SecurityService, ScrollService, PagerService, ClipboardService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
-    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService
+    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService,{
+      provide: RECAPTCHA_SETTINGS,
+      useValue: globalSettings
+    },
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: 'ar',
+    }
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

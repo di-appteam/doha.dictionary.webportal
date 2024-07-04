@@ -1,1 +1,110 @@
-<p>app-contact-us works!</p>
+<div class="home-content" id="page-content">
+
+  <div class="search-section">
+    <div class="logo-watermark">
+      <img src="/assets/images/logo-watermark.png" alt="معجم الدّوحة التّاريخيّ للّغة العربيّة">
+    </div>
+    <div class="container main-content">
+      <div class="page-container">
+
+        <h1 class="page-title">
+          تواصل معنا
+        </h1>
+
+        <div class="separator"></div>
+
+
+        <div class="simple-section">
+
+          <h2 class="sub-title">
+            معجم الدوحة التاريخي للغة العربية
+          </h2>
+          <div class="row">
+
+            <div class="col-sm-6 col-xs-12">
+              <p class="paragraph">
+                ص. ب: 10277
+                <br /> 196 شارع الطرفة (800)، منطقة 70
+                <br /> وادي البنات، الظعاين، قطر.
+              </p>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <p dir="ltr" class="paragraph text-center">
+                +974 4419 9777
+                <br /> +974 4035 4114
+                <br />
+                <a href="mailto:info.dictionary@dohainstitute.org" class="text-link">
+                  info.dictionary&#64;dohainstitute.org
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="separator"></div>
+
+
+        <div class="simple-section">
+          <h2 class="sub-title">
+            معجم الدوحة التاريخي للغة العربية
+          </h2>
+
+
+          <form *ngIf="(contactUsForm && isSent)" [formGroup]="contactUsForm" (ngSubmit)="onSubmit()" class="signup-page" autocomplete="off" >
+
+            <div class="row">
+
+              <div class="form-group col-sm-6 col-xs-12 input-col">
+                <input type="text" placeholder="الاسم" formControlName="Name" class="form-input" [ngClass]="{ 'is-invalid': submitted && f['Name'].errors }"
+                  autocomplete="off" />
+                <div *ngIf="submitted && f['Name'].errors" class="error-msg invalid-feedback">
+                  <div *ngIf="f['Name'].errors['required']">الرجاء إدخال الاسم</div>
+                </div>
+              </div>
+
+              <div class="form-group col-sm-6 col-xs-12 input-col">
+                <input type="From" dir="ltr" placeholder="{{'shared.usersection.signup.email' | translate}}" formControlName="From" class="form-input has-padding"
+                  [ngClass]="{ 'is-invalid': submitted && f['From'].errors }" autocomplete="off" />
+                <div *ngIf="submitted && f['From'].errors" class="error-msg invalid-feedback">
+                  <div *ngIf="f['From'].errors['required']">{{'shared.usersection.signup.emailisrequired' | translate}}</div>
+                  <div *ngIf="f['From'].errors['pattern']">{{'shared.usersection.signup.emailisinvalid' | translate}}</div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="موضوع الرسالة" formControlName="Subject" class="form-input" [ngClass]="{ 'is-invalid': submitted && f['Subject'].errors }"
+                autocomplete="off" />
+              <div *ngIf="submitted && f['Subject'].errors" class="error-msg invalid-feedback">
+                <div *ngIf="f['Subject'].errors['required']">الرجاء إدخال موضوع الرسالة</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="الرسالة" formControlName="Body" class="form-input" [ngClass]="{ 'is-invalid': submitted && f['Body'].errors }"
+                autocomplete="off"> </textarea>
+              <div *ngIf="submitted && f['Body'].errors" class="error-msg invalid-feedback">
+                <div *ngIf="f['Body'].errors['required']">الرجاء إدخال الرسالة</div>
+              </div>
+            </div>
+            <alert  *ngIf="messageSent" [type]="messageType" [message]="message"></alert>
+            <div class="text-center">
+
+              <button type="submit" [disabled]="loading" class="submit-btn">إرسال</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -287,7 +287,9 @@
     },
     "continuo-btn": "استمرار",
     "resent-btn": "الإرسال مرة أخرى",
-    "general-error": "خطأ عند إجراء العملية!"
+    "general-error": "خطأ عند إجراء العملية!",
+    "server-error-sending-email":"تعذر إرسال الرسالة. الرجاء معاودة المحاولة",
+    "server-success-sending-email":"تم إرسال الرسالة بنجاح!"
   },
   "user-account": {
     "forget-password": {

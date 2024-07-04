@@ -17,7 +17,9 @@ import('./app-user-account/app-user-account.component').then((c) => c.AppUserAcc
 { path: 'profile/:status',  loadComponent: () =>
 import('./app-user-account/app-user-account.component').then((c) => c.AppUserAccountComponent), canActivate: [AuthGuard] },
 { path: 'changepassword',  loadComponent: () =>
-import('./change-password/change-password.component').then((c) => c.ChangePasswordComponent), canActivate: [AuthGuard] }
+import('./change-password/change-password.component').then((c) => c.ChangePasswordComponent), canActivate: [AuthGuard] },
+{ path: 'user-comments', loadComponent: () =>
+import('./user-dic-comments/user-dic-comments.component').then((c) => c.UserDicCommentsComponent) , canActivate: [AuthGuard]}
 ];
 
 

@@ -10,13 +10,15 @@ import { SharedConfiguration } from '../../../app-shared/services/config.service
 import { ShowMessageServiceService } from '../../../app-shared/services/showing-message.service';
 import { PasswordValidation } from '../../../app-shared/validation/password-validation';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AlertEnum } from '../../../app-models/dictioanry.search.results.models';
+import { AlertComponent } from '../../../app-shared/shared-sections/alert/alert.component';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [CommonModule,TranslateModule,ReactiveFormsModule,FormsModule
-    ,RouterModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, FormsModule, AlertComponent
+    , RouterModule],
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
@@ -28,22 +30,24 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
   submitted = false;
   passwordAlreadyExist: boolean = false;
   InvalidOldPassword: boolean = false;
+  messageType: AlertEnum = AlertEnum.ERROR;
+  serverErrorMessage: string = '';
 
   constructor(
-    private meta : Meta,private _showMessageServiceService: ShowMessageServiceService, private _accountService: AccountService
+    private meta: Meta, private translateService: TranslateService, private _showMessageServiceService: ShowMessageServiceService, private _accountService: AccountService
     , private formBuilder: FormBuilder, public override _router: Router,
     public override _config: SharedConfiguration) {
-    super(_router,_config);
-    this.meta.updateTag({name: 'title',content: 'معجم الدوحة التاريخي للغة العربية'},"name='title'");
-    this.meta.updateTag({name: 'og:title',content: 'معجم الدوحة التاريخي للغة العربية'},"name='og:title'");
-    this.meta.updateTag({name: 'twitter:title',content: 'معجم الدوحة التاريخي للغة العربية'},"name='twitter:title'");
-    this.meta.updateTag({name: 'description',content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.'},"name='description'");
-    this.meta.updateTag({name: 'og:description',content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.'},"name='og:description'");
-    this.meta.updateTag({name: 'twitter:description',content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.'},"name='twitter:description'");
+    super(_router, _config);
+    this.meta.updateTag({ name: 'title', content: 'معجم الدوحة التاريخي للغة العربية' }, "name='title'");
+    this.meta.updateTag({ name: 'og:title', content: 'معجم الدوحة التاريخي للغة العربية' }, "name='og:title'");
+    this.meta.updateTag({ name: 'twitter:title', content: 'معجم الدوحة التاريخي للغة العربية' }, "name='twitter:title'");
+    this.meta.updateTag({ name: 'description', content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.' }, "name='description'");
+    this.meta.updateTag({ name: 'og:description', content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.' }, "name='og:description'");
+    this.meta.updateTag({ name: 'twitter:description', content: 'معجم الدوحة التاريخي للغة العربية معجم يسجل تاريخ استعمالات ألفاظ اللغة العربية بدلالاتها الأولى، وتاريخ تحولاتها البنيوية والدلالية، مع تحديد مستعمليها، وتعزيز ذلك بالشواهد الموثقة.' }, "name='twitter:description'");
 
-    this.meta.updateTag({name: 'url',content: window.location.href},"name='url'");
-    this.meta.updateTag({name: 'og:url',content: window.location.href},"name='og:url'");
-    this.meta.updateTag({name: 'twitter:url',content: window.location.href},"name='twitter:url'");
+    this.meta.updateTag({ name: 'url', content: window.location.href }, "name='url'");
+    this.meta.updateTag({ name: 'og:url', content: window.location.href }, "name='og:url'");
+    this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
   }
 
   ngOnInit() {
@@ -52,8 +56,8 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
       newpassword: ['', [Validators.required, Validators.minLength(8), PasswordValidation.Strong]],
       confirmpassword: ['', [Validators.required, Validators.minLength(8)]]
     }, {
-        validator: PasswordValidation.MatchPassword // your validation method
-      });
+      validator: PasswordValidation.MatchPassword // your validation method
+    });
   }
 
   onCancel() {
@@ -80,10 +84,12 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
   PrepareResponse(response: CustomResponse) {
     this.loading = false;
     if (response.ResponseCode == ResponseCode.PasswordAlreadyExist) {
+      this.serverErrorMessage = this.translateService.instant("user-account.reset-password.errors.PasswordAlreadyExist");
       this.passwordAlreadyExist = true;
       return;
     }
     else if (response.ResponseCode == ResponseCode.InValidPassword) {
+      this.serverErrorMessage = this.translateService.instant("user-account.reset-password.errors.InvalidOldPassword");
       this.InvalidOldPassword = true;
       return;
     }
