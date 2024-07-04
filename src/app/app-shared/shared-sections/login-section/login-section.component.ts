@@ -10,9 +10,9 @@ import { SecurityService } from '../../services/security.service';
 import { ShowMessageServiceService } from '../../services/showing-message.service';
 import { SharedConfiguration } from '../../services/config.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { CreateAccountComponent } from '../../shared-components/create-account-section/create-account.component';
-import { ForgetPasswordComponent } from '../../shared-components/forget-password/forget-password.component';
 import { RouterLink } from '@angular/router';
+import { CreateAccountComponent } from '../../../app-pages/app.user/create-account-section/create-account.component';
+import { ForgetPasswordComponent } from '../../../app-pages/app.user/forget-password/forget-password.component';
 
 @Component({
   selector: 'app-login-section',

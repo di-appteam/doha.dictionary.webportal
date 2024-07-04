@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../user-account.service';
-import { ResetPasswordModel, CustomResponse, ResponseCode } from '../user-account.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidation } from '../password-validation';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { ShowMessageServiceService } from '../../shared/showing-message/showing-message.service';
-import { ShowingMessageComponent } from '../../shared/showing-message/showing-message.component';
+import { CustomResponse, ResetPasswordModel, ResponseCode } from '../../../app-models/user-account.model';
+import { AccountService } from '../../../app-shared/services/account.service';
+import { ShowMessageServiceService } from '../../../app-shared/services/showing-message.service';
+import { ShowingMessageComponent } from '../../../app-shared/shared-sections/showing-message/showing-message.component';
+import { PasswordValidation } from '../../../app-shared/validation/password-validation';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reset-account-password',
+  standalone: true,
+  imports: [CommonModule,TranslateModule,ReactiveFormsModule,FormsModule
+    ,RouterModule],
   templateUrl: './reset-account-password.component.html',
   styleUrls: ['./reset-account-password.component.scss']
 })
 export class ResetAccountPasswordComponent implements OnInit {
 
-    private sub: Subscription;
+    private sub!: Subscription;
     public requestActivated: boolean = false;
-    public activateAccount : ResetPasswordModel ;
-    resetPasswordForm: FormGroup;
+    public activateAccount! : ResetPasswordModel ;
+    resetPasswordForm!: FormGroup;
     loading = false;
     submitted = false;
     passwordAlreadyExist : boolean = false;
@@ -30,7 +35,7 @@ export class ResetAccountPasswordComponent implements OnInit {
 
     ngOnInit() {
       this.sub = this._route.params.subscribe(
-        params => {
+        (params : any) => {
           if (params.email && params.code && this.requestActivated == false) {
             this.requestActivated = true;
             this.activateAccount = new ResetPasswordModel(params.email, params.code);
@@ -49,7 +54,7 @@ export class ResetAccountPasswordComponent implements OnInit {
     get f() { return this.resetPasswordForm.controls; }
 
 
-    onSubmit(resetPassword: ResetPasswordModel): void {
+    onSubmit(): void {
       this.submitted = true;
       // stop here if form is invalid
       if (this.resetPasswordForm.invalid) {
@@ -73,7 +78,7 @@ export class ResetAccountPasswordComponent implements OnInit {
        }
       if (response.ResponseCode != ResponseCode.Ok)
        {
-        this._showMessageServiceService.ShowErrorMessage(response.ResponseCode, null);
+        this._showMessageServiceService.ShowErrorMessage(response.ResponseCode);
         return;
        }
       const initialState = {

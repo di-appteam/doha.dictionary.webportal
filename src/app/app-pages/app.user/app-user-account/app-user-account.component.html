@@ -1,1 +1,75 @@
-<p>app-user-account works!</p>
+<div id="page-content">
+
+  <!-- PROFILE( EDIT MODE ) WITH ACTIVATION MESSAGE -->
+  <div class="user-settings-container" *ngIf="isEditMode">
+    <div class="logo-watermark">
+      <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+    </div>
+
+
+    <div class="user-settings-section">
+
+      <!-- ACTIVATION MESSAGE -->
+      <activate-account *ngIf="activatedAccount"></activate-account>
+
+     <app-edit-profile (ChangeEditMode)="ChangeEditMode()"></app-edit-profile>
+
+    </div>
+
+  </div>
+
+  <!-- PROFILE VIEW -->
+  <div *ngIf="!isEditMode">
+    <div class="profile-section">
+      <div class="logo-watermark">
+        <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+      </div>
+      <div class="container">
+
+        <div class="profile-container">
+
+          <div class="user-image image-ratio">
+            <div class="ratio-content">
+                <img *ngIf="!_sharedConfiguration.userInfo?.ImagePath" src="/assets/images/should-remove/user-img.jpg" alt="{{_sharedConfiguration.userInfo?.Email}}">
+                <img *ngIf="_sharedConfiguration.userInfo?.ImagePath" src="{{_sharedConfiguration.userInfo?.ImagePath}}" alt="{{_sharedConfiguration.userInfo?.Email}}">
+            </div>
+          </div>
+
+          <p class="user-email">
+            {{_sharedConfiguration.userInfo?.Email}}
+          </p>
+
+          <div class="user-actions">
+
+            <a class="action-btn"  (click)="ChangeEditMode()" >
+              <span class="icon d-icon-edit"></span>
+              <span class="text">تعديل</span>
+            </a>
+
+            <a class="action-btn" (click)="logOut()" >
+              <span class="icon d-icon-logout"></span>
+              <span class="text">{{'shared.usersection.signout' | translate}}</span>
+            </a>
+
+          </div>
+
+
+          <div class="user-settings-links">
+
+            <a [routerLink]="['/changepassword']" class="link-btn" *ngIf="_sharedConfiguration.userInfo?.UserType == 1">
+              تغيير كلمة المرور
+            </a>
+
+            <a [routerLink]="['/bookmarks']" class="link-btn">
+              قائمة المحفوظات
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

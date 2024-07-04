@@ -1,25 +1,29 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ChangePasswordModel, CustomResponse, ResponseCode } from '../user-account.model';
-import { PasswordValidation } from '../password-validation';
-import { Router } from '@angular/router';
-import { ShowingMessageComponent } from '../../shared/showing-message/showing-message.component';
-import { AccountService } from '../user-account.service';
+import { Router, RouterModule } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ShowMessageServiceService } from '../../shared/showing-message/showing-message.service';
-import { SharedConfiguration } from '../../core/shared/sharedConfiguration';
-import { BaseComponent } from '../../core/shared/security/base.component';
-import { Meta } from '../../../../node_modules/@angular/platform-browser';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
+import { ChangePasswordModel, CustomResponse, ResponseCode } from '../../../app-models/user-account.model';
+import { BaseComponent } from '../../../app-shared/security/base.component';
+import { AccountService } from '../../../app-shared/services/account.service';
+import { SharedConfiguration } from '../../../app-shared/services/config.service';
+import { ShowMessageServiceService } from '../../../app-shared/services/showing-message.service';
+import { PasswordValidation } from '../../../app-shared/validation/password-validation';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-change-password',
+  standalone: true,
+  imports: [CommonModule,TranslateModule,ReactiveFormsModule,FormsModule
+    ,RouterModule],
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent extends BaseComponent implements OnInit, AfterViewInit {
 
-  public changePassword: ChangePasswordModel;
-  public changePasswordForm: FormGroup;
+  public changePassword!: ChangePasswordModel;
+  public changePasswordForm!: FormGroup;
   loading = false;
   submitted = false;
   passwordAlreadyExist: boolean = false;
@@ -27,8 +31,8 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit, Af
 
   constructor(
     private meta : Meta,private _showMessageServiceService: ShowMessageServiceService, private _accountService: AccountService
-    , private formBuilder: FormBuilder, public _router: Router,
-    public _config: SharedConfiguration) {
+    , private formBuilder: FormBuilder, public override _router: Router,
+    public override _config: SharedConfiguration) {
     super(_router,_config);
     this.meta.updateTag({name: 'title',content: 'معجم الدوحة التاريخي للغة العربية'},"name='title'");
     this.meta.updateTag({name: 'og:title',content: 'معجم الدوحة التاريخي للغة العربية'},"name='og:title'");
@@ -86,7 +90,7 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit, Af
       return;
     }
     else if (response.ResponseCode != ResponseCode.Ok) {
-      this._showMessageServiceService.ShowErrorMessage(response.ResponseCode, null);
+      this._showMessageServiceService.ShowErrorMessage(response.ResponseCode);
       return;
     }
     this.onCancel();

@@ -1,19 +1,24 @@
 import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router } from '../../../../../node_modules/@angular/router';
-import { SharedConfiguration } from '../../../core/shared/sharedConfiguration';
-import { AccountService } from '../../user-account.service';
-import { ShowMessageServiceService } from '../../../shared/showing-message/showing-message.service';
-import { Validators, FormGroup, FormBuilder } from '../../../../../node_modules/@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '../../../../../node_modules/@angular/router';
+import { Validators, FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '../../../../../node_modules/@angular/forms';
 import { first } from 'rxjs/operators';
-import { CustomResponse, ResponseCode, ProfileInfo } from '../../user-account.model';
+import { NgIf, NgFor, NgClass } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { ProfileInfo, CustomResponse, ResponseCode } from '../../../app-models/user-account.model';
+import { AccountService } from '../../../app-shared/services/account.service';
+import { SharedConfiguration } from '../../../app-shared/services/config.service';
+import { ShowMessageServiceService } from '../../../app-shared/services/showing-message.service';
+import { ActivateAccountComponent } from '../activate-account/activate-account.component';
 
 @Component({
   selector: 'app-edit-profile',
+  standalone: true,
+  imports: [NgIf,NgFor,NgClass,RouterLink,TranslateModule,ReactiveFormsModule,FormsModule,ActivateAccountComponent],
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit, AfterViewInit {
-  editProfileForm: FormGroup;
+  editProfileForm!: FormGroup;
   loading = false;
   submitted = false;
   @Output() ChangeEditMode = new EventEmitter();
@@ -70,13 +75,13 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
       //ToDo: Handle exception case
       return;
     }
-    this._sharedConfiguration.userInfo.Name = this.editProfileForm.value.Name;
+    this._sharedConfiguration.userInfo!.Name = this.editProfileForm.value.Name;
     this.onCancel();
   }
 
 
   onCancel() {
-    this.ChangeEditMode.next();
+    this.ChangeEditMode.next('');
   }
 
 }

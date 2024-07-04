@@ -57,7 +57,7 @@ export class ResetPasswordModel {
     newpassword: string;
     confirmpassword: string;
 }
-export interface ActivateAccountModel extends ResetPasswordModel {
+export class ActivateAccountModel extends ResetPasswordModel {
 }
 
 export interface BookmarkCount {

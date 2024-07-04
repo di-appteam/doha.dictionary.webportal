@@ -5,16 +5,16 @@ import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { first } from "rxjs";
-import { ResponseCode } from "../../models/security";
-import { HttpService } from "../../security/requests/http.service";
-import { ServiceUrlManager } from "../../security/requests/serviceUrl.Manager";
-import { AccountService } from "../../services/account.service";
-import { CacheService } from "../../services/cache.service";
-import { SharedConfiguration } from "../../services/config.service";
-import { SharedService } from "../../services/shared.service";
-import { ShowMessageServiceService } from "../../services/showing-message.service";
-import { StoreService } from "../../services/store.service";
-import { ShowingMessageComponent } from "../../shared-sections/showing-message/showing-message.component";
+import { ResponseCode } from "../../../app-models/user-account.model";
+import { HttpService } from "../../../app-shared/security/requests/http.service";
+import { ServiceUrlManager } from "../../../app-shared/security/requests/serviceUrl.Manager";
+import { AccountService } from "../../../app-shared/services/account.service";
+import { CacheService } from "../../../app-shared/services/cache.service";
+import { SharedConfiguration } from "../../../app-shared/services/config.service";
+import { SharedService } from "../../../app-shared/services/shared.service";
+import { ShowMessageServiceService } from "../../../app-shared/services/showing-message.service";
+import { StoreService } from "../../../app-shared/services/store.service";
+import { ShowingMessageComponent } from "../../../app-shared/shared-sections/showing-message/showing-message.component";
 
 
 @Component({

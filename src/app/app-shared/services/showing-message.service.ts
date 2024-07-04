@@ -24,7 +24,7 @@ export class ShowMessageServiceService {
       bsModalRef.hide();
   }
 
-  ShowErrorMessageWithOptions(initialState: any, bsModalRef: BsModalRef): void {
+  ShowErrorMessageWithOptions(initialState: any, bsModalRef?: BsModalRef): void {
     this.openModalWithComponent(ShowingMessageComponent, initialState);
     if (bsModalRef)
       bsModalRef.hide();

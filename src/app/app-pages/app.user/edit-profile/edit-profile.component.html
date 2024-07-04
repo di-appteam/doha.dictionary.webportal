@@ -2,17 +2,17 @@
   <div class="text-center">
     <div class="user-image image-ratio">
       <div class="ratio-content">
-        <img *ngIf="!_sharedConfiguration.userInfo.ImagePath" src="/assets/images/should-remove/user-img.jpg" alt="{{_sharedConfiguration.userInfo.Email}}">
-        <img *ngIf="_sharedConfiguration.userInfo.ImagePath" src="{{_sharedConfiguration.userInfo.ImagePath}}" alt="{{_sharedConfiguration.userInfo.Email}}">
+        <img *ngIf="!_sharedConfiguration.userInfo?.ImagePath" src="/assets/images/should-remove/user-img.jpg" alt="{{_sharedConfiguration.userInfo?.Email}}">
+        <img *ngIf="_sharedConfiguration.userInfo?.ImagePath" src="{{_sharedConfiguration.userInfo?.ImagePath}}" alt="{{_sharedConfiguration.userInfo?.Email}}">
       </div>
     </div>
   </div>
 
       <div class="form-group">
         <input type="text" placeholder="{{'shared.usersection.edit-profile.name' | translate}}" formControlName="Name" class="form-input has-padding"
-          [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" maxlength="299" autocomplete="off" />
-        <div *ngIf="submitted && f.Name.errors" class="error-msg invalid-feedback">
-          <div *ngIf="f.Name.errors.required">{{'shared.usersection.edit-profile.name-required' | translate}}</div>
+          [ngClass]="{ 'is-invalid': submitted && f['Name'].errors }" maxlength="299" autocomplete="off" />
+        <div *ngIf="submitted && f['Name'].errors" class="error-msg invalid-feedback">
+          <div *ngIf="f['Name'].errors['required']">{{'shared.usersection.edit-profile.name-required' | translate}}</div>
         </div>
       </div>
   <div class="row">
@@ -20,16 +20,16 @@
     <div class="col-sm-6 col-xs-12">
       <div class="form-group">
         <input type="text" placeholder="{{'shared.usersection.edit-profile.organization' | translate}}" formControlName="Organization"
-          class="form-input has-padding" maxlength="299"  [ngClass]="{ 'is-invalid': submitted && f.Organization.errors }" autocomplete="off"
+          class="form-input has-padding" maxlength="299"  [ngClass]="{ 'is-invalid': submitted && f['Organization'].errors }" autocomplete="off"
         />
-        <div *ngIf="submitted && f.Organization.errors" class="error-msg invalid-feedback">
-          <div *ngIf="f.Organization.errors.required">{{'shared.usersection.edit-profile.organization-required' | translate}}</div>
+        <div *ngIf="submitted && f['Organization'].errors" class="error-msg invalid-feedback">
+          <div *ngIf="f['Organization'].errors['required']">{{'shared.usersection.edit-profile.organization-required' | translate}}</div>
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-xs-12">
       <div class="form-group">
-        <input type="text" placeholder="البريد الإلكتروني" class="form-input has-padding" value="{{_sharedConfiguration.userInfo.Email}}"
+        <input type="text" placeholder="البريد الإلكتروني" class="form-input has-padding" value="{{_sharedConfiguration.userInfo?.Email}}"
           disabled/>
       </div>
     </div>

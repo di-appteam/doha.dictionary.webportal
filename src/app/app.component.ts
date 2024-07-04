@@ -20,6 +20,7 @@ import { SharedRootComponentValues } from './app-shared/services/root.general.se
 import { ScrollService } from './app-shared/services/scroll.service';
 import { SecurityService } from './app-shared/services/security.service';
 import { SharedService } from './app-shared/services/shared.service';
+import { ShowMessageServiceService } from './app-shared/services/showing-message.service';
 import { StoreService } from './app-shared/services/store.service';
 import { TranslationService } from './app-shared/services/translation.service';
 import { AppFooterComponent } from './app-shared/shared-components/app-footer/app-footer.component';
@@ -32,7 +33,7 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
     SecurityService, ScrollService, PagerService, ClipboardService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
-    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard
+    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
