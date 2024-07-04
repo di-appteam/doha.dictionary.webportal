@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '../../../../../node_modules/@angular/router';
 import { Validators, FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '../../../../../node_modules/@angular/forms';
 import { first } from 'rxjs/operators';
@@ -17,14 +17,14 @@ import { ActivateAccountComponent } from '../activate-account/activate-account.c
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent implements OnInit, AfterViewInit {
+export class EditProfileComponent implements OnInit {
   editProfileForm!: FormGroup;
   loading = false;
   submitted = false;
   @Output() ChangeEditMode = new EventEmitter();
 
-  constructor(private _route: ActivatedRoute,
-    private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,private cdr: ChangeDetectorRef,
     public _sharedConfiguration: SharedConfiguration, private _router: Router, private _accountService: AccountService,
     private showMessageServiceService: ShowMessageServiceService) { }
 
@@ -42,11 +42,8 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
       Job: [res.job],
       EduDegree: [res.edudegree]
     });
+    this.cdr.detectChanges();
   }
-
-  ngAfterViewInit(): void {
-  }
-
 
   // convenience getter for easy access to form fields
   get f() { return this.editProfileForm.controls; }

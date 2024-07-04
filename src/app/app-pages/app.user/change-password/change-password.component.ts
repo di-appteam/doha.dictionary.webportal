@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class ChangePasswordComponent extends BaseComponent implements OnInit {
 
   public changePassword!: ChangePasswordModel;
   public changePasswordForm!: FormGroup;
@@ -47,10 +47,8 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit, Af
   }
 
   ngOnInit() {
-  }
-  ngAfterViewInit(): void {
     this.changePasswordForm = this.formBuilder.group({
-      oldpassword: ['', [Validators.required, Validators.minLength(8), PasswordValidation.Strong]],
+      oldpassword: ['', [Validators.required]],
       newpassword: ['', [Validators.required, Validators.minLength(8), PasswordValidation.Strong]],
       confirmpassword: ['', [Validators.required, Validators.minLength(8)]]
     }, {

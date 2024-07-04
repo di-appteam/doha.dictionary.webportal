@@ -1,5 +1,5 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -22,7 +22,7 @@ export class AppUserAccountComponent extends BaseComponent implements OnInit {
   public activatedAccount: boolean = false;
   public isEditMode:boolean = false;
 
-  constructor(private meta : Meta,private _route: ActivatedRoute,
+  constructor(private meta : Meta,private _route: ActivatedRoute,private cdr: ChangeDetectorRef,
     public _sharedConfiguration: SharedConfiguration, private _securityService : SecurityService,
     private showMessageServiceService: ShowMessageServiceService, public override _router: Router,
     public override _config: SharedConfiguration) {
@@ -55,6 +55,7 @@ export class AppUserAccountComponent extends BaseComponent implements OnInit {
 
   ChangeEditMode(): void {
     this.isEditMode =!this.isEditMode;
+    this.cdr.detectChanges();
   }
 
 }

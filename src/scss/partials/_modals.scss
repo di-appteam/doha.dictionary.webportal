@@ -10,8 +10,11 @@
   .modal-sm{
     width: 340px;
   }
+  .modal-content{
+    min-height: 300px;
+  }
   &.v-center{
- 
+
     text-align: center;
     padding: 0!important;
     &:before {

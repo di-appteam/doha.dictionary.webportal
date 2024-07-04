@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { AccountData } from '../../models/account';
 import {TranslateModule} from '@ngx-translate/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { AccountService } from '../../services/account.service';
 import { CustomResponse, ResponseCode } from '../../models/security';
 import { SecurityService } from '../../services/security.service';
@@ -11,8 +10,8 @@ import { ShowMessageServiceService } from '../../services/showing-message.servic
 import { SharedConfiguration } from '../../services/config.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RouterLink } from '@angular/router';
-import { CreateAccountComponent } from '../../../app-pages/app.user/create-account-section/create-account.component';
 import { ForgetPasswordComponent } from '../../../app-pages/app.user/forget-password/forget-password.component';
+import { CreateAccountComponent } from '../../../app-pages/app.user/create-account/create-account.component';
 
 @Component({
   selector: 'app-login-section',

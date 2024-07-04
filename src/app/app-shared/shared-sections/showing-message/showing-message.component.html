@@ -1,7 +1,9 @@
+
+
 <div class="modal-header">
+  <div class="sent-email-icon icon d-icon-sent-email"></div>
 </div>
 <div class="modal-body">
-    <div class="sent-email-icon icon d-icon-sent-email"></div>
     <p class="paragraph" *ngIf="isReady">
         <span class="bold" *ngIf="(ErrorCode == responseCode.NotInternalUser)"> {{'generalmessage.forget-password.errors.NotInternalUser' | translate}}</span>
         <span class="bold" *ngIf="(ErrorCode == responseCode.PendingActivationAccount)"> {{'generalmessage.forget-password.errors.PendingActivationAccount' | translate}}</span>
