@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { EMPTY, map, Observable } from "rxjs";
+import { UserInfo } from "../../app-models/user-account.model";
 import { ServicesIDs } from "../collection/serviceurl.enum";
-import { UserInfo } from "../models/account";
-import { CustomResponse, TokenInfo } from "../models/security";
+import { CustomResponse, TokenInfo } from "../../app-models/security.model";
 import { HttpService } from "../security/requests/http.service";
 import { ServiceUrlManager } from "../security/requests/serviceUrl.Manager";
 import { CacheService } from "./cache.service";

@@ -1,0 +1,53 @@
+.upload-section {
+  margin: 1rem 0;
+
+  .upload-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .upload-input {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .file-info {
+    margin-top: 0.5rem;
+    color: green;
+    font-size: 0.9rem;
+  }
+}
+
+mat-form-field.full-width {
+  margin-left: 1rem;
+}
+
+.description-field {
+  margin-bottom: 1rem;
+  width: 100%;
+
+  textarea {
+    width: 100%;
+    resize: vertical; /* Allow manual resizing */
+  }
+}
+
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.dialog-custom-container{
+  padding: 30px 20px 30px 20px;
+}
+

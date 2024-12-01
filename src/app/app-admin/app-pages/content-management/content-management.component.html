@@ -1,0 +1,41 @@
+<app-admin-container title="إدارة المحتوى">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>اختر التصنيف</mat-label>
+    <mat-select [(value)]="selectedCategory" (selectionChange)="loadContent()">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <!-- Editor Section -->
+   <!-- Content Editor -->
+  <form [formGroup]="contentForm">
+    <quill-editor  style="direction:ltr; max-width: 90%;"
+      formControlName="content"
+      [styles]="{ height: '400px', backgroundColor: '#fff' }"
+    ></quill-editor>
+  </form>
+    <!-- Save Button -->
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="saveContent()">
+        حفظ المحتوى
+      </button>
+    </div>
+    <!-- Preview Container -->
+    <div class="preview-wrapper">
+      <h3>Web Preview</h3>
+      <div class="preview-container web-preview">
+        <div class="ql-content">
+          <div [innerHTML]="sanitizedContent"></div>
+        </div>
+      </div>
+
+      <h3>Mobile Preview</h3>
+      <div class="preview-container mobile-preview">
+        <div class="ql-content">
+          <div [innerHTML]="sanitizedContent"></div>
+        </div>
+      </div>
+    </div>
+</app-admin-container>

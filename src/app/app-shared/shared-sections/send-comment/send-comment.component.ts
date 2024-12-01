@@ -5,16 +5,22 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { EMPTY } from 'rxjs';
 import { ISummaryLexicalSheet } from '../../../app-models/dictionary.model';
-import { usercomment } from '../../models/account';
+import { usercomment } from '../../../app-models/user-account.model';
+import { HttpService } from '../../security/requests/http.service';
+import { ServiceUrlManager } from '../../security/requests/serviceUrl.Manager';
 import { AccountService } from '../../services/account.service';
+import { CacheService } from '../../services/cache.service';
 import { SharedConfiguration } from '../../services/config.service';
+import { SharedService } from '../../services/shared.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-send-comment',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './send-comment.component.html',
-  styleUrls: ['./send-comment.component.scss']
+  styleUrls: ['./send-comment.component.scss'],
+  providers:[SharedConfiguration,AccountService,SharedService,HttpService,StoreService,ServiceUrlManager,CacheService]
 })
 export class SendCommentComponent implements OnInit {
   sendCommentForm!: FormGroup;
@@ -51,14 +57,16 @@ export class SendCommentComponent implements OnInit {
     }
 
     this.loading = true;
-    const userComment = new usercomment();
-    userComment.commenttypeid = this._config.bookmarkType.lemma;
-    userComment.commentitemid = this.lexical.ID;
-    userComment.lemmaTagValue = this.lexical.lemmaTagValue;
-    userComment.lemmaValue = this.lexical.lemmaValue;
-    userComment.message = this.sendCommentForm.value.message + "<br/>" + this.messageBody;
-    userComment.email = this.sendCommentForm.value.email;
-    userComment.errorincollect = this.sendCommentForm.value.errorincollect;
+    const userComment : usercomment  =  {
+    commenttypeid : this._config.bookmarkType.lemma,
+    commentitemid  :  this.lexical.ID,
+    lemmaTagValue  :  this.lexical.lemmaTagValue,
+    lemmaValue  :  this.lexical.lemmaValue,
+    message  :  this.sendCommentForm.value.message + "<br/>" + this.messageBody,
+    email  :  this.sendCommentForm.value.email,
+    errorincollect  :  this.sendCommentForm.value.errorincollect,
+    userid:0
+    };
 
     this.userService.SendComment(userComment).subscribe(
       () => {

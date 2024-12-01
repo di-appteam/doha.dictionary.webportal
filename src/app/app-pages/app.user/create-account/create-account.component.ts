@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { first } from "rxjs";
-import { ResponseCode } from "../../../app-shared/models/security";
+import { ResponseCode } from "../../../app-shared/../app-models/security.model";
 import { HttpService } from "../../../app-shared/security/requests/http.service";
 import { ServiceUrlManager } from "../../../app-shared/security/requests/serviceUrl.Manager";
 import { AccountService } from "../../../app-shared/services/account.service";

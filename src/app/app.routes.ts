@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { AdminRoutes } from "./app-admin/app-pages/app.admin-routing";
 import { ContactUSRoutes } from "./app-pages/app.contact-us/app.contact-us-routing.module";
 import { ContentsRoutes } from "./app-pages/app.contents/app.contents-routing";
 import { ErrorRoutes } from "./app-pages/app.error/shared-routing.module";
@@ -19,6 +20,6 @@ import { UserRoutes } from "./app-pages/app.user/app.user-routing.module";
   pathMatch: 'full',
 }];
 
-export const combinedRoutes: Routes = [ ...HomeRoutes,...BookmarksRoutes,...ErrorRoutes, ...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
+export const combinedRoutes: Routes = [ ...HomeRoutes,...AdminRoutes,...BookmarksRoutes,...ErrorRoutes, ...ContentsRoutes,...BibliographyRoutes,...ChartsRoutes,...ContactUSRoutes,...CorpusRoutes,...DictionaryRoutes,...UserRoutes];
 
 

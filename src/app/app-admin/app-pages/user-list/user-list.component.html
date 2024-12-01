@@ -1,0 +1,69 @@
+<app-admin-container title="قائمة المستخدمين">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>بحث</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="بحث عن المستخدمين" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> البريد الإلكتروني </th>
+      <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> الحالة </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-icon [ngClass]="getStatusIconClass(user.statusid)" matTooltip="{{ getStatusText(user.statusid) }}">
+          {{ getStatusIcon(user.statusid) }}
+        </mat-icon>
+        <span>{{ getStatusText(user.statusid) }}</span>
+      </td>
+    </ng-container>
+
+    <!-- Unlock User Column -->
+    <ng-container matColumnDef="unlock">
+      <th mat-header-cell *matHeaderCellDef> تفعيل الحساب </th>
+      <td mat-cell *matCellDef="let user">
+          <!-- Display unlock icon only if user is not active or locked -->
+    <button
+    *ngIf="user.statusid === 4 || user.statusid === 5 || user.statusid === 1"
+    mat-icon-button
+    color="primary"
+    (click)="confirmUnlock(user)"
+    matTooltip="تفعيل الحساب"
+  >
+    <mat-icon>lock_open</mat-icon>
+  </button>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> الإجراءات </th>
+      <td mat-cell *matCellDef="let user">
+        <!-- Edit Icon -->
+        <button mat-icon-button color="primary" (click)="confirmEdit(user)" matTooltip="تعديل">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Delete Icon -->
+        <button mat-icon-button color="warn" (click)="confirmDelete(user.id)" matTooltip="حذف">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="[ 'email', 'status', 'unlock', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['email', 'status', 'unlock', 'actions']"></tr>
+  </table>
+  <mat-paginator
+  [length]="totalRecords"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[10, 20, 50, 100]"
+  (page)="onPageChange($event)"
+></mat-paginator>
+</app-admin-container>

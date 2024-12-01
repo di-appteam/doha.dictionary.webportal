@@ -2,7 +2,7 @@
 import {timer as observableTimer,  Observable, Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CacheService } from '../services/cache.service';
-import { TokenInfo } from '../models/security';
+import { TokenInfo } from '../../app-models/security.model';
 
 @Injectable()
 export class IdleTimeoutService {

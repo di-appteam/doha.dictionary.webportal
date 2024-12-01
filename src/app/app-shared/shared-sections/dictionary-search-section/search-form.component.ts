@@ -1,6 +1,6 @@
 
 import { of, Subscription, Observable, Observer, EMPTY, noop } from 'rxjs';
-import { Component, AfterViewInit, OnInit, Input, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Input, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -25,10 +25,22 @@ import { map, switchMap, tap } from 'rxjs/operators';
 @Component({
   selector: 'search-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TypeaheadModule, FormsModule, MatAutocompleteModule, TranslateModule, RouterLink, NgSelectModule, MatFormFieldModule,
+  imports: [CommonModule,
+    ReactiveFormsModule,
+    TypeaheadModule,
+    FormsModule,
+    MatAutocompleteModule,
+    TranslateModule,
+    RouterLink,
+    NgSelectModule, // This ensures ng-select is recognized
+    MatFormFieldModule,
     MatInputModule],
   templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss']
+  styleUrls: ['./search-form.component.scss'],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();

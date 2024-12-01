@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { summarycorpusmodel } from '../../app-models/corpus.model';
 import { ISummaryLexicalSheet } from '../../app-models/dictionary.model';
-import { UserInfo, userbookmarks } from '../models/account';
+import { userbookmarks, UserInfo } from '../../app-models/user-account.model';
 enum NewFormLexicalSheetType {
   Crowds = 0,
   Language = 1,

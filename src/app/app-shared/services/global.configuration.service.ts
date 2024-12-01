@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { UserInfo } from '../models/account';
+import { UserInfo } from '../../app-models/user-account.model';
 
 enum NewFormLexicalSheetType {
   Crowds = 0,

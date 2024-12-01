@@ -1,0 +1,72 @@
+.admin-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 1200px;
+  width: 100%;
+  .menu {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: #495057;
+
+    li {
+      margin: 0;
+
+      a {
+        display: block;
+        padding: 10px 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+
+        &:hover,
+        &.active {
+          background-color: #8e8f91;
+        }
+      }
+    }
+  }
+
+
+  .admin-header {
+    background: #ffffff;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+
+    .page-title {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+  }
+
+  .admin-content {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.admin-header {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #333333;
+}
+
+.admin-content {
+  padding: 16px;
+}

@@ -1,26 +1,30 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { AccountData } from '../../models/account';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import {TranslateModule} from '@ngx-translate/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../../services/account.service';
-import { CustomResponse, ResponseCode } from '../../models/security';
+import { CustomResponse, ResponseCode } from '../../../app-models/security.model';
 import { SecurityService } from '../../services/security.service';
 import { ShowMessageServiceService } from '../../services/showing-message.service';
 import { SharedConfiguration } from '../../services/config.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from '../../../app-pages/app.user/forget-password/forget-password.component';
 import { CreateAccountComponent } from '../../../app-pages/app.user/create-account/create-account.component';
+import { AccountData } from '../../../app-models/user-account.model';
 
 @Component({
   selector: 'app-login-section',
   standalone: true,
-  imports: [CommonModule,FormsModule,TranslateModule ,
+  imports: [CommonModule,FormsModule,TranslateModule ,RouterModule,
     ReactiveFormsModule,RouterLink],
   templateUrl: './login-section.component.html',
   styleUrl: './login-section.component.scss',
-  providers:[ShowMessageServiceService]
+  providers:[ShowMessageServiceService],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class LoginSectionComponent implements OnInit {
   accountData: AccountData = {email : '',password:''};

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaModule } from 'ng-recaptcha-2';
 import { CustomResponse, ResponseCode } from '../../../../../app-models/user-account.model';
 import { AccountService } from '../../../../../app-shared/services/account.service';
 import { SharedConfiguration, NoWhitespaceValidator } from '../../../../../app-shared/services/config.service';

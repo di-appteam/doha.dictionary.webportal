@@ -1,0 +1,28 @@
+<app-admin-container title="قائمة المشاركين">
+  <!-- Group Selector -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>اختر المجموعة</mat-label>
+    <mat-select [(value)]="selectedGroupId" (selectionChange)="onGroupChange($event.value)">
+      <!-- Display groups dynamically -->
+      <mat-option *ngFor="let group of filteredGroups" [value]="group.groupid">
+        {{ group.groupname }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Drag-and-Drop Participant List -->
+  <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="participant-list">
+    <div *ngFor="let participant of participants" cdkDrag class="participant-item">
+      <img [src]="participant.imgsrc" alt="Participant Photo" class="participant-img" />
+      <div class="participant-details">
+        <h3>{{ participant.titlevalue }}</h3>
+        <p>{{ participant.subtitlevalue }}</p>
+        <div class="actions">
+          <button mat-icon-button color="primary" matTooltip="تعديل" (click)="editParticipant(participant)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-admin-container>

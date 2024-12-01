@@ -1,0 +1,20 @@
+<app-admin-container title="إدارة محتوى المعجم">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>اختر محتوى المعجم</mat-label>
+    <mat-select [(value)]="selectedCategory" (selectionChange)="loadContent()">
+      <mat-option *ngFor="let category of categories" [value]="category.key">
+        {{ category.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Dynamic Component Loading -->
+  <div class="dynamic-container">
+    <ng-container *ngIf="selectedCategory === 'Root'">
+      <app-root-management></app-root-management>
+    </ng-container>
+    <ng-container *ngIf="selectedCategory === 'Lexical Sheet'">
+      <app-lexical-management></app-lexical-management>
+    </ng-container>
+  </div>
+</app-admin-container>

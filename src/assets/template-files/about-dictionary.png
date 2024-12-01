@@ -1530,153 +1530,108 @@
 
             <div align=center>
 
-              <table dir=rtl border=1 cellspacing=0 cellpadding=0>
-                <tr>
-                  <td width=402 valign=top>
-                    <p align=center dir=RTL><b><span>(ء ج ر)</span></b></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td width=402 valign=top>
-                    <p dir=RTL><span dir=RTL></span><b><span><span
-                            dir=RTL></span>•الأَكَّادِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>ag&#257;rum</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;اسْتَأْجَرَ</span></p>
-                    <p dir=RTL><i><span dir=LTR>agrum</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;أَجِيرٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>agr&#363;tu</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;تَأْجِيرٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>igrum</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;أُجْرَةٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>agurrum</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;طُوبٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>ig&#257;r</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;حَائِطٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>&#275;kurru</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;مَعْبَدٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>egertu</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;لَوْحَةٌ مِسْمَارِيَّةٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الأُوغَارِيتِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;agrt</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;سَيِّدَةٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الفِينِيقِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;grt</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;وَحْدَةٌ مَالِيَّةٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•العِبْرِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><span>&#1488;&#1464;&#1490;&#1463;&#1512;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;&#257;&#7713;ar</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>جَمَعَ
-                        لِلْمُسْتَقْبَلِ، ادَّخَرَ</span></p>
-                    <p dir=RTL><span>&#1488;&#1460;&#1490;&#1462;&#1512;&#1462;&#1514;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;iggere&#7791;</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>رِسَالَةٌ
-                        رَسْمِيَّةٌ</span></p>
-                    <p dir=RTL>
-                      <span>&#1488;&#1458;&#1490;&#64331;&#1512;&#1464;&#1492;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;&#259;&#7713;&#333;r&#257;</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>عُمْلَةٌ
-                        مَعْدَنِيَّةٌ، دَفْعٌ (مَالِيٌّ )</span></p>
-                    <p dir=RTL><b><span>•الآرَامِيَّةُ
-                          البَابِلِيَّةُ/
-                          الفَلَسْطِينِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><span>&#1488;&#1490;&#1512;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;gr</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>اسْتَأْجَرَ</span></p>
-                    <p dir=RTL><span>&#1488;&#1463;&#1490;&#1456;&#1512;&#1464;&#1488;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;a&#7713;r&#257;</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>أُجْرَةٌ،
-                        أَجْرٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•السُّرْيَانِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><span>&#1808;&#1846;&#1811;&#1840;&#1834;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;e&#7713;ar</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>اسْتَأْجَرَ</span></p>
-                    <p dir=RTL><span>&#1808;&#1840;&#1811;&#1834;&#1843;&#1808;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;a&#7713;r&#257;</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>أُجْرَةٌ،
-                        أَجْرٌ</span></p>
-                    <p dir=RTL>
-                      <span>&#1808;&#1846;&#1811;&#1840;&#1834;&#1836;&#1843;&#1808;</span><span>&nbsp;</span><i><span
-                          dir=LTR>&#702;eggar&#7791;&#257;</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>رِسَالَةٌ،
-                        مَقَالَةٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•المَهْرِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;&aacute;g</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>&#601;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>r</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;أَجْرٌ) فِي الآخِرَةِ </span></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>&#601;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>g&#257;r</span></i><span
-                        dir=RTL></span><span><span dir=RTL></span>&nbsp;أُجْرَةٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>&#7717;&#257;-g&#333;r</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;<i>/&nbsp;</i></span><i><span
-                          dir=LTR>&#7717;&#257;-g&#299;r&#333;n</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>عَبْدٌ، زِنْجٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الجِبَّالِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;</span></i><i><span dir=LTR>&#596;</span></i><i><span
-                          dir=LTR>&#702;g</span></i><i><span dir=LTR>&#596;</span></i><i><span
-                          dir=LTR>&#769;r</span></i><span dir=RTL></span><span><span dir=RTL></span>&nbsp;عَبْدٌ،
-                        زِنْجٌ</span></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;</span></i><i><span dir=LTR>&#949;</span></i><i><span
-                          dir=LTR>&#769;g</span></i><i><span dir=LTR>&#949;</span></i><i><span
-                          dir=LTR>&#769;r</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;أُجْرَةٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الحَرْسُوسِيَّةُ&nbsp;</span></b><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#7717;ew</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;<i>-</i></span><i><span dir=LTR>g&#333;r/
-                          &#7717;&#257;-ger&#333;n</span></i><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>عَبْدٌ، زِنْجٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•السُّقَطْرِيَّةُ&nbsp;</span></b><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;eg&aacute;reh</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;أَجْرٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•السَّبَئِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;gr</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;عَبْدُ إِلَهٍ</span></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;grn</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;مُوَاطِنُو نَجْرَانَ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الجِعْزِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#702;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>&#601;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>gr</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><span dir=LTR></span><span dir=LTR><span
-                          dir=LTR></span>&#4773;&#4877;&#4653;</span><span dir=RTL></span><span><span dir=RTL></span>
-                        رِجْلٌ، قِيَاسٌ</span></p>
-                    <p dir=RTL>
-                      <b><span>•الأَمْهَرِيَّةُ</span></b><span>&nbsp;</span><b><span>&#8730;</span></b><span>&nbsp;</span><b><span
-                          dir=LTR>&#702;-g-r</span></b></p>
-                    <p dir=RTL><i><span dir=LTR>&#601;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>g</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>&#601;</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><i><span dir=LTR>r</span></i><span dir=RTL></span><span><span
-                          dir=RTL></span>&nbsp;</span><span dir=LTR></span><span dir=LTR><span
-                          dir=LTR></span>&#4773;&#4877;&#4653;</span><span dir=RTL></span><i><span><span
-                            dir=RTL></span>&nbsp;</span></i><span>رِجْلٌ، سَاقٌ</span></p>
+  <table style="border: 1px solid #000; border-collapse: collapse; width: 100%; text-align: center; direction: rtl;">
+    <thead>
+      <tr style="border: none;">
+        <th colspan="2" style="padding: 8px; background-color: #f9f9f9; border: none;">(ء ج ر)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Akkadian -->
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <strong>•الأَكَّادِيَّةُ</strong> √ <strong>ʾ-g-r</strong>
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>agārum</em> — اسْتَأْجَرَ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>agrum</em> — أَجِيرٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>agrūtu</em> — تَأْجِيرٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>igrum</em> — أُجْرَةٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>agurrum</em> — طُوبٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>igār</em> — حَائِطٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>ēkurru</em> — مَعْبَدٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>egertu</em> — لَوْحَةٌ مِسْمَارِيَّةٌ
+        </td>
+      </tr>
 
-                  </td>
-                </tr>
-              </table>
+      <!-- Ugaritic -->
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <strong>•الأُوغَارِيتِيَّةُ</strong> √ <strong>ʾ-g-r</strong>
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>ʾagrt</em> — سَيِّدَةٌ
+        </td>
+      </tr>
+
+      <!-- Phoenician -->
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <strong>•الفِينِيقِيَّةُ</strong> √ <strong>ʾ-g-r</strong>
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <em>ʾgrt</em> — وَحْدَةٌ مَالِيَّةٌ
+        </td>
+      </tr>
+
+      <!-- Hebrew -->
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          <strong>•العِبْرِيَّةُ</strong> √ <strong>ʾ-g-r</strong>
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          אָגַר <em>ʾāḡar</em> — جَمَعَ لِلْمُسْتَقْبَلِ، ادَّخَرَ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          אִגֶרֶת <em>ʾiggereṯ</em> — رِسَالَةٌ رَسْمِيَّةٌ
+        </td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 8px; border-left: 1px solid #000; border-right: 1px solid #000;">
+          אֲגוֹרָה <em>ʾăḡōrā</em> — عُمْلَةٌ مَعْدَنِيَّةٌ، دَفْعٌ (مَالِيٌّ)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 
             </div>
 

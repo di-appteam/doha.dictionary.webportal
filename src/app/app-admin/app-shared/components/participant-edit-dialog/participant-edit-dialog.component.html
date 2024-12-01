@@ -1,0 +1,72 @@
+<div class="dialog-custom-container">
+<h1 mat-dialog-title>تعديل المشارك</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <!-- Participant Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>اسم المشارك</mat-label>
+      <input matInput formControlName="titlevalue" />
+    </mat-form-field>
+
+    <!-- Participant Title -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>الصفة</mat-label>
+      <input matInput formControlName="subtitlevalue" />
+    </mat-form-field>
+
+    <!-- Participant Group -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>المجموعة</mat-label>
+      <mat-select formControlName="groupid">
+        <mat-option *ngFor="let group of groups" [value]="group.groupid">
+          {{ group.groupname }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Participant Description -->
+    <mat-form-field appearance="outline" class="description-field">
+      <mat-label>الوصف</mat-label>
+      <textarea
+        matInput
+        formControlName="paragraph"
+        rows="6"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="3"
+        cdkAutosizeMaxRows="6"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Upload Participant Photo -->
+    <div class="upload-section">
+      <label for="photoUpload" class="upload-label">تحميل الصورة</label>
+      <input
+        type="file"
+        id="photoUpload"
+        accept="image/*"
+        (change)="onPhotoUpload($event)"
+        class="upload-input"
+      />
+      <div *ngIf="uploadedPhotoName" class="file-info">الصورة: {{ uploadedPhotoName }}</div>
+    </div>
+
+    <!-- Upload Participant CV -->
+    <div class="upload-section">
+      <label for="cvUpload" class="upload-label">تحميل السيرة الذاتية</label>
+      <input
+        type="file"
+        id="cvUpload"
+        accept=".pdf,.doc,.docx"
+        (change)="onCVUpload($event)"
+        class="upload-input"
+      />
+      <div *ngIf="uploadedCVName" class="file-info">السيرة الذاتية: {{ uploadedCVName }}</div>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">إلغاء</button>
+  <button mat-button color="primary" (click)="onSave()">حفظ</button>
+</div>
+</div>

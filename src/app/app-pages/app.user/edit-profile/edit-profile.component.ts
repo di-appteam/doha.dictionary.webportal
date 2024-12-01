@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit {
       Organization: [res.organization, [Validators.required]],
       Mobile: [res.mobile],
       Job: [res.job],
-      EduDegree: [res.edudegree]
+      EduDegree: [res.EduDegree]
     });
     this.cdr.detectChanges();
   }

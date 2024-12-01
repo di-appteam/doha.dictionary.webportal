@@ -57,7 +57,6 @@ export class DictionaryBookmarksComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (!this.BType)
       return;
-
     this.resultPageSize = 10;
     this.pageNumber = 1;
     this.openActions = false;

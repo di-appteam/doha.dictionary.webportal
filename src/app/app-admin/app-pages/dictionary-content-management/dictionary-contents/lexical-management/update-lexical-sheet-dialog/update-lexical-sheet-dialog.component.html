@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>تحديث الورقة المعجمية</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>اللفظ</mat-label>
+      <input matInput formControlName="lemmaValue" />
+      <mat-error *ngIf="form.get('lemmaValue')?.invalid">الحقل مطلوب.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>اللفظ (غير معرب)</mat-label>
+      <input matInput formControlName="lemmaValueUV" />
+      <mat-error *ngIf="form.get('lemmaValueUV')?.invalid">الحقل مطلوب.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>المعنى</mat-label>
+      <textarea matInput rows="3" formControlName="meaning"></textarea>
+      <mat-error *ngIf="form.get('meaning')?.invalid">الحقل مطلوب.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>الاستشهاد</mat-label>
+      <textarea matInput rows="3" formControlName="citation"></textarea>
+      <mat-error *ngIf="form.get('citation')?.invalid">الحقل مطلوب.</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>إلغاء</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">حفظ</button>
+</div>

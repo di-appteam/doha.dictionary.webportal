@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>{{ data?.title ? 'تعديل العنصر' : 'إضافة عنصر' }}</h2>
+<mat-dialog-content dir="rtl">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>العنوان</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>الوصف</mat-label>
+      <quill-editor formControlName="description"></quill-editor>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>التاريخ</mat-label>
+      <input matInput formControlName="date" type="date" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>الصورة</mat-label>
+      <input matInput formControlName="image" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions dir="ltr">
+  <button mat-button mat-dialog-close>إلغاء</button>
+  <button mat-button [mat-dialog-close]="form.value" [disabled]="form.invalid">حفظ</button>
+</mat-dialog-actions>

@@ -3,10 +3,10 @@ import { Observable, map, catchError } from "rxjs";
 import { summarydocumentsResponse } from "../../app-models/bibliography.model";
 import { corpussearchResponse } from "../../app-models/corpus.model";
 import { ISearchByLemmaResultResponse } from "../../app-models/dictionary.model";
+import { AccountData, BookmarkCount, ProfileInfo, RegistrationData, userbookmarksResponse, usercomment } from "../../app-models/user-account.model";
 import { BookmarkParmModel } from "../../app-models/user-bookmarks.models";
 import { ServicesIDs } from "../collection/serviceurl.enum";
-import { ProfileInfo, AccountData, RegistrationData, BookmarkCount, userbookmarksResponse, userbookmarks, usercomment } from "../models/account";
-import { CustomResponse, LoginExternalModel, TokenInfo, ActivateAccountModel, ResetPasswordModel, ChangePasswordModel } from "../models/security";
+import { CustomResponse, LoginExternalModel, TokenInfo, ActivateAccountModel, ResetPasswordModel, ChangePasswordModel } from "../../app-models/security.model";
 
 import { HttpService } from "../security/requests/http.service";
 import { ServiceUrlManager } from "../security/requests/serviceUrl.Manager";

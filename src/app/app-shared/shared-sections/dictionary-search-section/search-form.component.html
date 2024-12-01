@@ -26,12 +26,21 @@
 
           <div class="dropdown-select" *ngIf="rootList">
 
-            <ng-select [items]="rootList" bindLabel="rootValue" bindValue="rootId" [(ngModel)]="selectedRootId"
-              placeholder="{{'dictionary.searchname' | translate}}" [ngModelOptions]="{standalone: true}"
-              [clearable]="true" [searchable]="true" [virtualScroll]="true" [searchFn]="customSearchFn"
-              clearAllText="{{'general.clearalltext' | translate}}"
-              notFoundText="{{'dictionary.nodatafound' | translate}}" (ngModelChange)="setSelectedRoot($event)">
-            </ng-select>
+            <ng-select
+            [items]="rootList"
+            bindLabel="rootValue"
+            bindValue="rootId"
+            [(ngModel)]="selectedRootId"
+            placeholder="{{ 'dictionary.searchname' | translate }}"
+            [ngModelOptions]="{ standalone: true }"
+            [clearable]="true"
+            [searchable]="true"
+            [virtualScroll]="true"
+            [searchFn]="customSearchFn"
+            clearAllText="{{ 'general.clearalltext' | translate }}"
+            notFoundText="{{ 'dictionary.nodatafound' | translate }}"
+            (ngModelChange)="setSelectedRoot($event)">
+          </ng-select>
 
 
           </div>

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { BsModalRef, ModalOptions } from "ngx-bootstrap/modal";
 import { MessageModel } from "../../../app-models/showing-message.model";
-import { ResponseCode } from "../../models/security";
+import { ResponseCode } from "../../../app-models/security.model";
 
 
 @Component({

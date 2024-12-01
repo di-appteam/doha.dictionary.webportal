@@ -47,9 +47,12 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "node_modules/ngx-sharebuttons/themes/material.scss",
+              "node_modules/quill/dist/quill.core.css",
+        "node_modules/quill/dist/quill.bubble.css",
+        "node_modules/quill/dist/quill.snow.css",
               "src/scss/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/quill/dist/quill.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

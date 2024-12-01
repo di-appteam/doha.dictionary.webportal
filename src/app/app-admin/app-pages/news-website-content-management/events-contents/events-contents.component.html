@@ -1,0 +1,26 @@
+<div dir="rtl">
+  <button mat-raised-button color="primary" (click)="openEditDialog()">إضافة جديد</button>
+  <mat-table [dataSource]="events" class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> العنوان </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.title }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> الوصف </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.description }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> التاريخ </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.date | date:'dd/MM/yyyy' }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> الإجراءات </mat-header-cell>
+      <mat-cell *matCellDef="let event">
+        <button mat-button (click)="openEditDialog(event)">تعديل</button>
+        <button mat-button color="warn" (click)="confirmDelete(event)">حذف</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

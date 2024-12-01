@@ -1,0 +1,42 @@
+.admin-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Space between form and table */
+}
+
+.form-container {
+  flex: 1; /* Form takes equal space */
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.table-container {
+  flex: 2; /* Table takes more space */
+}
+
+.full-width-table {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.mat-header-cell,
+.mat-cell {
+  text-align: center;
+}
+
+.child-label {
+  margin-right: 15px;
+  color: #555;
+  font-style: italic;
+}
+
+textarea[formControlName='style'] {
+  height: 100px;
+  resize: vertical;
+}

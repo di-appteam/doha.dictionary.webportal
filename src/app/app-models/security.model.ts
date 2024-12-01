@@ -1,5 +1,5 @@
 import { EMPTY } from "rxjs";
-import { UserInfo } from "./account";
+import { UserInfo } from "./user-account.model";
 
 export class TokenInfo extends UserInfo {
   value: string = "";

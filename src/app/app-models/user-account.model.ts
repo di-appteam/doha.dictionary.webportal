@@ -23,7 +23,7 @@ export interface ProfileInfo {
     organization: string;
     job: string;
     mobile: string;
-    edudegree : string;
+    EduDegree : string;
 }
 
 export interface TokenInfo extends UserInfo {
@@ -87,7 +87,7 @@ export class userbookmarks {
 
 
 export interface usercomment {
-    userid: number;
+    userid?: number;
     commenttypeid: number;
     commentitemid: number;
     errorincollect: Boolean;
@@ -107,6 +107,15 @@ export interface CustomResponse {
     token: TokenInfo;
 }
 
+export class UserInfo {
+  Email: string = "" ;
+  UserID: string= "" ;
+  UserType: number= 0;
+  ImagePath: string = "" ;
+  Permissions: string[] = [];
+  Pages: string[] = [];
+  Name: string = "";
+}
 
 export enum UserType {
     Internal = 1,

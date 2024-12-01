@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>تأكيد الإجراء</h1>
+<div mat-dialog-content>
+  <p>{{ data.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">إلغاء</button>
+  <button mat-button color="warn" (click)="onConfirm()">تأكيد</button>
+</div>

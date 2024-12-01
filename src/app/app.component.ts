@@ -3,6 +3,7 @@ import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, NO_ERRORS_S
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { RecaptchaSettings, RECAPTCHA_SETTINGS, RECAPTCHA_LANGUAGE } from 'ng-recaptcha-2';
 import { HasPermissionDirective } from './app-shared/directive/permissions.directive';
 import { AuthGuard } from './app-shared/security/auth.guard';
 import { HttpService } from './app-shared/security/requests/http.service';
@@ -25,7 +26,6 @@ import { StoreService } from './app-shared/services/store.service';
 import { TranslationService } from './app-shared/services/translation.service';
 import { AppFooterComponent } from './app-shared/shared-components/app-footer/app-footer.component';
 import { AppHeaderComponent } from './app-shared/shared-components/app-header/app-header.component';
-import { RecaptchaSettings, RECAPTCHA_LANGUAGE, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 
 const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
 
