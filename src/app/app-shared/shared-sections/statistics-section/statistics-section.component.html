@@ -6,12 +6,12 @@
 
   <div class="section-body">
 
-    <div class="chart"  *ngIf="(isBrowser&&(lineChartData && lineChartData.datasets && lineChartData.datasets.length > 0))">
+    <div class="chart"  *ngIf="(isBrowser&&(barCharData && barCharData.datasets && barCharData.datasets.length > 0))">
             <canvas
             baseChart
-            [data]="lineChartData"
+            [data]="barCharData"
             [options]="chartOptions"
-            [type]="lineChartType"
+            [type]="barCharType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"
           >
