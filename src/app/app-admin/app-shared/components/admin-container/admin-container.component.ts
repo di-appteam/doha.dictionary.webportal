@@ -19,7 +19,7 @@ export class AdminContainerComponent {
 
   // Define menu items
   menuItems = [
-    { label: 'لوحة تحكم', route: '/admin' },
+    { label: 'لوحة تحكم', route: '/admin/dashboard' },
     { label: 'قائمة المستخدمين', route: '/admin/users' },
     { label: 'قائمة المشاركين', route: '/admin/participants' },
     { label: 'إدارة التصنيفات', route: '/admin/manage-category' },

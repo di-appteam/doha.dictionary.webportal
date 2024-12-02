@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { lemmachartsmodel } from '../../../app-models/charts.model';
@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./statistics-section.component.scss']
 })
 export class StatisticsSectionComponent implements OnInit {
+  @Input() isAdmin?: boolean;
  ////////////////////
 
  isBrowser: boolean = false;

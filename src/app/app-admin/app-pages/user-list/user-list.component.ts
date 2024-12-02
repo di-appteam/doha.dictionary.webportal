@@ -51,7 +51,7 @@ export class UserListComponent implements OnInit {
   pageSize: number = 20;
   currentPage: number = 1;
 
-  constructor(private userService: UserService, private dialog: MatDialog) {}
+  constructor(public userService: UserService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.filterSubject.pipe(debounceTime(300)).subscribe((filter) => {
@@ -105,37 +105,6 @@ export class UserListComponent implements OnInit {
     // إضافة منطق فتح الحساب هنا
   }
 
-  // مساعدو الحالة
-  getStatusText(statusId: number): string {
-    switch (statusId) {
-      case 1: return 'قيد الانتظار';
-      case 2: return 'نشط';
-      case 3: return 'محذوف';
-      case 4: return 'غير نشط';
-      case 5: return 'مقفل';
-      default: return 'غير معروف';
-    }
-  }
-
-  getStatusIcon(statusId: number): string {
-    switch (statusId) {
-      case 1: return 'hourglass_empty'; // قيد الانتظار
-      case 2: return 'check_circle';   // نشط
-      case 3: return 'delete';         // محذوف
-      case 4: return 'pause_circle';   // غير نشط
-      case 5: return 'lock';           // مقفل
-      default: return 'help';          // غير معروف
-    }
-  }
-
-  getStatusIconClass(statusId: number): string {
-    switch (statusId) {
-      case 2: return 'text-success';  // أخضر للنشط
-      case 3: return 'text-danger';   // أحمر للمحذوف
-      case 5: return 'text-warning';  // أصفر للمقفل
-      default: return '';
-    }
-  }
 
   // مربعات حوار التأكيد
   confirmEdit(user: any) {

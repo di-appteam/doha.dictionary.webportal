@@ -3,7 +3,7 @@ import { AuthAdminGuard } from '../app-shared/services/authAdmin.guard';
 
 export const AdminRoutes: Routes = [
   {
-    path: 'admin',
+    path: 'admin/dashboard',
     canActivate: [AuthAdminGuard], // Protect all admin routes
     loadComponent: () =>
       import('./admin-dashboard/admin-dashboard.component').then((c) => c.AdminDashboardComponent),

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import {MatChipsModule} from '@angular/material/chips';
   styleUrls: ['./most-searched.component.scss']
 })
 export class MostSearchedComponent implements OnInit {
+  @Input() isAdmin?: boolean;
   private sublemma?: Subscription;
   public lemmadata: Array<MostSearchedWords>= [];
   constructor(private _sharedService:SharedService) { }
