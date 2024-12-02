@@ -1,74 +1,69 @@
-<div class="root-management">
-  <!-- Search Input -->
-  <div class="search-container">
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-label>بحث عن الجذر</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="searchValue"
-        (ngModelChange)="filterRoots()"
-        placeholder="أدخل الجذر"
-      />
-    </mat-form-field>
+<div class="content-container">
+  <div class="container">
+    <div class="row">
+      <div class="main-content">
+        <div class="root-management">
+          <!-- Search Input -->
+          <div class="search-container">
+            <mat-form-field appearance="outline" class="search-field">
+              <mat-label>بحث عن الجذر</mat-label>
+              <input matInput type="text" [(ngModel)]="searchValue" (ngModelChange)="filterRoots()"
+                placeholder="أدخل الجذر" />
+            </mat-form-field>
+          </div>
+
+          <!-- Root Table -->
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table">
+            <!-- Root Value Column -->
+            <ng-container matColumnDef="rootValue">
+              <th mat-header-cell *matHeaderCellDef> الجذر </th>
+              <td mat-cell *matCellDef="let root"> {{ root.rootValue }} </td>
+            </ng-container>
+
+            <!-- Root Value UV Column -->
+            <ng-container matColumnDef="rootValueUV">
+              <th mat-header-cell *matHeaderCellDef> الجذر (UV) </th>
+              <td mat-cell *matCellDef="let root"> {{ root.rootValueUV }} </td>
+            </ng-container>
+
+            <!-- Is Splitted Column -->
+            <ng-container matColumnDef="issplitted">
+              <th mat-header-cell *matHeaderCellDef> مجزأ </th>
+              <td mat-cell *matCellDef="let root">
+                <mat-icon *ngIf="root.issplitted" color="primary">check_circle</mat-icon>
+                <mat-icon *ngIf="!root.issplitted" color="warn">cancel</mat-icon>
+              </td>
+            </ng-container>
+
+            <!-- Has Document Column -->
+            <ng-container matColumnDef="HasDocument">
+              <th mat-header-cell *matHeaderCellDef> يحتوي على مستند </th>
+              <td mat-cell *matCellDef="let root">
+                <mat-icon *ngIf="root.HasDocument" color="primary">check_circle</mat-icon>
+                <mat-icon *ngIf="!root.HasDocument" color="warn">cancel</mat-icon>
+              </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> الإجراء </th>
+              <td mat-cell *matCellDef="let root">
+                <button mat-button color="primary" (click)="toggleActivation(root)">
+                  {{ root.inprogress === 0 ? 'حجب المادة' : 'تنشيط' }}
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <!-- Paginator -->
+          <mat-paginator [length]="dataSource.data.length" [pageSize]="20" [pageSizeOptions]="[20, 50, 100]"
+            showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Root Table -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table">
-    <!-- Root Value Column -->
-    <ng-container matColumnDef="rootValue">
-      <th mat-header-cell *matHeaderCellDef> الجذر </th>
-      <td mat-cell *matCellDef="let root"> {{ root.rootValue }} </td>
-    </ng-container>
-
-    <!-- Root Value UV Column -->
-    <ng-container matColumnDef="rootValueUV">
-      <th mat-header-cell *matHeaderCellDef> الجذر (UV) </th>
-      <td mat-cell *matCellDef="let root"> {{ root.rootValueUV }} </td>
-    </ng-container>
-
-    <!-- Is Splitted Column -->
-    <ng-container matColumnDef="issplitted">
-      <th mat-header-cell *matHeaderCellDef> مجزأ </th>
-      <td mat-cell *matCellDef="let root">
-        <mat-icon *ngIf="root.issplitted" color="primary">check_circle</mat-icon>
-        <mat-icon *ngIf="!root.issplitted" color="warn">cancel</mat-icon>
-      </td>
-    </ng-container>
-
-    <!-- Has Document Column -->
-    <ng-container matColumnDef="HasDocument">
-      <th mat-header-cell *matHeaderCellDef> يحتوي على مستند </th>
-      <td mat-cell *matCellDef="let root">
-        <mat-icon *ngIf="root.HasDocument" color="primary">check_circle</mat-icon>
-        <mat-icon *ngIf="!root.HasDocument" color="warn">cancel</mat-icon>
-      </td>
-    </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> الإجراء </th>
-      <td mat-cell *matCellDef="let root">
-        <button
-          mat-button
-          color="primary"
-          (click)="toggleActivation(root)"
-        >
-          {{ root.inprogress === 0 ? 'حجب المادة' : 'تنشيط' }}
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <!-- Paginator -->
-  <mat-paginator
-    [length]="dataSource.data.length"
-    [pageSize]="20"
-    [pageSizeOptions]="[20, 50, 100]"
-    showFirstLastButtons
-  >
-  </mat-paginator>
 </div>
