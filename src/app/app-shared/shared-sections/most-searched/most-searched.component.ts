@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { MostSearchedWords } from '../../../app-models/shared.model';
 import { SharedService } from '../../services/shared.service';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'most-searched',
   standalone: true,
-  imports: [CommonModule,TranslateModule ,RouterLink,MatChipsModule],
+  imports: [CommonModule,TranslateModule ,RouterLink,MatChipsModule,MatIconModule],
   templateUrl: './most-searched.component.html',
   styleUrls: ['./most-searched.component.scss']
 })

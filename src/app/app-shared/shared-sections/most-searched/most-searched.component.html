@@ -12,7 +12,12 @@
   <div class="section-body">
 
     <mat-chip-set aria-label="Fish selection" class="tags-list">
-      <mat-chip  class="tag" *ngFor="let word of lemmadata"><a [routerLink]="['/dictionary/', word.wordvalue]">{{word.wordvalue}}</a></mat-chip>
+      <mat-chip  class="tag" *ngFor="let word of lemmadata">
+        <a [routerLink]="['/dictionary/', word.wordvalue]">{{word.wordvalue}}</a>
+        <button matChipRemove [attr.aria-label]="'remove ' + word.wordvalue" *ngIf="isAdmin">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
     </mat-chip-set>
 
   </div>
