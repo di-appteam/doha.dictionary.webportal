@@ -1,0 +1,63 @@
+@import '../../../../scss/styles.scss';
+
+/* Add application styles & imports to this file! */
+::ng-deep ngb-carousel {
+  align-items: center;
+
+  .wrapper {
+    position: relative;
+    padding: 55% 20% 0 20%;
+    /* Keep ratio for 900x500 images */
+    img {
+      position: absolute;
+      border-radius: 20px;
+      top: 0;
+      left: 0%;
+      bottom: 0;
+      right: 0%;
+      height: 100%;
+      width: 100% !important;
+    }
+  }
+
+  .carousel-indicators {
+    margin: unset !important;
+    padding: unset !important;
+    right: unset !important;
+    left: unset;
+    width: 100%;
+  }
+
+
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2) !important; /* Semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.carousel-caption h3 {
+  bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  z-index: 20;
+  @media (max-width: 1199px) {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

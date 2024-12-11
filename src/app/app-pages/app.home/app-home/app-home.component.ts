@@ -16,16 +16,59 @@ import { MostSearchedComponent } from '../../../app-shared/shared-sections/most-
 import { StatisticsSectionComponent } from '../../../app-shared/shared-sections/statistics-section/statistics-section.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { RootSectionComponent } from '../../../app-shared/shared-sections/root-section/root-section.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { HeaderGlobalSearchComponent } from '../../../app-shared/shared-sections/header-global-search/header-global-search.component';
+import { CarouselImagesSectionComponent } from '../../../app-shared/shared-sections/carousel-images-section/carousel-images-section.component';
+import { DynamicGridSectionComponent } from '../../../app-shared/shared-sections/dynamic-grid-section/dynamic-grid-section.component';
+import { WordDaySectionComponent } from '../../../app-shared/shared-sections/word-day-section/word-day-section.component';
+
+
+export interface PhotosApi {
+  albumId?: number;
+  id?: number;
+  title?: string;
+  url?: string;
+  thumbnailUrl?: string;
+}
+
 @Component({
   selector: 'app-app-home',
   standalone: true,
-  imports: [CommonModule, NgSelectModule, FormsModule, CarouselModule,MatDividerModule, TranslateModule,RootSectionComponent, HasPermissionDirective, MostSearchedComponent, LatestWordsComponent, StatisticsSectionComponent],
+  imports: [CommonModule, CarouselModule,MatDividerModule,MatGridListModule,CarouselImagesSectionComponent,WordDaySectionComponent,
+    TranslateModule,RootSectionComponent, HasPermissionDirective,HeaderGlobalSearchComponent,DynamicGridSectionComponent],
 
   templateUrl: './app-home.component.html',
   styleUrl: './app-home.component.scss'
 })
 export class AppHomeComponent implements OnInit {
+///////////////////////////////////// Test news slider
+images:any[]=[
+  {id:121,type: 'image' ,url:"/assets/images/should-remove/ARABIC-DAY-2024_000.jfif", title : "يُعلن معجم الدوحة التاريخي للغة العربية عن شروعه في نشر موادّه المعجمية من أقدم استعمالاتها في النقوش والنصوص حتى عصرنا الحاضر"},
+  {id:122,type: 'image' ,url:"/assets/images/should-remove/AZMI_3.jfif", title : "يُعلن معجم الدوحة التاريخي للغة العربية عن شروعه في نشر موادّه المعجمية من أقدم استعمالاتها في النقوش والنصوص حتى عصرنا الحاضر"},
+  {id:123,type: 'image' ,url:"/assets/images/should-remove/COVERFACEBOOK-2.png", title : "يُعلن معجم الدوحة التاريخي للغة العربية عن شروعه في نشر موادّه المعجمية من أقدم استعمالاتها في النقوش والنصوص حتى عصرنا الحاضر"}
+]
+customOptions: OwlOptions = {
+  items: 1,
+  dots: true,
+  loop: false,
+  rtl: true,
+  nav: false,
+  rewind:true,
+  center: true,
+  mouseDrag: true,
+  dotsData:false,
+  responsive: {
+    991: {
+      items: 3,
+      loop: true,
+      center: true,
+      mouseDrag: true,
+      dots: true,
+    }
+  }
+}
 
+/////////////////////////////////////
   public windowWidth: number = 0;
   bsModalRef?: BsModalRef;
   public carouselOptions: OwlOptions = {
@@ -47,9 +90,7 @@ export class AppHomeComponent implements OnInit {
     }
 
   };
-  searchWord = '';
-  searchDropdownOptions: any[] = [];
-  searchSelectedOption = 1;
+
   constructor(
     private meta: Meta,
     private _router: Router,
@@ -79,24 +120,6 @@ export class AppHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this._translate.get(["home.dictionary", "home.bibliographyintro", "home.corpusintro"]).subscribe(words => {
-      this.searchDropdownOptions = [
-        {
-          text: words["home.dictionary"],
-          value: 1
-        },
-        {
-          text: words["home.bibliographyintro"],
-          value: 2
-        },
-        {
-          text: words["home.corpusintro"],
-          value: 3
-        },
-      ];
-      console.log(this.searchDropdownOptions);
-    });
     if (typeof window !== "undefined")
       this.windowWidth = window.innerWidth;
   }
@@ -111,17 +134,6 @@ export class AppHomeComponent implements OnInit {
     //this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  search(): void {
-    if (!this.searchWord || this.searchWord.length < 1)
-      return;
-    if (this.searchSelectedOption == 1)
-      this._router.navigate([('/dictionary/' + this.searchWord)]);
-    else if (this.searchSelectedOption == 2)
-      this._router.navigate([('/bibliography/' + this.searchWord)]);
-    else if (this.searchSelectedOption == 3)
-      this._router.navigate([('/corpus/' + this.searchWord)]);
-
-  }
   redirectTo(componant: string): void {
     if (!componant || componant.length < 1)
       return;

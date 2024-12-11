@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass,NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,7 +9,7 @@ import { RootSectionComponent } from '../../shared-sections/root-section/root-se
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,TranslateModule
+  imports: [NgClass,NgIf,TranslateModule
     ,RouterModule,LoginSectionComponent,RootSectionComponent,HasPermissionDirective],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.scss'

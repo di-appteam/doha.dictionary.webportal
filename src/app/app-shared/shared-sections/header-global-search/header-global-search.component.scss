@@ -1,0 +1,228 @@
+
+@import '../../../../scss/styles.scss';
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  @media (max-width: 1199px) {
+  }
+}
+
+.badge-list {
+  display: inline-block;
+  flex-wrap: wrap;
+
+  h2 {
+    background-color: $mainColor;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    @media (max-width: 1199px) {
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    &:hover {
+      background-color: #854d0e;
+      color: #ffffff;
+    }
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 1rem;
+  @media (max-width: 1199px) {
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 0.75rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .name {
+      position: absolute;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+  }
+
+  .author-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4b5563;
+  }
+
+  .date {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+}
+
+
+
+.main-search-form {
+  position: relative;
+  z-index: 2;
+  padding: 30px 0;
+  text-align: center;
+
+  .home-content & {
+    padding: 135px 0;
+
+    @media(max-width: 450px) {
+      padding: 80px 0 120px;
+    }
+  }
+
+  .form-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 25px;
+    color: $black;
+  }
+
+  .input-row {
+    width: 100%;
+    max-width: 595px;
+    height: 50px;
+    background-color: #fff;
+    display: table;
+
+    margin: auto;
+    border: 1px solid $gray;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5px;
+    // overflow: hidden;
+    margin-bottom: 20px;
+    .submit-btn{
+      border-radius: 5px 0  0 5px !important;
+    }
+    .dropdown {
+      display: table-cell;
+      vertical-align: top;
+      width: 139px;
+      border-left: 1px solid $gray;
+
+      ::ng-deep .ng-select {
+        height: 100%;
+      }
+
+      .icon {
+        float: left;
+        font-size: 13px;
+        margin-top: 21px;
+      }
+    }
+
+    .input-holder {
+      display: table-cell;
+      vertical-align: top;
+      button{
+        width: 100%;
+        height: 100%;
+        margin: unset;
+      }
+    }
+
+    input {
+      width: 100% !important;
+      height: 100%;
+      border: none;
+      padding: 0px !important;
+      text-align: center;
+
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: $gray ;
+      }
+
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $gray ;
+      }
+
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: $gray ;
+      }
+
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: $gray ;
+      }
+    }
+
+    @media(min-width: 401px) {
+      direction: ltr;
+
+      ::ng-deep .ng-select {
+        direction: rtl;
+      }
+    }
+
+    @media(max-width: 400px) {
+      height: auto;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+
+      .input-holder,
+      .dropdown {
+        display: block;
+      }
+
+      .input-holder {
+        height: 50px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .dropdown {
+        width: 100%;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  }
+}

@@ -7,11 +7,12 @@ import { MostSearchedWords } from '../../../app-models/shared.model';
 import { SharedService } from '../../services/shared.service';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'most-searched',
   standalone: true,
-  imports: [CommonModule,TranslateModule ,RouterLink,MatChipsModule,MatIconModule],
+  imports: [CommonModule,TranslateModule ,RouterLink,MatChipsModule,MatIconModule,MatGridListModule],
   templateUrl: './most-searched.component.html',
   styleUrls: ['./most-searched.component.scss']
 })

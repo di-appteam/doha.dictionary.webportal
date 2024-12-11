@@ -7,11 +7,12 @@ import { ChartControlService } from '../../services/chartscontrol.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { RouterLink } from '@angular/router';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'statistics-section',
   standalone: true,
-  imports: [CommonModule, TranslateModule, RouterLink, BaseChartDirective],
+  imports: [CommonModule, TranslateModule, RouterLink, BaseChartDirective,MatGridListModule],
   templateUrl: './statistics-section.component.html',
   styleUrls: ['./statistics-section.component.scss']
 })

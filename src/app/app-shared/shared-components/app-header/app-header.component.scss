@@ -11,7 +11,9 @@
   }
 }
 #header {
-    background-color: #fff;
+  background-image: url(/assets/images/header-bg.png);
+  background-repeat: round;
+  background-size: 100% auto;
 
     .header-container{
         padding-top: 30px;
@@ -119,8 +121,10 @@
 
 
 #nav{
-    background-color: $mainColor;
+    background-color: transparent;// $mainColor;
     height: 50px;
+    z-index: 20;
+    position: relative;
     >.container{
       height: 100%;
     }
@@ -128,7 +132,7 @@
       display: inline-block;
       li{
         color: $black;
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 700;
         display: inline-block;
         a,
@@ -279,11 +283,11 @@
         background-color: $mainColor;
         .extra-links{
           background-color: #fff;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
           .icon{
             color: $mainColor;
-            margin-left: 5px;
+            //margin-left: 5px;
             vertical-align: middle;
           }
           .text{

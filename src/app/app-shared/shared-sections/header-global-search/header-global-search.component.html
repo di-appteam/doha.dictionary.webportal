@@ -1,0 +1,26 @@
+<div class="content-wrapper">
+  <div class="badge-list">
+    <h2>{{'home.searchin' | translate}}</h2>
+  </div>
+
+  <form class="main-search-form">
+    <div class="input-row">
+      <div class="input-holder">
+        <button class="submit-btn" type="submit" (click)="search()">{{'general.search' | translate}}</button>
+      </div>
+      <div class="input-holder">
+        <input type="text" placeholder="{{'home.searchwords' | translate}}" (keyup.enter)="search()"
+          [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="dropdown">
+        <ng-select [items]="searchDropdownOptions" bindLabel="text" bindValue="value" [(ngModel)]="searchSelectedOption"
+          [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+        </ng-select>
+        <!-- <button class="dropdown-btn" type="button">
+                <h5 class="selected-item">{{'home.dictionary' | translate}}</h5><span class="icon icon-angle-down"></span>
+              </button> -->
+      </div>
+    </div>
+  </form>
+</div>

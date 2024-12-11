@@ -1,47 +1,5 @@
 
 <header id="header">
-  <div class="container header-container">
-    <div class="logo">
-      <a routerLink="/">
-        <img src="/assets/images/logo.svg" alt="The Doha Hostorical of Arabic">
-      </a>
-
-      <div class="warning-header" style="float: left;width: 70%;"><span>المعجم في تحديث مستمر</span></div>
-    </div>
-
-    <div class="left-side">
-      <ul class="links-list hide-mobile">
-        <li>
-          <a href="https://news.dohadictionary.org/ar/Pages/default.aspx" target="_blank">
-            <i class="icon icon-earth"></i>
-            <span class="text">{{'shared.nav.newswebsite' | translate}}</span>
-          </a>
-        </li>
-
-        <li class="warning-header" *hasPermission="['show-dic-comment']" >
-          <a routerLink="/user-comments" style="padding-top: 2px;">
-          <i class="i-margin d-icon-library_add"></i>
-          <span class="text-margin text">شارك في المعجم</span>
-        </a>
-      </li>
-        <li>
-          <a routerLink="/contact-us">
-            <i class="icon icon-email"></i>
-            <span class="text">{{'shared.nav.contuctus' | translate}}</span>
-          </a>
-        </li>
-      </ul>
-      <div class="warning-header-res"><span>المعجم في تحديث مستمر</span></div>
-      <app-login-section class="header-user-card">
-
-
-      </app-login-section>
-    </div>
-
-    <div class="clearfix"></div>
-
-  </div>
-
   <nav id="nav" [ngClass]="{'open-nav': openNav}">
     <div class="close-area" (click)="closeNav()"></div>
     <button type="button" class="nav-btn" (click)="toggleNav()">
@@ -94,7 +52,8 @@
             <span class="text">الموقع الإخباري</span>
           </a>
         </li>
-        <li class="mobile-only extra-links"  *hasPermission="['show-dic-comment']" style="    background-color: #ffab60;
+        <li class="mobile-only extra-links"  *hasPermission="['show-dic-comment']"
+        style="    background-color: #ffab60;
         color: #000;
         font-weight: 700;">
             <a routerLink="/user-comments" >
@@ -108,12 +67,49 @@
             <span class="text">تواصل معنا</span>
           </a>
         </li>
-      </ul></div>
-      <app-root-section></app-root-section>
+      </ul>
+      <div class="left-side">
+        <ul class="links-list hide-mobile">
 
+          <li class="warning-header" *hasPermission="['show-dic-comment']" >
+            <a routerLink="/user-comments" style="padding-top: 2px;">
+            <i class="i-margin d-icon-library_add"></i>
+            <span class="text-margin text">شارك في المعجم</span>
+          </a>
+        </li>
+          <li>
+            <a routerLink="/contact-us">
+              <i class="icon icon-email"></i>
+              <span class="text">{{'shared.nav.contuctus' | translate}}</span>
+            </a>
+          </li>
+        </ul>
+        <div class="warning-header-res"><span>المعجم في تحديث مستمر</span></div>
+        <app-login-section class="header-user-card" *ngIf="false">
+
+
+        </app-login-section>
+      </div>
+    </div>
+    <app-root-section></app-root-section>
     </div>
   </nav>
 
+
+  <div class="container header-container">
+    <div class="logo">
+      <a routerLink="/">
+        <img src="/assets/images/logo.svg" alt="The Doha Hostorical of Arabic">
+      </a>
+
+      <div class="warning-header" style="float: left;width: 70%;"><span>المعجم في تحديث مستمر</span></div>
+    </div>
+    <div class="container left-side">
+
+    </div>
+    <div class="clearfix"></div>
+
+  </div>
 
 
 </header>

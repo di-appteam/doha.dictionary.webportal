@@ -1,27 +1,20 @@
-<div class="latest-words-section">
-
-  <div class="section-header">
-
-    <h3 class="section-title">
-      {{'shared.lastwordsection.latestwords' | translate}}
-    </h3>
-
-  </div>
-
-
+<div class="section latest-words-section">
+  <mat-grid-tile-header class="section-header">
+    <h3 class="section-title">{{'shared.lastwordsection.latestwords' | translate}}</h3>
+  </mat-grid-tile-header>
   <div class="section-body">
 
     <div class="table-component">
 
       <div class="t-row word-item" *ngFor="let word of data">
-        <div class="t-cell"><a [routerLink]="['/dictionary/', word.lemmaValue]" >{{ word.lemmaValue }}</a></div>
+        <div class="t-cell"><a [routerLink]="['/dictionary/', word.lemmaValue]">{{ word.lemmaValue }}</a></div>
         <div class="t-cell">[{{ word.additionalTag }}]</div>
-        <div class="t-cell">{{_sharedFunctions.reWriteDateSheet(word.dateSheet,word.isDeathDate)}}={{word.dateSheetSolar}}م</div>
+        <div class="t-cell">
+          {{_sharedFunctions.reWriteDateSheet(word.dateSheet,word.isDeathDate)}}={{word.dateSheetSolar}}م</div>
 
       </div>
 
     </div>
 
   </div>
-
 </div>
