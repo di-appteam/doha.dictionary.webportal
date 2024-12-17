@@ -12,3 +12,312 @@
     }
   }
 }
+
+
+/// /////////////////////////////////
+
+.search-section {
+  position: relative;
+}
+
+.logo-watermark {
+  position: absolute;
+  top: -200px;
+  bottom: -65px;
+  right: 0;
+  width: 100% !important;
+  // z-index: 1;
+
+  //width: 600px;
+  overflow: hidden;
+
+  @media(max-width: 1199px) {
+    left: 35px;
+    right: auto;
+  }
+
+  img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: none;
+  }
+}
+
+::ng-deep .mat-grid-tile {
+  overflow: visible;
+  padding-bottom: 20px;
+}
+
+::ng-deep .mat-grid-tile-content {
+  align-items: flex-start !important;
+  padding-top: 50px !important;
+  min-height: 300px;
+}
+
+.section-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin-bottom: 0px !important;
+}
+
+.section-body {
+  background-color: #e9e9e9;
+  padding: 15px;
+  text-align: justify;
+}
+
+.submit-btn {
+  color: #fff;
+  border: 1px solid $gray;
+  background-color: $mainColor;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 14px 20px;
+}
+
+
+::ng-deep .services-carousel {
+  display: block !important;
+  margin: auto;
+
+  @media (min-width: 1199px) {
+    width: 750px;
+  }
+
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+
+  // padding: 0 60px;
+  .owl-stage-outer {
+    padding-top: 60px;
+
+    .owl-stage {
+      padding-bottom: 15px;
+    }
+  }
+
+  .owl-dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    padding-bottom: 5px;
+    text-align: center;
+
+    .owl-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #fff;
+      display: inline-block;
+      margin-right: 3px;
+
+      &:not(.active) {
+        opacity: 0.5;
+      }
+
+      span {
+        display: none !important;
+      }
+    }
+  }
+
+  .carousel-item {
+    padding: 0 15px;
+    display: block !important;
+  }
+}
+
+@media(max-width: $mobileStartWidth) {
+  .flex-container {
+    display: block;
+  }
+}
+
+
+.social-slider {
+
+  .facultyImg,
+  .docPrograms .slanted-slider .item img,
+  #FeaturedBook .img-zoom-holder .img-zoom,
+  #divReportsList .img-zoom-holder .img-zoom {
+    height: 280px;
+  }
+
+  .hover-contant {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    /*display: flex;
+  justify-content: center;
+  */
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+    transition: all 0.4s;
+    align-items: center;
+    opacity: 0;
+    font-size: 0.875rem;
+  }
+
+  .social-item {
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .owl-item {
+    width: 280px !important;
+  }
+
+  .social-item:hover .hover-contant {
+    opacity: 1;
+  }
+
+  .social-item .social-item-img img {
+    object-fit: cover;
+  }
+
+  .social-slider .social-item {
+    width: 100%;
+  }
+
+  .owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+  }
+}
+
+
+
+.grid-section-one-row{
+  width: 100%;
+  height: 100%;
+  padding: 0px 5px 0 5px;
+  background-color: #e9e9e9;
+  align-items: center;
+  @media (max-width: 767px) {
+    padding: 0px 0 0 0;
+  }
+  ::ng-deep div.section {
+    width: 100%;
+
+    .section-body,
+    .chart,
+    canvas {
+      width: 100% !important;
+      height: 100 !important;
+      max-height: 300px !important;
+    }
+  }
+}
+.grid-section {
+  width: 100%;
+  height: 100%;
+  padding: 0px 5px 0 5px;
+  background-color: #e9e9e9;
+  align-items: center;
+  @media (max-width: 767px) {
+    padding: 0px 0 0 0;
+  }
+  ::ng-deep div.section {
+    width: 100%;
+
+    .section-body,
+    .chart,
+    canvas {
+      width: 100% !important;
+      height: 100 !important;
+    }
+  }
+
+
+  .wrapper {
+    position: relative;
+    height: 100vh;
+  }
+
+  owl-carousel-o {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .owl-item {
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+
+  /* img {
+  width: 100%;
+  height: auto;
+  max-width: 99vh;
+} */
+
+  /* Feel free to change duration  */
+  .animated {
+    -webkit-animation-duration: 1000 ms;
+    animation-duration: 1000 ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  /* .owl-animated-out - only for current item */
+  /* This is very important class. Use z-index if you want move Out item above In item */
+  .owl-animated-out {
+    z-index: 1
+  }
+
+  /* .owl-animated-in - only for upcoming item
+/* This is very important class. Use z-index if you want move In item above Out item */
+  .owl-animated-in {
+    z-index: 0
+  }
+
+  /* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */
+  .fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}

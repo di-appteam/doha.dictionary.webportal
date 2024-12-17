@@ -12,13 +12,12 @@ import { StatisticsSectionComponent } from '../statistics-section/statistics-sec
   styleUrl: './dynamic-grid-section.component.scss'
 })
 export class DynamicGridSectionComponent implements OnInit{
-  breakpoint: number = 0;
+  breakPoint: number = 0;
   ngOnInit(): void {
-
-    this.breakpoint = (window.innerWidth <= 991) ? 1 : 2;
+    this.breakPoint = (window.innerWidth <= 991) ? 1 : 2;
   }
 
   onResize(event:any) {
-    this.breakpoint = (event.target.innerWidth <= 991) ? 1 : 2;
+    this.breakPoint = (event.target.innerWidth <= 991) ? 1 : 2;
   }
 }

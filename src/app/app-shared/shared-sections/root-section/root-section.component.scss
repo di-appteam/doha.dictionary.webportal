@@ -8,7 +8,9 @@
   background-color: #666;
   padding: 10px;
   float: left;
-
+  @media(max-width: $mobileStartWidth){
+    max-width: unset;
+  }
   .close-area {
     display: inline-block;
     position: fixed;

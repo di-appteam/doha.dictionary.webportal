@@ -8,12 +8,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { HasPermissionDirective } from '../../../app-shared/directive/permissions.directive';
-import { LatestWordsComponent } from '../../../app-shared/shared-sections/latest-words/latest-words.component';
-import { MostSearchedComponent } from '../../../app-shared/shared-sections/most-searched/most-searched.component';
-import { StatisticsSectionComponent } from '../../../app-shared/shared-sections/statistics-section/statistics-section.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { RootSectionComponent } from '../../../app-shared/shared-sections/root-section/root-section.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -21,7 +16,10 @@ import { HeaderGlobalSearchComponent } from '../../../app-shared/shared-sections
 import { CarouselImagesSectionComponent } from '../../../app-shared/shared-sections/carousel-images-section/carousel-images-section.component';
 import { DynamicGridSectionComponent } from '../../../app-shared/shared-sections/dynamic-grid-section/dynamic-grid-section.component';
 import { WordDaySectionComponent } from '../../../app-shared/shared-sections/word-day-section/word-day-section.component';
-
+import {MatCardModule} from '@angular/material/card';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselSocialsSectionComponent } from '../../../app-shared/shared-sections/carousel-socials-section/carousel-socials-section.component';
+import { CarouselServicesSectionComponent } from '../../../app-shared/shared-sections/carousel-services-section/carousel-services-section.component';
 
 export interface PhotosApi {
   albumId?: number;
@@ -34,7 +32,7 @@ export interface PhotosApi {
 @Component({
   selector: 'app-app-home',
   standalone: true,
-  imports: [CommonModule, CarouselModule,MatDividerModule,MatGridListModule,CarouselImagesSectionComponent,WordDaySectionComponent,
+  imports: [CommonModule, CarouselModule,CarouselServicesSectionComponent,CarouselSocialsSectionComponent,MatCardModule,MatDividerModule,NgbCarouselModule,MatGridListModule,CarouselImagesSectionComponent,WordDaySectionComponent,
     TranslateModule,RootSectionComponent, HasPermissionDirective,HeaderGlobalSearchComponent,DynamicGridSectionComponent],
 
   templateUrl: './app-home.component.html',
@@ -47,6 +45,7 @@ images:any[]=[
   {id:122,type: 'image' ,url:"/assets/images/should-remove/AZMI_3.jfif", title : "يُعلن معجم الدوحة التاريخي للغة العربية عن شروعه في نشر موادّه المعجمية من أقدم استعمالاتها في النقوش والنصوص حتى عصرنا الحاضر"},
   {id:123,type: 'image' ,url:"/assets/images/should-remove/COVERFACEBOOK-2.png", title : "يُعلن معجم الدوحة التاريخي للغة العربية عن شروعه في نشر موادّه المعجمية من أقدم استعمالاتها في النقوش والنصوص حتى عصرنا الحاضر"}
 ]
+
 customOptions: OwlOptions = {
   items: 1,
   dots: true,
@@ -71,29 +70,10 @@ customOptions: OwlOptions = {
 /////////////////////////////////////
   public windowWidth: number = 0;
   bsModalRef?: BsModalRef;
-  public carouselOptions: OwlOptions = {
-    items: 1,
-    dots: true,
-    loop: false,
-    rtl: true,
-    nav: false,
-    rewind:true,
-    mouseDrag: true,
-    dotsData:false,
-    responsive: {
-      991: {
-        items: 4,
-        loop: false,
-        mouseDrag: false,
-        dots: true,
-      }
-    }
 
-  };
 
   constructor(
     private meta: Meta,
-    private _router: Router,
     public _sharedConfiguration: SharedConfiguration,
     private modalService: BsModalService,
     private _sharedRootComponentValues: SharedRootComponentValues,
@@ -111,13 +91,7 @@ customOptions: OwlOptions = {
       this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
     }
   }
-  @HostListener('window:resize', ['$event']) windowScroll(e: any) {
-    this.windowWidth = window.innerWidth;
-    this.checkCarouselState();
-  }
-  checkCarouselState() {
-    this.carouselOptions.loop = false; // this won't refresh the carousel
-  }
+
 
   ngOnInit(): void {
     if (typeof window !== "undefined")
@@ -134,11 +108,7 @@ customOptions: OwlOptions = {
     //this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  redirectTo(componant: string): void {
-    if (!componant || componant.length < 1)
-      return;
-    this._router.navigate([('/' + componant)]);
-  }
+
 
   scrollTop(event: any) {
     if (typeof window !== "undefined")

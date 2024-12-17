@@ -1,0 +1,56 @@
+<div class="services-section">
+  <div class="logo-watermark">
+    <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+  </div>
+<div class="container-social services-container services-carousel">
+  <!-- Section Header -->
+  <div class="row mb-4 align-items-center title">
+    <div class="col-md">
+      <h3 class="bullet" id="socialHead">وسائل التواصل الاجتماعي</h3>
+    </div>
+    <div class="col-md-auto d-flex gap-2 social-icons-holder">
+      <a target="_blank" href="https://twitter.com/dohadictionary" class="d-flex align-items-center social-icons"
+        aria-label="Twitter Link, https://twitter.com/dohadictionary">
+        <i class="fab fa-twitter fa-lg me-2"></i>
+        <span class="social-text">{{ '@' }}dohadictionary</span>
+      </a>
+      <a target="_blank" href="https://www.instagram.com/dohadictionary/" class="d-flex align-items-center social-icons"
+        aria-label="Instagram Link, https://www.instagram.com/dohadictionary/">
+        <i class="fab fa-instagram fa-lg me-2"></i>
+        <span class="social-text">{{ '@' }}dohadictionary</span>
+      </a>
+      <a target="_blank" href="https://www.facebook.com/dohadictionary.edu.qa"
+        class="d-flex align-items-center social-icons"
+        aria-label="Facebook Link, https://www.facebook.com/dohadictionary.edu.qa">
+        <i class="fab fa-facebook fa-lg me-2"></i>
+        <span class="social-text">/dohadictionary.edu.qa</span>
+      </a>
+    </div>
+
+
+  </div>
+
+  <owl-carousel-o [options]="carouselOptions">
+    <ng-container *ngFor="let slide of socialData">
+      <ng-template carouselSlide>
+        <div class="carousel-item">
+          <div class="image-holder">
+            <!-- Social Media Image -->
+            <div class="image-holder">
+              <img [src]="slide.imageUrl" [alt]="slide.altText" class="img-fluid" />
+            </div>
+
+            <!-- Social Media Hover Content -->
+            <div
+              class="hover-content overlay bg-dark bg-opacity-50 d-flex flex-column justify-content-center align-items-center rounded-3 text-white p-3">
+              <p>{{ slide.hoverContent }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+</div>
+</div>
+

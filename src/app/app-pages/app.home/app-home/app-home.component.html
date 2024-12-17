@@ -11,7 +11,7 @@
       <div class="today-word-section">
         <app-header-global-search></app-header-global-search>
         <div class="clearfix"></div>
-<br>
+        <br>
         <app-word-day-section></app-word-day-section>
       </div>
       <div class="clearfix"></div>
@@ -19,54 +19,7 @@
     </div>
   </div>
 
-  <div class="services-section">
-    <div class="services-container services-carousel">
-
-      <owl-carousel-o [options]="carouselOptions">
-        <ng-template carouselSlide>
-          <div class="carousel-item" id="owl-slide-1">
-            <div class="service-item">
-              <div class="icon-holder"><span class="icon icon-calligraphy big-icon"
-                  (click)="redirectTo('about-dictionary')"></span></div>
-              <h1 class="title">{{'home.dictionaryintro' | translate}}</h1>
-              <p class="paragraph">{{'home.dictionaryintrodetail' | translate}}</p>
-            </div>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide id="owl-slide-2">
-          <div class="carousel-item">
-            <div class="service-item">
-              <div class="icon-holder"><span class="icon icon-arabic-history" (click)="redirectTo('dictionary')"></span>
-              </div>
-              <h1 class="title">{{'home.historicaldictionaryintro' | translate}}</h1>
-              <p class="paragraph">{{'home.historicaldictionaryintrodetail' | translate}}</p>
-            </div>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide id="owl-slide-3">
-          <div class="carousel-item">
-            <div class="service-item">
-              <div class="icon-holder"><span class="icon icon-resources small-icon"
-                  (click)="redirectTo('bibliography')"></span></div>
-              <h1 class="title">{{'home.bibliographyintro' | translate}}</h1>
-              <p class="paragraph">{{'home.bibliographyintrodetail' | translate}}</p>
-            </div>
-          </div>
-        </ng-template>
-        <ng-template carouselSlide id="owl-slide-4">
-          <div class="carousel-item">
-            <div class="service-item">
-              <div class="icon-holder"><span class="icon icon-paragraph" (click)="redirectTo('corpus')"></span></div>
-              <h1 class="title">{{'home.corpusintro' | translate}}</h1>
-              <p class="paragraph">{{'home.corpusintrodetail' | translate}}</p>
-            </div>
-          </div>
-        </ng-template>
-
-      </owl-carousel-o>
-
-    </div>
-  </div>
+  <app-carousel-services-section></app-carousel-services-section>
 
   <!-- Dynamic Component Loading -->
   <div class="container">
@@ -114,4 +67,8 @@
 
   </div>
 
+
+
+  <div class="clearfix"></div>
+  <app-carousel-socials-section></app-carousel-socials-section>
 </div>

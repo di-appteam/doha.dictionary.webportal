@@ -1,0 +1,115 @@
+@import '../../../../scss/styles.scss';
+
+
+.services-section {
+  color: #fff;
+  padding-bottom: 40px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #fff;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .services-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .service-item {
+    .icon-holder {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border: 3px solid transparent;
+      transform: rotate(45deg);
+      margin: 0px auto 0;
+
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d6bd57+14,ffffff+52,d6bd57+79 */
+      background: rgb(214, 189, 87);
+      /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(214, 189, 87, 1) 14%, rgba(255, 255, 255, 1) 52%, rgba(214, 189, 87, 1) 79%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(214, 189, 87, 1) 14%, rgba(255, 255, 255, 1) 52%, rgba(214, 189, 87, 1) 79%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(214, 189, 87, 1) 14%, rgba(255, 255, 255, 1) 52%, rgba(214, 189, 87, 1) 79%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6bd57', endColorstr='#d6bd57', GradientType=0);
+      /* IE6-9 */
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+      }
+
+      .icon {
+        position: absolute;
+        left: -50%;
+        top: 50%;
+        display: inline-block;
+        transform: rotate(-45deg) translate(68%, 0%);
+        color: $borderColor;
+        position: relative;
+        z-index: 2;
+        font-size: 45px;
+
+        &.big-icon {
+          font-size: 85px;
+        }
+
+        &.small-icon {
+          font-size: 35px;
+        }
+      }
+
+
+    }
+
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+    .paragraph {
+      text-align: justify;
+      line-break: 20px;
+
+      @media(max-width: $mobileStartWidth) {
+        text-align: center;
+      }
+    }
+
+    &:hover {
+      .icon-holder {
+        &:before {
+          background-color: $mainColor;
+        }
+
+        .icon {
+          color: #fff;
+        }
+      }
+    }
+
+  }
+}

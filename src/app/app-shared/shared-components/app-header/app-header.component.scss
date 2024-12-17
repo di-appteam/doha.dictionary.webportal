@@ -117,6 +117,12 @@
         padding:1px;
       }
     }
+    .logo-res{
+      display: none;
+      @media(max-width: $mobileStartWidth){
+        display: block;
+      }
+    }
 }
 
 
@@ -280,7 +286,7 @@
         z-index: 6;
 
         width: 180px;
-        background-color: $mainColor;
+        background-color: #fff;
         .extra-links{
           background-color: #fff;
           font-size: 14px;
