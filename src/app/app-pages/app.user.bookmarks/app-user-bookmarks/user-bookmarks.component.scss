@@ -18,28 +18,6 @@
   padding: 50px 0;
 }
 
-.logo-watermark {
-  position: absolute;
-  top: -490px;
-  bottom: 0;
-  right: 0;
-  // z-index: 1;
-
-  width: 600px;
-  overflow: hidden;
-
-  @media(max-width: 768px) {
-    left: 35px;
-    right: auto;
-  }
-
-  img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    max-width: none;
-  }
-}
 
 ::ng-deep #footer {
   margin-top: 0 !important;
