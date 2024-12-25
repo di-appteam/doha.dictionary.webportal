@@ -20,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselSocialsSectionComponent } from '../../../app-shared/shared-sections/carousel-socials-section/carousel-socials-section.component';
 import { CarouselServicesSectionComponent } from '../../../app-shared/shared-sections/carousel-services-section/carousel-services-section.component';
+import { HeaderGlobalSearchOldVComponent } from '../../../app-shared/shared-sections/header-global-search-old-v/header-global-search-old-v.component';
 
 export interface PhotosApi {
   albumId?: number;
@@ -32,7 +33,9 @@ export interface PhotosApi {
 @Component({
   selector: 'app-app-home',
   standalone: true,
-  imports: [CommonModule, CarouselModule,CarouselServicesSectionComponent,CarouselSocialsSectionComponent,MatCardModule,MatDividerModule,NgbCarouselModule,MatGridListModule,CarouselImagesSectionComponent,WordDaySectionComponent,
+  imports: [CommonModule, CarouselModule,CarouselServicesSectionComponent,
+    CarouselSocialsSectionComponent,MatCardModule,MatDividerModule,NgbCarouselModule,MatGridListModule,
+    CarouselImagesSectionComponent,WordDaySectionComponent,HeaderGlobalSearchOldVComponent,
     TranslateModule,RootSectionComponent, HasPermissionDirective,HeaderGlobalSearchComponent,DynamicGridSectionComponent],
 
   templateUrl: './app-home.component.html',
@@ -74,7 +77,7 @@ customOptions: OwlOptions = {
 
   constructor(
     private meta: Meta,
-    public _sharedConfiguration: SharedConfiguration,
+    public _config: SharedConfiguration,
     private modalService: BsModalService,
     private _sharedRootComponentValues: SharedRootComponentValues,
     private _translate: TranslateService) {

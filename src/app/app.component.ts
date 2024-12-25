@@ -25,14 +25,16 @@ import { ShowMessageServiceService } from './app-shared/services/showing-message
 import { StoreService } from './app-shared/services/store.service';
 import { TranslationService } from './app-shared/services/translation.service';
 import { AppFooterComponent } from './app-shared/shared-components/app-footer/app-footer.component';
+import { AppHeaderOldVComponent } from './app-shared/shared-components/app-header-old-v/app-header-old-v.component';
 import { AppHeaderComponent } from './app-shared/shared-components/app-header/app-header.component';
+import { ScrollTopComponent } from './app-shared/shared-sections/scroll-top/scroll-top.component';
 
 const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,
+  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,ScrollTopComponent,AppHeaderOldVComponent,
     NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
     SecurityService, ScrollService, PagerService, ClipboardService,
@@ -53,7 +55,7 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
 export class AppComponent implements OnInit {
   isAppStarted = false;
   isBrowser;
-  constructor(private translateService: TranslationService, public securityService: SecurityService,
+  constructor(private translateService: TranslationService, public securityService: SecurityService,public _config:SharedConfiguration,
     @Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {

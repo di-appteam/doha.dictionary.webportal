@@ -1,13 +1,15 @@
-.section{
+.section {
   margin-bottom: 25px;
-  .section-title{
+
+  .section-title {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 22px;
     margin-top: 0;
   }
-  &.subsection{
-    .section-title{
+
+  &.subsection {
+    .section-title {
       font-size: 16px;
     }
   }
@@ -22,14 +24,20 @@
 
 .logo-watermark {
   position: absolute;
-  top: -50px;
-  bottom: -65px;
-  right: 0;
-  width: 100% !important;
-  // z-index: 1;
+    top: 0;
+    bottom: -65px;
+    right: 0;
+    width: 600px;
+    overflow: hidden;
+  //position: absolute;
+  //top: -50px;
+  //bottom: -65px;
+  //right: 0;
+  //width: 100% !important;
+  //// z-index: 1;
 
-  //width: 600px;
-  overflow: hidden;
+  ////width: 600px;
+  //overflow: hidden;
 
   @media(max-width: 1199px) {
     left: 35px;
@@ -47,19 +55,23 @@
 ::ng-deep .mat-grid-tile {
   overflow: visible;
   padding-bottom: 20px;
+
+  .section-title {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    margin-bottom: 0px !important;
+  }
+}
+
+::ng-deep .mat-grid-tile .mat-grid-tile-header,
+.mat-grid-tile .mat-grid-tile-footer {
+  background-color: rgba(0, 0, 0, 0.45) !important;
 }
 
 ::ng-deep .mat-grid-tile-content {
   align-items: flex-start !important;
   padding-top: 50px !important;
   min-height: 300px;
-}
-.grid-section{
-.section-title {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  margin-bottom: 0px !important;
-}
 }
 
 .section-body {
@@ -206,15 +218,17 @@
 
 
 
-.grid-section-one-row{
+.grid-section-one-row {
   width: 100%;
   height: 100%;
   padding: 0px 5px 0 5px;
   background-color: #e9e9e9;
   align-items: center;
+
   @media (max-width: 767px) {
     padding: 0px 0 0 0;
   }
+
   ::ng-deep div.section {
     width: 100%;
 
@@ -227,15 +241,18 @@
     }
   }
 }
+
 .grid-section {
   width: 100%;
   height: 100%;
   padding: 0px 5px 0 5px;
   background-color: #e9e9e9;
   align-items: center;
+
   @media (max-width: 767px) {
     padding: 0px 0 0 0;
   }
+
   ::ng-deep div.section {
     width: 100%;
 

@@ -173,21 +173,6 @@ textarea.form-input{
 .page-search-section{
   min-height: 270px;
   position: relative;
-  .logo-watermark{
-    width: 600px;
-    height: 540px;
-    overflow: hidden;
-    @media(max-width: 768px){
-      left: 35px;
-      right: auto;
-    }
-    img{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      max-width: none;
-    }
-  }
   // background-image: url('/assets/images/search-form-bg.jpg');
   // background-size: cover;
 }

@@ -34,6 +34,7 @@ enum RemarkType {
 export class SharedConfiguration {
   Setting?: Setting;
   public PageSize = 10;
+  public appIsOldVersionMode = environment.oldVersion;
   public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
   public HideLexicalPanel = false;
   public pendingReq =  new BehaviorSubject<boolean>(false);

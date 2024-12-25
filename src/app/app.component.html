@@ -1,7 +1,9 @@
 
 @if(isAppStarted){
-    <app-header></app-header>
+   <app-app-header-old-v *ngIf="_config.appIsOldVersionMode"></app-app-header-old-v>
+    <app-header  *ngIf="!_config.appIsOldVersionMode"></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
+    <app-scroll-top></app-scroll-top>
 }
 

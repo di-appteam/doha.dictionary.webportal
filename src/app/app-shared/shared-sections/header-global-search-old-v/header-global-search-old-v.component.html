@@ -1,0 +1,27 @@
+<div class="search-section">
+  <div class="logo-watermark">
+    <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
+  </div>
+  <div class="container">
+    <form class="main-search-form">
+      <h3 class="form-title">{{'home.searchin' | translate}}</h3>
+      <div class="input-row">
+        <div class="input-holder">
+          <input type="text" placeholder="{{'home.searchwords' | translate}}" (keyup.enter)="search()"
+          [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <div class="dropdown">
+          <ng-select [items]="searchDropdownOptions" bindLabel="text" bindValue="value" [(ngModel)]="searchSelectedOption"
+          [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false">
+        </ng-select>
+          <!-- <button class="dropdown-btn" type="button">
+            <h5 class="selected-item">{{'home.dictionary' | translate}}</h5><span class="icon icon-angle-down"></span>
+          </button> -->
+        </div>
+
+      </div>
+      <button class="submit-btn" type="submit" (click)="search()">{{'general.search' | translate}}</button>
+    </form>
+  </div>
+</div>

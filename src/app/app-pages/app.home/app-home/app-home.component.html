@@ -1,5 +1,5 @@
 <div class="home-content" id="page-content">
-  <div class="search-section">
+  <div class="search-section" *ngIf="!_config.appIsOldVersionMode">
     <div class="logo-watermark">
       <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
     </div>
@@ -18,6 +18,7 @@
 
     </div>
   </div>
+  <header-global-search-old-v *ngIf="_config.appIsOldVersionMode"></header-global-search-old-v>
 
   <app-carousel-services-section></app-carousel-services-section>
 
@@ -45,7 +46,7 @@
             البنّاء مع موادّه ومداخله. ونرحّب بأيّ ملحوظة تُصوّب خطأ محتملا، أو تستدرك لفظا أو معنى أو شاهدا أسبق
             تاريخا، أو غير ذلك من المعلومات المحددة في نموذج المشاركة.
           </p>
-          <p *ngIf="!_sharedConfiguration.userInfo">إذا لم تكن مسجّلا، فيرجى تسجيل <a (click)="scrollTop($event)"
+          <p *ngIf="!_config.userInfo">إذا لم تكن مسجّلا، فيرجى تسجيل <a (click)="scrollTop($event)"
               class="link-btn" style="color: #ccaf41;">الدخول</a></p>
           <p>
             ولكي يتسنّى الاستفادة من الملحوظات على الوجه المنشود، نرجو الاطّلاع على منهج المعجم المبسوط في المقدّمة
@@ -70,5 +71,5 @@
 
 
   <div class="clearfix"></div>
-  <app-carousel-socials-section></app-carousel-socials-section>
+  <app-carousel-socials-section  *ngIf="!_config.appIsOldVersionMode"></app-carousel-socials-section>
 </div>
