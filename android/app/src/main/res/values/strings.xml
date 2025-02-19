@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">معجم الدوحة التاريخي</string>
+    <string name="title_activity_main">معجم الدوحة التاريخي</string>
+    <string name="package_name">org.dohadictionary.app</string>
+    <string name="custom_url_scheme">org.dohadictionary.app</string>
+</resources>
