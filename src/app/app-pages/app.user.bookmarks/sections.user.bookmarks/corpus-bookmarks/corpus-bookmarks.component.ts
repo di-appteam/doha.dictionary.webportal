@@ -12,6 +12,7 @@ import { SharedCorpusComponentValues } from "../../../../app-shared/services/cor
 import { CorpusService } from "../../../../app-shared/services/corpus.service";
 import { PagerService } from "../../../../app-shared/services/pager.service";
 import { BookmarksEmptyStateComponent } from "../bookmarks-empty-state/bookmarks-empty-state.component";
+import { BookMarkService } from "../../../../app-shared/services/bookmark.service";
 
 
 @Component({
@@ -20,7 +21,7 @@ import { BookmarksEmptyStateComponent } from "../bookmarks-empty-state/bookmarks
   imports: [ FormsModule,NgSelectModule,TranslateModule,NgIf,NgClass,NgFor,AccordionModule,BookmarksEmptyStateComponent],
   templateUrl: './corpus-bookmarks.component.html',
   styleUrls: ['./corpus-bookmarks.component.scss'],
-  providers:[CorpusService,SharedCorpusComponentValues]
+  providers:[CorpusService,SharedCorpusComponentValues,BookMarkService]
 })
 export class CorpusBookmarksComponent implements OnInit {
 
@@ -37,7 +38,9 @@ export class CorpusBookmarksComponent implements OnInit {
   isReady: boolean = false;
   @Output() LoadCounts = new EventEmitter();
 
-  constructor(private _translate: TranslateService, private _shrdFunc: SharedFunctions, private _corpusService: CorpusService, public _config: SharedConfiguration, private _accountService: AccountService,
+  constructor(private _translate: TranslateService, private _shrdFunc: SharedFunctions, 
+    private bookmarkService : BookMarkService,
+    private _corpusService: CorpusService, public _config: SharedConfiguration, private _accountService: AccountService,
     private _pagerService: PagerService) { }
 
 
@@ -116,7 +119,7 @@ export class CorpusBookmarksComponent implements OnInit {
     }
 
     afterBookmark(item: summarycorpusmodel) {
-      this._config.removeBookmarkLocal(item.ID,this._config.bookmarkType.sequence);
+      this.bookmarkService.removeBookmarkLocal(item.ID,this._config.bookmarkType.sequence);
       const index: number = this.data.indexOf(item);
       if (index !== -1) {
         this.data.splice(index, 1);

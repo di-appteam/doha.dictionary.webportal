@@ -74,10 +74,13 @@ export class AppDictionaryComponent implements AfterViewInit {
           this.meta.updateTag({ name: 'og:url', content: window.location.href }, "name='og:url'");
           this.meta.updateTag({ name: 'twitter:url', content: window.location.href }, "name='twitter:url'");
           //this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord = params.word;
-          this._sharedLemmaComponentValues.obsSearchWord.next(params.word);
+         var model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
+         model.SearchWord = params.word;
+          this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
         }
         else {
-          this._sharedLemmaComponentValues.obsSearchWord.next("");
+          //debugger;
+          //this._sharedLemmaComponentValues.obsSearchWord.next("");
         }
         this.cdr.detectChanges();
       });

@@ -132,7 +132,7 @@
           <span class="text-center" [innerHTML]="lexItem.citation" appJustifyArabic>
           </span>
         </p>
-        <p *ngIf="(lexItem.citationType == 6 || lexItem.citationType == 1 )" class="text-right "
+        <p *ngIf="(lexItem.citationType >= 6 || lexItem.citationType == 1 )" class="text-right "
           [innerHTML]="lexItem.citation">
         </p>
         <span class="icon icon-info-o info-icon"
@@ -245,7 +245,7 @@
               <div class="resource-image">
                 <img *ngIf="(lexItem.hascover == false)" src="/assets/images/book-cover.jpg" alt=""
                   style="max-width: 150px;">
-                <img *ngIf="(lexItem.hascover == true)" src="{{_config.refPath + lexItem.referencesourceid}}" alt=""
+                <img *ngIf="(lexItem.hascover == true)" src="{{configjsonService.refPath + lexItem.referencesourceid}}" alt=""
                   style="max-width: 242px;">
               </div>
 

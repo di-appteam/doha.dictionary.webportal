@@ -1,6 +1,6 @@
 <div class="result-section search-results-section" *ngIf="(!(!summaryLexicalSheet || summaryLexicalSheet.length == 0) || alertType == alertErrorType)">
 
-
+ 
   <div class="section-header">
 
     <div class="search-info">
@@ -12,18 +12,9 @@
       <div class="option-holder col-xs-4">
         <h5 class="title">{{'general.resultPageSizeDisplay' | translate}}</h5>
 
-        <div class="btn-group dropdown-select" dropdown>
-          <button dropdownToggle type="button" class="btn dropdown-toggle">
-            {{resultPageSize}}
-            <span class="icon icon-angle-down"></span>
-          </button>
-          <ul *dropdownMenu class="dropdown-menu" role="menu">
-            <li role="menuitem" *ngFor='let pSize of pageSizeList;' [ngClass]="{active:pSize === resultPageSize}">
-              <button type="button" class="dropdown-item" (click)="pageSizeChanged(pSize)">
-                {{pSize}}
-              </button>
-            </li>
-          </ul>
+        <div class="dropdown-select text-center">
+          <ng-select [items]="pageSizeList" [ngModel]="resultPageSize" (ngModelChange)="pageSizeChanged($event)" [clearable]="false" [searchable]="false">
+          </ng-select>
         </div>
 
         <h5 class="title hidden-md hidden-xs">{{'general.atpage' | translate}}</h5>
@@ -147,7 +138,7 @@
         </div>
 
         <div class="accordion-body">
-         <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="(searchDictionaryModel!.IsAdvancedSearch || _sharedLemmaComponentValues._searchDictionaryModel.SearchWord.split(' ').length > 1)"   [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>
+         <d-result-detail [lexId]="item.parmId" [isAdvnSearch]="(searchDictionaryModel!.IsAdvancedSearch || _sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord.split(' ').length > 1)"   [hasLemmaEtymology]="item.hasLemmaEtymology"></d-result-detail>
         </div>
 
       </accordion-group>

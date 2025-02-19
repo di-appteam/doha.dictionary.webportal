@@ -34,12 +34,8 @@ enum RemarkType {
 export class SharedConfiguration {
   Setting?: Setting;
   public PageSize = 10;
-  public appIsOldVersionMode = environment.oldVersion;
-  public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
   public HideLexicalPanel = false;
   public pendingReq =  new BehaviorSubject<boolean>(false);
-  public IsDevelopment = !environment.production;
-  public ServiceBaseUrl = environment.baseUrl; /*'http://localhost:86'; 'http://localhost:86''http://172.16.60.40:76' 'http://localhost:9091';*/
   public NewFormLexicalSheetTypes = NewFormLexicalSheetType;
   public bookmarkType = BookmarkType;
   public RemarkType = RemarkType;
@@ -52,7 +48,6 @@ export class SharedConfiguration {
   public AutherList = new BehaviorSubject<any[]>([]);
   public UserBookmarkList = new BehaviorSubject<any[]>([]);
   public obsSelectedPart = new Subject<number>();
-  public refPath = this.ServiceBaseUrl + '/api/SummaryDocuments/GetReferenceCover?refId=';
   public userInfo?: UserInfo;
   public validToken(): boolean {
     try {
@@ -76,29 +71,6 @@ export class SharedConfiguration {
     }
   }
 
-  removeBookmarkLocal(itemId: number, typeId: number) {
-    if (!itemId || itemId == 0) {
-      return;
-    }
-    const currentBookmarks = this.UserBookmarkList.getValue();
-    const lexItem = currentBookmarks.filter((a: any) => a.bookmarktypeid == typeId && a.saveditemid == itemId);
-    if (lexItem.length == 0) {
-      return;
-    }
-    const index: number = currentBookmarks.indexOf(lexItem[0]);
-    if (index !== -1) {
-      currentBookmarks.splice(index, 1);
-      // Update the BehaviorSubject with the new array
-      this.UserBookmarkList.next(currentBookmarks);
-    }
-  }
-  social_share_url(word: string): string {
-
-
-    const fullURL = `${this.shareUrl}${word.toString()}`;
-
-    return fullURL;//this.shareUrl.concat(word.trimLeft().trimRight());
-  }
 }
 export interface LKP_Response {
   LkpAdditionalTagList: AdditionalTagList[];

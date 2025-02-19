@@ -10,6 +10,8 @@ import { BibliographyService } from '../../../../app-shared/services/bibliograph
 import { SharedConfiguration } from '../../../../app-shared/services/config.service';
 import { PagerService } from '../../../../app-shared/services/pager.service';
 import { BookmarksEmptyStateComponent } from '../bookmarks-empty-state/bookmarks-empty-state.component';
+import { BookMarkService } from '../../../../app-shared/services/bookmark.service';
+import { ConfigJsonService } from '../../../../app-shared/services/configjson.service';
 
 @Component({
   selector: 'bibliography-bookmarks',
@@ -17,7 +19,7 @@ import { BookmarksEmptyStateComponent } from '../bookmarks-empty-state/bookmarks
   imports: [ FormsModule,NgSelectModule,TranslateModule,NgIf,NgClass,NgFor,BookmarksEmptyStateComponent],
   templateUrl: './bibliography-bookmarks.component.html',
   styleUrls: ['./bibliography-bookmarks.component.scss'],
-  providers:[BibliographyService]
+  providers:[BibliographyService,BookMarkService,ConfigJsonService]
 })
 export class BibliographyBookmarksComponent implements OnInit {
 
@@ -37,7 +39,9 @@ export class BibliographyBookmarksComponent implements OnInit {
 
 
 
-  constructor(private _translate: TranslateService, private _bibliographyService: BibliographyService, public _config: SharedConfiguration, private _accountService: AccountService,
+  constructor(private _translate: TranslateService, private _bibliographyService: BibliographyService, 
+    private bookmarkService:BookMarkService,public configjsonService: ConfigJsonService,
+    public _config: SharedConfiguration, private _accountService: AccountService,
     private _pagerService: PagerService) { }
 
 
@@ -116,7 +120,7 @@ export class BibliographyBookmarksComponent implements OnInit {
   }
 
   afterBookmark(item: summarydocuments) {
-    this._config.removeBookmarkLocal(item.id,this._config.bookmarkType.reference);
+    this.bookmarkService.removeBookmarkLocal(item.id,this._config.bookmarkType.reference);
     const index: number = this.data.indexOf(item);
     if (index !== -1) {
       this.data.splice(index, 1);

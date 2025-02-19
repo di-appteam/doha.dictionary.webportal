@@ -122,9 +122,9 @@ export class SearchCriteriaBookmarksComponent implements OnInit {
 
   SearchInDictioanry(item: userbookmarks) {
      var searchDictionaryModel = <SearchDictionaryModel>JSON.parse(item.searchcriterias);
-     this._sharedLemmaComponentValues._searchDictionaryModel = searchDictionaryModel;
-    this._router.navigate([('/dictionary/')]);
-    //setTimeout(() => {this._sharedLemmaComponentValues.obsCtrSearchFromBM.next(searchDictionaryModel)});
+     this._router.navigate([('/dictionary/')]);
+     this._sharedLemmaComponentValues._searchDictionaryModel.next(searchDictionaryModel);
+    //setTimeout(() => {this._sharedLemmaComponentValues.fireSearchOperation.next(true)});
   }
 
   afterBookmark(item: userbookmarks) {

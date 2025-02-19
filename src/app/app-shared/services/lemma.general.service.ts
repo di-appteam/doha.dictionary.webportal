@@ -5,9 +5,8 @@ import { SearchDictionaryModel, ISummaryLexicalSheet } from '../../app-models/di
 
 export class SharedLemmaComponentValues {
     public lemmaPageSize = 20;
-    public obsSearchWord = new Subject<string>();
     public obsReloadMostSearched = new Subject<boolean>();
-    public _searchDictionaryModel: SearchDictionaryModel = new SearchDictionaryModel();
+    public _searchDictionaryModel= new BehaviorSubject<SearchDictionaryModel>(new SearchDictionaryModel());
     public fireSearchOperation =  new BehaviorSubject<boolean>(false);
     //public obsCtrSearch = new Subject<SearchDictionaryModel>();
     public acSummaryLexicalSheet: ISummaryLexicalSheet[] = [];
@@ -26,7 +25,7 @@ export class SharedLemmaComponentValues {
         this.isAutoComplate = false;
         this.pageNumber = 1;
         this.acSummaryLexicalSheet = [];
-        this._searchDictionaryModel = new SearchDictionaryModel();
+        this._searchDictionaryModel.next(new SearchDictionaryModel());
     }
     public ResetTabsSetting(): void {
         this.CountLexTab = 0;

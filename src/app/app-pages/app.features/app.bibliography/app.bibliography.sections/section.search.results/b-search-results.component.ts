@@ -13,6 +13,7 @@ import { PagerService } from "../../../../../app-shared/services/pager.service";
 import { AlertComponent } from "../../../../../app-shared/shared-sections/alert/alert.component";
 import { TextFormComponent } from "../section.text.form/text-form.component";
 import { SearchResults, AlertEnum, AlertMessages, SORRY } from "./b-search-results.models";
+import { ConfigJsonService } from "../../../../../app-shared/services/configjson.service";
 
 
 @Component({
@@ -21,7 +22,8 @@ import { SearchResults, AlertEnum, AlertMessages, SORRY } from "./b-search-resul
   imports: [FormsModule, NgIf, NgClass,TranslateModule,NgFor,
     NgSelectModule,TextFormComponent,AlertComponent,HasPermissionDirective],
   templateUrl: './b-search-results.component.html',
-  styleUrls: ['./b-search-results.component.scss']
+  styleUrls: ['./b-search-results.component.scss'],
+  providers:[ConfigJsonService]
 })
 export class SearchResultsComponent implements OnInit,OnDestroy{
 
@@ -42,7 +44,7 @@ export class SearchResultsComponent implements OnInit,OnDestroy{
 
 
 
-  constructor(private _translate: TranslateService,public _config: SharedConfiguration,private _bibliographyService: BibliographyService,
+  constructor(private _translate: TranslateService,public _config: SharedConfiguration,public configJsonService : ConfigJsonService,private _bibliographyService: BibliographyService,
     private _pagerService: PagerService,
     public _sharedBibliographyComponentValues: SharedBibliographyComponentValues) { }
 

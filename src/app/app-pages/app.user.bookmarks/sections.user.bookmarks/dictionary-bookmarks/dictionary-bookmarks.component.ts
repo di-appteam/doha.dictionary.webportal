@@ -17,6 +17,7 @@ import { PagerService } from "../../../../app-shared/services/pager.service";
 import { LemmaSequencesSectionComponent } from "../../../app.features/app.dictionary/app.dictionary.sections/section.lemma.sequences/lemma-sequences-section.component";
 import { DSearchResultsDetailComponent } from "../../../app.features/app.dictionary/app.dictionary.sections/section.search.result.parent/d-search-results.detail.component";
 import { BookmarksEmptyStateComponent } from "../bookmarks-empty-state/bookmarks-empty-state.component";
+import { BookMarkService } from "../../../../app-shared/services/bookmark.service";
 
 @Component({
   selector: 'dictionary-bookmarks',
@@ -24,7 +25,7 @@ import { BookmarksEmptyStateComponent } from "../bookmarks-empty-state/bookmarks
   imports: [ FormsModule,NgSelectModule,TranslateModule,HasPermissionDirective,NgIf,NgClass,NgFor,RouterLink,AccordionModule,BookmarksEmptyStateComponent,DSearchResultsDetailComponent],
   templateUrl: './dictionary-bookmarks.component.html',
   styleUrls: ['./dictionary-bookmarks.component.scss'],
-  providers:[DictionaryService,SharedConfiguration]
+  providers:[DictionaryService,SharedConfiguration,BookMarkService]
 })
 export class DictionaryBookmarksComponent implements OnInit, OnChanges {
 
@@ -46,6 +47,7 @@ export class DictionaryBookmarksComponent implements OnInit, OnChanges {
 
   constructor(private _accountService: AccountService,
     private _dictionaryService: DictionaryService,
+    private bookmarkService : BookMarkService,
     private _pagerService: PagerService,
     private modalService: BsModalService,
     public _config: SharedConfiguration,
@@ -146,7 +148,7 @@ export class DictionaryBookmarksComponent implements OnInit, OnChanges {
     const index: number = this.data.indexOf(lexItem);
     if (index !== -1) {
       this.data.splice(index, 1);
-      this._config.removeBookmarkLocal(lexItem.ID,this.BType);
+      this.bookmarkService.removeBookmarkLocal(lexItem.ID,this.BType);
       this.RefreshPageByBookmark();
     }
   }

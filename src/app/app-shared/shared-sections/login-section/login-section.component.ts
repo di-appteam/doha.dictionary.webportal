@@ -12,6 +12,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from '../../../app-pages/app.user/forget-password/forget-password.component';
 import { CreateAccountComponent } from '../../../app-pages/app.user/create-account/create-account.component';
 import { AccountData } from '../../../app-models/user-account.model';
+import { ConfigJsonService } from '../../services/configjson.service';
 
 @Component({
   selector: 'app-login-section',
@@ -30,7 +31,8 @@ export class LoginSectionComponent implements OnInit {
   accountData: AccountData = {email : '',password:''};
   loginFormGroup!:FormGroup;
   bsModalRef!: BsModalRef;
-  constructor(private _showMessageServiceService: ShowMessageServiceService,private modalService: BsModalService,public _sharedConfiguration: SharedConfiguration,private _accountService: AccountService,private _securityService: SecurityService) { }
+  constructor(private _showMessageServiceService: ShowMessageServiceService,private modalService: BsModalService,public configJson:ConfigJsonService
+    ,public _sharedConfiguration: SharedConfiguration,private _accountService: AccountService,private _securityService: SecurityService) { }
 
   ngOnInit() {
     this.loginFormGroup=new FormGroup({

@@ -14,12 +14,15 @@ import { ClipboardService } from '../../../../../app-shared/services/Clipboard.s
 import { SharedConfiguration, SharedFunctions } from '../../../../../app-shared/services/config.service';
 import { DictionaryService } from '../../../../../app-shared/services/dictionary.service';
 import { SendCommentComponent } from '../../../../../app-shared/shared-sections/send-comment/send-comment.component';
+import { BookMarkService } from '../../../../../app-shared/services/bookmark.service';
+import { ConfigJsonService } from '../../../../../app-shared/services/configjson.service';
 @Component({
   selector: 'dictionary-result-section',
   standalone: true,
-  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule,PopoverModule,TooltipModule,JustifyArabicDirective, TranslateModule,PopoverModule,SendCommentComponent,HasPermissionDirective],
+  imports: [NgIf, NgClass, NgFor, FormsModule, CarouselModule, PopoverModule, TooltipModule, JustifyArabicDirective, TranslateModule, PopoverModule, SendCommentComponent, HasPermissionDirective],
   templateUrl: './dictionary-result-section.component.html',
-  styleUrls: ['./dictionary-result-section.component.scss']
+  styleUrls: ['./dictionary-result-section.component.scss'],
+  providers: [BookMarkService]
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
@@ -40,17 +43,17 @@ export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
   public isInfoAvailable = false;
   public popover: any;
   public popoverRes: any;
-  public compressedSource:string = "";
+  public compressedSource: string = "";
   constructor(
-    public _dictionaryService: DictionaryService,
-    private modalService: BsModalService,
+    public _dictionaryService: DictionaryService, public configjsonService: ConfigJsonService,
+    private modalService: BsModalService, private bookMarkService: BookMarkService,
     private _cdr: ChangeDetectorRef, public _config: SharedConfiguration, public _sharedFunctions: SharedFunctions, public clipboardService: ClipboardService) { }
 
   ngOnInit() {
     this.UpdateInfoPopup();
     if (this.lexItem && this.lexItem.referenceSourcePage)
       this.lexItem.referenceSourcePage = this.lexItem.referenceSourcePage.replace("-", "&rlm;-");
-    this.getSourceCompressed(this.lexItem);
+    this.getSourceCompressed(this.lexItem!);
   }
 
   ngAfterViewInit(): void {
@@ -66,7 +69,7 @@ export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
       this.popoverRes.hide();
     }
   }
-  openPopover(pop:any, isInfo = true) {
+  openPopover(pop: any, isInfo = true) {
     if (isInfo == true) {
       this.popover = pop;
       this.popover.toggle();
@@ -111,7 +114,7 @@ export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
   afterBookmark(lexItem: ISummaryLexicalSheet) {
     lexItem.IsBookMark = !lexItem.IsBookMark;
     if (!lexItem.IsBookMark) {
-      this._config.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lexicalsheet);
+      this.bookMarkService.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lexicalsheet);
     }
     if (!this.fromBookmark) {
       return;
@@ -137,107 +140,103 @@ export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
     this.clipboardService.copyLexicalToClipBoard(toolTip, lexItem);
 
   }
-  public getSourceCompressed(lexItem?: ISummaryLexicalSheet) {
-    let sourceStr = '';
-    if(lexItem?.source!=null && lexItem?.source.trim()!=("")){
-  //////////////////////////////////////
-        if(lexItem?.referencesourcesubtitle!=null && lexItem?.referencesourcesubtitle.trim()!=("")){
-            sourceStr += lexItem?.referencesourcesubtitle.trim()+": &rlm;";
+  public getSourceCompressed(lexItem: ISummaryLexicalSheet): void {
+    if (!lexItem) return;
+
+    let sourceStr: string[] = [];
+
+    // ✅ Helper Function: Adds values only if they exist
+    const addIfExists = (value: string | null, prefix: string = "", suffix: string = "،") => {
+      if (value && value.trim()) sourceStr.push(`${prefix}${value.trim()}${suffix}`);
+    };
+
+    // ✅ Extracted values to avoid multiple `.trim()` calls
+    const {
+      source, citationSource, referencesourcesubtitle, referencesourcesubauthor,
+      referencesourcebook, referencesourcechapter, referencesourceverse,
+      referenceSourcePart, referenceSourcePage, referenceSourceHaditNbr,
+      referenceSourceReadingQuranStr, referenceSourceAyahNbr, referencesourceurl,
+      referencesourcelastseen, referencesourcepublisheddate, citation,
+      authorName, quranic
+    } = lexItem;
+
+    // ✅ Handling Source & Citation
+    if ((source && source.trim()) || (citationSource && citationSource.trim())) {
+      addIfExists(referencesourcesubtitle, "", ": &rlm;");
+      addIfExists(referencesourcesubauthor, "", "،&rlm;");
+
+      // ✅ Handling citation/source selection
+      sourceStr.push(
+        !quranic && citation.includes('cnvQCF2BSML') ? authorName :
+          quranic ? citationSource :
+            (source && source.trim() ? source.trim() : "")
+      );
+
+      // ✅ Fix punctuation at the end
+      let lastPart = sourceStr[sourceStr.length - 1] || "";
+      if (lastPart.endsWith(".")) {
+        sourceStr[sourceStr.length - 1] = lastPart.endsWith("د.ت.") ? lastPart + " " : lastPart.slice(0, -1) + "، ";
+      } else {
+        sourceStr.push("، ");
+      }
+      sourceStr.push("&rlm;");
+    }
+
+    // ✅ Handling non-Quranic references
+    if (!quranic) {
+      if (!(referencesourcechapter || referencesourcebook || referencesourceverse)) {
+        addIfExists(referenceSourcePart, "", "/&rlm;");
+        if (referenceSourcePage) addIfExists(referenceSourcePage.replace("-", "-&rlm;"));
+
+        if (referenceSourcePart || referenceSourcePage) {
+          sourceStr.push((!referenceSourceHaditNbr && !referenceSourceReadingQuranStr && !referenceSourceAyahNbr) ? ".&rlm;" : "،&rlm;");
         }
-        if(lexItem?.referencesourcesubauthor!=null && lexItem?.referencesourcesubauthor.trim()!=("")){
-            sourceStr += lexItem?.referencesourcesubauthor.trim()+"،&rlm;";
-        }
-  //////////////////////////////////////
+      } else {
+        addIfExists(referencesourcebook, " سِفْرُ ", "، ");
+        addIfExists(referencesourcechapter, "الإصحاح ", "، ");
+        addIfExists(referencesourceverse, "الآية ");
+      }
 
-        sourceStr += lexItem?.source.trim();
-        if(sourceStr.endsWith(".")){
-            if(sourceStr.endsWith("د.ت.")){
-                sourceStr+=" ";
-            }else{
-                if(sourceStr.length > 1) {
-                    sourceStr = sourceStr.substring(0, sourceStr.length - 1);
-                    sourceStr += "، ";
-                }
-            }
-        }else{
-            sourceStr += "، ";
-        }
-        sourceStr += "&rlm;";
+      if (referenceSourceHaditNbr && referenceSourceHaditNbr.trim()) {
+        sourceStr.push(`(رقم الحديث: ${referenceSourceHaditNbr.trim()})`);
+      }
+
+      if (!quranic && citation.includes('cnvQCF2BSML')) {
+        addIfExists(referenceSourceReadingQuranStr, "[ ", "");
+        addIfExists(referenceSourceAyahNbr, " : ", " ]");
+      }
+
+      if (referencesourcebook || referencesourcechapter || referencesourceverse) {
+        sourceStr.push((!referenceSourceHaditNbr && !referenceSourceReadingQuranStr && !referenceSourceAyahNbr) ? "." : "، ");
+      }
     }
 
-    if(lexItem?.referenceSourcePart!=null && lexItem?.referenceSourcePart.trim() != ("")){
-        sourceStr += lexItem?.referenceSourcePart.trim()+"/&rlm;";
+    // ✅ Adding URL & Publication Details
+    if (referencesourceurl && referencesourceurl.trim()) {
+      sourceStr.push(
+        `<a class="glyphicon glyphicon-link w3-text-blue" style="color:#ccaf41" target="_blank" 
+      href="${referencesourceurl.trim()}" title="اضغط لفتح الوثيقة"></a> ،`
+      );
     }
 
-    if(lexItem?.referenceSourcePage!=null && lexItem?.referenceSourcePage.trim() != ("")){
-        sourceStr += lexItem?.referenceSourcePage.trim().replace("-","-&rlm;");
+    if (referencesourcepublisheddate && referencesourcepublisheddate.trim()) {
+      sourceStr.push(` نُشر في: ${moment(referencesourcepublisheddate.trim()).locale('ar').format('DD-MM-YYYY')} م.`);
     }
 
-    if((lexItem?.referenceSourcePart!=null && lexItem?.referenceSourcePart.trim() != ("")) || (lexItem?.referenceSourcePage!=null && lexItem?.referenceSourcePage.trim() != (""))){
-        if( (lexItem?.referenceSourceHaditNbr == null || lexItem?.referenceSourceHaditNbr.trim() == (""))
-        && (lexItem?.referenceSourceReadingQuranStr == null || lexItem?.referenceSourceReadingQuranStr.trim() == (""))
-        && (lexItem?.referenceSourceAyahNbr == null || lexItem?.referenceSourceAyahNbr.trim() == (""))
-       // && (lexItem?.referenceSourceBook == null || lexItem?.referenceSourceChapter.trim() == ("") || lexItem?.referenceSourceVerse.trim() == (""))
-        ){
-
-            sourceStr += ".&rlm;";
-        }else{
-            sourceStr += "،&rlm;";
-        }
-
+    if (referencesourcelastseen && referencesourcelastseen.trim()) {
+      sourceStr.push(` شوهد في: ${moment(referencesourcelastseen.trim()).locale('ar').format('DD-MM-YYYY')} م.`);
     }
 
-    /*if(lexItem?.referenceSourceBook!=null && lexItem?.referenceSourceBook.trim()!=""){
-        sourceStr += " سِفْرُ "+lexItem?.referenceSourceBook.trim()+"، ";
-    }
+    // ✅ Final String Cleanup
+    this.compressedSource = sourceStr.join("")
+      .replace(/، &rlm;\. /g, '&rlm;')  // ✅ Fix misplaced punctuation
+      .replace(/&rlm;/g, '')            // ✅ Remove unnecessary LRM markers
+      .trim()                           // ✅ Ensure clean output
+      .concat(".") // ✅ Ensure ending with a single period
+      .replace(/،\./g, '.')             // ✅ Prevent "،." occurrences
+      .replace(/\../g, '.')             // ✅ Prevent ".." occurrences
+      .replace(/\(ت، _?هـ\)/g, '')      // ✅ Remove variations of "(ت، هـ)" in one step
+      .trim();                           // ✅ Ensure clean output
 
-    if(lexItem?.referenceSourceChapter!=null && lexItem?.referenceSourceChapter.trim()!=""){
-        sourceStr += "الإصحاح "+lexItem?.referenceSourceChapter.trim()+"، ";
-    }
-
-    if(lexItem?.referenceSourceVerse!=null && lexItem?.referenceSourceVerse.trim()!=""){
-        sourceStr += "الآية "+lexItem?.referenceSourceVerse.trim();
-    }
-
-    if ((lexItem?.referenceSourceBook != null && lexItem?.referenceSourceBook.trim() != (""))
-            || (lexItem?.referenceSourceChapter != null && lexItem?.referenceSourceChapter.trim() != (""))
-            || (lexItem?.referenceSourceVerse != null &&  lexItem?.referenceSourceVerse.trim() != (""))) {
-                if( (lexItem?.referenceSourceHaditNbr == null || lexItem?.referenceSourceHaditNbr.trim() == (""))
-                        && (lexItem?.referenceSourceReadingQuranStr == null || lexItem?.referenceSourceReadingQuranStr.trim() == (""))
-                        && (lexItem?.referenceSourceAyahNbr == null || lexItem?.referenceSourceAyahNbr.trim() == (""))
-                ) {
-                    sourceStr += ".";
-                } else if((lexItem?.referencesourcelastseen == null || lexItem?.referencesourcelastseen.trim() == ("")) && (lexItem?.referencesourcepublisheddate == null || lexItem?.referencesourcepublisheddate.trim() == (""))) {
-                    sourceStr += "، ";
-                }else{
-                   sourceStr += "، ";
-                }
-    }*/
-
-    if(lexItem?.referenceSourceHaditNbr!=null && lexItem?.referenceSourceHaditNbr.trim() != ("")){
-        sourceStr += "("+"رقم الحديث: "+lexItem?.referenceSourceHaditNbr.trim()+")";
-    }
-
-    if(lexItem?.referenceSourceReadingQuranStr!=null && lexItem?.referenceSourceReadingQuranStr.trim() != ("")){
-        sourceStr += "["+" "+lexItem?.referenceSourceReadingQuranStr.trim();
-    }
-
-    if(lexItem?.referenceSourceAyahNbr!=null && lexItem?.referenceSourceAyahNbr.trim() != ("")){
-        sourceStr += " : "+lexItem?.referenceSourceAyahNbr.trim()+" ]";
-    }
-/////////////////////////////////////////
-    if(lexItem?.referencesourceurl!=null && lexItem?.referencesourceurl.trim() != ("")){
-        sourceStr += "<a class=\"glyphicon glyphicon-link w3-text-blue\" style=\"color:#ccaf41\" target=\"_blank\" href=\""+lexItem?.referencesourceurl.trim()+"\" title=\"اضغط لفتح الوثيقة\"></a> "+"،" ;
-    }
-
-    if(lexItem?.referencesourcepublisheddate!=null && lexItem?.referencesourcepublisheddate.trim() != ("")){
-        sourceStr += " " + "نُشر في: "+moment(lexItem?.referencesourcepublisheddate.trim()).locale('en').format('DD-MM-YYYY')+" م.";
-    }
-
-    if(lexItem?.referencesourcelastseen!=null && lexItem?.referencesourcelastseen.trim() != ("")){
-      sourceStr += "شوهد في: "+moment(lexItem?.referencesourcelastseen.trim()).locale('en').format('DD-MM-YYYY')+" م.";
-    }
-///////////////////////////////////////
-this.compressedSource = sourceStr.replace("(ت، هـ)",'').replace("(ت، _هـ)",'').replace("(ت، هـ)",'');
-}
+  }
 }

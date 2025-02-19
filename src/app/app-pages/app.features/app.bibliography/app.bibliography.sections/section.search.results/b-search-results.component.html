@@ -47,7 +47,7 @@
             <div class="t-cell item-image">
               <img *ngIf="(sourceType > 1 || !item.source_cover_id ||(item.source_cover_id && item.source_cover_id == 0) )" src="/assets/images/book-cover-small.jpg"
                 [alt]="item.title">
-              <img *ngIf="(sourceType == 1 && item.source_cover_id && item.source_cover_id > 0)" src="{{_config.refPath + item.referencesourceid}}"
+              <img *ngIf="(sourceType == 1 && item.source_cover_id && item.source_cover_id > 0)" src="{{configJsonService.refPath + item.referencesourceid}}"
                 [alt]="item.title">
             </div>
 

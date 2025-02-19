@@ -10,10 +10,10 @@
       <button type="button" class="advanced-search-btn" (click)="showAdvancedSearch()">
         <span class="icon icon-controls"></span>
         <span class="text"
-          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">{{'dictionary.simplesearch' |
+          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch">{{'dictionary.simplesearch' |
           translate}}</span>
         <span class="text"
-          *ngIf="!_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">{{'dictionary.advancedsearch' |
+          *ngIf="!_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch">{{'dictionary.advancedsearch' |
           translate}}</span>
       </button>
     </div>
@@ -51,16 +51,16 @@
 
           <div class="ngui-auto-complete-wrapper" style="position: relative;">
 
-            <input *ngIf="autoComp" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SearchWord"
-              [ngModelOptions]="{standalone: true}" [typeahead]="dataSource" [typeaheadAsync]="true"
-              [adaptivePosition]="true" typeaheadOptionField="lemmaValue"
+            <input *ngIf="autoComp" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord"
+              [ngModelOptions]="{standalone: true}" [typeahead]="dataSource" [typeaheadAsync]="true" (keyup)="getAutoCompleteData($event)"
+              [adaptivePosition]="true" typeaheadOptionField="lemmaValue" 
               placeholder="{{'dictionary.searchwords' | translate}}" (typeaheadLoading)="changeTypeaheadLoading($event)"
               class="form-input">
 
           </div>
           <div *ngIf="!autoComp">
             <input type="text" class="form-input" placeholder="{{'dictionary.searchwords' | translate}}"
-              (keyup.enter)="parmChange()" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SearchWord"
+              (keyup.enter)="parmChange()" [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord"
               [ngModelOptions]="{standalone: true}" [disabled]="(selectedRootId && selectedRootId > 0) == true">
           </div>
         </div>
@@ -68,12 +68,12 @@
 
 
 
-      <div class="advanced-search" *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch">
+      <div class="advanced-search" *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch">
 
         <div class="row row-m-4 input-holder">
           <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
-              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsCarving"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsCarving"
               [ngModelOptions]="{standalone: true}">
             <div class="custom-checkbox-style">
               <div class="custom-checkbox"></div>
@@ -82,7 +82,7 @@
           </label>
           <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
-              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsEtymological"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsEtymological"
               [ngModelOptions]="{standalone: true}">
             <div class="custom-checkbox-style">
               <div class="custom-checkbox"></div>
@@ -92,7 +92,7 @@
 
           <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
-              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.IsSemanticField"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsSemanticField"
               [ngModelOptions]="{standalone: true}">
             <div class="custom-checkbox-style">
               <div class="custom-checkbox"></div>
@@ -110,7 +110,7 @@
                 [clearable]="true" bindLabel="additionalTag"
                 bindValue="additionalTag" clearAllText="{{'general.clearalltext' | translate}}"
                 placeholder="{{'dictionary.searchbyadditionaltag' | translate}}"
-                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.AdditioalTag"
+                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().AdditioalTag"
                 [ngModelOptions]="{standalone: true}" [searchable]="false">
               </ng-select>
             </div>
@@ -124,7 +124,7 @@
                 [clearable]="true" bindLabel="semanticFieldValue"
                 bindValue="semanticFieldValue" clearAllText="{{'general.clearalltext' | translate}}"
                 placeholder="{{'dictionary.searchbyfield' | translate}}"
-                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SemanticFieldValue"
+                [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().SemanticFieldValue"
                 [ngModelOptions]="{standalone: true}" [searchable]="false">
               </ng-select>
             </div>
@@ -140,7 +140,7 @@
             <ng-select [items]="sourceList" [clearable]="true" bindLabel="SourceValue"
               bindValue="SourceValue" clearAllText="{{'general.clearalltext' | translate}}"
               placeholder="{{'dictionary.searchbySourceList' | translate}}"
-              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.SourceValue"
+              [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().SourceValue"
               [ngModelOptions]="{standalone: true}" [searchable]="false">
             </ng-select>
           </div>
@@ -201,14 +201,14 @@
           </div>
 
         </div>
-
+ 
 
       </div>
 
       <div class="text-center">
         <ng-container *ngIf="!(selectedRootId && selectedRootId > 0)">
           <button class="submit-btn" type="button" (click)="parmChange()"
-            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)">{{'general.search'
+            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord)">{{'general.search'
             | translate}}</button>
         </ng-container>
         <ng-container *ngIf="(selectedRootId && selectedRootId > 0)">
@@ -216,9 +216,9 @@
             translate}}</button>
         </ng-container>
         <ng-container
-          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch && _sharedConfiguration.userInfo">
+          *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch && _sharedConfiguration.userInfo">
           <button type="button" class="advanced-search-btn"
-            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)"
+            [disabled]="(pendingReq || !this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord)"
             (click)="openSaveSearchCriteriaModal()">
             {{'dictionary.savesearchcriteria' | translate}}
           </button>

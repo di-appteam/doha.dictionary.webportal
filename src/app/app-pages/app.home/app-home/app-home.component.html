@@ -1,5 +1,6 @@
 <div class="home-content" id="page-content">
-  <div class="search-section" *ngIf="!_config.appIsOldVersionMode">
+  {{configjsonService.AppIsOldVersionMode}}
+  <div class="search-section" *ngIf="!configjsonService.AppIsOldVersionMode">
     <div class="logo-watermark">
       <img src="/assets/images/logo-watermark.png" alt="Doha Dictionary">
     </div>
@@ -18,7 +19,7 @@
 
     </div>
   </div>
-  <header-global-search-old-v *ngIf="_config.appIsOldVersionMode"></header-global-search-old-v>
+  <header-global-search-old-v *ngIf="configjsonService.AppIsOldVersionMode"></header-global-search-old-v>
 
   <app-carousel-services-section></app-carousel-services-section>
 
@@ -71,5 +72,5 @@
 
 
   <div class="clearfix"></div>
-  <app-carousel-socials-section  *ngIf="!_config.appIsOldVersionMode"></app-carousel-socials-section>
+  <app-carousel-socials-section  *ngIf="!configjsonService.AppIsOldVersionMode"></app-carousel-socials-section>
 </div>

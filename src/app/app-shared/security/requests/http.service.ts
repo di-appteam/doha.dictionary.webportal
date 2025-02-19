@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { SharedConfiguration } from '../../services/config.service';
+import { ConfigJsonService } from '../../services/configjson.service';
 
 @Injectable()
 export class HttpService  {
@@ -23,9 +24,10 @@ export class HttpService  {
 
     constructor(
         private http: HttpClient,
-        private sharedConfiguration: SharedConfiguration
+        private sharedConfiguration: SharedConfiguration,
+        private configJsonService: ConfigJsonService
     ) {
-        this.apiUrl = this.sharedConfiguration.ServiceBaseUrl;
+        this.apiUrl = this.configJsonService.ServiceBaseUrl;
     }
 
     get(url: string, options?: any): Observable<any> {

@@ -24,6 +24,7 @@ import { DictionaryService } from "../../../../../../app-shared/services/diction
 import { SharedLemmaComponentValues } from "../../../../../../app-shared/services/lemma.general.service";
 import { SendCommentComponent } from "../../../../../../app-shared/shared-sections/send-comment/send-comment.component";
 import { SearchResults } from "../../../../app.bibliography/app.bibliography.sections/section.search.results/b-search-results.models";
+import { BookMarkService } from "../../../../../../app-shared/services/bookmark.service";
 
 
 
@@ -40,7 +41,8 @@ import { SearchResults } from "../../../../app.bibliography/app.bibliography.sec
     AccordionModule,
     ShareButtonDirective, FaIconComponent,
     HasPermissionDirective,DSearchResultsDetailComponent,
-    NgSelectModule, TextFormComponent]
+    NgSelectModule, TextFormComponent],
+    providers:[BookMarkService]
 })
 export class LexicalsheetComponent implements OnInit, OnChanges {
 
@@ -61,7 +63,7 @@ export class LexicalsheetComponent implements OnInit, OnChanges {
   public openActions = false;
   public shareUrl:string = "https://www.dohadictionary.org/dictionary/"
   constructor(
-    library: FaIconLibrary,private _translate: TranslateService,
+    library: FaIconLibrary,private _translate: TranslateService,private bookMarkService:BookMarkService,
     private modalService: BsModalService,
     public _dictionaryService: DictionaryService,
     public _config: SharedConfiguration,
@@ -244,7 +246,7 @@ export class LexicalsheetComponent implements OnInit, OnChanges {
   afterBookmark(lexItem: ISummaryLexicalSheet) {
     lexItem.IsBookMark = !lexItem.IsBookMark;
     if (!lexItem.IsBookMark) {
-      this._config.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lemma);
+      this.bookMarkService.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lemma);
     }
   }
 

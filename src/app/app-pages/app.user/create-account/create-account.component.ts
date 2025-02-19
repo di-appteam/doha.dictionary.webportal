@@ -16,6 +16,7 @@ import { ShowMessageServiceService } from "../../../app-shared/services/showing-
 import { StoreService } from "../../../app-shared/services/store.service";
 import { ShowingMessageComponent } from "../../../app-shared/shared-sections/showing-message/showing-message.component";
 import { PasswordValidation } from "../../../app-shared/validation/password-validation";
+import { ConfigJsonService } from "../../../app-shared/services/configjson.service";
 
 
 @Component({
@@ -38,6 +39,7 @@ export class CreateAccountComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: AccountService,
     public _sharedConfiguration:SharedConfiguration,
+    public configJsonService: ConfigJsonService,
     //private socialAuthService: AuthService,
     private showMessageServiceService: ShowMessageServiceService) { }
 

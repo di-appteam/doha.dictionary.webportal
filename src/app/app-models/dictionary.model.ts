@@ -27,6 +27,7 @@ export interface ISummaryLexicalSheet {
     rootId: number;
     lemmaId: number;
     referenceSourceReadingQuran: number;
+    proofReadingQuraniclexicalsheetId: number;
     rootValue: string;
     lemmaValue: string;
     lemmaValueUV: string;
@@ -81,6 +82,9 @@ export interface ISummaryLexicalSheet {
     referencesourcelastseen:string;
     referencesourceurl:string;
     referencesourcepublisheddate:string;
+    referencesourcebook:string;
+    referencesourcechapter:string;
+    referencesourceverse:string;
 }
 
 

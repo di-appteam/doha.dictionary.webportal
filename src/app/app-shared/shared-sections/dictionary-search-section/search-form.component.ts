@@ -1,5 +1,5 @@
 
-import { of, Subscription, Observable, Observer, EMPTY, noop } from 'rxjs';
+import { of, Subscription, Observable, Observer, EMPTY, noop, BehaviorSubject } from 'rxjs';
 import { Component, AfterViewInit, OnInit, Input, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
@@ -19,7 +19,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { mergeMap } from 'rxjs/operators';
+import { catchError, mergeMap } from 'rxjs/operators';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
@@ -53,7 +53,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
   semanticList: any[] = [];
   autherList: any[] = [];
   sourceList: any[] = [];
-  public rootList :IRoot[] = [];
+  public rootList: IRoot[] = [];
   public advancedSearch: boolean = false;
   public autoComp: boolean = true;
   private sub?: Subscription;
@@ -102,7 +102,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
 
     this.dataSource = new Observable((observer: Observer<string | undefined>) => {
       // Runs on every search
-      observer.next(this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord);
+      observer.next(this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord);
     }).pipe(
       mergeMap((token: string) => this.getAutoCompleteData(token))
     );
@@ -112,19 +112,24 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.GetRoots();
     if (!this._sharedLemmaComponentValues._searchDictionaryModel)
-      this._sharedLemmaComponentValues._searchDictionaryModel = new SearchDictionaryModel();
+      this._sharedLemmaComponentValues._searchDictionaryModel = new BehaviorSubject<SearchDictionaryModel>(new SearchDictionaryModel());
 
     this._sharedConfiguration.AdditionalTags.subscribe(tags => { this.additionalTags = tags; });
     this._sharedConfiguration.SemanticList.subscribe(list => this.semanticList = list);
     this._sharedConfiguration.AutherList.subscribe(list => this.autherList = list);
     this._sharedConfiguration.SourceList.subscribe(list => this.sourceList = list);
 
-    this.sub = this._sharedLemmaComponentValues.obsSearchWord.subscribe(
-      word => {
-        if (word == '')
-          this._sharedLemmaComponentValues._searchDictionaryModel = new SearchDictionaryModel();
-        this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord = word;
-      });
+    /*this.sub = this._sharedLemmaComponentValues._searchDictionaryModel.subscribe(
+      (model : SearchDictionaryModel) => {
+        if (model.SearchWord == '')
+          this._sharedLemmaComponentValues._searchDictionaryModel = new BehaviorSubject<SearchDictionaryModel>(new SearchDictionaryModel());
+        else{
+        // Get the current value
+        const model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
+        model.SearchWord = word;
+        // Push the new value into BehaviorSubject to trigger change detection
+        this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
+      });*/
     this._sharedConfiguration.pendingReq.subscribe(
       isPending => {
         this.pendingReq = isPending;
@@ -147,65 +152,101 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
   }
 
 
-  getAutoCompleteData(event: any): Observable<ISummaryLexicalSheet[]> {
+  /*getAutoCompleteData(event: any): Observable<ISummaryLexicalSheet[]> {
     if (event.key === "Enter") {
       this.parmChange();
       return EMPTY;
     }
     this._sharedLemmaComponentValues.acSummaryLexicalSheet = [];
-    return this._dictionaryService.getAutoCompleteData(this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord);
+    return this._dictionaryService.getAutoCompleteData(this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord);
   }
   observableSource = (keyword: any): Observable<any[]> => {
     return of(this._sharedLemmaComponentValues.acSummaryLexicalSheet);
+  }*/
+
+    getAutoCompleteData(event: any): Observable<ISummaryLexicalSheet[]> {
+    if (event.key === "Enter") {
+      this.parmChange();
+      return EMPTY;
+    }
+    const searchWord = this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord;
+  
+    if (!searchWord || searchWord.length < 2 ) {
+      return of([]); // ✅ Return empty array to prevent unnecessary API calls
+    }
+  
+    return this._dictionaryService.SearchByLemmaAutoC(searchWord, 1, 10).pipe(
+      map(response => response.Data || []), // ✅ Extracts `Data` or returns empty array
+      catchError(() => of([])) // ✅ Handles API errors gracefully
+    );
   }
+  
+  observableSource = (keyword: string): Observable<any[]> => {
+    const searchWord = this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord;
+  
+    if (!searchWord || searchWord.length < 2 ) {
+      return of([]); // ✅ Return empty array to prevent unnecessary API calls
+    }
+  
+    return this._dictionaryService.SearchByLemmaAutoC(searchWord, 1, 10).pipe(
+      map(response => response.Data || []), // ✅ Extracts `Data` or returns empty array
+      catchError(() => of([])) // ✅ Handles API errors gracefully
+    );
+  };
+
   autocompleListFormatter = (data: any): SafeHtml => {
     let html = `<span>${data.lemmaValue}</span>`;
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
   parmChange(): void {
     this.PrepareSearchModel();
-    if (this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord && this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord.length > 1) {
+    if (this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord && this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord.length > 1) {
       this._sharedRootComponentValues.obsSearchWord.next('');
       if (this.isRoot === false && this._router.url.endsWith('/dictionary'))
         this._sharedLemmaComponentValues.fireSearchOperation.next(true);
       else {
-        if (this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch)
+        if (this._sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch)
           this._sharedLemmaComponentValues.fireSearchOperation.next(true);
-        this._router.navigate([('/dictionary/' + this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord)]);
+        this._router.navigate([('/dictionary/' + this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord)]);
       }
     }
   }
   PrepareSearchModel() {
-    if (this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord["lemmaValue"])
-      this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord = this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord["lemmaValue"];
-    console.log(this._sharedLemmaComponentValues._searchDictionaryModel.SearchWord);
-    this._sharedLemmaComponentValues._searchDictionaryModel.IsHijri = (this.selectedDateTypeDropdown == 1);
-    this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom = this.dateFrom;
-    this._sharedLemmaComponentValues._searchDictionaryModel.DateTo = this.dateTo;
-    console.log(this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch);
+    var model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
+    if (model.SearchWord["lemmaValue"])
+      model.SearchWord = model.SearchWord["lemmaValue"];
+    console.log(model.SearchWord);
+    model.IsHijri = (this.selectedDateTypeDropdown == 1);
+    model.DateFrom = this.dateFrom;
+    model.DateTo = this.dateTo;
+    console.log(model.IsAdvancedSearch);
     if (this.selectedItems)
-      this._sharedLemmaComponentValues._searchDictionaryModel.AutherValue = this.selectedItems.join(" , ");
+      model.AutherValue = this.selectedItems.join(" , ");
     if (this.selectedDateTypeDropdown == 1) {
-      if (this.selectedDateTypeHijriFromDropdown == 1 && this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom && this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom > 0)
-        this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom *= -1;
-      if (this.selectedDateTypeHijriToDropdown == 1 && this._sharedLemmaComponentValues._searchDictionaryModel.DateTo && this._sharedLemmaComponentValues._searchDictionaryModel.DateTo > 0)
-        this._sharedLemmaComponentValues._searchDictionaryModel.DateTo *= -1;
+      if (this.selectedDateTypeHijriFromDropdown == 1 && model.DateFrom && model.DateFrom! > 0)
+        model.DateFrom! *= -1;
+      if (this.selectedDateTypeHijriToDropdown == 1 && model.DateTo && model.DateTo! > 0)
+        model.DateTo! *= -1;
     }
     else {
-      if (this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom && this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom < 0)
-        this._sharedLemmaComponentValues._searchDictionaryModel.DateFrom *= -1;
-      if (this._sharedLemmaComponentValues._searchDictionaryModel.DateTo && this._sharedLemmaComponentValues._searchDictionaryModel.DateTo < 0)
-        this._sharedLemmaComponentValues._searchDictionaryModel.DateTo *= -1;
+      if (model.DateFrom && model.DateFrom! < 0)
+        model.DateFrom! *= -1;
+      if (model.DateTo && model.DateTo! < 0)
+        model.DateTo! *= -1;
     }
-
+    this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
   }
   showAdvancedSearch() {
-    this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch = !this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch;
+    var model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
+    model.IsAdvancedSearch = !model.IsAdvancedSearch;
+    this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
   }
 
   openSaveSearchCriteriaModal() {
     this.PrepareSearchModel();
-    this._sharedLemmaComponentValues._searchDictionaryModel.SearchCriteriaType = this._sharedConfiguration.bookmarkType.lexicalsheet;
+    var model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
+    model.SearchCriteriaType = this._sharedConfiguration.bookmarkType.lexicalsheet;
+    this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
     const initialState = {
       searchCriteria: JSON.stringify(this._sharedLemmaComponentValues._searchDictionaryModel)
     };
@@ -219,7 +260,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
 
   setSelectedRoot(newVal: any): void {
     this.selectedRootId = !newVal ? undefined : newVal;
-    if (this._sharedLemmaComponentValues._searchDictionaryModel.IsAdvancedSearch)
+    if (this._sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch)
       this.showAdvancedSearch();
   }
   goToRoot() {
@@ -228,7 +269,7 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
     if (!roots || roots.length == 0)
       return;
     this._sharedRootComponentValues.SelectRoot(roots[0], this._storeService);
-    this._router.navigate(['/root/'+roots[0].rootValue]);
+    this._router.navigate(['/root/' + roots[0].rootValue]);
   }
 
   customSearchFn(term: string, item: any) {

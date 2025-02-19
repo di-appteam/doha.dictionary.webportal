@@ -33,6 +33,7 @@ import { AlertComponent } from "../../../../../app-shared/shared-sections/alert/
 import { DictionarySearchFormComponent } from "../../../../../app-shared/shared-sections/dictionary-search-section/search-form.component";
 import { SendCommentComponent } from "../../../../../app-shared/shared-sections/send-comment/send-comment.component";
 import { AlertEnum, AlertMessages, SORRY } from "../../../app.bibliography/app.bibliography.sections/section.search.results/b-search-results.models";
+import { BookMarkService } from "../../../../../app-shared/services/bookmark.service";
 @Component({
   selector: 'd-search-results',
   standalone: true,
@@ -59,8 +60,7 @@ import { AlertEnum, AlertMessages, SORRY } from "../../../app.bibliography/app.b
     PrevSearchResultSectionComponent,
     ShareButtonDirective, FaIconComponent,
     HasPermissionDirective],
-  providers: [
-  ]
+  providers: [ BookMarkService ]
 })
 export class DSearchResultsComponent implements OnInit {
 
@@ -89,10 +89,10 @@ export class DSearchResultsComponent implements OnInit {
   private subBMSearch?: Subscription;
   private subAutoLemmaSearch?: Subscription;
   seqModalRef?: BsModalRef;
-  public shareUrl: string = "https://www.dohadictionary.org/dictionary/"
 
   constructor(
     library: FaIconLibrary,
+    private bookMarkService :  BookMarkService, 
     public _dictionaryService: DictionaryService,
     public _config: SharedConfiguration,
     public _sharedFunctions: SharedFunctions,
@@ -112,17 +112,17 @@ export class DSearchResultsComponent implements OnInit {
     this.subLemmaSearch = this._sharedLemmaComponentValues.fireSearchOperation.subscribe(
       run => {
         if (run) {
-          this.searchDictionaryModel = this._sharedLemmaComponentValues._searchDictionaryModel;
+          this.searchDictionaryModel = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
           this.parmChange(true);
         }
       });
-    this.subAutoLemmaSearch = this._sharedLemmaComponentValues.obsSearchWord.subscribe(
-      word => {
-        if (word) {
-          if (this.searchDictionaryModel.SearchWord == word)
+    this.subAutoLemmaSearch = this._sharedLemmaComponentValues._searchDictionaryModel.subscribe(
+      model => {
+        if (model.SearchWord) {
+          if (this.searchDictionaryModel.SearchWord == model.SearchWord)
             return;
-          this.searchDictionaryModel.SearchWord = word;
-          this.parmChange(false);
+          this.searchDictionaryModel = model;
+          this.parmChange(true);
         }
       });
   }
@@ -270,7 +270,7 @@ export class DSearchResultsComponent implements OnInit {
   afterBookmark(lexItem: ISummaryLexicalSheet) {
     lexItem.IsBookMark = !lexItem.IsBookMark;
     if (!lexItem.IsBookMark)
-      this._config.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lemma);
+      this.bookMarkService.removeBookmarkLocal(lexItem.ID, this._config.bookmarkType.lemma);
   }
 
   sendComment(lexItem: ISummaryLexicalSheet) {

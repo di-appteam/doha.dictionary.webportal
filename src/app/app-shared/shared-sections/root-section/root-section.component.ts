@@ -40,8 +40,8 @@ export class RootSectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.subscription = this._sharedRootComponentValues.obsSearchWord.subscribe((word:any) => {
-            if (word != '')
-                this._sharedLemmaComponentValues.obsSearchWord.next('');
+            if (word != '') 
+                this._sharedLemmaComponentValues.ResetSetting();
             this.searchRootWord = word;
             this.searchInRootFromSr(false);
         });

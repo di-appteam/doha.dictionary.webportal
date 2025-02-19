@@ -42,7 +42,7 @@ export class RootListComponent implements OnInit, OnChanges, AfterViewChecked {
   ngOnInit(): void {
     this._sharedRootComponentValues.obsSearchListWord.subscribe((word: string) => {
       if (word != '')
-        this._sharedLemmaComponentValues.obsSearchWord.next('');
+        this._sharedLemmaComponentValues.ResetSetting();
 
       this.searchInRoot(word);
     });

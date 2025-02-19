@@ -1,0 +1,7 @@
+{
+    "production": true,
+    "baseUrl": "http://localhost:86",
+    "production_BaseUrl": "https://www.dohadictionary.org/dd.service",
+    "oldVersion":true,
+    "shareUrl":"https://www.dohadictionary.org/dictionary/"
+}

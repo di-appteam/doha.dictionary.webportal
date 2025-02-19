@@ -28,6 +28,7 @@ import { AppFooterComponent } from './app-shared/shared-components/app-footer/ap
 import { AppHeaderOldVComponent } from './app-shared/shared-components/app-header-old-v/app-header-old-v.component';
 import { AppHeaderComponent } from './app-shared/shared-components/app-header/app-header.component';
 import { ScrollTopComponent } from './app-shared/shared-sections/scroll-top/scroll-top.component';
+import { ConfigJsonService } from './app-shared/services/configjson.service';
 
 const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
 
@@ -37,7 +38,7 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
   imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,ScrollTopComponent,AppHeaderOldVComponent,
     NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
-    SecurityService, ScrollService, PagerService, ClipboardService,
+    SecurityService, ScrollService, PagerService, ClipboardService,ConfigJsonService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
     SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService,{
       provide: RECAPTCHA_SETTINGS,
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit {
   isAppStarted = false;
   isBrowser;
   constructor(private translateService: TranslationService, public securityService: SecurityService,public _config:SharedConfiguration,
-    @Inject(PLATFORM_ID) platformId: Object) {
+    public configStartupService : ConfigJsonService,@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
       this.translateService.init();
@@ -66,12 +67,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.securityService.StartUpApp().then(() => {
-        this.isAppStarted = true;
-      }).catch(error => {
-        console.error('Startup failed', error);
-        this.isAppStarted = false;
-      });
+      Promise.all([
+        this.securityService.StartUpApp(),
+        this.configStartupService.loadConfig()
+      ])
+        .then((data) => {
+          this.isAppStarted = true;
+        })
+        .catch(error => {
+          this.isAppStarted = false;
+        });
     }
   }
 

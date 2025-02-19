@@ -21,6 +21,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselSocialsSectionComponent } from '../../../app-shared/shared-sections/carousel-socials-section/carousel-socials-section.component';
 import { CarouselServicesSectionComponent } from '../../../app-shared/shared-sections/carousel-services-section/carousel-services-section.component';
 import { HeaderGlobalSearchOldVComponent } from '../../../app-shared/shared-sections/header-global-search-old-v/header-global-search-old-v.component';
+import { ConfigJsonService } from '../../../app-shared/services/configjson.service';
 
 export interface PhotosApi {
   albumId?: number;
@@ -39,7 +40,8 @@ export interface PhotosApi {
     TranslateModule,RootSectionComponent, HasPermissionDirective,HeaderGlobalSearchComponent,DynamicGridSectionComponent],
 
   templateUrl: './app-home.component.html',
-  styleUrl: './app-home.component.scss'
+  styleUrl: './app-home.component.scss',
+  providers:[ConfigJsonService]
 })
 export class AppHomeComponent implements OnInit {
 ///////////////////////////////////// Test news slider
@@ -77,6 +79,7 @@ customOptions: OwlOptions = {
 
   constructor(
     private meta: Meta,
+    public configjsonService : ConfigJsonService,
     public _config: SharedConfiguration,
     private modalService: BsModalService,
     private _sharedRootComponentValues: SharedRootComponentValues,
