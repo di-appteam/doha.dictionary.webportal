@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dd-app": {
+    "doha-dictionary": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -26,7 +26,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "stylePreprocessorOptions": {
@@ -34,25 +35,30 @@
                 "node_modules/"
               ]
             },
+            "allowedCommonJsDependencies": [
+              "quill-delta"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets",
-           "src/assets/lang"
+              "src/assets/lang"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.min.css",
+              "node_modules/bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "node_modules/ngx-sharebuttons/themes/material.scss",
               "node_modules/quill/dist/quill.core.css",
-        "node_modules/quill/dist/quill.bubble.css",
-        "node_modules/quill/dist/quill.snow.css",
+              "node_modules/quill/dist/quill.bubble.css",
+              "node_modules/quill/dist/quill.snow.css",
               "src/scss/styles.scss"
             ],
-            "scripts": ["node_modules/quill/dist/quill.js"],
+            "scripts": [
+              "node_modules/quill/dist/quill.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -61,16 +67,20 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "250kb",
+                  "maximumError": "500kb"
                 }
               ],
               "outputHashing": "all"
@@ -87,10 +97,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "dd-app:build:production"
+              "buildTarget": "doha-dictionary:build:production"
             },
             "development": {
-              "buildTarget": "dd-app:build:development"
+              "buildTarget": "doha-dictionary:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,14 +108,15 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "dd-app:build"
+            "buildTarget": "doha-dictionary:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
@@ -122,6 +133,9 @@
     }
   },
   "cli": {
-    "analytics": "185ce687-d6a7-4155-8d98-66ef20f12188"
+    "analytics": "185ce687-d6a7-4155-8d98-66ef20f12188",
+    "warnings": {
+      "versionMismatch": false
+    }
   }
 }

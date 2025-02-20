@@ -2,7 +2,6 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Input, AfterViewInit, ChangeDetectorRef, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -16,10 +15,13 @@ import { DictionaryService } from '../../../../../app-shared/services/dictionary
 import { SendCommentComponent } from '../../../../../app-shared/shared-sections/send-comment/send-comment.component';
 import { BookMarkService } from '../../../../../app-shared/services/bookmark.service';
 import { ConfigJsonService } from '../../../../../app-shared/services/configjson.service';
+import { format } from 'date-fns';
+import { ar } from 'date-fns/locale';
+
 @Component({
   selector: 'dictionary-result-section',
   standalone: true,
-  imports: [NgIf, NgClass, NgFor, FormsModule, CarouselModule, PopoverModule, TooltipModule, JustifyArabicDirective, TranslateModule, PopoverModule, SendCommentComponent, HasPermissionDirective],
+  imports: [FormsModule, CarouselModule, PopoverModule, TooltipModule, JustifyArabicDirective, TranslateModule, PopoverModule, SendCommentComponent, HasPermissionDirective,NgIf, NgClass, NgFor],
   templateUrl: './dictionary-result-section.component.html',
   styleUrls: ['./dictionary-result-section.component.scss'],
   providers: [BookMarkService]
@@ -220,11 +222,13 @@ export class DictionaryResultSectionComponent implements OnInit, AfterViewInit {
     }
 
     if (referencesourcepublisheddate && referencesourcepublisheddate.trim()) {
-      sourceStr.push(` نُشر في: ${moment(referencesourcepublisheddate.trim()).locale('ar').format('DD-MM-YYYY')} م.`);
+      const formattedDate = format(new Date(referencesourcepublisheddate.trim()), 'dd-MM-yyyy', { locale: ar });
+      sourceStr.push(` نُشر في: ${formattedDate} م.`);
     }
-
+    
     if (referencesourcelastseen && referencesourcelastseen.trim()) {
-      sourceStr.push(` شوهد في: ${moment(referencesourcelastseen.trim()).locale('ar').format('DD-MM-YYYY')} م.`);
+      const formattedDate = format(new Date(referencesourcelastseen.trim()), 'dd-MM-yyyy', { locale: ar });
+      sourceStr.push(` شوهد في: ${formattedDate} م.`);
     }
 
     // ✅ Final String Cleanup
