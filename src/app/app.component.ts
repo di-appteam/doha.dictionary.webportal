@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
     if (this.isBrowser) {
       Promise.all([
         this.securityService.StartUpApp(),
-        this.configStartupService.loadConfig()
+        //this.configStartupService.loadConfig()
       ])
         .then((data) => {
           this.isAppStarted = true;

@@ -34,9 +34,6 @@ export class GlobalConfigurationService {
   public readonly PageSize = 10;
   public readonly shareUrl = "https://www.dohadictionary.org/dictionary/";
 
-  // Environment-specific configurations
-  public readonly IsDevelopment = !environment.production;
-  public readonly ServiceBaseUrl = environment.baseUrl;
 
   // Enumerated types
   public readonly NewFormLexicalSheetTypes = NewFormLexicalSheetType;
@@ -54,7 +51,6 @@ export class GlobalConfigurationService {
   public AutherList: any[] = [];
   public UserBookmarkList: any[] = [];
   public obsSelectedPart = new Subject<number>();
-  public refPath = this.ServiceBaseUrl + '/api/SummaryDocuments/GetReferenceCover?refId=';
   public userInfo: UserInfo | null = null;
 
   constructor() {}
