@@ -40,7 +40,8 @@ export class AppChartsSearchComponent implements OnInit {
       // Runs on every search
       observer.next(this.SearchWord);
     }).pipe(
-      mergeMap((token: string) => this.getAutoCompleteData(token))
+      mergeMap((token: string | undefined) => this.getAutoCompleteData(token ?? ''))
+
     );
 
 

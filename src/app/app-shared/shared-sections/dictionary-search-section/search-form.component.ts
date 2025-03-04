@@ -104,7 +104,8 @@ export class DictionarySearchFormComponent implements OnInit, AfterViewInit {
       // Runs on every search
       observer.next(this._sharedLemmaComponentValues._searchDictionaryModel.getValue().SearchWord);
     }).pipe(
-      mergeMap((token: string) => this.getAutoCompleteData(token))
+      mergeMap((token: string | undefined) => this.getAutoCompleteData(token ?? ''))
+
     );
 
   }
