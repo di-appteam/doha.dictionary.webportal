@@ -22,7 +22,7 @@ export function loadConfigFactory(configService: ConfigJsonService) {
 
 // 🌍 AoT requires an exported function for TranslateLoader
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
+  return new TranslateHttpLoader(http, 'https://www.dohadictionary.org/assets/lang/', '.json');
 }
 
 // 🛠️ Setup translation module

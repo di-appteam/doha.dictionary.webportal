@@ -75,7 +75,7 @@ export class AboutDictionaryComponent implements OnInit {
     this.meta.updateTag({name: 'twitter:url',content: window.location.href},"name='twitter:url'");
   }
     this._domSanitizer = domSanitizer;
-    this.http.get('assets/template-files/about-dictionary.png', { responseType: 'text' }).subscribe(data => {
+    this.http.get('https://www.dohadictionary.org/assets/template-files/about-dictionary.png', { responseType: 'text' }).subscribe(data => {
       console.log(data);
       this.aboutDictionaryHTML = this._domSanitizer.bypassSecurityTrustHtml(data)
     });

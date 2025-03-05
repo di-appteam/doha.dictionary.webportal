@@ -53,7 +53,7 @@ export class ContentManagementComponent implements OnInit {
    */
   loadHTMLContent(): void {
     this.http
-      .get('assets/template-files/about-dictionary.png', { responseType: 'text' })
+      .get('https://www.dohadictionary.org/assets/template-files/about-dictionary.png', { responseType: 'text' })
       .subscribe((data: string) => {
         const updatedHTML = this.updateHTMLContent(data);
         this.aboutDictionaryHTML = this._domSanitizer.bypassSecurityTrustHtml(updatedHTML); // Rendered HTML
