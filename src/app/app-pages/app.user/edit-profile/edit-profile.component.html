@@ -17,7 +17,7 @@
       </div>
   <div class="row">
 
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-12">
       <div class="form-group">
         <input type="text" placeholder="{{'shared.usersection.edit-profile.organization' | translate}}" formControlName="Organization"
           class="form-input has-padding" maxlength="299"  [ngClass]="{ 'is-invalid': submitted && f['Organization'].errors }" autocomplete="off"
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-12">
       <div class="form-group">
         <input type="text" placeholder="البريد الإلكتروني" class="form-input has-padding" value="{{_sharedConfiguration.userInfo?.Email}}"
           disabled/>
@@ -37,13 +37,13 @@
   </div>
   <div class="row">
 
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-12">
       <div class="form-group">
         <input type="number" dir="ltr" placeholder="{{'shared.usersection.edit-profile.mobile' | translate}}" formControlName="Mobile"
           class="form-input has-padding"  maxlength="15"  autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
       </div>
     </div>
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-12">
       <div class="form-group">
         <input type="text" placeholder="{{'shared.usersection.edit-profile.job' | translate}}"  maxlength="299"  formControlName="Job" class="form-input has-padding"
           autocomplete="off" />

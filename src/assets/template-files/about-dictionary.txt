@@ -1,7 +1,7 @@
  <div class="content-container">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 col-xs-12 main-content" >
+        <div class="col-md-12 col-12 main-content" >
           <div style="background-color: white;padding: 50px;">
 
             <h1 align="center" dir="RTL">
