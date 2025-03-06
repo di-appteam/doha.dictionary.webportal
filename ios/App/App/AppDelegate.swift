@@ -8,8 +8,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        DispatchQueue.main.async {
+    if let rootView = self.window?.rootViewController?.view {
+        rootView.translatesAutoresizingMaskIntoConstraints = false
+    }
+}
         return true
     }
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }
+}
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

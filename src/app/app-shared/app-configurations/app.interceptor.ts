@@ -2,11 +2,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { PLATFORM_ID, inject } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
-import { Http } from '@capacitor-community/http';
+import { Http, HttpOptions, HttpResponse as CapacitorHttpResponse } from '@capacitor-community/http';
 import { Observable, from } from 'rxjs';
 import { HttpRequest, HttpHandlerFn, HttpEvent, HttpResponse, HttpParams } from '@angular/common/http';
 
-// ✅ Function to Convert HttpParams to a Plain Object
+// ✅ Convert HttpParams to Plain Object
 function convertHttpParamsToObject(params: HttpParams): Record<string, string> {
   let paramObj: Record<string, string> = {};
   params.keys().forEach(key => {
@@ -37,41 +37,45 @@ export const appInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, nex
 
   // ✅ If running on mobile (iOS/Android), use Capacitor HTTP
   if (Capacitor.isNativePlatform()) {
-    // ✅ Use `Http.get()` for GET requests
-    if (req.method.toUpperCase() === 'GET') {
-      return from(Http.get({
-        url: req.urlWithParams,
-        headers: headers,
-        params: paramsObject
-      }).then(response => {
-        return new HttpResponse({
-          body: response.data,
-          status: response.status,
-          statusText: 'OK',
-          url: req.urlWithParams
-        });
-      }));
-    } else {
-      // ✅ Use `Http.request()` for other methods (POST, PUT, DELETE)
-      return from(Http.request({
-        method: req.method as any,
-        url: req.urlWithParams,
-        headers: headers,
-        params: paramsObject, // 👈 Converted to an object
-        data: req.body || {},
-        readTimeout: 30000 // ⏳ Increase timeout for large responses
-      }).then(response => {
-        return new HttpResponse({
-          body: response.data,
-          status: response.status,
-          statusText: 'OK',
-          url: req.urlWithParams
-        });
-      }));
+    if (req.urlWithParams.includes('assets/')) {
+      console.log("Ahmed Test : " + req.urlWithParams);
+      return next(req);
     }
+    let natReq = PrepareRequest(tokenStr, req.urlWithParams, req.method, req.body);
+
+    return from(Http.request(natReq).then((response: CapacitorHttpResponse) => {
+      return new HttpResponse({
+        body: response.data,
+        status: response.status,
+        statusText: response.status >= 200 && response.status < 300 ? 'OK' : 'Error',
+        url: req.urlWithParams
+      }) as HttpEvent<unknown>;
+    }));
   }
 
   // ✅ Default behavior for web (HttpClient)
   const newRequest = req.clone({ setHeaders: headers });
   return next(newRequest);
 };
+
+// ✅ Function to Prepare HTTP Request Options
+function PrepareRequest(token: string, url: string, method: string, data: any, isFileUpload: boolean = false): HttpOptions {
+  let contentType: string = isFileUpload ? "multipart/form-data" : "application/json";
+  let headers: any = { 'Content-Type': contentType };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  const options: HttpOptions = {
+    url: url,
+    method: method,
+    headers: headers,
+    disableRedirects: false
+  };
+
+  if (data) {
+    options.data = data;
+  }
+
+  return options;
+}

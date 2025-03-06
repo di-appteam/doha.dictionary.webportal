@@ -38,6 +38,7 @@
     "@capacitor-community/http": "^1.4.1",
     "@capacitor/android": "^7.0.1",
     "@capacitor/angular": "^2.0.3",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^7.0.1",
     "@fortawesome/angular-fontawesome": "^0.15.0",

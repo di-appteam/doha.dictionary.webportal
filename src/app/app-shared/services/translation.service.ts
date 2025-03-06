@@ -2,10 +2,18 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class TranslationService {
   /**
    * A BehaviorSubject used as Observable to update language in other Components/Directives
@@ -16,12 +24,15 @@ export class TranslationService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) platformId: Object,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private http: HttpClient
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   init(): void {
+    HttpLoaderFactory(this.http);
+    this.translate.reloadLang('ar');
     this.translate.addLangs(['en', 'ar']); // Add supported languages
     this.translate.setDefaultLang('ar'); // Set default language
 

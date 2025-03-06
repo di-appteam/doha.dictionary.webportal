@@ -22,6 +22,16 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera to take photos for use in your profile and to personalize your experience.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app uses your location to offer location-based recommendations, services, and to navigate you to places of interest.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Access to the microphone is needed for voice commands and to enhance your interaction with certain app features.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>The app requests access to your photo library to save new photos, allowing you to update and manage your profile imagery directly within the app.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app needs permission to access your photo library for selecting photos that you can use as your profile image or share within the app.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,7 +53,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<key>UISupportsFullScreenInAssistiveAccess</key>
 	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIRequiresFullScreen</key>
+    <true/>
+	<key>UIViewEdgeAntialiasing</key>
+	<false/>
+	<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
 </dict>
 </plist>

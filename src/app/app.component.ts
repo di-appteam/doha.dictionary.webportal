@@ -2,7 +2,7 @@ import { isPlatformBrowser, NgIf } from '@angular/common';
 import { APP_INITIALIZER, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, NO_ERRORS_SCHEMA, OnInit, PLATFORM_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { RecaptchaSettings, RECAPTCHA_SETTINGS, RECAPTCHA_LANGUAGE } from 'ng-recaptcha-2';
 import { HasPermissionDirective } from './app-shared/directive/permissions.directive';
 import { AuthGuard } from './app-shared/security/auth.guard';
@@ -29,6 +29,8 @@ import { AppHeaderOldVComponent } from './app-shared/shared-components/app-heade
 import { AppHeaderComponent } from './app-shared/shared-components/app-header/app-header.component';
 import { ScrollTopComponent } from './app-shared/shared-sections/scroll-top/scroll-top.component';
 import { ConfigJsonService } from './app-shared/services/configjson.service';
+import { HttpClient } from '@angular/common/http';
+
 
 const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
 
@@ -37,7 +39,7 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
   standalone: true,
   imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,ScrollTopComponent,AppHeaderOldVComponent,
     NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
-  providers: [HasPermissionDirective, SharedConfiguration, TranslateService,
+  providers: [HasPermissionDirective, SharedConfiguration, TranslateService,TranslationService,TranslateStore,
     SecurityService, ScrollService, PagerService, ClipboardService,ConfigJsonService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
     SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService,{
@@ -52,31 +54,34 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-})
+}) 
 export class AppComponent implements OnInit {
   isAppStarted = false;
   isBrowser;
-  constructor(private translateService: TranslationService, public securityService: SecurityService,public _config:SharedConfiguration,
-    public configStartupService : ConfigJsonService,@Inject(PLATFORM_ID) platformId: Object) {
+  constructor(
+    private translateService: TranslateService, // ✅ Injecting TranslateService Correctly
+    private securityService: SecurityService,
+    public configStartupService: ConfigJsonService,
+    private customTranslationService: TranslationService, // ✅ Inject Custom Translation Service
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
-      this.translateService.init();
+      this.customTranslationService.init(); // ✅ Ensure Translation Loads on Startup
     }
   }
 
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if (this.isBrowser) {
-      Promise.all([
-        this.securityService.StartUpApp(),
-        //this.configStartupService.loadConfig()
-      ])
-        .then((data) => {
-          this.isAppStarted = true;
-        })
-        .catch(error => {
-          this.isAppStarted = false;
-        });
+      try {
+        await Promise.all([
+          this.securityService.StartUpApp(),
+          this.configStartupService.loadConfig(),
+        ]);
+        this.isAppStarted = true;
+      } catch (error) {
+        this.isAppStarted = false;
+      }
     }
   }
 

@@ -41,7 +41,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/lang"
+              "src/assets/lang",
+              "src/web.config",
+              "src/.htaccess"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

@@ -14,7 +14,7 @@ export class ConfigJsonService {
   // Load configuration from the assets/config/config.json file
   async loadConfig(): Promise<void> {
     try {
-      const config = await this.http.get('https://www.dohadictionary.org/assets/config/config.json').toPromise();
+      const config = await this.http.get('./assets/config/config.json').toPromise();
       ConfigJsonService.config = config;
     } catch (error) {
       console.error('Failed to load configuration:', error);
@@ -25,7 +25,6 @@ export class ConfigJsonService {
   // Retrieve a value from the loaded config, with optional fallback to environment values
   getConfig(key: ConfigKeys): any {
     if (ConfigJsonService.config && key in ConfigJsonService.config) {
-      if(key == 'baseUrl') return ('https://www.dohadictionary.org' + ConfigJsonService.config[key]);
       return ConfigJsonService.config[key];
     }
     if (key in environment) {

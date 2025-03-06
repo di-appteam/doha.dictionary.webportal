@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:86',//(window.location.origin + '/dd.service'),
+  baseUrl: 'http://localhost:88',//(window.location.origin + '/dd.service'),
   oldVersion:true,
   shareUrl:"https://www.dohadictionary.org/dictionary/"
 };
