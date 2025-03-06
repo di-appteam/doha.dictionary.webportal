@@ -39,7 +39,7 @@ export class HttpService  {
 
         this.showLoader();
 
-
+console.log("Full URL: " + this.getFullUrl(url));
         return this.http.get(this.getFullUrl(url), options).pipe(
             catchError(this.onCatch),
             tap((res) => {
