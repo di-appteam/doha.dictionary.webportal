@@ -154,10 +154,10 @@
               color: #ccc;
               text-align: center;
               border: 1px solid #949494;
-              &[type="password"]{
-                width: calc(100% - 30px);
-                float: right;
-              }
+          }
+          input[type="password"] {  // ✅ Corrected selector (standalone)
+            width: calc(100% - 30px);
+            float: right;
           }
       }
 
