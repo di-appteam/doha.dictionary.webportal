@@ -32,17 +32,17 @@ import { ConfigJsonService } from './app-shared/services/configjson.service';
 import { HttpClient } from '@angular/common/http';
 
 
-const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq' , badge : 'inline'};
+const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq', badge: 'inline' };
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule,ScrollTopComponent,AppHeaderOldVComponent,
+  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule, ScrollTopComponent, AppHeaderOldVComponent,
     NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
-  providers: [HasPermissionDirective, SharedConfiguration, TranslateService,TranslationService,TranslateStore,
-    SecurityService, ScrollService, PagerService, ClipboardService,ConfigJsonService,
+  providers: [HasPermissionDirective, SharedConfiguration, TranslateService, TranslationService, TranslateStore,
+    SecurityService, ScrollService, PagerService, ClipboardService, ConfigJsonService,
     StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
-    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions,AuthGuard,ShowMessageServiceService,{
+    SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions, AuthGuard, ShowMessageServiceService, {
       provide: RECAPTCHA_SETTINGS,
       useValue: globalSettings
     },
@@ -54,7 +54,7 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-}) 
+})
 export class AppComponent implements OnInit {
   isAppStarted = false;
   isBrowser;
@@ -74,10 +74,11 @@ export class AppComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.isBrowser) {
       try {
-        await Promise.all([
-          this.securityService.StartUpApp(),
-          this.configStartupService.loadConfig(),
-        ]);
+        // ✅ Ensure config is loaded first
+        await this.configStartupService.loadConfig();
+
+        // ✅ Then start security service
+        await this.securityService.StartUpApp();
         this.isAppStarted = true;
       } catch (error) {
         this.isAppStarted = false;
