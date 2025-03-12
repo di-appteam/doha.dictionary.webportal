@@ -103,11 +103,15 @@ function PrepareRequest(
     }
   }
 
+  // ✅ Ensure `params` is always an object to prevent NullPointerException
+  let params = data?.params ?? {};
+  
   const options: HttpOptions = {
     url: url,
     method: method,
     headers: headers,
     disableRedirects: false,
+    params: params, // 👈 Ensure this is always an object
   };
 
   if (data) {
