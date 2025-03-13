@@ -350,8 +350,8 @@ img {
 }
 
 .text-right {
-  text-align: justify;
-  justify-content: right;
+  text-align: justify !important;
+  justify-content: right !important;
 }
 
 .icon-bars {
