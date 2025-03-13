@@ -30,9 +30,14 @@ export class DResultmodalComponent implements OnInit {
   lexItem?: ISummaryLexicalSheet;
   isQur:boolean = false;
 
-  constructor(public bsModalRef: BsModalRef, public _config: SharedConfiguration, public _sharedFunctions: SharedFunctions) { }
+  constructor(public bsModalRef: BsModalRef, public _config: SharedConfiguration, public _sharedFunctions: SharedFunctions) {     
+
+  }
 
   ngOnInit() {
+    console.log('LexItem:', this.lexItem); // ✅ Ensures data is properly initialized
+    console.log('IsQur:', this.isQur);
+    
   }
 
 }

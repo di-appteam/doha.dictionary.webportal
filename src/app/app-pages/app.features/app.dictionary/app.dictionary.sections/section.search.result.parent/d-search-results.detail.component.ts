@@ -2,7 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Input, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { EtymologicalForLemmaComponent } from '../section.etymological.lemma/etymological-for-lemma.component';
@@ -19,7 +19,8 @@ import { RootSectionComponent } from '../../../../../app-shared/shared-sections/
 @Component({
   selector: 'd-result-detail',
   standalone: true,
-  imports: [NgIf,NgClass,NgFor, FormsModule, CarouselModule,TabsModule ,FilterPipe, TranslateModule,RootSectionComponent,EtymologicalForLemmaComponent,DictionaryResultSectionComponent],
+  imports: [NgIf,NgClass,NgFor, FormsModule,ModalModule, CarouselModule,TabsModule ,FilterPipe, TranslateModule,RootSectionComponent,EtymologicalForLemmaComponent,DictionaryResultSectionComponent],
+  providers:[BsModalService],
   templateUrl: './d-search-results.detail.component.html',
   styleUrls: ['./d-search-results.detail.component.scss']
 })
@@ -55,12 +56,16 @@ export class DSearchResultsDetailComponent implements OnInit, OnChanges {
       item => [this.afterRequestFininshed(item)]);
   }
   openModalWithComponent(data: ISummaryLexicalSheet, isQur: boolean) {
-    const initialState = {
-      lexItem: data,
-      isQur: isQur
-    };
-    this.bsModalRef = this.modalService.show(DResultmodalComponent, { initialState, class: 'dictionary-modal' });
-    this.bsModalRef.content.closeBtnName = 'Close';
+    
+    const initialState = { lexItem: data, isQur: isQur };
+
+    this.bsModalRef = this.modalService.show(DResultmodalComponent, {
+      initialState, 
+      class: 'modal-lg dictionary-modal',
+      ignoreBackdropClick: true
+    });
+  
+    document.body.classList.add('modal-open'); // ✅ Fix Bootstrap 3 issue
   }
   ngOnChanges(changes: SimpleChanges) {
     if (this.lexId === this.oldLexId || !this.lexId) {

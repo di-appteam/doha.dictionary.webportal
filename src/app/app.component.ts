@@ -30,6 +30,7 @@ import { AppHeaderComponent } from './app-shared/shared-components/app-header/ap
 import { ScrollTopComponent } from './app-shared/shared-sections/scroll-top/scroll-top.component';
 import { ConfigJsonService } from './app-shared/services/configjson.service';
 import { HttpClient } from '@angular/common/http';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 
 const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WDNYTh8ndZErKvSq', badge: 'inline' };
@@ -37,11 +38,11 @@ const globalSettings: RecaptchaSettings = { siteKey: '6LdwoXQbAAAAACVh9Zdh2wc6WD
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule, ScrollTopComponent, AppHeaderOldVComponent,
+  imports: [RouterOutlet, RouterModule, TranslateModule, ReactiveFormsModule, ScrollTopComponent, AppHeaderOldVComponent,ModalModule,
     NgIf, AppFooterComponent, AppHeaderComponent, HasPermissionDirective,],
   providers: [HasPermissionDirective, SharedConfiguration, TranslateService, TranslationService, TranslateStore,
     SecurityService, ScrollService, PagerService, ClipboardService, ConfigJsonService,
-    StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,
+    StoreService, ChartControlService, SharedService, CacheService, DictionaryService, AccountService, SharedLemmaComponentValues,BsModalService,
     SharedRootComponentValues, AppChartsService, HttpService, ServiceUrlManager, SharedFunctions, AuthGuard, ShowMessageServiceService, {
       provide: RECAPTCHA_SETTINGS,
       useValue: globalSettings

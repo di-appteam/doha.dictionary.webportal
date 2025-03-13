@@ -111,7 +111,7 @@ export class DSearchResultsComponent implements OnInit {
     library.addIcons(faShareAlt, faFacebook, faTwitter, faLinkedin, faXTwitter, faWhatsapp);
     this.subLemmaSearch = this._sharedLemmaComponentValues.fireSearchOperation.subscribe(
       run => {
-        debugger;
+        
         if (run) {
           this.searchDictionaryModel = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
           this.parmChange(true);
