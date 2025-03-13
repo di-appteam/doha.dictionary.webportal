@@ -22,7 +22,7 @@
       <div class="advanced-search">
         <div class="input-holder row">
 
-          <div class="col-12 dropdown-col">
+          <div class="col-xs-12 dropdown-col">
 
             <div class="dropdown-select" style="font-size: 13px;">
 
@@ -39,7 +39,7 @@
 
           </div>
 
-          <div class="col-12 input-col">
+          <div class="col-xs-12 input-col">
             <input class="form-input" type="text" placeholder="{{'bibliography.sourcename' | translate}}"   (keyup.enter)="onParmChanged()"
             [(ngModel)]="searchSDModel.documenttitle" [ngModelOptions]="{standalone: true}">
 
@@ -61,7 +61,7 @@
 
       <div class="row row-m-4 no-margin-left" *ngIf="(searchSDModel.IsAdvancedSearch && searchSDModel.sourceType == 1)">
 
-        <div class="col-6">
+        <div class="col-xs-6">
 
           <div class="dropdown-select text-center">
             <ng-select [items]="dropdownTaqwemOptions" bindLabel="text" bindValue="value" [(ngModel)]="selectedDateTypeDropdown" [ngModelOptions]="{standalone: true}"
@@ -71,7 +71,7 @@
 
         </div>
 
-        <div class="col-3 date-col dropdown-with-input">
+        <div class="col-xs-3 date-col dropdown-with-input">
 
           <input type="text" placeholder="{{'general.datefromlabel' | translate}}" class="form-input" [(ngModel)]="dateFrom" [ngModelOptions]="{standalone: true}">
           <div class="dropdown-select text-center">
@@ -83,7 +83,7 @@
         </div>
 
 
-        <div class="col-3 date-col dropdown-with-input">
+        <div class="col-xs-3 date-col dropdown-with-input">
 
           <input type="text" placeholder="{{'general.datetolabel' | translate}}" class="form-input" [(ngModel)]="dateTo" [ngModelOptions]="{standalone: true}">
           <div class="dropdown-select text-center">

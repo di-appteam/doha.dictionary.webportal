@@ -826,3 +826,21 @@ border: unset !important;
 }
 
 
+
+
+
+@media (min-width: $desktopStartWidth) {
+  .results-options{
+    display: flex;
+  }
+}
+
+@media (max-width: $mobileStartWidth) {
+  .results-options{
+    display: block;
+    .option-holder{
+      max-width: unset;
+    }
+  }
+}
+

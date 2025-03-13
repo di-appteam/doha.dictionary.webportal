@@ -77,6 +77,7 @@ export class AppDictionaryComponent implements AfterViewInit {
          var model = this._sharedLemmaComponentValues._searchDictionaryModel.getValue();
          model.SearchWord = params.word;
           this._sharedLemmaComponentValues._searchDictionaryModel.next(model);
+          this._sharedLemmaComponentValues.fireSearchOperation.next(true);
         }
         else {
           //debugger;
@@ -86,6 +87,7 @@ export class AppDictionaryComponent implements AfterViewInit {
       });
     this.subLemmaSearch = this._sharedLemmaComponentValues.fireSearchOperation.subscribe(
       run => {
+        debugger;
         if(run){
         this.showResult = true;
         this.cdr.detectChanges();

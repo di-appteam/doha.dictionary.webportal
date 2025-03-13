@@ -22,7 +22,7 @@
     <div class="form-body">
       <div class="row search-input input-holder">
 
-        <div class="col-4 dropdown-col">
+        <div class="col-xs-4 dropdown-col">
 
           <div class="dropdown-select" *ngIf="rootList">
 
@@ -47,7 +47,7 @@
 
         </div>
 
-        <div class="col-8 input-col">
+        <div class="col-xs-8 input-col">
 
           <div class="ngui-auto-complete-wrapper" style="position: relative;">
 
@@ -71,7 +71,7 @@
       <div class="advanced-search" *ngIf="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsAdvancedSearch">
 
         <div class="row row-m-4 input-holder">
-          <label class="col-4 custom-checkbox-holder has-border">
+          <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
               [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsCarving"
               [ngModelOptions]="{standalone: true}">
@@ -80,7 +80,7 @@
               <p class="checkbox-title">{{'dictionary.searchbyhavecarving' | translate}}</p>
             </div>
           </label>
-          <label class="col-4 custom-checkbox-holder has-border">
+          <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
               [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsEtymological"
               [ngModelOptions]="{standalone: true}">
@@ -90,7 +90,7 @@
             </div>
           </label>
 
-          <label class="col-4 custom-checkbox-holder has-border">
+          <label class="col-xs-4 custom-checkbox-holder has-border">
             <input type="checkbox" class="visually-hidden"
               [(ngModel)]="_sharedLemmaComponentValues._searchDictionaryModel.getValue().IsSemanticField"
               [ngModelOptions]="{standalone: true}">
@@ -103,7 +103,7 @@
 
         <div class="row row-m-4 input-holder">
 
-          <div class="col-6 dropdown-col">
+          <div class="col-xs-6 dropdown-col">
 
             <div class="dropdown-select text-center">
               <ng-select [items]="additionalTags"
@@ -117,7 +117,7 @@
 
 
           </div>
-          <div class="col-6 dropdown-col">
+          <div class="col-xs-6 dropdown-col">
 
             <div class="dropdown-select text-center">
               <ng-select [items]="semanticList"
@@ -160,7 +160,7 @@
 
         <div class="row row-m-4 input-holder">
 
-          <div class="col-6 dropdown-col">
+          <div class="col-xs-6 dropdown-col">
 
             <div class="dropdown-select text-center">
               <ng-select [items]="dropdownTaqwemOptions" clearAllText="{{'general.clearalltext' | translate}}"
@@ -171,7 +171,7 @@
 
           </div>
 
-          <div class="col-3 date-col dropdown-with-input">
+          <div class="col-xs-3 date-col dropdown-with-input">
 
             <input type="text" placeholder="{{'general.datefromlabel' | translate}}" class="form-input"
               [(ngModel)]="dateFrom" [ngModelOptions]="{standalone: true}">
@@ -186,7 +186,7 @@
           </div>
 
 
-          <div class="col-3 date-col dropdown-with-input">
+          <div class="col-xs-3 date-col dropdown-with-input">
 
             <input type="text" placeholder="{{'general.datetolabel' | translate}}" class="form-input"
               [(ngModel)]="dateTo" [ngModelOptions]="{standalone: true}">

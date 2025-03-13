@@ -23,14 +23,14 @@
           </h2>
           <div class="row">
 
-            <div class="col-sm-6 col-12">
+            <div class="col-sm-6 col-xs-12">
               <p class="paragraph">
                 ص. ب: 10277
                 <br /> 196 شارع الطرفة (800)، منطقة 70
                 <br /> وادي البنات، الظعاين، قطر.
               </p>
             </div>
-            <div class="col-sm-6 col-12">
+            <div class="col-sm-6 col-xs-12">
               <p dir="ltr" class="paragraph text-center">
                 +974 4419 9777
                 <br /> +974 4035 4114
@@ -58,7 +58,7 @@
 
             <div class="row">
 
-              <div class="form-group col-sm-6 col-12 input-col">
+              <div class="form-group col-sm-6 col-xs-12 input-col">
                 <input type="text" placeholder="الاسم" formControlName="Name" class="form-input" [ngClass]="{ 'is-invalid': submitted && f['Name'].errors }"
                   autocomplete="off" />
                 <div *ngIf="submitted && f['Name'].errors" class="error-msg invalid-feedback">
@@ -66,7 +66,7 @@
                 </div>
               </div>
 
-              <div class="form-group col-sm-6 col-12 input-col">
+              <div class="form-group col-sm-6 col-xs-12 input-col">
                 <input type="From" dir="ltr" placeholder="{{'shared.usersection.signup.email' | translate}}" formControlName="From" class="form-input has-padding"
                   [ngClass]="{ 'is-invalid': submitted && f['From'].errors }" autocomplete="off" />
                 <div *ngIf="submitted && f['From'].errors" class="error-msg invalid-feedback">
