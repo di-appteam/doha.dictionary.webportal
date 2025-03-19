@@ -2105,48 +2105,48 @@
 
             <div align=center>
 
-              <table Table dir=rtl border=1 cellspacing=0 cellpadding=0 width=408>
+              <table Table dir=rtl border=1 cellspacing=0 cellpadding=0>
                 <tr>
-                  <td width=101 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>القسم</span></p>
                   </td>
-                  <td width=307 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>المرحلة التاريخية</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=101 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>القسم الأول</span></p>
                   </td>
-                  <td width=307 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>(403 - 151ق.هـ/</span><span dir=LTR></span><span dir=LTR><span
                           dir=LTR></span> </span><span dir=RTL></span><span><span dir=RTL></span>231-
                         475م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=101 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>القسم الثاني</span></p>
                   </td>
-                  <td width=307 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>(150- 101 ق. هـ/476</span><span dir=LTR></span><span dir=LTR><span
                           dir=LTR></span> </span><span dir=RTL></span><span><span dir=RTL></span>-
                         524م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=101 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>القسم الثالث</span></p>
                   </td>
-                  <td width=307 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>(100 - 51 ق. هـ/ 525- 572 م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=101 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>القسم الرابع</span></p>
                   </td>
-                  <td width=307 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>(50 -
                         14ق.هـ/ 573 - 608 م)</span></p>
                   </td>
@@ -2164,32 +2164,32 @@
 
               <table Table dir=rtl border=1 cellspacing=0 cellpadding=0>
                 <tr>
-                  <td width=407 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span>العبارة التّاريخيّة</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=407 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span dir=RTL></span><span><span dir=RTL></span>(قبل
                         150 ق. هـ/ 476م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=407 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span dir=RTL></span><span><span dir=RTL></span>(قبل
                         100 ق. هـ/</span><span dir=LTR></span><span dir=LTR><span dir=LTR></span>
                         525</span><span>م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=407 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span dir=RTL></span><span><span dir=RTL></span>(قبل
                         50 ق. هـ/</span><span dir=LTR></span><span dir=LTR><span
                           dir=LTR></span>573</span><span>م)</span></p>
                   </td>
                 </tr>
                 <tr>
-                  <td width=407 valign=top>
+                  <td valign=top>
                     <p align=center dir=RTL><span dir=RTL></span><span><span dir=RTL></span>(قبل
                         13 ق. هـ/</span><span dir=LTR></span><span dir=LTR><span dir=LTR></span> 609</span><span>م)
                       </span></p>
