@@ -1,6 +1,6 @@
 {
     "production": true,
-    "baseUrl": "http://www.dohadictionary.org/dd.service",
+    "baseUrl": "https://www.dohadictionary.org/dd.service",
     "production_BaseUrl": "https://www.dohadictionary.org/dd.service",
     "oldVersion":true,
     "shareUrl":"https://www.dohadictionary.org/dictionary/"
