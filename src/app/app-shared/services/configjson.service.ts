@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 type ConfigKeys = keyof typeof environment; // Ensures only valid keys are used
@@ -14,7 +14,8 @@ export class ConfigJsonService {
   // Load configuration from the assets/config/config.json file
   async loadConfig(): Promise<void> {
     try {
-      const config = await this.http.get('./assets/config/config.json').toPromise();
+      var configFile = isDevMode() ? 'config-dev.json':'config.json';
+      const config = await this.http.get(`./assets/config/${configFile}`).toPromise();
       ConfigJsonService.config = config;
     } catch (error) {
       console.error('Failed to load configuration:', error);
