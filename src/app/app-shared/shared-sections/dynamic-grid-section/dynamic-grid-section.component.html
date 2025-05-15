@@ -1,14 +1,12 @@
-<div class="container">
-  <mat-grid-list [cols]="breakPoint" rowHeight="400px" gutterSize="60px" class="zoom-container"
-    (window:resize)="onResize($event)">
-    <mat-grid-tile class="zoom-in" [colspan]="1">
-      <latest-words class="grid-section"></latest-words>
-    </mat-grid-tile>
-    <mat-grid-tile class="zoom-in" [colspan]="1">
-      <most-searched class="grid-section"></most-searched>
-    </mat-grid-tile>
-    <mat-grid-tile class="zoom-in" [colspan]="breakPoint">
-      <statistics-section class="grid-section-one-row"></statistics-section>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<mat-grid-list [cols]="breakPoint" rowHeight="400px" gutterSize="60px" class="zoom-container"
+  (window:resize)="onResize($event)">
+  <mat-grid-tile class="zoom-in" [colspan]="1">
+    <latest-words class="grid-section"></latest-words>
+  </mat-grid-tile>
+  <mat-grid-tile class="zoom-in" [colspan]="1">
+    <most-searched class="grid-section"></most-searched>
+  </mat-grid-tile>
+  <mat-grid-tile class="zoom-in" [colspan]="breakPoint">
+    <statistics-section class="grid-section-one-row"></statistics-section>
+  </mat-grid-tile>
+</mat-grid-list>
